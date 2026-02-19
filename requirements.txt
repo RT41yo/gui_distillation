@@ -22,3 +22,5 @@ imagehash>=4.3
 
 # If later you use OpenCV for screen diffs
 # opencv-python>=4.8
+
+pynput>=1.7.6
