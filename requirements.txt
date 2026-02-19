@@ -1,0 +1,24 @@
+# ===============================
+# Core runtime
+# ===============================
+
+pydantic>=2.6,<3.0
+PyYAML>=6.0
+pyautogui>=0.9.54
+Pillow>=10.0
+
+# ===============================
+# Testing
+# ===============================
+
+pytest>=7.4
+
+# ===============================
+# Optional (recommended soon)
+# ===============================
+
+# For perceptual hashing (Phase 1 exploration state tracking)
+imagehash>=4.3
+
+# If later you use OpenCV for screen diffs
+# opencv-python>=4.8
