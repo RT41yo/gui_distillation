@@ -305,13 +305,13 @@ class GUIAutomation:
         except Exception as e:
             raise ScreenshotError(str(e)) from e
 
-        def compute_image_hash(self, image_path: Path) -> str:
-            algo = self.hash_algorithm
-            h = hashlib.new(algo)
-            with image_path.open("rb") as f:
-                for chunk in iter(lambda: f.read(1024 * 1024), b""):
-                    h.update(chunk)
-            return h.hexdigest()
+    def compute_image_hash(self, image_path: Path) -> str:
+        algo = self.hash_algorithm
+        h = hashlib.new(algo)
+        with image_path.open("rb") as f:
+            for chunk in iter(lambda: f.read(1024 * 1024), b""):
+                h.update(chunk)
+        return h.hexdigest()
 
     # -----------------------------
     # Coordinates utilities
