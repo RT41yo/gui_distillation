@@ -263,31 +263,55 @@ class GUIAutomation:
     # -----------------------------
     # Screenshots / hashing
     # -----------------------------
-    def take_screenshot(self, path: Path) -> Path:
+    def take_screenshot(self, path: Union[str, Path]) -> Path:
         """
         Take a screenshot and save to the specified path.
+
+        Accepts:
+        - Path: full path including filename
+        - str: either full path or just a filename (with or without extension)
+
+        Returns:
+        Path to the saved screenshot.
         """
         try:
-            path.parent.mkdir(parents=True, exist_ok=True)
+            out_path = Path(path)
+
+            # If user passed only a stem (e.g. "test_screenshot"), add extension
+            if out_path.suffix == "":
+                out_path = out_path.with_suffix(f".{self.screenshot_format}")
+
+            # If user passed a relative path, resolve it relative to the output directory
+            if not out_path.is_absolute():
+                out_path = self.output_dir / out_path
+
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+
             img = pyautogui.screenshot()
 
-            pil_format = "PNG" if self.screenshot_format == "png" else "JPEG"
+            pil_format = "PNG" if self.screenshot_format.lower() == "png" else "JPEG"
             save_kwargs: Dict[str, Any] = {}
-            if pil_format == "JPEG":
-                save_kwargs["quality"] = int(self._get(self.settings, "automation.screenshots.jpeg_quality", 95))
 
-            img.save(path, format=pil_format, **save_kwargs)
-            return path
+            if pil_format == "JPEG":
+                # In settings.yaml you used "quality". Let's support both keys safely.
+                quality = self._get(self.settings, "automation.screenshots.quality", None)
+                jpeg_quality = self._get(self.settings, "automation.screenshots.jpeg_quality", None)
+                q = jpeg_quality if jpeg_quality is not None else (quality if quality is not None else 95)
+                save_kwargs["quality"] = int(q)
+
+            img.save(out_path, format=pil_format, **save_kwargs)
+            return out_path
+
         except Exception as e:
             raise ScreenshotError(str(e)) from e
 
-    def compute_image_hash(self, image_path: Path) -> str:
-        algo = self.hash_algorithm
-        h = hashlib.new(algo)
-        with image_path.open("rb") as f:
-            for chunk in iter(lambda: f.read(1024 * 1024), b""):
-                h.update(chunk)
-        return h.hexdigest()
+        def compute_image_hash(self, image_path: Path) -> str:
+            algo = self.hash_algorithm
+            h = hashlib.new(algo)
+            with image_path.open("rb") as f:
+                for chunk in iter(lambda: f.read(1024 * 1024), b""):
+                    h.update(chunk)
+            return h.hexdigest()
 
     # -----------------------------
     # Coordinates utilities
