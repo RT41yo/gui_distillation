@@ -59,10 +59,11 @@ class CoordinateFinder:
     """
 
     DEFAULT_BUTTON_ORDER: List[str] = [
-        "digit_0", "digit_1", "digit_2", "digit_3", "digit_4",
-        "digit_5", "digit_6", "digit_7", "digit_8", "digit_9",
-        "plus", "minus", "multiply", "divide", "equals",
-        "clear", "clear_entry", "toggle_sign", "decimal", "percent", "sqrt",
+        "backspace", "paren_open", "paren_close", "mod", "pi",
+        "digit_7", "digit_8", "digit_9", "divide", "sqrt",
+        "digit_4", "digit_5", "digit_6", "multiply", "square",
+        "digit_1", "digit_2", "digit_3", "minus", "equals",
+        "digit_0", "decimal", "percent", "plus",
     ]
 
     def __init__(
