@@ -39,7 +39,6 @@ from src.core.exceptions import (
 
 logger = logging.getLogger(__name__)
 
-
 JsonDict = Dict[str, Any]
 Coords = Tuple[int, int]
 
@@ -80,7 +79,7 @@ class GUIAutomation:
         cfg_display = self._get(self.settings, "environment.display.display_num", ":99")
         self.display = display or cfg_display
 
-        # Output directory (default: data/test_automation or data/exploration/... later)
+        # Output directory
         cfg_default_out = self._get(self.settings, "paths.raw_data", "data/raw")
         self.output_dir = Path(output_dir or cfg_default_out)
         self.output_dir.mkdir(parents=True, exist_ok=True)
@@ -89,6 +88,7 @@ class GUIAutomation:
         self.coordinate_system = self._get(self.settings, "automation.mouse.coordinate_system", "absolute")
         self.validate_bounds = bool(self._get(self.settings, "automation.mouse.validate_bounds", True))
 
+        # If settings contains explicit screen size, use it; otherwise fall back.
         self.screen_width = int(self._get(self.settings, "environment.display.screen.width", 1280))
         self.screen_height = int(self._get(self.settings, "environment.display.screen.height", 1024))
 
@@ -102,7 +102,9 @@ class GUIAutomation:
         if self.screenshot_format not in {"png", "jpg", "jpeg"}:
             raise ValueError(f"Unsupported screenshot format: {self.screenshot_format}")
 
-        self.naming_pattern = str(self._get(self.settings, "automation.screenshots.naming_pattern", "step_{step_id:04d}_{suffix}.{ext}"))
+        self.naming_pattern = str(
+            self._get(self.settings, "automation.screenshots.naming_pattern", "step_{step_id:04d}_{suffix}.{ext}")
+        )
 
         # Step filenames (Phase-1 compatible)
         self.step_file_before = str(self._get(self.settings, "data.step_files.before", "before.png"))
@@ -184,13 +186,15 @@ class GUIAutomation:
     # Environment / display
     # -----------------------------
     def _ensure_display(self) -> None:
-        # set for this process
         os.environ["DISPLAY"] = self.display
 
-        # simple probe
         try:
-            _w, _h = pyautogui.size()
-            logger.info("Display reachable: %sx%s (DISPLAY=%s)", _w, _h, self.display)
+            w, h = pyautogui.size()
+            logger.info("Display reachable: %sx%s (DISPLAY=%s)", w, h, self.display)
+
+            # Prefer actual runtime geometry if available
+            self.screen_width = int(w)
+            self.screen_height = int(h)
         except Exception as e:
             raise DisplayNotFoundError(self.display) from e
 
@@ -267,37 +271,27 @@ class GUIAutomation:
         """
         Take a screenshot and save to the specified path.
 
-        Accepts:
-        - Path: full path including filename
-        - str: either full path or just a filename (with or without extension)
-
-        Returns:
-        Path to the saved screenshot.
+        If path is relative, it is interpreted relative to project root,
+        NOT re-prefixed with output_dir again.
         """
         try:
             out_path = Path(path)
 
-            # If user passed only a stem (e.g. "test_screenshot"), add extension
             if out_path.suffix == "":
                 out_path = out_path.with_suffix(f".{self.screenshot_format}")
 
-            # If user passed a relative path, resolve it relative to the output directory
-            if not out_path.is_absolute():
-                out_path = self.output_dir / out_path
-
+            # Do NOT prefix with self.output_dir here.
+            # run_step already builds correct full paths.
             out_path.parent.mkdir(parents=True, exist_ok=True)
 
             img = pyautogui.screenshot()
 
-            pil_format = "PNG" if self.screenshot_format.lower() == "png" else "JPEG"
+            pil_format = "PNG" if self.screenshot_format == "png" else "JPEG"
             save_kwargs: Dict[str, Any] = {}
 
             if pil_format == "JPEG":
-                # In settings.yaml you used "quality". Let's support both keys safely.
-                quality = self._get(self.settings, "automation.screenshots.quality", None)
-                jpeg_quality = self._get(self.settings, "automation.screenshots.jpeg_quality", None)
-                q = jpeg_quality if jpeg_quality is not None else (quality if quality is not None else 95)
-                save_kwargs["quality"] = int(q)
+                quality = self._get(self.settings, "automation.screenshots.quality", 95)
+                save_kwargs["quality"] = int(quality)
 
             img.save(out_path, format=pil_format, **save_kwargs)
             return out_path
@@ -326,7 +320,6 @@ class GUIAutomation:
             x, y = coords
             return int(x), int(y)
 
-        # normalized
         x_f, y_f = coords
         x = int(round(float(x_f) * (self.screen_width - 1)))
         y = int(round(float(y_f) * (self.screen_height - 1)))
@@ -340,6 +333,16 @@ class GUIAutomation:
         if x >= self.screen_width or y >= self.screen_height:
             raise CoordinatesError(x, y, f"outside screen bounds ({self.screen_width}x{self.screen_height})")
 
+    @staticmethod
+    def _normalize_coords(coords: Any) -> Union[Coords, Tuple[float, float]]:
+        if isinstance(coords, tuple) and len(coords) == 2:
+            return coords[0], coords[1]
+        if isinstance(coords, list) and len(coords) == 2:
+            return coords[0], coords[1]
+        if isinstance(coords, dict) and "x" in coords and "y" in coords:
+            return coords["x"], coords["y"]
+        raise ValueError(f"Unsupported coordinates format: {coords!r}")
+
     # -----------------------------
     # Actions
     # -----------------------------
@@ -347,7 +350,7 @@ class GUIAutomation:
         """
         Execute an action.
 
-        Supported normalized schema (preferred):
+        Preferred schema:
           {
             "action_type": "click",
             "coordinates": [x, y] | (x, y) | {"x":x,"y":y},
@@ -378,8 +381,8 @@ class GUIAutomation:
         coords_any = action_config.get("coordinates")
         coords: Optional[Coords] = None
         if coords_any is not None:
-            coords = self._normalize_coords(coords_any)
-            coords = self._to_absolute_coords(coords)
+            norm = self._normalize_coords(coords_any)
+            coords = self._to_absolute_coords(norm)
             self._validate_coords(coords[0], coords[1])
 
         logger.info("Executing action: %s (coords=%s)", action_type, coords)
@@ -414,7 +417,8 @@ class GUIAutomation:
 
             elif action_type == "type":
                 text = str(params.get("text", ""))
-                pyautogui.write(text, interval=float(self._get(self.settings, "automation.timing.type_delay", 0.1)))
+                interval = float(self._get(self.settings, "automation.timing.type_delay", 0.1))
+                pyautogui.write(text, interval=interval)
 
             elif action_type == "press":
                 key = str(params.get("key", "enter"))
@@ -438,20 +442,16 @@ class GUIAutomation:
         except Exception as e:
             raise ActionExecutionError(action_type, str(e)) from e
 
-    @staticmethod
-    def _normalize_coords(coords: Any) -> Union[Coords, Tuple[float, float]]:
-        if isinstance(coords, tuple) and len(coords) == 2:
-            return coords[0], coords[1]
-        if isinstance(coords, list) and len(coords) == 2:
-            return coords[0], coords[1]
-        if isinstance(coords, dict) and "x" in coords and "y" in coords:
-            return coords["x"], coords["y"]
-        raise ValueError(f"Unsupported coordinates format: {coords!r}")
-
     # -----------------------------
     # Step execution
     # -----------------------------
-    def run_step(self, step_id: int, action_config: JsonDict, take_before: bool = True, take_after: bool = True) -> StepArtifacts:
+    def run_step(
+        self,
+        step_id: int,
+        action_config: JsonDict,
+        take_before: bool = True,
+        take_after: bool = True,
+    ) -> StepArtifacts:
         """
         Run a single step:
           - create step directory
@@ -537,6 +537,37 @@ class GUIAutomation:
         return True
 
     # -----------------------------
+    # Built-in scenario: calculator basic test
+    # -----------------------------
+    def test_calculator_basic(self, start_step_id: int = 0) -> List[StepArtifacts]:
+        """
+        Basic deterministic test for GNOME Calculator using calibrated coordinates:
+          2 + 2 = (press equals)
+
+        Returns list of StepArtifacts for each click.
+        """
+        required = ["digit_2", "plus", "digit_2", "equals"]
+        missing = [k for k in required if self.get_button_coordinates(k) is None]
+        if missing:
+            raise ValueError(
+                f"Missing coordinates in app_config for: {missing}. "
+                f"Re-run calibration and ensure calculator.yaml has these keys."
+            )
+
+        # Optional: clear first if available (nice for repeatability)
+        actions: List[JsonDict] = []
+        clear_coord = self.get_button_coordinates("clear")
+        if clear_coord is not None:
+            actions.append({"action_type": "click", "coordinates": clear_coord, "parameters": {"button": "left", "clicks": 1}})
+
+        for key in required:
+            coords = self.get_button_coordinates(key)
+            assert coords is not None
+            actions.append({"action_type": "click", "coordinates": coords, "parameters": {"button": "left", "clicks": 1}})
+
+        return self.run_sequence(actions, start_id=start_step_id)
+
+    # -----------------------------
     # Context manager
     # -----------------------------
     def __enter__(self) -> "GUIAutomation":
@@ -547,25 +578,42 @@ class GUIAutomation:
         try:
             self.close_app()
         except Exception:
-            # Don't mask original exceptions
             logger.exception("Failed to close app during context manager exit")
 
 
 # =========================================================
-# CLI (optional)
+# CLI
 # =========================================================
 def _cli() -> int:
     import argparse
     import random
 
     parser = argparse.ArgumentParser(description="GUI Automation Tool (Phase 0.3)")
+
+    # Core config
     parser.add_argument("--app", default="gnome-calculator", help="Application to automate")
-    parser.add_argument("--output", default=None, help="Output directory (default from settings)")
     parser.add_argument("--settings", default="config/settings.yaml", help="Path to settings.yaml")
+
+    # New flag name
     parser.add_argument("--app-config", default=None, help="Path to app config YAML (button coordinates)")
+    # Backward-compatible alias (your old call used --config)
+    parser.add_argument("--config", dest="app_config", default=None, help=argparse.SUPPRESS)
+
+    parser.add_argument("--output", default=None, help="Output directory (overrides settings)")
     parser.add_argument("--display", default=None, help="X11 display (overrides settings)")
-    parser.add_argument("--steps", type=int, default=1, help="Number of random steps")
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
+
+    # Modes
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--random", action="store_true", help="Run random click steps (default mode)")
+    mode.add_argument("--basic-test", action="store_true", help="Run basic calculator test: 2 + 2 (requires coords)")
+    # Backward-compatible alias (your old call used --test)
+    mode.add_argument("--test", dest="basic_test", action="store_true", help=argparse.SUPPRESS)
+
+    # Common params
+    parser.add_argument("--steps", type=int, default=1, help="Number of random steps (random mode)")
+    parser.add_argument("--start-step-id", type=int, default=0, help="Start step_id offset")
+
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -573,25 +621,44 @@ def _cli() -> int:
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
 
+    # Resolve app_config from either flag
+    app_config_path = args.app_config or getattr(args, "app_config", None)
+
+    # Default mode: random (if nothing specified)
+    if not args.random and not args.basic_test:
+        args.random = True
+
     with GUIAutomation(
         app_name=args.app,
         output_dir=args.output,
         settings_path=args.settings,
-        app_config_path=args.app_config,
+        app_config_path=app_config_path,
         display=args.display,
     ) as auto:
+        if args.basic_test:
+            if not app_config_path:
+                logger.error("--basic-test/--test requires --app-config/--config with button coordinates (calculator.yaml).")
+                return 2
+
+            steps = auto.test_calculator_basic(start_step_id=args.start_step_id)
+            logger.info("Basic test completed: %d steps", len(steps))
+            return 0
+
+        # Random mode
         width, height = pyautogui.size()
+        margin = 50
         for i in range(args.steps):
-            x = random.randint(50, max(50, width - 50))
-            y = random.randint(50, max(50, height - 50))
+            x = random.randint(margin, max(margin, width - margin))
+            y = random.randint(margin, max(margin, height - margin))
             auto.run_step(
-                i,
-                {
+                step_id=args.start_step_id + i,
+                action_config={
                     "action_type": "click",
                     "coordinates": (x, y),
                     "parameters": {"button": "left", "clicks": 1},
                 },
             )
+
     return 0
 
 
