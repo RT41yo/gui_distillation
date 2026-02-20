@@ -2,23 +2,29 @@
 """
 GUI Automation core module.
 
-Phase: 0.3 Infrastructure Setup
+Phase: 0.3 -> extended for Phase 1 readiness
 
 Responsibilities:
 - Application lifecycle (launch, close)
 - Screenshot capture (before/after)
 - Execute simple actions (click/type/press/move_to/hotkey)
 - Save step artifacts in a reproducible structure
-
-This module is driven by config/settings.yaml (runtime config).
+- NEW (Phase 1 prep):
+  - Optional action.json per step
+  - Optional perceptual hashes (dHash) for state tracking
+  - Random exploration mode with:
+      * random (anywhere on screen)
+      * random-buttons (bounded to button area derived from app_config)
 """
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import logging
 import os
+import random
 import subprocess
 import time
 from dataclasses import dataclass
@@ -50,6 +56,7 @@ class StepArtifacts:
     before: Optional[Path]
     after: Optional[Path]
     metadata: Path
+    action: Optional[Path] = None
 
 
 class GUIAutomation:
@@ -110,10 +117,20 @@ class GUIAutomation:
         self.step_file_before = str(self._get(self.settings, "data.step_files.before", "before.png"))
         self.step_file_after = str(self._get(self.settings, "data.step_files.after", "after.png"))
         self.step_file_metadata = str(self._get(self.settings, "data.step_files.metadata", "metadata.json"))
+        # NEW: action file (optional)
+        self.step_file_action = str(self._get(self.settings, "data.step_files.action", "action.json"))
+        self.save_action_file = bool(self._get(self.settings, "data.step_files.save_action", True))
+        # NEW: perceptual hash (for state tracking)
+        self.save_phash = bool(self._get(self.settings, "automation.hash.save_phash", True))
+        self.phash_size = int(self._get(self.settings, "automation.hash.phash_size", 8))  # dHash size
 
         # Hash
         self.hash_algorithm = str(self._get(self.settings, "automation.hash.algorithm", "md5")).lower()
         self.compare_hashes = bool(self._get(self.settings, "automation.hash.compare", True))
+
+        # Random exploration settings
+        self.random_margin = int(self._get(self.settings, "automation.random.margin", 50))
+        self.random_buttons_padding = int(self._get(self.settings, "automation.random_buttons.padding", 15))
 
         # App config (button coordinates)
         self.app_config: JsonDict = {}
@@ -280,8 +297,6 @@ class GUIAutomation:
             if out_path.suffix == "":
                 out_path = out_path.with_suffix(f".{self.screenshot_format}")
 
-            # Do NOT prefix with self.output_dir here.
-            # run_step already builds correct full paths.
             out_path.parent.mkdir(parents=True, exist_ok=True)
 
             img = pyautogui.screenshot()
@@ -306,6 +321,37 @@ class GUIAutomation:
             for chunk in iter(lambda: f.read(1024 * 1024), b""):
                 h.update(chunk)
         return h.hexdigest()
+
+    def compute_dhash(self, image_path: Path, size: int = 8) -> str:
+        """
+        Compute a simple perceptual hash (dHash) for state tracking.
+        Returns hex string.
+        """
+        try:
+            from PIL import Image  # Pillow is a dependency via pyautogui
+        except Exception as e:  # pragma: no cover
+            raise RuntimeError("Pillow is required for perceptual hashing.") from e
+
+        img = Image.open(image_path).convert("L")
+        # dHash uses (size+1)xsize and compares adjacent pixels
+        img = img.resize((size + 1, size))
+        pixels = list(img.getdata())
+        # rows of length (size+1)
+        diff_bits: List[int] = []
+        for y in range(size):
+            row_start = y * (size + 1)
+            for x in range(size):
+                left = pixels[row_start + x]
+                right = pixels[row_start + x + 1]
+                diff_bits.append(1 if left > right else 0)
+
+        # pack bits into hex
+        # 64 bits if size=8
+        value = 0
+        for b in diff_bits:
+            value = (value << 1) | b
+        width = (size * size + 3) // 4  # hex digits
+        return f"{value:0{width}x}"
 
     # -----------------------------
     # Coordinates utilities
@@ -456,6 +502,7 @@ class GUIAutomation:
         Run a single step:
           - create step directory
           - optionally take before screenshot
+          - write action.json (optional)
           - perform action
           - optionally take after screenshot
           - write metadata.json
@@ -467,18 +514,29 @@ class GUIAutomation:
         after_path = step_dir / self.step_file_after if take_after else None
         meta_path = step_dir / self.step_file_metadata
 
+        action_path = step_dir / self.step_file_action if self.save_action_file else None
+
         before_hash = None
         after_hash = None
+        before_phash = None
+        after_phash = None
 
         if before_path:
             self.take_screenshot(before_path)
             before_hash = self.compute_image_hash(before_path)
+            if self.save_phash:
+                before_phash = self.compute_dhash(before_path, size=self.phash_size)
+
+        if action_path is not None:
+            action_path.write_text(json.dumps(action_config, ensure_ascii=False, indent=2), encoding="utf-8")
 
         self.perform_action(action_config)
 
         if after_path:
             self.take_screenshot(after_path)
             after_hash = self.compute_image_hash(after_path)
+            if self.save_phash:
+                after_phash = self.compute_dhash(after_path, size=self.phash_size)
 
         changed = None
         if self.compare_hashes and before_hash and after_hash:
@@ -492,6 +550,7 @@ class GUIAutomation:
             "screen": {"width": self.screen_width, "height": self.screen_height},
             "action": action_config,
             "hashes": {"before": before_hash, "after": after_hash},
+            "phash": {"before": before_phash, "after": after_phash},
             "changed": changed,
             "timing": {"action_delay": self.action_delay, "screenshot_delay": self.screenshot_delay},
         }
@@ -499,7 +558,7 @@ class GUIAutomation:
         meta_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")
         logger.info("Step %s completed (changed=%s) -> %s", step_id, changed, step_dir)
 
-        return StepArtifacts(step_dir=step_dir, before=before_path, after=after_path, metadata=meta_path)
+        return StepArtifacts(step_dir=step_dir, before=before_path, after=after_path, metadata=meta_path, action=action_path)
 
     def run_sequence(self, actions: List[JsonDict], start_id: int = 0) -> List[StepArtifacts]:
         out: List[StepArtifacts] = []
@@ -536,6 +595,39 @@ class GUIAutomation:
         )
         return True
 
+    def _button_area_bbox(self) -> Optional[Tuple[int, int, int, int]]:
+        """
+        Compute a bounding box that covers all configured button coordinates.
+        Returns (x_min, y_min, x_max, y_max) in absolute pixels, padded.
+        """
+        if not isinstance(self.app_config, dict):
+            return None
+        buttons = self.app_config.get("buttons")
+        if not isinstance(buttons, dict) or not buttons:
+            return None
+
+        xs: List[int] = []
+        ys: List[int] = []
+        for _, v in buttons.items():
+            if isinstance(v, (list, tuple)) and len(v) == 2:
+                try:
+                    xs.append(int(v[0]))
+                    ys.append(int(v[1]))
+                except Exception:
+                    continue
+
+        if not xs or not ys:
+            return None
+
+        pad = int(self.random_buttons_padding)
+        x_min = max(0, min(xs) - pad)
+        y_min = max(0, min(ys) - pad)
+        x_max = min(self.screen_width - 1, max(xs) + pad)
+        y_max = min(self.screen_height - 1, max(ys) + pad)
+        if x_min >= x_max or y_min >= y_max:
+            return None
+        return x_min, y_min, x_max, y_max
+
     # -----------------------------
     # Built-in scenario: calculator basic test
     # -----------------------------
@@ -554,11 +646,14 @@ class GUIAutomation:
                 f"Re-run calibration and ensure calculator.yaml has these keys."
             )
 
-        # Optional: clear first if available (nice for repeatability)
         actions: List[JsonDict] = []
+
+        # Optional: clear first if available (nice for repeatability)
         clear_coord = self.get_button_coordinates("clear")
         if clear_coord is not None:
-            actions.append({"action_type": "click", "coordinates": clear_coord, "parameters": {"button": "left", "clicks": 1}})
+            actions.append(
+                {"action_type": "click", "coordinates": clear_coord, "parameters": {"button": "left", "clicks": 1}}
+            )
 
         for key in required:
             coords = self.get_button_coordinates(key)
@@ -585,33 +680,39 @@ class GUIAutomation:
 # CLI
 # =========================================================
 def _cli() -> int:
-    import argparse
-    import random
-
-    parser = argparse.ArgumentParser(description="GUI Automation Tool (Phase 0.3)")
+    parser = argparse.ArgumentParser(description="GUI Automation Tool (Phase 0.3 -> Phase 1 prep)")
 
     # Core config
     parser.add_argument("--app", default="gnome-calculator", help="Application to automate")
     parser.add_argument("--settings", default="config/settings.yaml", help="Path to settings.yaml")
 
-    # New flag name
+    # App config (button coordinates)
     parser.add_argument("--app-config", default=None, help="Path to app config YAML (button coordinates)")
-    # Backward-compatible alias (your old call used --config)
-    parser.add_argument("--config", dest="app_config", default=None, help=argparse.SUPPRESS)
+    parser.add_argument("--config", dest="app_config", default=None, help=argparse.SUPPRESS)  # backward-compat
 
     parser.add_argument("--output", default=None, help="Output directory (overrides settings)")
     parser.add_argument("--display", default=None, help="X11 display (overrides settings)")
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
+    parser.add_argument("--seed", type=int, default=None, help="Random seed (optional)")
 
     # Modes
     mode = parser.add_mutually_exclusive_group()
-    mode.add_argument("--random", action="store_true", help="Run random click steps (default mode)")
+    mode.add_argument("--random", action="store_true", help="Run random click steps on the whole screen")
+    mode.add_argument(
+        "--random-buttons",
+        action="store_true",
+        help="Run random click steps bounded to button area derived from app-config",
+    )
     mode.add_argument("--basic-test", action="store_true", help="Run basic calculator test: 2 + 2 (requires coords)")
-    # Backward-compatible alias (your old call used --test)
-    mode.add_argument("--test", dest="basic_test", action="store_true", help=argparse.SUPPRESS)
+    mode.add_argument("--test", dest="basic_test", action="store_true", help=argparse.SUPPRESS)  # backward-compat
 
     # Common params
-    parser.add_argument("--steps", type=int, default=1, help="Number of random steps (random mode)")
+    parser.add_argument(
+        "--steps",
+        type=int,
+        default=20,
+        help="Number of steps for random modes (default: 20)",
+    )
     parser.add_argument("--start-step-id", type=int, default=0, help="Start step_id offset")
 
     args = parser.parse_args()
@@ -621,12 +722,18 @@ def _cli() -> int:
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
 
+    if args.seed is not None:
+        random.seed(args.seed)
+
     # Resolve app_config from either flag
     app_config_path = args.app_config or getattr(args, "app_config", None)
 
-    # Default mode: random (if nothing specified)
-    if not args.random and not args.basic_test:
-        args.random = True
+    # Default mode: random-buttons if app-config provided, else random
+    if not args.random and not args.random_buttons and not args.basic_test:
+        if app_config_path:
+            args.random_buttons = True
+        else:
+            args.random = True
 
     with GUIAutomation(
         app_name=args.app,
@@ -639,17 +746,49 @@ def _cli() -> int:
             if not app_config_path:
                 logger.error("--basic-test/--test requires --app-config/--config with button coordinates (calculator.yaml).")
                 return 2
-
             steps = auto.test_calculator_basic(start_step_id=args.start_step_id)
             logger.info("Basic test completed: %d steps", len(steps))
             return 0
 
-        # Random mode
+        # Random modes
         width, height = pyautogui.size()
-        margin = 50
+
+        if args.random_buttons:
+            if not app_config_path:
+                logger.error("--random-buttons requires --app-config with button coordinates.")
+                return 2
+            bbox = auto._button_area_bbox()
+            if bbox is None:
+                logger.error("Cannot derive button area bbox from app-config. Ensure 'buttons:' coords exist.")
+                return 2
+            x_min, y_min, x_max, y_max = bbox
+            logger.info("Random-buttons bbox: (%d,%d) - (%d,%d)", x_min, y_min, x_max, y_max)
+
+            for i in range(args.steps):
+                x = random.randint(x_min, x_max)
+                y = random.randint(y_min, y_max)
+                auto.run_step(
+                    step_id=args.start_step_id + i,
+                    action_config={
+                        "action_type": "click",
+                        "coordinates": (x, y),
+                        "parameters": {"button": "left", "clicks": 1},
+                    },
+                )
+                if i < args.steps - 1:
+                    time.sleep(auto.action_delay)
+            return 0
+
+        # args.random (whole screen)
+        margin = int(auto.random_margin)
+        x_lo = max(0, margin)
+        y_lo = max(0, margin)
+        x_hi = max(x_lo, width - 1 - margin)
+        y_hi = max(y_lo, height - 1 - margin)
+
         for i in range(args.steps):
-            x = random.randint(margin, max(margin, width - margin))
-            y = random.randint(margin, max(margin, height - margin))
+            x = random.randint(x_lo, x_hi)
+            y = random.randint(y_lo, y_hi)
             auto.run_step(
                 step_id=args.start_step_id + i,
                 action_config={
@@ -658,6 +797,8 @@ def _cli() -> int:
                     "parameters": {"button": "left", "clicks": 1},
                 },
             )
+            if i < args.steps - 1:
+                time.sleep(auto.action_delay)
 
     return 0
 
