@@ -1,8 +1,8 @@
 ## Методология дистилляции GUI-навыков из мультимодальных языковых моделей в набор специализированных, компактных моделей, предоставляемых в виде MCP-tools (GUI Distillation)
 
-![Methodology Pipeline](https://github.com/RT41yo/gui-distillation/blob/phase_1/assets/methodology_pipeline.png)
+![Methodology Pipeline](https://github.com/RT41yo/gui_distillation/blob/phase_1/assets/methodology_pipeline.png)
 
-![Methodology Pipeline](https://github.com/RT41yo/gui_distillation/blob/phase_1/assets/workflow.png)
+![Workflow](https://github.com/RT41yo/gui_distillation/blob/phase_1/assets/workflow.png)
 
 ### Фаза 0 — Инфраструктура GUI и формализация навыков
 
