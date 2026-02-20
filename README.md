@@ -1,6 +1,6 @@
 ## Методология дистилляции GUI-навыков из мультимодальных языковых моделей в набор специализированных, компактных моделей, предоставляемых в виде MCP-tools (GUI Distillation)
 
-![Methodology Pipeline](https://github.com/RT41yo/gui-distillation/raw/phase_1/assets/methodology_pipeline.png)  
+![Methodology Pipeline](https://github.com/RT41yo/gui-distillation/blob/phase_1/assets/methodology_pipeline.png)  
 
 ![Methodology Pipeline](https://github.com/RT41yo/gui_distillation/blob/phase_1/assets/workflow.png)
 
@@ -26,10 +26,7 @@
 sudo bash scripts/setup/setup_vm.sh
 ```
 
-Устанавливает:_
-python3, pip, venv  
-git, build-essential  
-базовые системные зависимости  
+Устанавливает: python3, pip, venv, git, build-essential, базовые системные зависимости  
 
 **install_apps.sh**  
 
@@ -60,7 +57,8 @@ bash scripts/setup/reset_display.sh
 - снимает lock-файл  
 - очищает DISPLAY  
 - запускает новый Xvfb :99  
-- проверяет доступность  
+- проверяет доступность
+
 Это официальный способ подготовки среды.  
 
 ### Инструменты (scripts/tools)  
