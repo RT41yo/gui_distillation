@@ -209,6 +209,11 @@ __marimo__/
 data/*
 !data/**/.gitkeep
 
+# Разрешаем exploration
+!data/exploration/
+!data/exploration/phase_1_debug/
+!data/exploration/phase_1_debug/**
+
 models/*
 !models/.gitkeep
 

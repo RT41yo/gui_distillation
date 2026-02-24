@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "change_type": "text_updated",
+  "description": "A comma was added to the expression in the display, changing it from '-' to '-,'.",
+  "ui_state_changed": false,
+  "content_state_changed": true,
+  "confidence": 0.98,
+  "before_text": "-",
+  "after_text": "-,"
+}

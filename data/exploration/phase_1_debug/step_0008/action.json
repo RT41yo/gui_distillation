@@ -1,0 +1,11 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    318,
+    287
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  }
+}
