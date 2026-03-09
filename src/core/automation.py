@@ -550,7 +550,7 @@ class GUIAutomation:
             "screen": {"width": self.screen_width, "height": self.screen_height},
             "action": action_config,
             "hashes": {"before": before_hash, "after": after_hash},
-            "phash": {"before": before_phash, "after": after_phash},
+            "phashes": {"before": before_phash, "after": after_phash},
             "changed": changed,
             "timing": {"action_delay": self.action_delay, "screenshot_delay": self.screenshot_delay},
         }
