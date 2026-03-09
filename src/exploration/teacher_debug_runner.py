@@ -16,7 +16,7 @@ except ImportError:  # pragma: no cover
     from src.skills.teacher_schemas import DeltaResponse, InventoryResponse as ObservationResponse
 
 from src.teachers.json_parser import RobustJSONParser
-from src.teachers.openai_client import OpenAITeacherClient, SettingsLoader
+from src.teachers.openai_client import OpenAIAnnotatorClient, SettingsLoader
 
 JsonDict = Dict[str, Any]
 
@@ -381,7 +381,7 @@ class TeacherDebugRunner:
             ],
         }
 
-        write_json(self.steps_root / "teacher_debug_report.json", report)
+        write_json(self.steps_root / "annotator_debug_report.json", report)
         return report
 
 
@@ -399,7 +399,7 @@ def main() -> int:
         teacher_config_path=args.teacher_config,
     )
     runner.run(max_steps=args.max_steps)
-    print(f"Done: {Path(args.steps_root) / 'teacher_debug_report.json'}")
+    print(f"Done: {Path(args.steps_root) / 'annotator_debug_report.json'}")
     return 0
 
 

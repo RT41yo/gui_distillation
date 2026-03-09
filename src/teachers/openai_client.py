@@ -64,7 +64,7 @@ class TeacherRawResponse:
     usage: Optional[JsonDict] = None
 
 
-class OpenAITeacherClient:
+class OpenAIAnnotatorClient:
     """
     OpenAI client for multimodal prompts (text + images) via Responses API.
 

@@ -5,7 +5,10 @@ from typing import List, Literal, Optional, Tuple
 from pydantic import BaseModel, Field, model_validator
 
 
-# --- Canonical ID mappings ---
+# -------------------------------------------------------------------
+# Canonical ID mappings
+# -------------------------------------------------------------------
+
 SYMBOL_ID_MAP = {
     "÷": "divide",
     "/": "divide",
@@ -29,20 +32,32 @@ ALIAS_ID_MAP = {
 
 
 def canonicalize_element_id(raw_id: str, raw_text: Optional[str]) -> str:
+    """
+    Convert unstable/symbol ids into canonical ids.
+
+    Examples:
+    - "+"  -> "plus"
+    - "7"  -> "digit_7"
+    - "÷"  -> "divide"
+    """
     rid = (raw_id or "").strip()
     if not rid:
         return rid
 
+    # direct symbol mapping
     if rid in SYMBOL_ID_MAP:
         return SYMBOL_ID_MAP[rid]
 
+    # direct digit mapping
     if rid in DIGIT_ID_MAP:
         return DIGIT_ID_MAP[rid]
 
+    # aliases
     low = rid.lower()
     if low in ALIAS_ID_MAP:
         return ALIAS_ID_MAP[low]
 
+    # fallback to text if id is weak but text is informative
     if raw_text:
         t = raw_text.strip()
         if t in SYMBOL_ID_MAP:
@@ -52,6 +67,10 @@ def canonicalize_element_id(raw_id: str, raw_text: Optional[str]) -> str:
 
     return rid
 
+
+# -------------------------------------------------------------------
+# Observation schema
+# -------------------------------------------------------------------
 
 class ScreenInfo(BaseModel):
     width: int = Field(ge=1)
@@ -69,8 +88,8 @@ class UIElement(BaseModel):
     def _canonicalize(self) -> "UIElement":
         self.id = canonicalize_element_id(self.id, self.text)
 
-        # disallow symbol ids after canonicalization
-        if self.id in SYMBOL_ID_MAP.keys():
+        # Hard guard: symbol ids must not survive normalization
+        if self.id in SYMBOL_ID_MAP:
             raise ValueError(f"Element id must not be a symbol: {self.id}")
 
         return self
@@ -81,6 +100,10 @@ class ObservationResponse(BaseModel):
     elements: List[UIElement] = Field(default_factory=list)
     notes: Optional[str] = None
 
+
+# -------------------------------------------------------------------
+# Action schema
+# -------------------------------------------------------------------
 
 class ActionParameters(BaseModel):
     button: Optional[Literal["left"]] = "left"
@@ -99,6 +122,16 @@ class ActionProposal(BaseModel):
     rationale: Optional[str] = None
     confidence: float = Field(ge=0.0, le=1.0, default=0.5)
 
+    @model_validator(mode="after")
+    def _canonicalize_target(self) -> "ActionProposal":
+        if self.target_element_id:
+            self.target_element_id = canonicalize_element_id(self.target_element_id, None)
+        return self
+
+
+# -------------------------------------------------------------------
+# Delta schema
+# -------------------------------------------------------------------
 
 class DeltaResponse(BaseModel):
     success: bool
