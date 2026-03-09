@@ -1,0 +1,171 @@
+{
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "elements": [
+    {
+      "id": "display",
+      "type": "text_field",
+      "text": null,
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "backspace",
+      "type": "button",
+      "text": "⌫",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "digit_7",
+      "type": "button",
+      "text": "7",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "digit_8",
+      "type": "button",
+      "text": "8",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "digit_9",
+      "type": "button",
+      "text": "9",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "divide",
+      "type": "button",
+      "text": "÷",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "digit_4",
+      "type": "button",
+      "text": "4",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "digit_5",
+      "type": "button",
+      "text": "5",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "digit_6",
+      "type": "button",
+      "text": "6",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "multiply",
+      "type": "button",
+      "text": "×",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "digit_1",
+      "type": "button",
+      "text": "1",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "digit_2",
+      "type": "button",
+      "text": "2",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "digit_3",
+      "type": "button",
+      "text": "3",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "minus",
+      "type": "button",
+      "text": "-",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "digit_0",
+      "type": "button",
+      "text": "0",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "decimal",
+      "type": "button",
+      "text": ".",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "plus",
+      "type": "button",
+      "text": "+",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "id": "equals",
+      "type": "button",
+      "text": "=",
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "notes": "Decimal button shares a key with the percent symbol, but only '.' is included as per instructions."
+}

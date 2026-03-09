@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "change_type": "text_updated",
+  "description": "The expression in the display changed from '22−' to '22−4' after clicking the '4' button.",
+  "ui_state_changed": false,
+  "content_state_changed": true,
+  "confidence": 0.99,
+  "before_text": "22−",
+  "after_text": "22−4"
+}
