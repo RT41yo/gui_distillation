@@ -104,7 +104,7 @@ class TeacherDebugRunner:
         self.prompt_observation = read_text(observation_prompt_path)
         self.prompt_delta = read_text(prompts_dir / "delta_v1.md")
 
-        self.client = OpenAITeacherClient(
+        self.client = OpenAIAnnotatorClient(
             settings_path=settings_path,
             teacher_config_path=teacher_config_path,
             dotenv_path=".env",
