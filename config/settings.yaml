@@ -186,7 +186,7 @@ data:
     before: "before.png"
     after: "after.png"
     metadata: "metadata.json"
-    inventory: "inventory.json"
+    observation: "observation.json"
     delta: "delta.json"
 
   dataset_formats:

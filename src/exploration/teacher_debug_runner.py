@@ -8,7 +8,13 @@ from typing import Any, Dict, List, Optional
 
 from pydantic import ValidationError
 
-from src.skills.teacher_schemas import DeltaResponse, InventoryResponse
+# Backward-compatible import:
+# Prefer ObservationResponse, but fallback to old InventoryResponse if needed.
+try:
+    from src.skills.teacher_schemas import DeltaResponse, ObservationResponse
+except ImportError:  # pragma: no cover
+    from src.skills.teacher_schemas import DeltaResponse, InventoryResponse as ObservationResponse
+
 from src.teachers.json_parser import RobustJSONParser
 from src.teachers.openai_client import OpenAITeacherClient, SettingsLoader
 
@@ -26,11 +32,11 @@ def write_json(path: Path, obj: Any) -> None:
 @dataclass
 class StepRun:
     step: str
-    inventory_ok: bool
+    observation_ok: bool
     delta_ok: bool
-    inventory_parse_mode: str
+    observation_parse_mode: str
     delta_parse_mode: str
-    latency_inventory_s: float
+    latency_observation_s: float
     latency_delta_s: float
     errors: List[str]
 
@@ -38,13 +44,13 @@ class StepRun:
 class TeacherDebugRunner:
     """
     Offline pass over existing steps:
-      - inventory(before.png) -> inventory.json
+      - observation(before.png) -> observation.json
       - delta(before.png, after.png, action.json) -> delta.json
 
     Enhancements:
-      - Always saves raw teacher text on failures (and optionally on success)
+      - Always saves raw model text on failures (and optionally on success)
       - Saves parser mode/error for debugging
-      - Saves extracted JSON candidate if available
+      - Saves parsed-data preview if available
     """
 
     def __init__(
@@ -61,25 +67,41 @@ class TeacherDebugRunner:
         self.after_name = str(SettingsLoader.get(self.settings, "data.step_files.after", "after.png"))
         self.metadata_name = str(SettingsLoader.get(self.settings, "data.step_files.metadata", "metadata.json"))
 
-        # settings.yaml does not define "action" key, but automation produces action.json → fallback
+        # settings.yaml may not define "action" key; automation produces action.json → fallback
         self.action_name = str(SettingsLoader.get(self.settings, "data.step_files.action", "action.json"))
 
-        # Where to save teacher outputs for this debug run:
-        self.inventory_out_name = str(SettingsLoader.get(self.settings, "data.step_files.inventory", "inventory.json"))
+        # Where to save model outputs for this debug run:
+        self.observation_out_name = str(
+            SettingsLoader.get(
+                self.settings,
+                "data.step_files.observation",
+                SettingsLoader.get(self.settings, "data.step_files.inventory", "observation.json"),
+            )
+        )
         self.delta_out_name = str(SettingsLoader.get(self.settings, "data.step_files.delta", "delta.json"))
 
         # Raw/debug filenames
-        self.inventory_raw_name = self.inventory_out_name.replace(".json", "_raw.json")
+        self.observation_raw_name = self.observation_out_name.replace(".json", "_raw.json")
         self.delta_raw_name = self.delta_out_name.replace(".json", "_raw.json")
 
-        # Whether to keep raw even on success (useful while debugging prompts)
+        # Whether to keep raw even on success
         self.keep_raw_on_success = bool(
-            SettingsLoader.get(self.settings, "development.keep_teacher_raw_on_success", False)
+            SettingsLoader.get(
+                self.settings,
+                "development.keep_annotator_raw_on_success",
+                SettingsLoader.get(self.settings, "development.keep_teacher_raw_on_success", False),
+            )
         )
 
         # Prompts directory
         prompts_dir = Path(str(SettingsLoader.get(self.settings, "paths.prompts_dir", "config/prompts")))
-        self.prompt_inventory = read_text(prompts_dir / "inventory_v1.md")
+
+        # Prefer observation_v1.md, fallback to old inventory_v1.md if needed
+        observation_prompt_path = prompts_dir / "observation_v1.md"
+        if not observation_prompt_path.exists():
+            observation_prompt_path = prompts_dir / "inventory_v1.md"
+
+        self.prompt_observation = read_text(observation_prompt_path)
         self.prompt_delta = read_text(prompts_dir / "delta_v1.md")
 
         self.client = OpenAITeacherClient(
@@ -117,7 +139,6 @@ class TeacherDebugRunner:
             "raw_text": raw_text,
         }
 
-        # Preview parsed payload (helps when JSON parsed but schema failed)
         if parsed_data_preview is not None:
             payload["parsed_data_preview"] = parsed_data_preview
 
@@ -139,86 +160,92 @@ class TeacherDebugRunner:
 
             if not before.exists():
                 per_step.append(
-                    StepRun(sd.name, False, False, "none", "none", 0.0, 0.0, [f"missing {before.name}"])
+                    StepRun(
+                        step=sd.name,
+                        observation_ok=False,
+                        delta_ok=False,
+                        observation_parse_mode="none",
+                        delta_parse_mode="none",
+                        latency_observation_s=0.0,
+                        latency_delta_s=0.0,
+                        errors=[f"missing {before.name}"],
+                    )
                 )
                 continue
 
-            # --- INVENTORY ---
-            inv_ok = False
-            inv_mode = "none"
-            inv_latency = 0.0
-            inv_raw_text: Optional[str] = None
-            inv_model: Optional[str] = None
-            inv_parse_error: Optional[str] = None
-            inv_parsed_preview: Optional[Any] = None
+            # --- OBSERVATION ---
+            observation_ok = False
+            observation_mode = "none"
+            observation_latency = 0.0
+            observation_raw_text: Optional[str] = None
+            observation_model: Optional[str] = None
+            observation_parse_error: Optional[str] = None
+            observation_parsed_preview: Optional[Any] = None
 
             try:
-                r = self.client.infer(self.prompt_inventory, image_paths=[before], prefer_json=True)
-                inv_latency = r.latency_s
-                inv_raw_text = r.text
-                inv_model = r.model
+                r = self.client.infer(self.prompt_observation, image_paths=[before], prefer_json=True)
+                observation_latency = r.latency_s
+                observation_raw_text = r.text
+                observation_model = r.model
 
                 parsed = self.parser.parse(r.text)
-                inv_mode = parsed.mode
-                inv_parse_error = parsed.error
+                observation_mode = parsed.mode
+                observation_parse_error = parsed.error
 
                 if parsed.ok and isinstance(parsed.data, dict):
-                    # preview only top-level keys to avoid huge logs
-                    inv_parsed_preview = list(parsed.data.keys())
+                    observation_parsed_preview = list(parsed.data.keys())
                 else:
-                    inv_parsed_preview = None
+                    observation_parsed_preview = None
 
                 if not parsed.ok or not isinstance(parsed.data, dict):
-                    raise RuntimeError(f"inventory parse failed: {parsed.error}")
+                    raise RuntimeError(f"observation parse failed: {parsed.error}")
 
-                inv_obj = InventoryResponse.model_validate(parsed.data)
-                write_json(sd / self.inventory_out_name, inv_obj.model_dump())
-                inv_ok = True
+                observation_obj = ObservationResponse.model_validate(parsed.data)
+                write_json(sd / self.observation_out_name, observation_obj.model_dump())
+                observation_ok = True
 
                 if self.keep_raw_on_success:
                     self._save_raw_payload(
                         sd,
-                        self.inventory_raw_name,
+                        self.observation_raw_name,
                         error=None,
-                        raw_text=inv_raw_text,
-                        parse_mode=inv_mode,
-                        parse_error=inv_parse_error,
-                        parsed_data_preview=inv_parsed_preview,
-                        prompt_name="inventory_v1",
-                        model=inv_model,
-                        latency_s=inv_latency,
+                        raw_text=observation_raw_text,
+                        parse_mode=observation_mode,
+                        parse_error=observation_parse_error,
+                        parsed_data_preview=observation_parsed_preview,
+                        prompt_name="observation_v1",
+                        model=observation_model,
+                        latency_s=observation_latency,
                     )
 
             except (ValidationError, Exception) as e:
                 err_str = str(e)
-                errs.append(f"inventory: {err_str}")
+                errs.append(f"observation: {err_str}")
 
-                # Save raw teacher text + parse diagnostics
                 self._save_raw_payload(
                     sd,
-                    self.inventory_raw_name,
+                    self.observation_raw_name,
                     error=err_str,
-                    raw_text=inv_raw_text,
-                    parse_mode=inv_mode,
-                    parse_error=inv_parse_error,
-                    parsed_data_preview=inv_parsed_preview,
-                    prompt_name="inventory_v1",
-                    model=inv_model,
-                    latency_s=inv_latency if inv_latency > 0 else None,
+                    raw_text=observation_raw_text,
+                    parse_mode=observation_mode,
+                    parse_error=observation_parse_error,
+                    parsed_data_preview=observation_parsed_preview,
+                    prompt_name="observation_v1",
+                    model=observation_model,
+                    latency_s=observation_latency if observation_latency > 0 else None,
                 )
 
             # --- DELTA ---
-            del_ok = False
-            del_mode = "none"
-            del_latency = 0.0
-            del_raw_text: Optional[str] = None
-            del_model: Optional[str] = None
-            del_parse_error: Optional[str] = None
-            del_parsed_preview: Optional[Any] = None
+            delta_ok = False
+            delta_mode = "none"
+            delta_latency = 0.0
+            delta_raw_text: Optional[str] = None
+            delta_model: Optional[str] = None
+            delta_parse_error: Optional[str] = None
+            delta_parsed_preview: Optional[Any] = None
 
             if not after.exists():
                 errs.append(f"delta skipped: missing {after.name}")
-                # Save minimal raw record for traceability
                 self._save_raw_payload(
                     sd,
                     self.delta_raw_name,
@@ -255,38 +282,38 @@ class TeacherDebugRunner:
                     )
 
                     r2 = self.client.infer(delta_prompt, image_paths=[before, after], prefer_json=True)
-                    del_latency = r2.latency_s
-                    del_raw_text = r2.text
-                    del_model = r2.model
+                    delta_latency = r2.latency_s
+                    delta_raw_text = r2.text
+                    delta_model = r2.model
 
                     parsed2 = self.parser.parse(r2.text)
-                    del_mode = parsed2.mode
-                    del_parse_error = parsed2.error
+                    delta_mode = parsed2.mode
+                    delta_parse_error = parsed2.error
 
                     if parsed2.ok and isinstance(parsed2.data, dict):
-                        del_parsed_preview = list(parsed2.data.keys())
+                        delta_parsed_preview = list(parsed2.data.keys())
                     else:
-                        del_parsed_preview = None
+                        delta_parsed_preview = None
 
                     if not parsed2.ok or not isinstance(parsed2.data, dict):
                         raise RuntimeError(f"delta parse failed: {parsed2.error}")
 
-                    del_obj = DeltaResponse.model_validate(parsed2.data)
-                    write_json(sd / self.delta_out_name, del_obj.model_dump())
-                    del_ok = True
+                    delta_obj = DeltaResponse.model_validate(parsed2.data)
+                    write_json(sd / self.delta_out_name, delta_obj.model_dump())
+                    delta_ok = True
 
                     if self.keep_raw_on_success:
                         self._save_raw_payload(
                             sd,
                             self.delta_raw_name,
                             error=None,
-                            raw_text=del_raw_text,
-                            parse_mode=del_mode,
-                            parse_error=del_parse_error,
-                            parsed_data_preview=del_parsed_preview,
+                            raw_text=delta_raw_text,
+                            parse_mode=delta_mode,
+                            parse_error=delta_parse_error,
+                            parsed_data_preview=delta_parsed_preview,
                             prompt_name="delta_v1",
-                            model=del_model,
-                            latency_s=del_latency,
+                            model=delta_model,
+                            latency_s=delta_latency,
                         )
 
                 except (ValidationError, Exception) as e:
@@ -296,52 +323,57 @@ class TeacherDebugRunner:
                         sd,
                         self.delta_raw_name,
                         error=err_str,
-                        raw_text=del_raw_text,
-                        parse_mode=del_mode,
-                        parse_error=del_parse_error,
-                        parsed_data_preview=del_parsed_preview,
+                        raw_text=delta_raw_text,
+                        parse_mode=delta_mode,
+                        parse_error=delta_parse_error,
+                        parsed_data_preview=delta_parsed_preview,
                         prompt_name="delta_v1",
-                        model=del_model,
-                        latency_s=del_latency if del_latency > 0 else None,
+                        model=delta_model,
+                        latency_s=delta_latency if delta_latency > 0 else None,
                     )
 
             per_step.append(
                 StepRun(
                     step=sd.name,
-                    inventory_ok=inv_ok,
-                    delta_ok=del_ok,
-                    inventory_parse_mode=inv_mode,
-                    delta_parse_mode=del_mode,
-                    latency_inventory_s=inv_latency,
-                    latency_delta_s=del_latency,
+                    observation_ok=observation_ok,
+                    delta_ok=delta_ok,
+                    observation_parse_mode=observation_mode,
+                    delta_parse_mode=delta_mode,
+                    latency_observation_s=observation_latency,
+                    latency_delta_s=delta_latency,
                     errors=errs,
                 )
             )
 
-        inv_ok_count = sum(1 for r in per_step if r.inventory_ok)
-        del_ok_count = sum(1 for r in per_step if r.delta_ok)
+        observation_ok_count = sum(1 for r in per_step if r.observation_ok)
+        delta_ok_count = sum(1 for r in per_step if r.delta_ok)
 
-        inv_latency_values = [r.latency_inventory_s for r in per_step if r.latency_inventory_s > 0]
-        del_latency_values = [r.latency_delta_s for r in per_step if r.latency_delta_s > 0]
+        observation_latency_values = [r.latency_observation_s for r in per_step if r.latency_observation_s > 0]
+        delta_latency_values = [r.latency_delta_s for r in per_step if r.latency_delta_s > 0]
 
         report: JsonDict = {
             "steps_root": str(self.steps_root),
             "total_steps": len(per_step),
-            "inventory_ok": inv_ok_count,
-            "delta_ok": del_ok_count,
-            "inventory_ok_rate": inv_ok_count / len(per_step) if per_step else 0.0,
-            "delta_ok_rate": del_ok_count / len(per_step) if per_step else 0.0,
-            # report average latency even if ok_count is 0 (use observed values)
-            "avg_latency_inventory_s": (sum(inv_latency_values) / len(inv_latency_values)) if inv_latency_values else 0.0,
-            "avg_latency_delta_s": (sum(del_latency_values) / len(del_latency_values)) if del_latency_values else 0.0,
+            "observation_ok": observation_ok_count,
+            "delta_ok": delta_ok_count,
+            "observation_ok_rate": observation_ok_count / len(per_step) if per_step else 0.0,
+            "delta_ok_rate": delta_ok_count / len(per_step) if per_step else 0.0,
+            "avg_latency_observation_s": (
+                sum(observation_latency_values) / len(observation_latency_values)
+                if observation_latency_values else 0.0
+            ),
+            "avg_latency_delta_s": (
+                sum(delta_latency_values) / len(delta_latency_values)
+                if delta_latency_values else 0.0
+            ),
             "per_step": [
                 {
                     "step": r.step,
-                    "inventory_ok": r.inventory_ok,
+                    "observation_ok": r.observation_ok,
                     "delta_ok": r.delta_ok,
-                    "inventory_parse_mode": r.inventory_parse_mode,
+                    "observation_parse_mode": r.observation_parse_mode,
                     "delta_parse_mode": r.delta_parse_mode,
-                    "latency_inventory_s": r.latency_inventory_s,
+                    "latency_observation_s": r.latency_observation_s,
                     "latency_delta_s": r.latency_delta_s,
                     "errors": r.errors,
                 }

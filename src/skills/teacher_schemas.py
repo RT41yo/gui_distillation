@@ -76,7 +76,7 @@ class UIElement(BaseModel):
         return self
 
 
-class InventoryResponse(BaseModel):
+class ObservationResponse(BaseModel):
     screen: ScreenInfo
     elements: List[UIElement] = Field(default_factory=list)
     notes: Optional[str] = None
