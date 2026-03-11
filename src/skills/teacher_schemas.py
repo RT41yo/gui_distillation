@@ -30,6 +30,8 @@ ALIAS_ID_MAP = {
     "display": "display",
 }
 
+BBox = Tuple[int, int, int, int]
+
 
 def canonicalize_element_id(raw_id: str, raw_text: Optional[str]) -> str:
     """
@@ -94,12 +96,39 @@ class UIElement(BaseModel):
 
         return self
 
+class GroundedUIElement(BaseModel):
+    id: str = Field(min_length=1)
+    type: Literal["button", "text_field"] = "button"
+    text: Optional[str] = None
+    bbox: Optional[BBox] = None
+    supported_actions: List[Literal["click"]] = Field(default_factory=lambda: ["click"])
+    confidence: float = Field(ge=0.0, le=1.0, default=0.5)
+
+    @model_validator(mode="after")
+    def _canonicalize(self) -> "GroundedUIElement":
+        self.id = canonicalize_element_id(self.id, self.text)
+
+        if self.id in SYMBOL_ID_MAP:
+            raise ValueError(f"Element id must not be a symbol: {self.id}")
+
+        if self.bbox is not None:
+            x1, y1, x2, y2 = self.bbox
+            if x1 < 0 or y1 < 0 or x2 < 0 or y2 < 0:
+                raise ValueError(f"Negative bbox coordinates: {self.bbox}")
+            if x2 <= x1 or y2 <= y1:
+                raise ValueError(f"Invalid bbox: {self.bbox}")
+
+        return self
 
 class ObservationResponse(BaseModel):
     screen: ScreenInfo
     elements: List[UIElement] = Field(default_factory=list)
     notes: Optional[str] = None
 
+class GroundedObservationResponse(BaseModel):
+    screen: ScreenInfo
+    elements: List[GroundedUIElement] = Field(default_factory=list)
+    notes: Optional[str] = None
 
 # -------------------------------------------------------------------
 # Action schema
