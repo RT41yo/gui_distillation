@@ -146,7 +146,7 @@
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.95
+      "confidence": 1.0
     },
     {
       "id": "plus",
@@ -167,5 +167,5 @@
       "confidence": 1.0
     }
   ],
-  "notes": "Decimal button shares a key with the percent symbol, but only '.' is included as per instructions."
+  "notes": null
 }

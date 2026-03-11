@@ -1,10 +1,10 @@
 {
   "success": true,
   "change_type": "text_updated",
-  "description": "The calculator's input display changed from empty to showing a cursor or input line, indicating readiness for input.",
+  "description": "The display area now shows a text cursor, indicating it is ready for input. Previously, it was empty.",
   "ui_state_changed": false,
   "content_state_changed": true,
-  "confidence": 0.95,
+  "confidence": 0.98,
   "before_text": "",
-  "after_text": ""
+  "after_text": "|"
 }

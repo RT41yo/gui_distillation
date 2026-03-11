@@ -4,7 +4,7 @@
   "description": "The display text was updated from empty to '2' after clicking the '2' button.",
   "ui_state_changed": false,
   "content_state_changed": true,
-  "confidence": 0.99,
+  "confidence": 1.0,
   "before_text": "",
   "after_text": "2"
 }

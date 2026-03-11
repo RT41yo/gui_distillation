@@ -8,6 +8,12 @@
       "id": "display",
       "type": "text_field",
       "text": null,
+      "bbox": [
+        70,
+        120,
+        470,
+        210
+      ],
       "supported_actions": [
         "click"
       ],
@@ -16,7 +22,13 @@
     {
       "id": "backspace",
       "type": "button",
-      "text": "⌫",
+      "text": null,
+      "bbox": [
+        80,
+        230,
+        150,
+        290
+      ],
       "supported_actions": [
         "click"
       ],
@@ -26,6 +38,12 @@
       "id": "digit_7",
       "type": "button",
       "text": "7",
+      "bbox": [
+        80,
+        300,
+        150,
+        360
+      ],
       "supported_actions": [
         "click"
       ],
@@ -35,6 +53,12 @@
       "id": "digit_8",
       "type": "button",
       "text": "8",
+      "bbox": [
+        160,
+        300,
+        230,
+        360
+      ],
       "supported_actions": [
         "click"
       ],
@@ -44,6 +68,12 @@
       "id": "digit_9",
       "type": "button",
       "text": "9",
+      "bbox": [
+        240,
+        300,
+        310,
+        360
+      ],
       "supported_actions": [
         "click"
       ],
@@ -53,6 +83,12 @@
       "id": "divide",
       "type": "button",
       "text": "÷",
+      "bbox": [
+        320,
+        300,
+        390,
+        360
+      ],
       "supported_actions": [
         "click"
       ],
@@ -62,6 +98,12 @@
       "id": "digit_4",
       "type": "button",
       "text": "4",
+      "bbox": [
+        80,
+        370,
+        150,
+        430
+      ],
       "supported_actions": [
         "click"
       ],
@@ -71,6 +113,12 @@
       "id": "digit_5",
       "type": "button",
       "text": "5",
+      "bbox": [
+        160,
+        370,
+        230,
+        430
+      ],
       "supported_actions": [
         "click"
       ],
@@ -80,6 +128,12 @@
       "id": "digit_6",
       "type": "button",
       "text": "6",
+      "bbox": [
+        240,
+        370,
+        310,
+        430
+      ],
       "supported_actions": [
         "click"
       ],
@@ -89,6 +143,12 @@
       "id": "multiply",
       "type": "button",
       "text": "×",
+      "bbox": [
+        320,
+        370,
+        390,
+        430
+      ],
       "supported_actions": [
         "click"
       ],
@@ -98,6 +158,12 @@
       "id": "digit_1",
       "type": "button",
       "text": "1",
+      "bbox": [
+        80,
+        440,
+        150,
+        500
+      ],
       "supported_actions": [
         "click"
       ],
@@ -107,6 +173,12 @@
       "id": "digit_2",
       "type": "button",
       "text": "2",
+      "bbox": [
+        160,
+        440,
+        230,
+        500
+      ],
       "supported_actions": [
         "click"
       ],
@@ -116,6 +188,12 @@
       "id": "digit_3",
       "type": "button",
       "text": "3",
+      "bbox": [
+        240,
+        440,
+        310,
+        500
+      ],
       "supported_actions": [
         "click"
       ],
@@ -124,7 +202,13 @@
     {
       "id": "minus",
       "type": "button",
-      "text": "-",
+      "text": "−",
+      "bbox": [
+        320,
+        440,
+        390,
+        500
+      ],
       "supported_actions": [
         "click"
       ],
@@ -134,6 +218,12 @@
       "id": "digit_0",
       "type": "button",
       "text": "0",
+      "bbox": [
+        80,
+        510,
+        150,
+        570
+      ],
       "supported_actions": [
         "click"
       ],
@@ -142,16 +232,28 @@
     {
       "id": "decimal",
       "type": "button",
-      "text": ".",
+      "text": ",",
+      "bbox": [
+        160,
+        510,
+        230,
+        570
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "plus",
       "type": "button",
       "text": "+",
+      "bbox": [
+        320,
+        510,
+        390,
+        570
+      ],
       "supported_actions": [
         "click"
       ],
@@ -161,6 +263,12 @@
       "id": "equals",
       "type": "button",
       "text": "=",
+      "bbox": [
+        400,
+        440,
+        470,
+        570
+      ],
       "supported_actions": [
         "click"
       ],
