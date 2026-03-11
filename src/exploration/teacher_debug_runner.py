@@ -33,10 +33,13 @@ def write_json(path: Path, obj: Any) -> None:
 class StepRun:
     step: str
     observation_ok: bool
+    observation_grounded_ok: bool
     delta_ok: bool
     observation_parse_mode: str
+    observation_grounded_parse_mode: str
     delta_parse_mode: str
     latency_observation_s: float
+    latency_observation_grounded_s: float
     latency_delta_s: float
     errors: List[str]
 
