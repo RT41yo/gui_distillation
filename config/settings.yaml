@@ -187,6 +187,7 @@ data:
     after: "after.png"
     metadata: "metadata.json"
     observation: "observation.json"
+    observation_grounded: "observation_grounded.json"
     delta: "delta.json"
 
   dataset_formats:
@@ -388,6 +389,7 @@ features:
     use_teacher: false
     use_strategies: false
     track_states: false
+    use_grounded_observation: true
 
   phase_2:
     build_grounding: false

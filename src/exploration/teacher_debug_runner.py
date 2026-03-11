@@ -70,7 +70,7 @@ class TeacherDebugRunner:
         # settings.yaml may not define "action" key; automation produces action.json → fallback
         self.action_name = str(SettingsLoader.get(self.settings, "data.step_files.action", "action.json"))
 
-        # Where to save model outputs for this debug run:
+        # Where to save model outputs for this debug run
         self.observation_out_name = str(
             SettingsLoader.get(
                 self.settings,
@@ -78,10 +78,18 @@ class TeacherDebugRunner:
                 SettingsLoader.get(self.settings, "data.step_files.inventory", "observation.json"),
             )
         )
+        self.observation_grounded_out_name = str(
+            SettingsLoader.get(
+                self.settings,
+                "data.step_files.observation_grounded",
+                "observation_grounded.json",
+            )
+        )
         self.delta_out_name = str(SettingsLoader.get(self.settings, "data.step_files.delta", "delta.json"))
 
         # Raw/debug filenames
         self.observation_raw_name = self.observation_out_name.replace(".json", "_raw.json")
+        self.observation_grounded_raw_name = self.observation_grounded_out_name.replace(".json", "_raw.json")
         self.delta_raw_name = self.delta_out_name.replace(".json", "_raw.json")
 
         # Whether to keep raw even on success
@@ -93,6 +101,11 @@ class TeacherDebugRunner:
             )
         )
 
+        # Optional grounded-observation mode
+        self.enable_grounded_observation = bool(
+            SettingsLoader.get(self.settings, "features.phase_1.use_grounded_observation", False)
+        )
+
         # Prompts directory
         prompts_dir = Path(str(SettingsLoader.get(self.settings, "paths.prompts_dir", "config/prompts")))
 
@@ -100,8 +113,16 @@ class TeacherDebugRunner:
         observation_prompt_path = prompts_dir / "observation_v1.md"
         if not observation_prompt_path.exists():
             observation_prompt_path = prompts_dir / "inventory_v1.md"
-
         self.prompt_observation = read_text(observation_prompt_path)
+
+        # Grounded observation prompt is optional
+        observation_grounded_prompt_path = prompts_dir / "observation_grounded_v1.md"
+        self.prompt_observation_grounded = (
+            read_text(observation_grounded_prompt_path)
+            if observation_grounded_prompt_path.exists()
+            else None
+        )
+
         self.prompt_delta = read_text(prompts_dir / "delta_v1.md")
 
         self.client = OpenAIAnnotatorClient(
@@ -163,17 +184,22 @@ class TeacherDebugRunner:
                     StepRun(
                         step=sd.name,
                         observation_ok=False,
+                        observation_grounded_ok=False,
                         delta_ok=False,
                         observation_parse_mode="none",
+                        observation_grounded_parse_mode="none",
                         delta_parse_mode="none",
                         latency_observation_s=0.0,
+                        latency_observation_grounded_s=0.0,
                         latency_delta_s=0.0,
                         errors=[f"missing {before.name}"],
                     )
                 )
                 continue
 
-            # --- OBSERVATION ---
+            # -------------------------------------------------
+            # OBSERVATION
+            # -------------------------------------------------
             observation_ok = False
             observation_mode = "none"
             observation_latency = 0.0
@@ -235,7 +261,74 @@ class TeacherDebugRunner:
                     latency_s=observation_latency if observation_latency > 0 else None,
                 )
 
-            # --- DELTA ---
+            # -------------------------------------------------
+            # GROUNDED OBSERVATION
+            # -------------------------------------------------
+            observation_grounded_ok = False
+            observation_grounded_mode = "none"
+            observation_grounded_latency = 0.0
+            observation_grounded_raw_text: Optional[str] = None
+            observation_grounded_model: Optional[str] = None
+            observation_grounded_parse_error: Optional[str] = None
+            observation_grounded_parsed_preview: Optional[Any] = None
+
+            if self.enable_grounded_observation and self.prompt_observation_grounded is not None:
+                try:
+                    rg = self.client.infer(self.prompt_observation_grounded, image_paths=[before], prefer_json=True)
+                    observation_grounded_latency = rg.latency_s
+                    observation_grounded_raw_text = rg.text
+                    observation_grounded_model = rg.model
+
+                    parsed_g = self.parser.parse(rg.text)
+                    observation_grounded_mode = parsed_g.mode
+                    observation_grounded_parse_error = parsed_g.error
+
+                    if parsed_g.ok and isinstance(parsed_g.data, dict):
+                        observation_grounded_parsed_preview = list(parsed_g.data.keys())
+                    else:
+                        observation_grounded_parsed_preview = None
+
+                    if not parsed_g.ok or not isinstance(parsed_g.data, dict):
+                        raise RuntimeError(f"observation_grounded parse failed: {parsed_g.error}")
+
+                    observation_grounded_obj = GroundedObservationResponse.model_validate(parsed_g.data)
+                    write_json(sd / self.observation_grounded_out_name, observation_grounded_obj.model_dump())
+                    observation_grounded_ok = True
+
+                    if self.keep_raw_on_success:
+                        self._save_raw_payload(
+                            sd,
+                            self.observation_grounded_raw_name,
+                            error=None,
+                            raw_text=observation_grounded_raw_text,
+                            parse_mode=observation_grounded_mode,
+                            parse_error=observation_grounded_parse_error,
+                            parsed_data_preview=observation_grounded_parsed_preview,
+                            prompt_name="observation_grounded_v1",
+                            model=observation_grounded_model,
+                            latency_s=observation_grounded_latency,
+                        )
+
+                except (ValidationError, Exception) as e:
+                    err_str = str(e)
+                    errs.append(f"observation_grounded: {err_str}")
+
+                    self._save_raw_payload(
+                        sd,
+                        self.observation_grounded_raw_name,
+                        error=err_str,
+                        raw_text=observation_grounded_raw_text,
+                        parse_mode=observation_grounded_mode,
+                        parse_error=observation_grounded_parse_error,
+                        parsed_data_preview=observation_grounded_parsed_preview,
+                        prompt_name="observation_grounded_v1",
+                        model=observation_grounded_model,
+                        latency_s=observation_grounded_latency if observation_grounded_latency > 0 else None,
+                    )
+
+            # -------------------------------------------------
+            # DELTA
+            # -------------------------------------------------
             delta_ok = False
             delta_mode = "none"
             delta_latency = 0.0
@@ -336,31 +429,44 @@ class TeacherDebugRunner:
                 StepRun(
                     step=sd.name,
                     observation_ok=observation_ok,
+                    observation_grounded_ok=observation_grounded_ok,
                     delta_ok=delta_ok,
                     observation_parse_mode=observation_mode,
+                    observation_grounded_parse_mode=observation_grounded_mode,
                     delta_parse_mode=delta_mode,
                     latency_observation_s=observation_latency,
+                    latency_observation_grounded_s=observation_grounded_latency,
                     latency_delta_s=delta_latency,
                     errors=errs,
                 )
             )
 
         observation_ok_count = sum(1 for r in per_step if r.observation_ok)
+        observation_grounded_ok_count = sum(1 for r in per_step if r.observation_grounded_ok)
         delta_ok_count = sum(1 for r in per_step if r.delta_ok)
 
         observation_latency_values = [r.latency_observation_s for r in per_step if r.latency_observation_s > 0]
+        observation_grounded_latency_values = [
+            r.latency_observation_grounded_s for r in per_step if r.latency_observation_grounded_s > 0
+        ]
         delta_latency_values = [r.latency_delta_s for r in per_step if r.latency_delta_s > 0]
 
         report: JsonDict = {
             "steps_root": str(self.steps_root),
             "total_steps": len(per_step),
             "observation_ok": observation_ok_count,
+            "observation_grounded_ok": observation_grounded_ok_count,
             "delta_ok": delta_ok_count,
             "observation_ok_rate": observation_ok_count / len(per_step) if per_step else 0.0,
+            "observation_grounded_ok_rate": observation_grounded_ok_count / len(per_step) if per_step else 0.0,
             "delta_ok_rate": delta_ok_count / len(per_step) if per_step else 0.0,
             "avg_latency_observation_s": (
                 sum(observation_latency_values) / len(observation_latency_values)
                 if observation_latency_values else 0.0
+            ),
+            "avg_latency_observation_grounded_s": (
+                sum(observation_grounded_latency_values) / len(observation_grounded_latency_values)
+                if observation_grounded_latency_values else 0.0
             ),
             "avg_latency_delta_s": (
                 sum(delta_latency_values) / len(delta_latency_values)
@@ -370,10 +476,13 @@ class TeacherDebugRunner:
                 {
                     "step": r.step,
                     "observation_ok": r.observation_ok,
+                    "observation_grounded_ok": r.observation_grounded_ok,
                     "delta_ok": r.delta_ok,
                     "observation_parse_mode": r.observation_parse_mode,
+                    "observation_grounded_parse_mode": r.observation_grounded_parse_mode,
                     "delta_parse_mode": r.delta_parse_mode,
                     "latency_observation_s": r.latency_observation_s,
+                    "latency_observation_grounded_s": r.latency_observation_grounded_s,
                     "latency_delta_s": r.latency_delta_s,
                     "errors": r.errors,
                 }
@@ -383,7 +492,6 @@ class TeacherDebugRunner:
 
         write_json(self.steps_root / "annotator_debug_report.json", report)
         return report
-
 
 def main() -> int:
     ap = argparse.ArgumentParser("teacher_debug_runner")
