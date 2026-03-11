@@ -11,7 +11,7 @@ from pydantic import ValidationError
 # Backward-compatible import:
 # Prefer ObservationResponse, but fallback to old InventoryResponse if needed.
 try:
-    from src.skills.teacher_schemas import DeltaResponse, ObservationResponse
+    from src.skills.teacher_schemas import DeltaResponse, ObservationResponse, GroundedObservationResponse
 except ImportError:  # pragma: no cover
     from src.skills.teacher_schemas import DeltaResponse, InventoryResponse as ObservationResponse
 
