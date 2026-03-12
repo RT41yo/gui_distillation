@@ -199,8 +199,8 @@ python -m src.exploration.teacher_debug_runner \
 В промпте зафиксированы:  
 - полный размер входного скриншота (1280x1024);  
 - требование, чтобы все bbox лежали внутри границ экрана;  
-- канонические element_id;  
-- контролируемый список элементов для калькулятора.  
+- `element_id`;  
+- контролируемый список элементов UI.  
 
 При включенном флаге:
 ```
@@ -209,7 +209,8 @@ features:
     use_grounded_observation: true
 ```
 
-annotator формирует дополнительный файл: `observation_grounded.json`:
+annotator формирует дополнительный файл: `observation_grounded.json` командой:
+
 
 ```bash
 python -m src.exploration.teacher_debug_runner \
@@ -221,8 +222,8 @@ python -m src.exploration.teacher_debug_runner \
 
 Для оценки качества bbox реализован скрипт `src/exploration/evaluate_bbox.py`.  
 Он сравнивает:  
-- центры bbox, полученных от MLLM,
-- с откалиброванными click points из `config/apps/calculator.yaml`.
+- центры bbox, полученных от MLLM;
+- с откалиброванными `click points` из `config/apps/calculator.yaml`.
 
 ```bash
 python -m src.exploration.evaluate_bbox \
@@ -231,10 +232,11 @@ python -m src.exploration.evaluate_bbox \
 ```
 
 #### Результаты:  
-LLM начала стабильно возвращать:  
-- корректный screen = 1280x1024;  
-- контролируемый список элементов;  
-- bbox для кнопок и display.  
+MLLM стабильно возвращает:  
+- корректный `screen = 1280x1024`;  
+- контролируемый список элементов UI;  
+- bbox.  
+
 Однако количественная проверка показала, что точность bbox пока недостаточна для прямой замены откалиброванных координат в `executor`, поэтому на текущем этапе `calculator.yaml` остается основным источником координат, а `observation_grounded` используется как дополнительная расширенная аннотация.
 
 ### Часть 4. 
