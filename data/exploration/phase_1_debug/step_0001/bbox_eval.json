@@ -1,0 +1,378 @@
+{
+  "calculator_yaml": "config/apps/calculator.yaml",
+  "observation_grounded_json": "data/exploration/phase_1_debug/step_0001/observation_grounded.json",
+  "summary": {
+    "matched_elements": 17,
+    "skipped_elements": 1,
+    "mean_center_error": 44.43,
+    "max_center_error": 71.03,
+    "min_center_error": 23.02,
+    "point_in_bbox_hits": 3,
+    "point_in_bbox_hit_rate": 0.1765
+  },
+  "results": [
+    {
+      "id": "backspace",
+      "yaml_point": [
+        112,
+        286
+      ],
+      "bbox": [
+        80,
+        190,
+        140,
+        240
+      ],
+      "bbox_center": [
+        110.0,
+        215.0
+      ],
+      "dx": -2.0,
+      "dy": -71.0,
+      "distance": 71.03,
+      "point_in_bbox": false
+    },
+    {
+      "id": "digit_7",
+      "yaml_point": [
+        112,
+        334
+      ],
+      "bbox": [
+        80,
+        250,
+        140,
+        300
+      ],
+      "bbox_center": [
+        110.0,
+        275.0
+      ],
+      "dx": -2.0,
+      "dy": -59.0,
+      "distance": 59.03,
+      "point_in_bbox": false
+    },
+    {
+      "id": "digit_8",
+      "yaml_point": [
+        177,
+        336
+      ],
+      "bbox": [
+        150,
+        250,
+        210,
+        300
+      ],
+      "bbox_center": [
+        180.0,
+        275.0
+      ],
+      "dx": 3.0,
+      "dy": -61.0,
+      "distance": 61.07,
+      "point_in_bbox": false
+    },
+    {
+      "id": "digit_9",
+      "yaml_point": [
+        249,
+        333
+      ],
+      "bbox": [
+        220,
+        250,
+        280,
+        300
+      ],
+      "bbox_center": [
+        250.0,
+        275.0
+      ],
+      "dx": 1.0,
+      "dy": -58.0,
+      "distance": 58.01,
+      "point_in_bbox": false
+    },
+    {
+      "id": "divide",
+      "yaml_point": [
+        315,
+        338
+      ],
+      "bbox": [
+        290,
+        250,
+        350,
+        300
+      ],
+      "bbox_center": [
+        320.0,
+        275.0
+      ],
+      "dx": 5.0,
+      "dy": -63.0,
+      "distance": 63.2,
+      "point_in_bbox": false
+    },
+    {
+      "id": "digit_4",
+      "yaml_point": [
+        115,
+        386
+      ],
+      "bbox": [
+        80,
+        310,
+        140,
+        360
+      ],
+      "bbox_center": [
+        110.0,
+        335.0
+      ],
+      "dx": -5.0,
+      "dy": -51.0,
+      "distance": 51.24,
+      "point_in_bbox": false
+    },
+    {
+      "id": "digit_5",
+      "yaml_point": [
+        180,
+        382
+      ],
+      "bbox": [
+        150,
+        310,
+        210,
+        360
+      ],
+      "bbox_center": [
+        180.0,
+        335.0
+      ],
+      "dx": 0.0,
+      "dy": -47.0,
+      "distance": 47.0,
+      "point_in_bbox": false
+    },
+    {
+      "id": "digit_6",
+      "yaml_point": [
+        247,
+        382
+      ],
+      "bbox": [
+        220,
+        310,
+        280,
+        360
+      ],
+      "bbox_center": [
+        250.0,
+        335.0
+      ],
+      "dx": 3.0,
+      "dy": -47.0,
+      "distance": 47.1,
+      "point_in_bbox": false
+    },
+    {
+      "id": "multiply",
+      "yaml_point": [
+        314,
+        384
+      ],
+      "bbox": [
+        290,
+        310,
+        350,
+        360
+      ],
+      "bbox_center": [
+        320.0,
+        335.0
+      ],
+      "dx": 6.0,
+      "dy": -49.0,
+      "distance": 49.37,
+      "point_in_bbox": false
+    },
+    {
+      "id": "digit_1",
+      "yaml_point": [
+        112,
+        428
+      ],
+      "bbox": [
+        80,
+        370,
+        140,
+        420
+      ],
+      "bbox_center": [
+        110.0,
+        395.0
+      ],
+      "dx": -2.0,
+      "dy": -33.0,
+      "distance": 33.06,
+      "point_in_bbox": false
+    },
+    {
+      "id": "digit_2",
+      "yaml_point": [
+        183,
+        431
+      ],
+      "bbox": [
+        150,
+        370,
+        210,
+        420
+      ],
+      "bbox_center": [
+        180.0,
+        395.0
+      ],
+      "dx": -3.0,
+      "dy": -36.0,
+      "distance": 36.12,
+      "point_in_bbox": false
+    },
+    {
+      "id": "digit_3",
+      "yaml_point": [
+        249,
+        433
+      ],
+      "bbox": [
+        220,
+        370,
+        280,
+        420
+      ],
+      "bbox_center": [
+        250.0,
+        395.0
+      ],
+      "dx": 1.0,
+      "dy": -38.0,
+      "distance": 38.01,
+      "point_in_bbox": false
+    },
+    {
+      "id": "minus",
+      "yaml_point": [
+        317,
+        433
+      ],
+      "bbox": [
+        290,
+        370,
+        350,
+        420
+      ],
+      "bbox_center": [
+        320.0,
+        395.0
+      ],
+      "dx": 3.0,
+      "dy": -38.0,
+      "distance": 38.12,
+      "point_in_bbox": false
+    },
+    {
+      "id": "digit_0",
+      "yaml_point": [
+        109,
+        481
+      ],
+      "bbox": [
+        80,
+        430,
+        140,
+        480
+      ],
+      "bbox_center": [
+        110.0,
+        455.0
+      ],
+      "dx": 1.0,
+      "dy": -26.0,
+      "distance": 26.02,
+      "point_in_bbox": false
+    },
+    {
+      "id": "decimal",
+      "yaml_point": [
+        179,
+        478
+      ],
+      "bbox": [
+        150,
+        430,
+        210,
+        480
+      ],
+      "bbox_center": [
+        180.0,
+        455.0
+      ],
+      "dx": 1.0,
+      "dy": -23.0,
+      "distance": 23.02,
+      "point_in_bbox": true
+    },
+    {
+      "id": "plus",
+      "yaml_point": [
+        315,
+        480
+      ],
+      "bbox": [
+        290,
+        430,
+        350,
+        480
+      ],
+      "bbox_center": [
+        320.0,
+        455.0
+      ],
+      "dx": 5.0,
+      "dy": -25.0,
+      "distance": 25.5,
+      "point_in_bbox": true
+    },
+    {
+      "id": "equals",
+      "yaml_point": [
+        385,
+        453
+      ],
+      "bbox": [
+        360,
+        370,
+        420,
+        480
+      ],
+      "bbox_center": [
+        390.0,
+        425.0
+      ],
+      "dx": 5.0,
+      "dy": -28.0,
+      "distance": 28.44,
+      "point_in_bbox": true
+    }
+  ],
+  "skipped": [
+    {
+      "id": "display",
+      "reason": "display has no calibration point in calculator.yaml"
+    }
+  ]
+}
