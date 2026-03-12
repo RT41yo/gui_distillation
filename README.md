@@ -137,8 +137,8 @@ python scripts/tools/test_automation.py --display :99 --app gnome-calculator -v
 
 На текущем этапе Phase 1 пайплайн состоит из **двух отдельных частей**:
 
-1. **Execution / data collection** — automation запускает приложение в виртуальном дисплее, выполняет действия и сохраняет шаги траектории (`before.png`, `after.png`, `action.json`, `metadata.json`).
-2. **Semantic annotation** — отдельный запуск annotator/LLM-модуля, который по уже собранным шагам формирует `observation.json` и `delta.json`.
+1. **Execution / data collection** — automation запускает приложение в виртуальном дисплее, выполняет действия (рандомные) и сохраняет шаги траектории: скриншот интерфейса до действия, скриншот интерфейса после действия, действие (рандомное), метаинформацию (`before.png`, `after.png`, `action.json`, `metadata.json`).
+2. **Semantic annotation** — отдельный запуск annotator/LLM-модуля, который по уже собранным шагам траектории формирует `observation.json` (описание элементов интерфейса) и `delta.json` (описание изменений состояния интерфейса).
 
 ### Важно
 - `gnome-calculator` **не запускать вручную** перед `automation`.
@@ -147,7 +147,7 @@ python scripts/tools/test_automation.py --display :99 --app gnome-calculator -v
 
 ---
 
-### Часть 1. Сбор шагов через automation
+### Часть 1. Сбор шагов траекторий через automation
 
 Если Xvfb еще не запущен:  
 ```bash
@@ -169,9 +169,9 @@ python -m src.core.automation --random-buttons --steps 5 \
   --output data/exploration/phase_1_debug
 ```
 
-### Часть 2. Аннотирование собранных шагов
+### Часть 2. Аннотирование шагов траекторий
 
-После того как шаги собраны в `data/exploration/phase_1_debug`, запускается annotator:  
+После того как шаги траектории собраны в `data/exploration/phase_1_debug`, запускается annotator:  
 
 ```bash
 python -m src.exploration.teacher_debug_runner \
@@ -181,7 +181,7 @@ python -m src.exploration.teacher_debug_runner \
   --max-steps 5
 ```
 
-Для каждого шага:  
+Для каждого шага набор аннотаций:  
 - `before.png`
 - `after.png`
 - `action.json`
@@ -189,8 +189,58 @@ python -m src.exploration.teacher_debug_runner \
 - `observation.json`
 - `delta.json`
 
-В корне run-директории:
+В корне run-директории создается сводный отчет:
 - `teacher_debug_report.json`
+
+### Часть 3. Эксперимент с `observation_grounded` (bbox через LLM)
+
+Добавлен второй промпт для MLLM - вернуть не только семантическое описание элементов, но и их bbox в абсолютных координатах: `config/prompts/observation_grounded_v1.md`.
+
+В промпте зафиксированы:  
+- полный размер входного скриншота (1280x1024);  
+- требование, чтобы все bbox лежали внутри границ экрана;  
+- канонические element_id;  
+- контролируемый список элементов для калькулятора.  
+
+При включенном флаге:
+```
+features:
+  phase_1:
+    use_grounded_observation: true
+```
+
+annotator формирует дополнительный файл: `observation_grounded.json`:
+
+```bash
+python -m src.exploration.teacher_debug_runner \
+  --steps-root data/exploration/phase_1_debug \
+  --settings config/settings.yaml \
+  --teacher-config config/teachers/openai_gpt.yaml \
+  --max-steps 2
+```
+
+Для оценки качества bbox реализован скрипт `src/exploration/evaluate_bbox.py`.  
+Он сравнивает:  
+- центры bbox, полученных от MLLM,
+- с откалиброванными click points из `config/apps/calculator.yaml`.
+
+```bash
+python -m src.exploration.evaluate_bbox \
+  --calculator-yaml config/apps/calculator.yaml \
+  --observation-grounded data/exploration/phase_1_debug/step_0001/observation_grounded.json
+```
+
+#### Результаты:  
+LLM начала стабильно возвращать:  
+- корректный screen = 1280x1024;  
+- контролируемый список элементов;  
+- bbox для кнопок и display.  
+Однако количественная проверка показала, что точность bbox пока недостаточна для прямой замены откалиброванных координат в `executor`, поэтому на текущем этапе `calculator.yaml` остается основным источником координат, а `observation_grounded` используется как дополнительная расширенная аннотация.
+
+### Часть 4. 
+
+
+
 
 
 
