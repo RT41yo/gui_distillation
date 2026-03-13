@@ -4,17 +4,19 @@
 
 ![Workflow](https://github.com/RT41yo/gui_distillation/blob/phase_1/assets/workflow.png)
 
+
 ## Phase 0: инфраструктура GUI и формализация навыков
 
-Фаза 0 создает детерминированную, воспроизводимую инфраструктуру для автоматизации GUI и формально определяет контракты четырех навыков системы.
+Фаза 0 создает детерминированную, воспроизводимую инфраструктуру для автоматизации GUI exploration.
 
 Что реализовано:  
 
 - Детерминированная X11-среда (Xvfb)  
 - Ядро GUI-автоматизации  
-- Калиброванные координаты кнопок  
-- Формализованные Pydantic-схемы навыков  
+- Калиброванные координаты центров кнопок  
+- Формализованные Pydantic-схемы  
 - Полностью воспроизводимый тестовый пайплайн  
+
 
 ### Структура скриптов  
 
@@ -61,11 +63,12 @@ bash scripts/setup/reset_display.sh
 
 Это официальный способ подготовки среды.  
 
+
 ### Инструменты (scripts/tools)  
 
 **find_coordinates.py**  
 
-Используется для калибровки координат кнопок.
+Используется для калибровки координат центров кнопок.
 
 ```
 config/apps/calculator.yaml
@@ -79,7 +82,7 @@ config/apps/calculator.yaml
 
 Запуск:  
 ```
-export DISPLAY=:99
+export DISPLAY=:0
 gnome-calculator &
 python scripts/tools/find_coordinates.py --output config/apps/calculator.yaml
 ```
@@ -101,14 +104,15 @@ python scripts/tools/find_coordinates.py --output config/apps/calculator.yaml
 python scripts/tools/test_automation.py --display :99 --app gnome-calculator -v
 ```
 
-Если всё корректно:  
+Если все корректно:  
 ```
 🎉 ALL TESTS PASSED! Infrastructure is ready.
 ```
 
+
 ### Unit-тесты схем
 
-Проверка формальных контрактов навыков:  
+Проверка формальных контрактов:  
 
 ```
 pytest -q tests/unit/test_schemas.py
@@ -133,21 +137,23 @@ python scripts/tools/test_automation.py --display :99 --app gnome-calculator -v
 **Если тесты проходят — Фаза 0 завершена.**
 
 
-## Phase 1: текущий рабочий протокол запуска (пока пайплайн раздельный)
+## Phase 1: текущий рабочий протокол запуска (пока пайплайн раздельный - human in the loop)
 
 На текущем этапе Phase 1 пайплайн состоит из **двух отдельных частей**:
 
-1. **Execution / data collection** — automation запускает приложение в виртуальном дисплее, выполняет действия (рандомные) и сохраняет шаги траектории: скриншот интерфейса до действия, скриншот интерфейса после действия, действие (рандомное), метаинформацию (`before.png`, `after.png`, `action.json`, `metadata.json`).
+1. **Execution / data collection** — `/src/core/automation.py` запускает приложение в виртуальном дисплее, выполняет действия в приложении (рандомные) и сохраняет шаги траектории: скриншот интерфейса до действия, скриншот интерфейса после действия, действие (рандомное), метаинформацию (`before.png`, `after.png`, `action.json`, `metadata.json`).
 2. **Semantic annotation** — отдельный запуск annotator/LLM-модуля, который по уже собранным шагам траектории формирует `observation.json` (описание элементов интерфейса) и `delta.json` (описание изменений состояния интерфейса).
 
+
 ### Важно
-- `gnome-calculator` **не запускать вручную** перед `automation`.
-- `Xvfb` нужно поднимать **только если он ещё не запущен**.
+- `gnome-calculator` **не запускать вручную** перед `/src/core/automation.py`.
+- `Xvfb` нужно поднимать **только если он еще не запущен**.
 - `DISPLAY` должен быть выставлен в `:99`.
 
 ---
 
-### Часть 1. Сбор шагов траекторий через automation
+
+### Часть 1. Сбор шагов траекторий через `/src/core/automation.py`
 
 Если Xvfb еще не запущен:  
 ```bash
@@ -161,13 +167,14 @@ xdpyinfo | grep dimensions
 pkill -f gnome-calculator
 ```
 
-Пример запуска automation на 5 шагах:  
+Пример запуска `/src/core/automation.py` на 5 шагах:  
 ```bash
 python -m src.core.automation --random-buttons --steps 5 \
   --settings config/settings.yaml \
   --app-config config/apps/calculator.yaml \
   --output data/exploration/phase_1_debug
 ```
+
 
 ### Часть 2. Аннотирование шагов траекторий
 
@@ -192,7 +199,8 @@ python -m src.exploration.teacher_debug_runner \
 В корне run-директории создается сводный отчет:
 - `teacher_debug_report.json`
 
-### Часть 3. Эксперимент с `observation_grounded` (bbox через LLM)
+
+### Часть 3. Эксперимент с `observation_grounded` (bbox через MLLM): сравнение совпадения центров элементов UI
 
 Добавлен второй промпт для MLLM - вернуть не только семантическое описание элементов, но и их bbox в абсолютных координатах: `config/prompts/observation_grounded_v1.md`.
 
@@ -220,10 +228,8 @@ python -m src.exploration.teacher_debug_runner \
   --max-steps 2
 ```
 
-Для оценки качества bbox реализован скрипт `src/exploration/evaluate_bbox.py`.  
-Он сравнивает:  
-- центры bbox, полученных от MLLM;
-- с откалиброванными `click points` из `config/apps/calculator.yaml`.
+Для первичной оценки качества bbox реализован скрипт `src/exploration/evaluate_bbox.py`.  
+Он сравнивает центры bbox, полученных от MLLM с откалиброванными `click points` из `config/apps/calculator.yaml`.
 
 ```bash
 python -m src.exploration.evaluate_bbox \
@@ -231,7 +237,8 @@ python -m src.exploration.evaluate_bbox \
   --observation-grounded data/exploration/phase_1_debug/step_0001/observation_grounded.json
 ```
 
-#### Результаты:  
+
+#### Результаты (для 0000 и 0001 шагов траектории):  
 MLLM стабильно возвращает:  
 - корректный `screen = 1280x1024`;  
 - контролируемый список элементов UI;  
@@ -242,16 +249,39 @@ MLLM стабильно возвращает:
 1. `mean_center_error` = 40–44 px - средняя ошибка положения центра bbox, который дала MLLM, относительно откалиброванной точки кнопки из `calculator.yaml`, то есть в среднем центр кнопки, оцененный MLLM через bbox, смещен от калиброванной точки примерно на 40–44 пикселя.
 2. `point_in_bbox_hit_rate` = 0.18–0.41 - это доля кнопок, для которых откалиброванная точка из `calculator.yaml` попала внутрь bbox, предсказанного MLLM.
 
-### Часть 4. 
 
+### Часть 4. Эксперимент с `observation_grounded` (bbox через MLLM): расчет IoU-метрики
 
+С помощью скрипта `scripts/tools/find_coordinates_bboxes.py` выполнена калибровка bboxes для элементов UI.
 
+Команда запуска:  
 
+```bash
+export DISPLAY=:0
+gnome-calculator &
+python scripts/tools/find_coordinates_bboxes.py --output config/apps/calculator_bboxes.yaml
+```
 
+Таким образом создается `config/apps/calculator_bboxes.yaml` - gold standard.
 
+`src/exploration/evaluate_iou.py` выполняет расчет IoU-метрики.
 
+Команда запуска:  
 
+```bash
+python -m src.exploration.evaluate_iou \
+  --gold-bboxes config/apps/calculator_bboxes.yaml \
+  --predicted data/exploration/phase_1_debug/step_0000/observation_grounded.json
+```
 
+#### Результаты (для 0000 шага траектории):
+
+- `mean_iou` = 0.1791 - это низкое среднее совпадение bbox от MLLM с вручную размеченными bbox.
+- `iou_at_0_5` = 0.0556 - только примерно 5.6% элементов имеют IoU не меньше 0.5 (то есть из 18 совпавших элементов фактически только 1 элемент локализован на приемлемом уровне).
+- `iou_at_0_75` = 0.0 - очень точных bbox нет вообще.
+- `mean_center_error` = 41.75 - то согласуется с предыдущими измерениями: центры bbox от MLLM в среднем смещены примерно на 42 пикселя относительно gold-разметки.
+
+MLLM-grounded observation корректно восстанавливает топологию интерфейса и основные элементы, однако качество локализации bbox относительно вручную размеченного gold standard остается низким (`mean_iou` - 0.18, `IoU@0.5` - 0.056), поэтому на текущем этапе такие bbox следует рассматривать как weak grounding, а не как точную геометрическую разметку.
 
 
 
