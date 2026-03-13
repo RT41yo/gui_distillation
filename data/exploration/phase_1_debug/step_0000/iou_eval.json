@@ -1,0 +1,335 @@
+{
+  "gold_bboxes": "config/apps/calculator_bboxes.yaml",
+  "predicted_bboxes": "data/exploration/phase_1_debug/step_0000/observation_grounded.json",
+  "include_display": true,
+  "summary": {
+    "matched_elements": 18,
+    "missing_in_prediction": 7,
+    "extra_in_prediction": 0,
+    "mean_iou": 0.1791,
+    "median_iou": 0.1489,
+    "min_iou": 0.0,
+    "max_iou": 0.5386,
+    "iou_at_0_5": 0.0556,
+    "iou_at_0_75": 0.0,
+    "mean_center_error": 41.75
+  },
+  "per_element": [
+    {
+      "id": "backspace",
+      "gold_bbox": [
+        82.0,
+        269.0,
+        140.0,
+        308.0
+      ],
+      "pred_bbox": [
+        80.0,
+        230.0,
+        150.0,
+        290.0
+      ],
+      "iou": 0.2323,
+      "center_error": 28.78
+    },
+    {
+      "id": "decimal",
+      "gold_bbox": [
+        150.0,
+        459.0,
+        209.0,
+        498.0
+      ],
+      "pred_bbox": [
+        160.0,
+        510.0,
+        230.0,
+        570.0
+      ],
+      "iou": 0.0,
+      "center_error": 63.42
+    },
+    {
+      "id": "digit_0",
+      "gold_bbox": [
+        82.0,
+        459.0,
+        140.0,
+        498.0
+      ],
+      "pred_bbox": [
+        80.0,
+        510.0,
+        150.0,
+        570.0
+      ],
+      "iou": 0.0,
+      "center_error": 61.63
+    },
+    {
+      "id": "digit_1",
+      "gold_bbox": [
+        82.0,
+        412.0,
+        140.0,
+        450.0
+      ],
+      "pred_bbox": [
+        80.0,
+        440.0,
+        150.0,
+        500.0
+      ],
+      "iou": 0.0996,
+      "center_error": 39.2
+    },
+    {
+      "id": "digit_2",
+      "gold_bbox": [
+        150.0,
+        412.0,
+        209.0,
+        450.0
+      ],
+      "pred_bbox": [
+        160.0,
+        440.0,
+        230.0,
+        500.0
+      ],
+      "iou": 0.0823,
+      "center_error": 41.97
+    },
+    {
+      "id": "digit_3",
+      "gold_bbox": [
+        217.0,
+        412.0,
+        277.0,
+        450.0
+      ],
+      "pred_bbox": [
+        240.0,
+        440.0,
+        310.0,
+        500.0
+      ],
+      "iou": 0.0606,
+      "center_error": 48.01
+    },
+    {
+      "id": "digit_4",
+      "gold_bbox": [
+        84.0,
+        364.0,
+        140.0,
+        402.0
+      ],
+      "pred_bbox": [
+        80.0,
+        370.0,
+        150.0,
+        430.0
+      ],
+      "iou": 0.3951,
+      "center_error": 17.26
+    },
+    {
+      "id": "digit_5",
+      "gold_bbox": [
+        150.0,
+        364.0,
+        209.0,
+        402.0
+      ],
+      "pred_bbox": [
+        160.0,
+        370.0,
+        230.0,
+        430.0
+      ],
+      "iou": 0.3217,
+      "center_error": 23.01
+    },
+    {
+      "id": "digit_6",
+      "gold_bbox": [
+        217.0,
+        364.0,
+        277.0,
+        402.0
+      ],
+      "pred_bbox": [
+        240.0,
+        370.0,
+        310.0,
+        430.0
+      ],
+      "iou": 0.2236,
+      "center_error": 32.76
+    },
+    {
+      "id": "digit_7",
+      "gold_bbox": [
+        82.0,
+        316.0,
+        140.0,
+        355.0
+      ],
+      "pred_bbox": [
+        80.0,
+        300.0,
+        150.0,
+        360.0
+      ],
+      "iou": 0.5386,
+      "center_error": 6.8
+    },
+    {
+      "id": "digit_8",
+      "gold_bbox": [
+        150.0,
+        316.0,
+        209.0,
+        355.0
+      ],
+      "pred_bbox": [
+        160.0,
+        300.0,
+        230.0,
+        360.0
+      ],
+      "iou": 0.4163,
+      "center_error": 16.45
+    },
+    {
+      "id": "digit_9",
+      "gold_bbox": [
+        217.0,
+        316.0,
+        277.0,
+        355.0
+      ],
+      "pred_bbox": [
+        240.0,
+        300.0,
+        310.0,
+        360.0
+      ],
+      "iou": 0.2831,
+      "center_error": 28.54
+    },
+    {
+      "id": "display",
+      "gold_bbox": [
+        71.0,
+        188.0,
+        427.0,
+        255.0
+      ],
+      "pred_bbox": [
+        70.0,
+        120.0,
+        470.0,
+        210.0
+      ],
+      "iou": 0.1506,
+      "center_error": 60.28
+    },
+    {
+      "id": "divide",
+      "gold_bbox": [
+        286.0,
+        316.0,
+        345.0,
+        355.0
+      ],
+      "pred_bbox": [
+        320.0,
+        300.0,
+        390.0,
+        360.0
+      ],
+      "iou": 0.1764,
+      "center_error": 39.88
+    },
+    {
+      "id": "equals",
+      "gold_bbox": [
+        355.0,
+        412.0,
+        413.0,
+        498.0
+      ],
+      "pred_bbox": [
+        400.0,
+        440.0,
+        470.0,
+        570.0
+      ],
+      "iou": 0.0565,
+      "center_error": 71.42
+    },
+    {
+      "id": "minus",
+      "gold_bbox": [
+        285.0,
+        412.0,
+        345.0,
+        450.0
+      ],
+      "pred_bbox": [
+        320.0,
+        440.0,
+        390.0,
+        500.0
+      ],
+      "iou": 0.0401,
+      "center_error": 55.87
+    },
+    {
+      "id": "multiply",
+      "gold_bbox": [
+        286.0,
+        364.0,
+        346.0,
+        402.0
+      ],
+      "pred_bbox": [
+        320.0,
+        370.0,
+        390.0,
+        430.0
+      ],
+      "iou": 0.1473,
+      "center_error": 42.54
+    },
+    {
+      "id": "plus",
+      "gold_bbox": [
+        285.0,
+        459.0,
+        344.0,
+        498.0
+      ],
+      "pred_bbox": [
+        320.0,
+        510.0,
+        390.0,
+        570.0
+      ],
+      "iou": 0.0,
+      "center_error": 73.64
+    }
+  ],
+  "missing_in_prediction_ids": [
+    "mod",
+    "paren_close",
+    "paren_open",
+    "percent",
+    "pi",
+    "sqrt",
+    "square"
+  ],
+  "extra_in_prediction_ids": []
+}
