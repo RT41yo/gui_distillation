@@ -171,13 +171,14 @@ class GUIAutomation:
 
     @staticmethod
     def _deep_merge(base: JsonDict, override: JsonDict) -> JsonDict:
-        """Deep-merge override into base (dicts only)."""
+        """Deep-merge override into base (dicts only). Does not mutate inputs."""
+        result = dict(base)
         for k, v in override.items():
-            if isinstance(v, dict) and isinstance(base.get(k), dict):
-                base[k] = GUIAutomation._deep_merge(base[k], v)  # type: ignore[arg-type]
+            if isinstance(v, dict) and isinstance(result.get(k), dict):
+                result[k] = GUIAutomation._deep_merge(result[k], v)  # type: ignore[arg-type]
             else:
-                base[k] = v
-        return base
+                result[k] = v
+        return result
 
     @staticmethod
     def _get(dct: JsonDict, dotted_path: str, default: Any) -> Any:
@@ -192,7 +193,7 @@ class GUIAutomation:
     def _load_yaml(path: Path) -> JsonDict:
         try:
             import yaml  # type: ignore
-        except Exception as e:  # pragma: no cover
+        except ImportError as e:  # pragma: no cover
             raise RuntimeError("PyYAML is required to load YAML configs. Install pyyaml.") from e
 
         with path.open("r", encoding="utf-8") as f:
@@ -223,6 +224,7 @@ class GUIAutomation:
     # App lifecycle
     # -----------------------------
     def launch_app(self) -> bool:
+        """Launch the application and wait for it to become ready. Returns True on success."""
         logger.info("Launching %s...", self.app_name)
 
         try:
@@ -251,6 +253,7 @@ class GUIAutomation:
             raise AppLaunchError(self.app_name, str(e)) from e
 
     def close_app(self) -> bool:
+        """Terminate the application gracefully, falling back to SIGKILL if needed. Returns True on success."""
         if self.app_process is None:
             logger.warning("close_app called but no process exists")
             return False
@@ -260,20 +263,23 @@ class GUIAutomation:
         try:
             self.app_process.terminate()
 
-            graceful_timeout = float(self._get(self.settings, "app.gnome-calculator.close.graceful_timeout", 5))
+            graceful_timeout = float(self._get(self.settings, f"app.{self.app_name}.close.graceful_timeout", 5))
             end = time.monotonic() + graceful_timeout
             while time.monotonic() < end:
                 if self.app_process.poll() is not None:
                     logger.info("Application closed gracefully")
+                    self.app_process = None
                     return True
-                time.sleep(0.1)
+                time.sleep(float(self._get(self.settings, "automation.timing.poll_interval", 0.1)))
 
-            force_kill = bool(self._get(self.settings, "app.gnome-calculator.close.force_kill", True))
+            force_kill = bool(self._get(self.settings, f"app.{self.app_name}.close.force_kill", True))
             if force_kill:
                 logger.warning("Application did not close gracefully; killing...")
                 self.app_process.kill()
-                self.app_process.wait(timeout=2)
+                kill_wait = float(self._get(self.settings, "automation.timing.kill_wait", 2.0))
+                self.app_process.wait(timeout=kill_wait)
                 logger.info("Application killed")
+                self.app_process = None
                 return True
 
             raise AppCloseError(self.app_name, "Graceful close timed out and force_kill=false")
@@ -315,6 +321,7 @@ class GUIAutomation:
             raise ScreenshotError(str(e)) from e
 
     def compute_image_hash(self, image_path: Path) -> str:
+        """Return a cryptographic hash (configured algorithm) of the image file as a hex string."""
         algo = self.hash_algorithm
         h = hashlib.new(algo)
         with image_path.open("rb") as f:
@@ -329,12 +336,11 @@ class GUIAutomation:
         """
         try:
             from PIL import Image  # Pillow is a dependency via pyautogui
-        except Exception as e:  # pragma: no cover
+        except ImportError as e:  # pragma: no cover
             raise RuntimeError("Pillow is required for perceptual hashing.") from e
 
-        img = Image.open(image_path).convert("L")
-        # dHash uses (size+1)xsize and compares adjacent pixels
-        img = img.resize((size + 1, size))
+        with Image.open(image_path) as raw:
+            img = raw.convert("L").resize((size + 1, size))
         pixels = list(img.getdata())
         # rows of length (size+1)
         diff_bits: List[int] = []
@@ -372,6 +378,7 @@ class GUIAutomation:
         return x, y
 
     def _validate_coords(self, x: int, y: int) -> None:
+        """Raise CoordinatesError if (x, y) are out of screen bounds (when validate_bounds is enabled)."""
         if not self.validate_bounds:
             return
         if x < 0 or y < 0:
@@ -381,6 +388,7 @@ class GUIAutomation:
 
     @staticmethod
     def _normalize_coords(coords: Any) -> Union[Coords, Tuple[float, float]]:
+        """Accept (x,y) tuple, [x,y] list, or {"x":x,"y":y} dict and return a (x, y) pair."""
         if isinstance(coords, tuple) and len(coords) == 2:
             return coords[0], coords[1]
         if isinstance(coords, list) and len(coords) == 2:
@@ -561,6 +569,7 @@ class GUIAutomation:
         return StepArtifacts(step_dir=step_dir, before=before_path, after=after_path, metadata=meta_path, action=action_path)
 
     def run_sequence(self, actions: List[JsonDict], start_id: int = 0) -> List[StepArtifacts]:
+        """Run multiple actions as consecutive steps, pausing action_delay between each."""
         out: List[StepArtifacts] = []
         for i, action in enumerate(actions):
             out.append(self.run_step(start_id + i, action))
@@ -572,6 +581,7 @@ class GUIAutomation:
     # App config helpers
     # -----------------------------
     def get_button_coordinates(self, button_name: str) -> Optional[Coords]:
+        """Return absolute (x, y) for a named button from app_config, or None if not found."""
         buttons = self.app_config.get("buttons", {}) if isinstance(self.app_config, dict) else {}
         coords = buttons.get(button_name)
         if coords is None:
@@ -583,6 +593,7 @@ class GUIAutomation:
         return None
 
     def click_button(self, button_name: str, clicks: int = 1) -> bool:
+        """Click a named button from app_config. Returns False if the button has no configured coordinates."""
         coords = self.get_button_coordinates(button_name)
         if not coords:
             return False
@@ -613,7 +624,7 @@ class GUIAutomation:
                 try:
                     xs.append(int(v[0]))
                     ys.append(int(v[1]))
-                except Exception:
+                except (TypeError, ValueError):
                     continue
 
         if not xs or not ys:
@@ -629,47 +640,18 @@ class GUIAutomation:
         return x_min, y_min, x_max, y_max
 
     # -----------------------------
-    # Built-in scenario: calculator basic test
-    # -----------------------------
-    def test_calculator_basic(self, start_step_id: int = 0) -> List[StepArtifacts]:
-        """
-        Basic deterministic test for GNOME Calculator using calibrated coordinates:
-          2 + 2 = (press equals)
-
-        Returns list of StepArtifacts for each click.
-        """
-        required = ["digit_2", "plus", "digit_2", "equals"]
-        missing = [k for k in required if self.get_button_coordinates(k) is None]
-        if missing:
-            raise ValueError(
-                f"Missing coordinates in app_config for: {missing}. "
-                f"Re-run calibration and ensure calculator.yaml has these keys."
-            )
-
-        actions: List[JsonDict] = []
-
-        # Optional: clear first if available (nice for repeatability)
-        clear_coord = self.get_button_coordinates("clear")
-        if clear_coord is not None:
-            actions.append(
-                {"action_type": "click", "coordinates": clear_coord, "parameters": {"button": "left", "clicks": 1}}
-            )
-
-        for key in required:
-            coords = self.get_button_coordinates(key)
-            assert coords is not None
-            actions.append({"action_type": "click", "coordinates": coords, "parameters": {"button": "left", "clicks": 1}})
-
-        return self.run_sequence(actions, start_id=start_step_id)
-
-    # -----------------------------
     # Context manager
     # -----------------------------
     def __enter__(self) -> "GUIAutomation":
         self.launch_app()
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+    def __exit__(
+        self,
+        exc_type: Optional[type[BaseException]],
+        exc_val: Optional[BaseException],
+        exc_tb: Optional[Any],
+    ) -> None:
         try:
             self.close_app()
         except Exception:
@@ -703,8 +685,6 @@ def _cli() -> int:
         action="store_true",
         help="Run random click steps bounded to button area derived from app-config",
     )
-    mode.add_argument("--basic-test", action="store_true", help="Run basic calculator test: 2 + 2 (requires coords)")
-    mode.add_argument("--test", dest="basic_test", action="store_true", help=argparse.SUPPRESS)  # backward-compat
 
     # Common params
     parser.add_argument(
@@ -729,7 +709,7 @@ def _cli() -> int:
     app_config_path = args.app_config or getattr(args, "app_config", None)
 
     # Default mode: random-buttons if app-config provided, else random
-    if not args.random and not args.random_buttons and not args.basic_test:
+    if not args.random and not args.random_buttons:
         if app_config_path:
             args.random_buttons = True
         else:
@@ -742,14 +722,6 @@ def _cli() -> int:
         app_config_path=app_config_path,
         display=args.display,
     ) as auto:
-        if args.basic_test:
-            if not app_config_path:
-                logger.error("--basic-test/--test requires --app-config/--config with button coordinates (calculator.yaml).")
-                return 2
-            steps = auto.test_calculator_basic(start_step_id=args.start_step_id)
-            logger.info("Basic test completed: %d steps", len(steps))
-            return 0
-
         # Random modes
         width, height = pyautogui.size()
 

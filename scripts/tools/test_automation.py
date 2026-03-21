@@ -240,6 +240,33 @@ class AutomationTester:
         except Exception as e:
             self.fail("Close app", str(e))
 
+    def test_calculator_basic(self) -> None:
+        """Run 2 + 2 = using calibrated coordinates as a deterministic smoke test."""
+        if not self.automation:
+            self.skip("Calculator basic (2+2)", "No automation instance")
+            return
+
+        required = ["digit_2", "plus", "equals"]
+        missing = [k for k in required if self.automation.get_button_coordinates(k) is None]
+        if missing:
+            self.skip("Calculator basic (2+2)", f"Missing coords in app-config: {missing}")
+            return
+
+        try:
+            sequence = ["clear", "digit_2", "plus", "digit_2", "equals"]
+            actions = []
+            for key in sequence:
+                coords = self.automation.get_button_coordinates(key)
+                if coords is None:
+                    continue  # clear is optional
+                actions.append(
+                    {"action_type": "click", "coordinates": coords, "parameters": {"button": "left", "clicks": 1}}
+                )
+            self.automation.run_sequence(actions, start_id=200)
+            self.ok("Calculator basic (2+2)", f"{len(actions)} clicks completed")
+        except Exception as e:
+            self.fail("Calculator basic (2+2)", str(e))
+
     def test_calculator_digit_5(self) -> None:
         if not self.automation:
             self.skip("Calculator digit_5 test", "No automation instance")
@@ -289,8 +316,9 @@ class AutomationTester:
         self.test_screenshot()
         self.test_click()
         self.test_step_artifacts()
-        self.test_close()
+        self.test_calculator_basic()
         self.test_calculator_digit_5()
+        self.test_close()
 
         self.summary()
         return 1 if self.stats.failed > 0 else 0
