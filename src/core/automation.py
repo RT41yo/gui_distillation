@@ -42,6 +42,7 @@ from src.core.exceptions import (
     DisplayNotFoundError,
     ScreenshotError,
 )
+from src.skills.schemas import StepMetadata
 
 logger = logging.getLogger(__name__)
 
@@ -563,7 +564,14 @@ class GUIAutomation:
             "timing": {"action_delay": self.action_delay, "screenshot_delay": self.screenshot_delay},
         }
 
-        meta_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")
+        meta_path.write_text(
+            json.dumps(
+                StepMetadata.model_validate(metadata).model_dump(),
+                ensure_ascii=False,
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
         logger.info("Step %s completed (changed=%s) -> %s", step_id, changed, step_dir)
 
         return StepArtifacts(step_dir=step_dir, before=before_path, after=after_path, metadata=meta_path, action=action_path)

@@ -135,7 +135,7 @@ class GroundedObservationResponse(BaseModel):
 # -------------------------------------------------------------------
 
 class ActionParameters(BaseModel):
-    button: Optional[Literal["left"]] = "left"
+    button: Optional[Literal["left", "right", "middle"]] = "left"
     clicks: Optional[int] = Field(default=1, ge=1, le=3)
     text: Optional[str] = None
     key: Optional[str] = None
@@ -162,6 +162,13 @@ class ActionProposal(BaseModel):
 # Delta schema
 # -------------------------------------------------------------------
 
+class SelfCheck(BaseModel):
+    """Model self-assessment returned alongside the delta analysis."""
+    action_visually_plausible: bool
+    text_change_consistent_with_action: bool
+    layout_changed: bool
+
+
 class DeltaResponse(BaseModel):
     success: bool
     change_type: Literal[
@@ -179,3 +186,4 @@ class DeltaResponse(BaseModel):
 
     before_text: Optional[str] = None
     after_text: Optional[str] = None
+    self_check: Optional[SelfCheck] = None
