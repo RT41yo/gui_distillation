@@ -22,7 +22,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Tuple, Union
 
-from pydantic import BaseModel, Field, ConfigDict, field_validator, model_validator
+from pydantic import BaseModel, Field, ConfigDict, model_validator
 
 
 # =========================================================
@@ -136,7 +136,7 @@ class SimplifierInput(BaseModel):
 
 class SimplifierOutput(BaseModel):
     tasks: List[AtomicTask] = Field(..., min_length=1, description="Sequence of atomic tasks")
-    confidence: float = Field(0.95, ge=0.0, le=1.0)
+    confidence: float = Field(..., ge=0.0, le=1.0)
 
 
 # =========================================================
@@ -307,6 +307,12 @@ class SemanticState(BaseModel):
     display_after: Optional[str] = None
 
     error_type: Optional[ErrorType] = None
+
+    @model_validator(mode="after")
+    def _validate_error_type(self) -> "SemanticState":
+        if self.error_type is not None and self.success:
+            raise ValueError("error_type must be None when success=True")
+        return self
 
 
 # Runtime schema (PIL Images)

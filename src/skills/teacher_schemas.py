@@ -152,9 +152,17 @@ class ActionProposal(BaseModel):
     confidence: float = Field(ge=0.0, le=1.0, default=0.5)
 
     @model_validator(mode="after")
-    def _canonicalize_target(self) -> "ActionProposal":
+    def _validate_and_canonicalize(self) -> "ActionProposal":
         if self.target_element_id:
             self.target_element_id = canonicalize_element_id(self.target_element_id, None)
+
+        needs_target = {"click", "move_to"}
+        if self.action_type in needs_target:
+            if self.coordinates is None and self.target_element_id is None:
+                raise ValueError(
+                    f"action_type='{self.action_type}' requires either coordinates or target_element_id"
+                )
+
         return self
 
 
@@ -179,7 +187,7 @@ class DeltaResponse(BaseModel):
         "ui_changed",
         "unknown",
     ] = "unknown"
-    description: str = Field(min_length=1)
+    description: str = Field(..., min_length=1)
     ui_state_changed: bool = False
     content_state_changed: bool = False
     confidence: float = Field(ge=0.0, le=1.0, default=0.5)
