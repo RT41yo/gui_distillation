@@ -1,36 +1,22 @@
 from __future__ import annotations
 
 import argparse
-import json
 import math
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
-import yaml
+from src.exploration._io import JsonDict, load_json, load_yaml, write_json
 
-JsonDict = Dict[str, Any]
 Point = Tuple[float, float]
 BBox = Tuple[float, float, float, float]
 
 
-def load_yaml(path: Path) -> JsonDict:
-    return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-
-
-def load_json(path: Path) -> JsonDict:
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def write_json(path: Path, obj: Any) -> None:
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
-
-
-def bbox_center(bbox: List[float]) -> Point:
+def bbox_center(bbox: BBox) -> Point:
     x1, y1, x2, y2 = bbox
     return ((x1 + x2) / 2.0, (y1 + y2) / 2.0)
 
 
-def point_in_bbox(point: Tuple[float, float], bbox: List[float]) -> bool:
+def point_in_bbox(point: Point, bbox: BBox) -> bool:
     x, y = point
     x1, y1, x2, y2 = bbox
     return x1 <= x <= x2 and y1 <= y <= y2
@@ -79,21 +65,53 @@ def evaluate_bbox(
             continue
 
         if bbox is None:
+            skipped.append({"id": element_id, "reason": "bbox is null"})
+            continue
+
+        if not isinstance(bbox, (list, tuple)) or len(bbox) != 4:
             skipped.append(
                 {
                     "id": element_id,
-                    "reason": "bbox is null",
+                    "reason": f"bbox has wrong structure (expected list of 4): {bbox!r}",
+                }
+            )
+            continue
+        try:
+            x1_b, y1_b, x2_b, y2_b = map(float, bbox)
+        except (TypeError, ValueError) as exc:
+            skipped.append({"id": element_id, "reason": f"bbox contains non-numeric values: {exc}"})
+            continue
+        if x2_b <= x1_b or y2_b <= y1_b:
+            skipped.append(
+                {
+                    "id": element_id,
+                    "reason": f"invalid bbox dimensions (x2<=x1 or y2<=y1): {bbox}",
                 }
             )
             continue
 
-        yaml_point = tuple(buttons[element_id])
-        center = bbox_center(bbox)
+        raw_point = buttons[element_id]
+        if not isinstance(raw_point, (list, tuple)) or len(raw_point) != 2:
+            skipped.append(
+                {
+                    "id": element_id,
+                    "reason": f"calculator.yaml point has wrong structure (expected [x, y]): {raw_point!r}",
+                }
+            )
+            continue
+        try:
+            yaml_point: Point = (float(raw_point[0]), float(raw_point[1]))
+        except (TypeError, ValueError) as exc:
+            skipped.append({"id": element_id, "reason": f"calculator.yaml point contains non-numeric values: {exc}"})
+            continue
+
+        validated_bbox: BBox = (x1_b, y1_b, x2_b, y2_b)
+        center = bbox_center(validated_bbox)
 
         dx = center[0] - yaml_point[0]
         dy = center[1] - yaml_point[1]
         dist = euclidean_distance(center, yaml_point)
-        hit = point_in_bbox(yaml_point, bbox)
+        hit = point_in_bbox(yaml_point, validated_bbox)
 
         distances.append(dist)
         hits.append(hit)
@@ -102,7 +120,7 @@ def evaluate_bbox(
             {
                 "id": element_id,
                 "yaml_point": [yaml_point[0], yaml_point[1]],
-                "bbox": bbox,
+                "bbox": list(validated_bbox),
                 "bbox_center": [round(center[0], 2), round(center[1], 2)],
                 "dx": round(dx, 2),
                 "dy": round(dy, 2),

@@ -37,19 +37,7 @@ from src.skills.schemas import (
 )
 
 
-# -----------------------------
-# Fixtures
-# -----------------------------
-@pytest.fixture()
-def sample_screenshot():
-    """
-    Minimal dummy "image-like" object.
-
-    We intentionally do NOT depend on PIL in unit tests.
-    Runtime schemas allow arbitrary_types_allowed=True, so any object works.
-    """
-    return object()
-
+# sample_screenshot fixture is defined in tests/conftest.py
 
 # -----------------------------
 # BBox
@@ -107,7 +95,7 @@ class TestGroundingIO:
             element_type="digit_button",
         )
         assert out.confidence == 0.98
-        assert str(out.element_type) == "ElementType.DIGIT_BUTTON" or out.element_type.value == "digit_button"
+        assert out.element_type.value == "digit_button"
 
     def test_grounding_confidence_range(self):
         with pytest.raises(ValidationError):

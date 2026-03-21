@@ -1,27 +1,16 @@
 from __future__ import annotations
 
 import argparse
-import json
+import logging
 from pathlib import Path
 from statistics import mean, median
 from typing import Any, Dict, List, Optional, Tuple
 
-import yaml
+from src.exploration._io import JsonDict, load_json, load_yaml, write_json
 
-JsonDict = Dict[str, Any]
+logger = logging.getLogger(__name__)
+
 BBox = Tuple[float, float, float, float]
-
-
-def load_yaml(path: Path) -> JsonDict:
-    return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-
-
-def load_json(path: Path) -> JsonDict:
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def write_json(path: Path, obj: Any) -> None:
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def to_bbox(values: List[float] | Tuple[float, float, float, float]) -> BBox:
@@ -81,7 +70,8 @@ def load_gold_bboxes(path: Path) -> Dict[str, BBox]:
             for element_id, bbox_vals in section.items():
                 try:
                     out[element_id] = to_bbox(bbox_vals)
-                except Exception:
+                except Exception as exc:
+                    logger.warning("Skipping gold bbox %r in section %r: %s", element_id, section_name, exc)
                     continue
     return out
 
@@ -103,7 +93,8 @@ def load_predicted_bboxes(path: Path) -> Dict[str, BBox]:
             continue
         try:
             out[str(element_id)] = to_bbox(bbox_vals)
-        except Exception:
+        except Exception as exc:
+            logger.warning("Skipping predicted bbox %r: %s", element_id, exc)
             continue
     return out
 
