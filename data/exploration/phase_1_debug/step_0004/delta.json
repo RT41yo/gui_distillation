@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "change_type": "text_updated",
+  "description": "The text in the display was updated by appending ' mod' to the existing expression.",
+  "ui_state_changed": false,
+  "content_state_changed": true,
+  "confidence": 0.98,
+  "before_text": "÷)%",
+  "after_text": "÷)% mod",
+  "self_check": {
+    "action_visually_plausible": true,
+    "text_change_consistent_with_action": true,
+    "layout_changed": false
+  }
+}

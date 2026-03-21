@@ -1,0 +1,36 @@
+{
+  "step_id": 1,
+  "timestamp": 1774123668.7391517,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      315,
+      480
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "plus",
+    "rationale": "To add 2 and 4, the next step is to press the plus button."
+  },
+  "hashes": {
+    "before": "05d2286d4b4517f7d4363a1d2f372e44",
+    "after": "a965870adaac396152223a235b2650aa"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    183,
+    431
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "digit_2",
+  "rationale": "Start by entering the first number, 2."
+}

@@ -1,0 +1,178 @@
+{
+  "task": "add 2 and 4, then subtract 10",
+  "total_steps": 9,
+  "task_complete": true,
+  "steps": [
+    {
+      "step_id": 0,
+      "button_id": "digit_2",
+      "rationale": "Start by entering the first number, 2.",
+      "task_complete": false,
+      "parse_mode": "direct",
+      "latency_s": 1.645,
+      "usage": {
+        "input_tokens": 1034,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 36,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1070
+      }
+    },
+    {
+      "step_id": 1,
+      "button_id": "plus",
+      "rationale": "To add 2 and 4, the next step is to press the plus button.",
+      "task_complete": false,
+      "parse_mode": "direct",
+      "latency_s": 1.852,
+      "usage": {
+        "input_tokens": 1048,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 42,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1090
+      }
+    },
+    {
+      "step_id": 2,
+      "button_id": "digit_4",
+      "rationale": "To complete the addition, enter the second number, 4.",
+      "task_complete": false,
+      "parse_mode": "direct",
+      "latency_s": 1.285,
+      "usage": {
+        "input_tokens": 1074,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 39,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1113
+      }
+    },
+    {
+      "step_id": 3,
+      "button_id": "equals",
+      "rationale": "Press equals to get the result of 2+4 before proceeding to subtract 10.",
+      "task_complete": false,
+      "parse_mode": "direct",
+      "latency_s": 1.025,
+      "usage": {
+        "input_tokens": 1097,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 42,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1139
+      }
+    },
+    {
+      "step_id": 4,
+      "button_id": "minus",
+      "rationale": "To subtract 10 from the result (6), press the minus button.",
+      "task_complete": false,
+      "parse_mode": "direct",
+      "latency_s": 1.278,
+      "usage": {
+        "input_tokens": 1123,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 39,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1162
+      }
+    },
+    {
+      "step_id": 5,
+      "button_id": "digit_1",
+      "rationale": "To subtract 10, the next step is to enter the digit 1.",
+      "task_complete": false,
+      "parse_mode": "direct",
+      "latency_s": 1.207,
+      "usage": {
+        "input_tokens": 1146,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 42,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1188
+      }
+    },
+    {
+      "step_id": 6,
+      "button_id": "digit_0",
+      "rationale": "To complete entering the number 10 for the subtraction operation.",
+      "task_complete": false,
+      "parse_mode": "direct",
+      "latency_s": 1.082,
+      "usage": {
+        "input_tokens": 1172,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 38,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1210
+      }
+    },
+    {
+      "step_id": 7,
+      "button_id": "equals",
+      "rationale": "Press equals to get the result of 6-10 and complete the calculation.",
+      "task_complete": false,
+      "parse_mode": "direct",
+      "latency_s": 1.097,
+      "usage": {
+        "input_tokens": 1194,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 40,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1234
+      }
+    },
+    {
+      "step_id": 8,
+      "button_id": "__done__",
+      "rationale": "The final result (-4) is visible on the display, so the task is complete.",
+      "task_complete": true,
+      "parse_mode": "direct",
+      "latency_s": 1.656,
+      "usage": {
+        "input_tokens": 1218,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 43,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1261
+      }
+    }
+  ]
+}

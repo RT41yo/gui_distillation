@@ -1,6 +1,6 @@
 {
   "step_id": 4,
-  "timestamp": 1773089370.9889033,
+  "timestamp": 1774118824.8421729,
   "app": "gnome-calculator",
   "display": ":99",
   "screen": {
@@ -10,8 +10,8 @@
   "action": {
     "action_type": "click",
     "coordinates": [
-      105,
-      387
+      308,
+      309
     ],
     "parameters": {
       "button": "left",
@@ -19,14 +19,14 @@
     }
   },
   "hashes": {
-    "before": "b1a77f1e68d4061f538f34af56659a93",
-    "after": "6e11de6ae40e80de06d7beec301bb2d9"
+    "before": "2e9d9d808c97fd6d1fd2664f266b8127",
+    "after": "8344ba5172786a612a61568380213aaa"
   },
+  "changed": true,
   "phashes": {
     "before": "7070707070000000",
     "after": "7070707070000000"
   },
-  "changed": true,
   "timing": {
     "action_delay": 0.5,
     "screenshot_delay": 1.0

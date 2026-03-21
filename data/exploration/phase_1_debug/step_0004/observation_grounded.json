@@ -1,0 +1,279 @@
+{
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "elements": [
+    {
+      "id": "display",
+      "type": "text_field",
+      "text": "÷)%",
+      "bbox": [
+        90,
+        180,
+        410,
+        230
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "backspace",
+      "type": "button",
+      "text": null,
+      "bbox": [
+        100,
+        240,
+        160,
+        300
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.97
+    },
+    {
+      "id": "digit_7",
+      "type": "button",
+      "text": "7",
+      "bbox": [
+        100,
+        310,
+        160,
+        370
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_8",
+      "type": "button",
+      "text": "8",
+      "bbox": [
+        170,
+        310,
+        230,
+        370
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_9",
+      "type": "button",
+      "text": "9",
+      "bbox": [
+        240,
+        310,
+        300,
+        370
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "divide",
+      "type": "button",
+      "text": "÷",
+      "bbox": [
+        310,
+        310,
+        370,
+        370
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_4",
+      "type": "button",
+      "text": "4",
+      "bbox": [
+        100,
+        380,
+        160,
+        440
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_5",
+      "type": "button",
+      "text": "5",
+      "bbox": [
+        170,
+        380,
+        230,
+        440
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_6",
+      "type": "button",
+      "text": "6",
+      "bbox": [
+        240,
+        380,
+        300,
+        440
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "multiply",
+      "type": "button",
+      "text": "×",
+      "bbox": [
+        310,
+        380,
+        370,
+        440
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_1",
+      "type": "button",
+      "text": "1",
+      "bbox": [
+        100,
+        450,
+        160,
+        510
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_2",
+      "type": "button",
+      "text": "2",
+      "bbox": [
+        170,
+        450,
+        230,
+        510
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_3",
+      "type": "button",
+      "text": "3",
+      "bbox": [
+        240,
+        450,
+        300,
+        510
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "minus",
+      "type": "button",
+      "text": "−",
+      "bbox": [
+        310,
+        450,
+        370,
+        510
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_0",
+      "type": "button",
+      "text": "0",
+      "bbox": [
+        100,
+        520,
+        160,
+        580
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "decimal",
+      "type": "button",
+      "text": ",",
+      "bbox": [
+        170,
+        520,
+        230,
+        580
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "plus",
+      "type": "button",
+      "text": "+",
+      "bbox": [
+        240,
+        520,
+        300,
+        580
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "equals",
+      "type": "button",
+      "text": "=",
+      "bbox": [
+        310,
+        520,
+        370,
+        580
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    }
+  ],
+  "notes": null
+}

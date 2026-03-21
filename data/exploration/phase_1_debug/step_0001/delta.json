@@ -1,10 +1,15 @@
 {
   "success": true,
   "change_type": "text_updated",
-  "description": "The display text was updated from empty to '2' after clicking the '2' button.",
+  "description": "The display text changed from '÷(' to '÷)', indicating that the ')' button was pressed and the expression was updated.",
   "ui_state_changed": false,
   "content_state_changed": true,
-  "confidence": 1.0,
-  "before_text": "",
-  "after_text": "2"
+  "confidence": 0.98,
+  "before_text": "÷(",
+  "after_text": "÷)",
+  "self_check": {
+    "action_visually_plausible": true,
+    "text_change_consistent_with_action": true,
+    "layout_changed": false
+  }
 }

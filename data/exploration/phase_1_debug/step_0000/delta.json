@@ -1,10 +1,15 @@
 {
   "success": true,
   "change_type": "text_updated",
-  "description": "The display area now shows a text cursor, indicating it is ready for input. Previously, it was empty.",
+  "description": "The display text was updated to show the division operator '÷'.",
   "ui_state_changed": false,
   "content_state_changed": true,
   "confidence": 0.98,
   "before_text": "",
-  "after_text": "|"
+  "after_text": "÷",
+  "self_check": {
+    "action_visually_plausible": true,
+    "text_change_consistent_with_action": true,
+    "layout_changed": false
+  }
 }

@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    315,
+    480
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "plus",
+  "rationale": "To add 2 and 4, the next step is to press the plus button."
+}

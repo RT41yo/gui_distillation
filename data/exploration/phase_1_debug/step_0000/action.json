@@ -1,8 +1,8 @@
 {
   "action_type": "click",
   "coordinates": [
-    123,
-    456
+    286,
+    330
   ],
   "parameters": {
     "button": "left",

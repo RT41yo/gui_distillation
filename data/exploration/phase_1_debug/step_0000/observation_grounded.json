@@ -9,9 +9,9 @@
       "type": "text_field",
       "text": null,
       "bbox": [
-        70,
+        74,
         120,
-        470,
+        466,
         210
       ],
       "supported_actions": [
@@ -24,10 +24,10 @@
       "type": "button",
       "text": null,
       "bbox": [
-        80,
-        230,
-        150,
-        290
+        86,
+        232,
+        154,
+        292
       ],
       "supported_actions": [
         "click"
@@ -39,9 +39,9 @@
       "type": "button",
       "text": "7",
       "bbox": [
-        80,
+        86,
         300,
-        150,
+        154,
         360
       ],
       "supported_actions": [
@@ -54,7 +54,7 @@
       "type": "button",
       "text": "8",
       "bbox": [
-        160,
+        162,
         300,
         230,
         360
@@ -69,9 +69,9 @@
       "type": "button",
       "text": "9",
       "bbox": [
-        240,
+        238,
         300,
-        310,
+        306,
         360
       ],
       "supported_actions": [
@@ -84,9 +84,9 @@
       "type": "button",
       "text": "÷",
       "bbox": [
-        320,
+        314,
         300,
-        390,
+        382,
         360
       ],
       "supported_actions": [
@@ -99,10 +99,10 @@
       "type": "button",
       "text": "4",
       "bbox": [
-        80,
-        370,
-        150,
-        430
+        86,
+        368,
+        154,
+        428
       ],
       "supported_actions": [
         "click"
@@ -114,10 +114,10 @@
       "type": "button",
       "text": "5",
       "bbox": [
-        160,
-        370,
+        162,
+        368,
         230,
-        430
+        428
       ],
       "supported_actions": [
         "click"
@@ -129,10 +129,10 @@
       "type": "button",
       "text": "6",
       "bbox": [
-        240,
-        370,
-        310,
-        430
+        238,
+        368,
+        306,
+        428
       ],
       "supported_actions": [
         "click"
@@ -144,10 +144,10 @@
       "type": "button",
       "text": "×",
       "bbox": [
-        320,
-        370,
-        390,
-        430
+        314,
+        368,
+        382,
+        428
       ],
       "supported_actions": [
         "click"
@@ -159,10 +159,10 @@
       "type": "button",
       "text": "1",
       "bbox": [
-        80,
-        440,
-        150,
-        500
+        86,
+        436,
+        154,
+        496
       ],
       "supported_actions": [
         "click"
@@ -174,10 +174,10 @@
       "type": "button",
       "text": "2",
       "bbox": [
-        160,
-        440,
+        162,
+        436,
         230,
-        500
+        496
       ],
       "supported_actions": [
         "click"
@@ -189,10 +189,10 @@
       "type": "button",
       "text": "3",
       "bbox": [
-        240,
-        440,
-        310,
-        500
+        238,
+        436,
+        306,
+        496
       ],
       "supported_actions": [
         "click"
@@ -204,10 +204,10 @@
       "type": "button",
       "text": "−",
       "bbox": [
-        320,
-        440,
-        390,
-        500
+        314,
+        436,
+        382,
+        496
       ],
       "supported_actions": [
         "click"
@@ -219,10 +219,10 @@
       "type": "button",
       "text": "0",
       "bbox": [
-        80,
-        510,
-        150,
-        570
+        86,
+        504,
+        154,
+        564
       ],
       "supported_actions": [
         "click"
@@ -234,25 +234,25 @@
       "type": "button",
       "text": ",",
       "bbox": [
-        160,
-        510,
+        162,
+        504,
         230,
-        570
+        564
       ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.98
+      "confidence": 0.99
     },
     {
       "id": "plus",
       "type": "button",
       "text": "+",
       "bbox": [
-        320,
-        510,
-        390,
-        570
+        314,
+        504,
+        382,
+        564
       ],
       "supported_actions": [
         "click"
@@ -264,10 +264,10 @@
       "type": "button",
       "text": "=",
       "bbox": [
-        400,
-        440,
-        470,
-        570
+        390,
+        436,
+        466,
+        564
       ],
       "supported_actions": [
         "click"

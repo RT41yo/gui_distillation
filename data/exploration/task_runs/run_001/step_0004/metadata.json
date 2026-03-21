@@ -1,0 +1,36 @@
+{
+  "step_id": 4,
+  "timestamp": 1774123677.3891258,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      317,
+      433
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "minus",
+    "rationale": "To subtract 10 from the result (6), press the minus button."
+  },
+  "hashes": {
+    "before": "fe7b98e6a656736758d81c2b82d1e72e",
+    "after": "57b9c337983b7c4a0afc7a438735c813"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707060000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

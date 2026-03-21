@@ -1,15 +1,20 @@
 {
   "steps_root": "data/exploration/phase_1_debug",
-  "total_steps": 2,
-  "observation_ok": 2,
-  "observation_grounded_ok": 2,
-  "delta_ok": 2,
+  "total_steps": 5,
+  "observation_ok": 5,
+  "observation_grounded_ok": 5,
+  "delta_ok": 5,
   "observation_ok_rate": 1.0,
   "observation_grounded_ok_rate": 1.0,
   "delta_ok_rate": 1.0,
-  "avg_latency_observation_s": 14.424070552000103,
-  "avg_latency_observation_grounded_s": 13.176563366999972,
-  "avg_latency_delta_s": 3.186684919499953,
+  "avg_latency_observation_s": 9.493329057600203,
+  "avg_latency_observation_grounded_s": 11.545546001799448,
+  "avg_latency_delta_s": 6.376337645600506,
+  "total_tokens": {
+    "input_tokens": 23100,
+    "output_tokens": 10125,
+    "total_tokens": 33225
+  },
   "per_step": [
     {
       "step": "step_0000",
@@ -19,10 +24,45 @@
       "observation_parse_mode": "direct",
       "observation_grounded_parse_mode": "direct",
       "delta_parse_mode": "direct",
-      "latency_observation_s": 16.392692459000045,
-      "latency_observation_grounded_s": 13.322283048999907,
-      "latency_delta_s": 2.9427095809999173,
-      "errors": []
+      "latency_observation_s": 11.328499238999939,
+      "latency_observation_grounded_s": 11.496019650001472,
+      "latency_delta_s": 3.256282612001087,
+      "errors": [],
+      "usage": {
+        "observation": {
+          "input_tokens": 1098,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 808,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 1906
+        },
+        "observation_grounded": {
+          "input_tokens": 1572,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 1095,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 2667
+        },
+        "delta": {
+          "input_tokens": 1950,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 113,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 2063
+        }
+      }
     },
     {
       "step": "step_0001",
@@ -32,10 +72,189 @@
       "observation_parse_mode": "direct",
       "observation_grounded_parse_mode": "direct",
       "delta_parse_mode": "direct",
-      "latency_observation_s": 12.45544864500016,
-      "latency_observation_grounded_s": 13.030843685000036,
-      "latency_delta_s": 3.430660257999989,
-      "errors": []
+      "latency_observation_s": 8.425433038999472,
+      "latency_observation_grounded_s": 11.283295305998763,
+      "latency_delta_s": 2.1734077880009863,
+      "errors": [],
+      "usage": {
+        "observation": {
+          "input_tokens": 1098,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 808,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 1906
+        },
+        "observation_grounded": {
+          "input_tokens": 1572,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 1096,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 2668
+        },
+        "delta": {
+          "input_tokens": 1950,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 128,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 2078
+        }
+      }
+    },
+    {
+      "step": "step_0002",
+      "observation_ok": true,
+      "observation_grounded_ok": true,
+      "delta_ok": true,
+      "observation_parse_mode": "direct",
+      "observation_grounded_parse_mode": "direct",
+      "delta_parse_mode": "direct",
+      "latency_observation_s": 9.212564172001294,
+      "latency_observation_grounded_s": 12.45725338199918,
+      "latency_delta_s": 3.292976679000276,
+      "errors": [],
+      "usage": {
+        "observation": {
+          "input_tokens": 1098,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 808,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 1906
+        },
+        "observation_grounded": {
+          "input_tokens": 1572,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 1095,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 2667
+        },
+        "delta": {
+          "input_tokens": 1950,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 115,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 2065
+        }
+      }
+    },
+    {
+      "step": "step_0003",
+      "observation_ok": true,
+      "observation_grounded_ok": true,
+      "delta_ok": true,
+      "observation_parse_mode": "direct",
+      "observation_grounded_parse_mode": "direct",
+      "delta_parse_mode": "direct",
+      "latency_observation_s": 9.344226703000459,
+      "latency_observation_grounded_s": 12.498100957998759,
+      "latency_delta_s": 19.343624233999435,
+      "errors": [],
+      "usage": {
+        "observation": {
+          "input_tokens": 1098,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 808,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 1906
+        },
+        "observation_grounded": {
+          "input_tokens": 1572,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 1098,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 2670
+        },
+        "delta": {
+          "input_tokens": 1950,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 124,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 2074
+        }
+      }
+    },
+    {
+      "step": "step_0004",
+      "observation_ok": true,
+      "observation_grounded_ok": true,
+      "delta_ok": true,
+      "observation_parse_mode": "direct",
+      "observation_grounded_parse_mode": "direct",
+      "delta_parse_mode": "direct",
+      "latency_observation_s": 9.155922134999855,
+      "latency_observation_grounded_s": 9.993060712999068,
+      "latency_delta_s": 3.815396915000747,
+      "errors": [],
+      "usage": {
+        "observation": {
+          "input_tokens": 1098,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 808,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 1906
+        },
+        "observation_grounded": {
+          "input_tokens": 1572,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 1098,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 2670
+        },
+        "delta": {
+          "input_tokens": 1950,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 123,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 2073
+        }
+      }
     }
   ]
 }

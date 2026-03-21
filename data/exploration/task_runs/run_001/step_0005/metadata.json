@@ -1,0 +1,36 @@
+{
+  "step_id": 5,
+  "timestamp": 1774123680.2768433,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      112,
+      428
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "digit_1",
+    "rationale": "To subtract 10, the next step is to enter the digit 1."
+  },
+  "hashes": {
+    "before": "57b9c337983b7c4a0afc7a438735c813",
+    "after": "368b4073cc05637da67895ea45523e27"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

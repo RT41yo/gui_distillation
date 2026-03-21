@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    109,
+    481
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "digit_0",
+  "rationale": "To complete entering the number 10 for the subtraction operation."
+}

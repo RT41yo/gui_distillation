@@ -1,0 +1,36 @@
+{
+  "step_id": 7,
+  "timestamp": 1774123685.8177702,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      385,
+      453
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "equals",
+    "rationale": "Press equals to get the result of 6-10 and complete the calculation."
+  },
+  "hashes": {
+    "before": "612820bb2332772c748729b03c23584c",
+    "after": "13d835fcb76878ed9b235778f04a7b37"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707060000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

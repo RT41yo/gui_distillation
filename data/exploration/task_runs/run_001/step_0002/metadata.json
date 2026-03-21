@@ -1,0 +1,36 @@
+{
+  "step_id": 2,
+  "timestamp": 1774123671.71175,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      115,
+      386
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "digit_4",
+    "rationale": "To complete the addition, enter the second number, 4."
+  },
+  "hashes": {
+    "before": "77b4b23df50807ef3c9c697a87372a77",
+    "after": "85b25d5a7c6a000f329c283f86516796"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "step_id": 0,
+  "timestamp": 1774123665.1950254,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      183,
+      431
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "digit_2",
+    "rationale": "Start by entering the first number, 2."
+  },
+  "hashes": {
+    "before": "99b26ea33e22dfeda71e5ea10e017d21",
+    "after": "05d2286d4b4517f7d4363a1d2f372e44"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

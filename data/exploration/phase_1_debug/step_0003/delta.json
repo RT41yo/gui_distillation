@@ -1,0 +1,15 @@
+{
+  "success": false,
+  "change_type": "no_change",
+  "description": "No visible change occurred after the click action. The display text and UI layout remain the same.",
+  "ui_state_changed": false,
+  "content_state_changed": false,
+  "confidence": 0.99,
+  "before_text": "÷)%",
+  "after_text": "÷)%",
+  "self_check": {
+    "action_visually_plausible": true,
+    "text_change_consistent_with_action": false,
+    "layout_changed": false
+  }
+}
