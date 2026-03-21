@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    112,
+    334
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "digit_7",
+  "rationale": "Start the addition by entering the first number, 7."
+}

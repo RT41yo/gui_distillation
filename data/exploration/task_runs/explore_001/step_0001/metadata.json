@@ -1,0 +1,36 @@
+{
+  "step_id": 1,
+  "timestamp": 1774125740.0136955,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      315,
+      480
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "plus",
+    "rationale": "Press the plus button to indicate addition operation."
+  },
+  "hashes": {
+    "before": "27ed4a71a92d498b7cffaed47c878acf",
+    "after": "b74688f44afe25a2375c454c92afde69"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

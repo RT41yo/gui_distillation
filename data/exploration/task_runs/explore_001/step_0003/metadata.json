@@ -1,0 +1,36 @@
+{
+  "step_id": 3,
+  "timestamp": 1774125746.526191,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      385,
+      453
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "equals",
+    "rationale": "Press equals to calculate the result of 7 + 5."
+  },
+  "hashes": {
+    "before": "46a2dc3ec75df7b1cdeaa650e4771476",
+    "after": "9b0961bc587e9565de6f2d61b837ed95"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707060000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

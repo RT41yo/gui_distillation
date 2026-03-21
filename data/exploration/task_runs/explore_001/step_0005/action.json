@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    249,
+    333
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "digit_9",
+  "rationale": "Start a new calculation for subtraction by entering the first number, 9."
+}

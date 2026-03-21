@@ -1,0 +1,36 @@
+{
+  "step_id": 2,
+  "timestamp": 1774125743.4846036,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      180,
+      382
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "digit_5",
+    "rationale": "Enter the second number, 5, to complete the addition expression."
+  },
+  "hashes": {
+    "before": "b74688f44afe25a2375c454c92afde69",
+    "after": "46a2dc3ec75df7b1cdeaa650e4771476"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

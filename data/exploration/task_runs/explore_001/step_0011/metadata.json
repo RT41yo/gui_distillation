@@ -1,0 +1,36 @@
+{
+  "step_id": 11,
+  "timestamp": 1774125787.00022,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      247,
+      382
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "digit_6",
+    "rationale": "Enter the second operand (6) to complete the multiplication expression."
+  },
+  "hashes": {
+    "before": "12824ad9c20222a17022bc17240b6bc5",
+    "after": "4e6db9555e604ddca71dd58f0834a36d"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

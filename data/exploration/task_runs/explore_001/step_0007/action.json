@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    115,
+    386
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "digit_4",
+  "rationale": "Enter the second number, 4, to complete the subtraction expression."
+}

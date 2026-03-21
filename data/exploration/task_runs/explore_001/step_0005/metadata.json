@@ -1,0 +1,36 @@
+{
+  "step_id": 5,
+  "timestamp": 1774125750.8691113,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      249,
+      333
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "digit_9",
+    "rationale": "Start a new calculation for subtraction by entering the first number, 9."
+  },
+  "hashes": {
+    "before": "9b0961bc587e9565de6f2d61b837ed95",
+    "after": "9859e25db0f1f3e5cd99945256cde56b"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707060000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

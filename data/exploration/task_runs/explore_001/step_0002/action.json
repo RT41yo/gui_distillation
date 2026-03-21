@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    180,
+    382
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "digit_5",
+  "rationale": "Enter the second number, 5, to complete the addition expression."
+}

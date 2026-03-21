@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    315,
+    338
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "divide",
+  "rationale": "To start a division operation using the number 30 already entered."
+}

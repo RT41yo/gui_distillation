@@ -1,0 +1,36 @@
+{
+  "step_id": 0,
+  "timestamp": 1774125730.7084532,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      112,
+      334
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "digit_7",
+    "rationale": "Start the addition by entering the first number, 7."
+  },
+  "hashes": {
+    "before": "99b26ea33e22dfeda71e5ea10e017d21",
+    "after": "27ed4a71a92d498b7cffaed47c878acf"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

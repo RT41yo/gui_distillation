@@ -1,0 +1,36 @@
+{
+  "step_id": 19,
+  "timestamp": 1774125810.0776172,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      177,
+      336
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "digit_8",
+    "rationale": "Enter the first number inside the parentheses for the expression."
+  },
+  "hashes": {
+    "before": "4dbb29392cf14e55883a0cd83338249f",
+    "after": "b90d34d55f87459e5d749445ce6976cd"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070307070000000",
+    "after": "7070707070000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

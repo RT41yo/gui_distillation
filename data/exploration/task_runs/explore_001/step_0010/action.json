@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    314,
+    384
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "multiply",
+  "rationale": "To continue the multiplication operation after entering 5."
+}

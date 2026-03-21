@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    385,
+    453
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "equals",
+  "rationale": "Press equals to calculate the result of 7 + 5."
+}

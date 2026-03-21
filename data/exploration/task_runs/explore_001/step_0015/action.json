@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    247,
+    382
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "digit_6",
+  "rationale": "Enter the divisor (6) to complete the division expression."
+}

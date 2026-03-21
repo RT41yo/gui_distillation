@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    317,
+    433
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "minus",
+  "rationale": "Press the minus button to indicate subtraction after entering 9."
+}

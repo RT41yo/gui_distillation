@@ -1,0 +1,36 @@
+{
+  "step_id": 12,
+  "timestamp": 1774125790.1098504,
+  "app": "gnome-calculator",
+  "display": ":99",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      385,
+      453
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_id": "equals",
+    "rationale": "Calculate the result of the multiplication expression 5 × 6."
+  },
+  "hashes": {
+    "before": "4e6db9555e604ddca71dd58f0834a36d",
+    "after": "913e29225243e6bde09290cae9709a70"
+  },
+  "changed": true,
+  "phashes": {
+    "before": "7070707070000000",
+    "after": "7070707060000000"
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

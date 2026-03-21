@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    177,
+    336
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "digit_8",
+  "rationale": "Enter the first number inside the parentheses for the expression."
+}

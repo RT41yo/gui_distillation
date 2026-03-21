@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    179,
+    288
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_id": "paren_open",
+  "rationale": "Start a multi-step expression with parentheses to test order of operations."
+}
