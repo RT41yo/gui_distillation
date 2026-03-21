@@ -342,7 +342,7 @@ class GUIAutomation:
 
         with Image.open(image_path) as raw:
             img = raw.convert("L").resize((size + 1, size))
-        pixels = list(img.getdata())
+        pixels = list(img.tobytes())  # L-mode: one byte per pixel
         # rows of length (size+1)
         diff_bits: List[int] = []
         for y in range(size):
