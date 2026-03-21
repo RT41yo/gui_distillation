@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import base64
+import logging
 import os
 import time
 from dataclasses import dataclass
@@ -11,10 +12,21 @@ import yaml
 
 try:
     from dotenv import load_dotenv  # type: ignore
-except Exception:  # pragma: no cover
+except ImportError:  # pragma: no cover
     load_dotenv = None
 
-from openai import OpenAI  # type: ignore
+from openai import (  # type: ignore
+    OpenAI,
+    AuthenticationError,
+    BadRequestError,
+    PermissionDeniedError,
+    RateLimitError,
+)
+
+logger = logging.getLogger(__name__)
+
+# Errors that indicate a permanent failure — retrying will not help.
+_NON_RETRYABLE = (AuthenticationError, BadRequestError, PermissionDeniedError)
 
 
 JsonDict = Dict[str, Any]
@@ -38,12 +50,14 @@ class SettingsLoader:
 
     @staticmethod
     def deep_merge(base: JsonDict, override: JsonDict) -> JsonDict:
+        """Deep-merge override into base (dicts only). Does not mutate inputs."""
+        result = dict(base)
         for k, v in override.items():
-            if isinstance(v, dict) and isinstance(base.get(k), dict):
-                base[k] = SettingsLoader.deep_merge(base[k], v)  # type: ignore[arg-type]
+            if isinstance(v, dict) and isinstance(result.get(k), dict):
+                result[k] = SettingsLoader.deep_merge(result[k], v)  # type: ignore[arg-type]
             else:
-                base[k] = v
-        return base
+                result[k] = v
+        return result
 
     @staticmethod
     def get(dct: JsonDict, dotted_path: str, default: Any) -> Any:
@@ -199,11 +213,32 @@ class OpenAIAnnotatorClient:
                     request_id=getattr(resp, "id", None),
                     usage=usage_dict,
                 )
+            except _NON_RETRYABLE:
+                raise
             except Exception as e:
                 last_err = e
                 if attempt < self.retries:
-                    time.sleep(self.retry_delay_s)
+                    delay = self.retry_delay_s * (2 ** (attempt - 1))
+                    if isinstance(e, RateLimitError):
+                        retry_after = _parse_retry_after(e)
+                        if retry_after is not None:
+                            delay = retry_after
+                    logger.warning(
+                        "OpenAI request attempt %d/%d failed (%s: %s); retrying in %.1fs",
+                        attempt, self.retries, type(e).__name__, e, delay,
+                    )
+                    time.sleep(delay)
                 else:
                     break
 
         raise RuntimeError(f"OpenAI request failed after {self.retries} attempts: {last_err}") from last_err
+
+
+def _parse_retry_after(exc: Exception) -> Optional[float]:
+    """Extract the Retry-After value (seconds) from a RateLimitError response header, if present."""
+    try:
+        headers = getattr(getattr(exc, "response", None), "headers", None) or {}
+        value = headers.get("retry-after") or headers.get("Retry-After")
+        return float(value) if value is not None else None
+    except (TypeError, ValueError):
+        return None

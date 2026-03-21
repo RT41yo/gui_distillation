@@ -21,6 +21,22 @@ from src.teachers.openai_client import OpenAIAnnotatorClient, SettingsLoader
 JsonDict = Dict[str, Any]
 
 
+def _sum_tokens(usages: List[Optional[JsonDict]]) -> JsonDict:
+    """Aggregate token counts from a list of usage dicts (handles both Responses and Chat API key names)."""
+    input_total = 0
+    output_total = 0
+    for u in usages:
+        if not isinstance(u, dict):
+            continue
+        input_total += int(u.get("input_tokens") or u.get("prompt_tokens") or 0)
+        output_total += int(u.get("output_tokens") or u.get("completion_tokens") or 0)
+    return {
+        "input_tokens": input_total,
+        "output_tokens": output_total,
+        "total_tokens": input_total + output_total,
+    }
+
+
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
@@ -42,6 +58,9 @@ class StepRun:
     latency_observation_grounded_s: float
     latency_delta_s: float
     errors: List[str]
+    usage_observation: Optional[JsonDict] = None
+    usage_observation_grounded: Optional[JsonDict] = None
+    usage_delta: Optional[JsonDict] = None
 
 
 class TeacherDebugRunner:
@@ -152,6 +171,7 @@ class TeacherDebugRunner:
         prompt_name: str,
         model: Optional[str],
         latency_s: Optional[float],
+        usage: Optional[JsonDict] = None,
     ) -> None:
         payload: JsonDict = {
             "error": error,
@@ -162,6 +182,9 @@ class TeacherDebugRunner:
             "parse_error": parse_error,
             "raw_text": raw_text,
         }
+
+        if usage is not None:
+            payload["usage"] = usage
 
         if parsed_data_preview is not None:
             payload["parsed_data_preview"] = parsed_data_preview
@@ -210,12 +233,14 @@ class TeacherDebugRunner:
             observation_model: Optional[str] = None
             observation_parse_error: Optional[str] = None
             observation_parsed_preview: Optional[Any] = None
+            observation_usage: Optional[JsonDict] = None
 
             try:
                 r = self.client.infer(self.prompt_observation, image_paths=[before], prefer_json=True)
                 observation_latency = r.latency_s
                 observation_raw_text = r.text
                 observation_model = r.model
+                observation_usage = r.usage
 
                 parsed = self.parser.parse(r.text)
                 observation_mode = parsed.mode
@@ -245,9 +270,10 @@ class TeacherDebugRunner:
                         prompt_name="observation_v1",
                         model=observation_model,
                         latency_s=observation_latency,
+                        usage=observation_usage,
                     )
 
-            except (ValidationError, Exception) as e:
+            except Exception as e:
                 err_str = str(e)
                 errs.append(f"observation: {err_str}")
 
@@ -262,6 +288,7 @@ class TeacherDebugRunner:
                     prompt_name="observation_v1",
                     model=observation_model,
                     latency_s=observation_latency if observation_latency > 0 else None,
+                    usage=observation_usage,
                 )
 
             # -------------------------------------------------
@@ -274,6 +301,7 @@ class TeacherDebugRunner:
             observation_grounded_model: Optional[str] = None
             observation_grounded_parse_error: Optional[str] = None
             observation_grounded_parsed_preview: Optional[Any] = None
+            observation_grounded_usage: Optional[JsonDict] = None
 
             if self.enable_grounded_observation and self.prompt_observation_grounded is not None:
                 try:
@@ -281,6 +309,7 @@ class TeacherDebugRunner:
                     observation_grounded_latency = rg.latency_s
                     observation_grounded_raw_text = rg.text
                     observation_grounded_model = rg.model
+                    observation_grounded_usage = rg.usage
 
                     parsed_g = self.parser.parse(rg.text)
                     observation_grounded_mode = parsed_g.mode
@@ -310,9 +339,10 @@ class TeacherDebugRunner:
                             prompt_name="observation_grounded_v1",
                             model=observation_grounded_model,
                             latency_s=observation_grounded_latency,
+                            usage=observation_grounded_usage,
                         )
 
-                except (ValidationError, Exception) as e:
+                except Exception as e:
                     err_str = str(e)
                     errs.append(f"observation_grounded: {err_str}")
 
@@ -327,6 +357,7 @@ class TeacherDebugRunner:
                         prompt_name="observation_grounded_v1",
                         model=observation_grounded_model,
                         latency_s=observation_grounded_latency if observation_grounded_latency > 0 else None,
+                        usage=observation_grounded_usage,
                     )
 
             # -------------------------------------------------
@@ -339,6 +370,7 @@ class TeacherDebugRunner:
             delta_model: Optional[str] = None
             delta_parse_error: Optional[str] = None
             delta_parsed_preview: Optional[Any] = None
+            delta_usage: Optional[JsonDict] = None
 
             if not after.exists():
                 errs.append(f"delta skipped: missing {after.name}")
@@ -381,6 +413,7 @@ class TeacherDebugRunner:
                     delta_latency = r2.latency_s
                     delta_raw_text = r2.text
                     delta_model = r2.model
+                    delta_usage = r2.usage
 
                     parsed2 = self.parser.parse(r2.text)
                     delta_mode = parsed2.mode
@@ -410,9 +443,10 @@ class TeacherDebugRunner:
                             prompt_name="delta_v1",
                             model=delta_model,
                             latency_s=delta_latency,
+                            usage=delta_usage,
                         )
 
-                except (ValidationError, Exception) as e:
+                except Exception as e:
                     err_str = str(e)
                     errs.append(f"delta: {err_str}")
                     self._save_raw_payload(
@@ -426,6 +460,7 @@ class TeacherDebugRunner:
                         prompt_name="delta_v1",
                         model=delta_model,
                         latency_s=delta_latency if delta_latency > 0 else None,
+                        usage=delta_usage,
                     )
 
             per_step.append(
@@ -441,6 +476,9 @@ class TeacherDebugRunner:
                     latency_observation_grounded_s=observation_grounded_latency,
                     latency_delta_s=delta_latency,
                     errors=errs,
+                    usage_observation=observation_usage,
+                    usage_observation_grounded=observation_grounded_usage,
+                    usage_delta=delta_usage,
                 )
             )
 
@@ -453,6 +491,12 @@ class TeacherDebugRunner:
             r.latency_observation_grounded_s for r in per_step if r.latency_observation_grounded_s > 0
         ]
         delta_latency_values = [r.latency_delta_s for r in per_step if r.latency_delta_s > 0]
+
+        total_tokens = _sum_tokens(
+            [r.usage_observation for r in per_step]
+            + [r.usage_observation_grounded for r in per_step]
+            + [r.usage_delta for r in per_step]
+        )
 
         report: JsonDict = {
             "steps_root": str(self.steps_root),
@@ -475,6 +519,7 @@ class TeacherDebugRunner:
                 sum(delta_latency_values) / len(delta_latency_values)
                 if delta_latency_values else 0.0
             ),
+            "total_tokens": total_tokens,
             "per_step": [
                 {
                     "step": r.step,
@@ -488,6 +533,11 @@ class TeacherDebugRunner:
                     "latency_observation_grounded_s": r.latency_observation_grounded_s,
                     "latency_delta_s": r.latency_delta_s,
                     "errors": r.errors,
+                    "usage": {
+                        "observation": r.usage_observation,
+                        "observation_grounded": r.usage_observation_grounded,
+                        "delta": r.usage_delta,
+                    },
                 }
                 for r in per_step
             ],
