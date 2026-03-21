@@ -155,33 +155,13 @@ automation:
 # =========================================================
 # 5. LOGGING
 # =========================================================
+# Logging is configured via logging.basicConfig() in each CLI entrypoint.
+# Level is controlled by the --verbose flag (DEBUG) or defaults to INFO.
+# Format is hardcoded in each entrypoint.
+# File logging and log rotation are not implemented yet.
 logging:
-  console:
-    enabled: true
-    level: "INFO"
-    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    date_format: "%Y-%m-%d %H:%M:%S"
-    colorize: true
-
-  file:
-    enabled: true
-    level: "DEBUG"
-    directory: "logs"
-    filename: "gui_distillation.log"
-    max_size_mb: 100
-    backup_count: 5
-    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-
-  phase_logs:
-    exploration: "exploration.log"
-    dataset: "dataset.log"
-    training: "training.log"
-    mcp: "mcp_server.log"
-
-  rotation:
-    when: "midnight"
-    interval: 1
-    keep_days: 30
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 
 # =========================================================
 # 6. DATA MANAGEMENT
