@@ -121,10 +121,12 @@ automation:
     double_click_interval: 0.3
     move_duration: 0.5
     type_delay: 0.1
+    poll_interval: 0.1            # polling interval (s) while waiting for graceful app close
+    kill_wait: 2.0                # timeout (s) for process.wait() after SIGKILL
 
   screenshots:
     format: "png"                 # png or jpg
-    jpeg_quality: 95              # only for jpg
+    quality: 95                   # jpeg quality (1-95), only for jpg
     save_before: true
     save_after: true
     include_timestamp: false
@@ -133,11 +135,19 @@ automation:
   hash:
     algorithm: "md5"              # md5, sha1, sha256
     compare: true
+    save_phash: true              # also compute and save perceptual dHash per step
+    phash_size: 8                 # dHash grid size (8 → 64-bit hash)
 
   mouse:
     default_button: "left"
     coordinate_system: "absolute" # absolute or normalized
     validate_bounds: true
+
+  random:
+    margin: 50                    # pixel margin from screen edges for whole-screen random clicks
+
+  random_buttons:
+    padding: 15                   # pixel padding around button-area bbox for --random-buttons mode
 
   keyboard:
     default_key: "enter"
@@ -185,6 +195,8 @@ data:
   step_files:
     before: "before.png"
     after: "after.png"
+    action: "action.json"
+    save_action: true             # whether automation.py writes action.json per step
     metadata: "metadata.json"
     observation: "observation.json"
     observation_grounded: "observation_grounded.json"
@@ -420,6 +432,8 @@ development:
   test_mode: false
   mock_teacher: false
   fast_mode: false
+
+  keep_annotator_raw_on_success: false  # save raw model responses even for successful steps
 
   cache:
     enabled: true
