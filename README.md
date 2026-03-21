@@ -284,6 +284,103 @@ python -m src.exploration.evaluate_iou \
 MLLM-grounded observation корректно восстанавливает топологию интерфейса и основные элементы, однако качество локализации bbox относительно вручную размеченного gold standard остается низким (`mean_iou` - 0.18, `IoU@0.5` - 0.056), поэтому на текущем этапе такие bbox следует рассматривать как weak grounding, а не как точную геометрическую разметку.
 
 
+##№ Часть 5. Task Runner
+
+`src/exploration/task_runner.py` — LLM-управляемый агент, который выполняет задачи непосредственно во время работы приложения - на каждом шаге получает скриншот текущего состояния, решает какую кнопку нажать, выполняет действие и переходит к следующему шагу.
+
+### Принцип работы
+
+```
+скриншот → LLM (промпт + история + скриншот) → button_id
+    → координаты из calculator.yaml → run_step() → артефакты
+    → новый скриншот → ...
+```
+
+LLM получает только символьные идентификаторы кнопок (`digit_3`, `plus`, `equals` и т.д.) и выбирает следующую. Координаты подставляются детерминированно из `calculator.yaml` - модель не угадывает пиксели. Артефакты каждого шага идентичны формату случайного exploration: `before.png`, `after.png`, `action.json`, `metadata.json`.
+
+
+#### Режим 1: выполнение конкретной задачи
+
+LLM выполняет одну задачу, заданную на естественном языке. Останавливается когда задача выполнена (`task_complete: true`) или исчерпан лимит шагов.
+
+```bash
+Xvfb :99 -screen 0 1280x1024x24 -ac &
+export DISPLAY=:99
+
+python -m src.exploration.task_runner \
+  --task "add 3 and 5, then subtract 2" \
+  --max-steps 20 \
+  --settings config/settings.yaml \
+  --app-config config/apps/calculator.yaml \
+  --teacher-config config/teachers/openai_gpt.yaml \
+  --output data/exploration/task_runs/run_001
+```
+
+Промпт-шаблон: `config/prompts/action_task_v1.md`
+
+JSON-ответ LLM на каждом шаге:
+```json
+{
+  "button_id": "digit_3",
+  "rationale": "enter first number",
+  "task_complete": false
+}
+```
+
+
+#### Режим 2: автономный exploration (`--exploration`)
+
+LLM самостоятельно планирует и выполняет серию подзадач, покрывая разные операции. Каждая завершенная подзадача архивируется, история сбрасывается, LLM выбирает новую цель. Работает до исчерпания лимита шагов.
+
+```bash
+python -m src.exploration.task_runner \
+  --exploration \
+  --task "Explore GNOME Calculator by solving diverse calculations. Cover addition, subtraction, multiplication, division, multi-step expressions, and edge cases." \
+  --max-steps 50 \
+  --settings config/settings.yaml \
+  --app-config config/apps/calculator.yaml \
+  --teacher-config config/teachers/openai_gpt.yaml \
+  --output data/exploration/task_runs/explore_001
+```
+
+Промпт-шаблон: `config/prompts/action_task_exploration_v1.md`
+
+JSON-ответ LLM на каждом шаге:
+```json
+{
+  "current_goal": "compute 7 × 6 to test multiplication",
+  "button_id": "digit_7",
+  "rationale": "enter first operand",
+  "goal_complete": false,
+  "task_complete": false
+}
+```
+
+При `goal_complete: true` или `button_id: "__done__"` текущая подзадача фиксируется в `completed_goals`, история обнуляется и LLM начинает новую цель.
+
+Пример результата за 20 шагов — 4 завершенные подзадачи:
+- `7 + 5 = 12`
+- `9 - 4 = 5`
+- `5 × 6 = 30`
+- `30 ÷ 6 = 5`
+- начат `(8 + 2) × 3` (лимит шагов исчерпан)
+
+
+#### Артефакты запуска
+
+В `--output` директории:
+```
+step_0000/before.png, after.png, action.json, metadata.json
+step_0001/...
+...
+task_run_report.json # сводный отчет по всему запуску
+```
+
+`task_run_report.json` содержит для каждого шага: `button_id`, `rationale`, `latency_s`, `usage` (токены), `current_goal` / `goal_complete` (в exploration-режиме). В exploration-режиме в корне отчета — `completed_goals` и `goals_completed`.
+
+После запуска task runner можно прогнать офлайн-аннотирование поверх собранных шагов стандартной командой `teacher_debug_runner`.
+
+
 
 
 
