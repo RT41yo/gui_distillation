@@ -53,3 +53,6 @@ Self-check rules:
 - action_visually_plausible must be true only if the clicked button appears to exist.
 - text_change_consistent_with_action must be true only if the change matches the button meaning.
 - layout_changed must match ui_state_changed.
+
+ACTION_JSON:
+{{action_json}}

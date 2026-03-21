@@ -17,6 +17,7 @@ except ImportError:  # pragma: no cover
 
 from src.teachers.json_parser import RobustJSONParser
 from src.teachers.openai_client import OpenAIAnnotatorClient, SettingsLoader
+from src.teachers.prompt_loader import PromptLoader
 
 JsonDict = Dict[str, Any]
 
@@ -128,24 +129,12 @@ class TeacherDebugRunner:
             SettingsLoader.get(self.settings, "features.phase_1.use_grounded_observation", False)
         )
 
-        # Prompts directory
+        # Prompts
         prompts_dir = Path(str(SettingsLoader.get(self.settings, "paths.prompts_dir", "config/prompts")))
-
-        # Prefer observation_v1.md, fallback to old inventory_v1.md if needed
-        observation_prompt_path = prompts_dir / "observation_v1.md"
-        if not observation_prompt_path.exists():
-            observation_prompt_path = prompts_dir / "inventory_v1.md"
-        self.prompt_observation = read_text(observation_prompt_path)
-
-        # Grounded observation prompt is optional
-        observation_grounded_prompt_path = prompts_dir / "observation_grounded_v1.md"
-        self.prompt_observation_grounded = (
-            read_text(observation_grounded_prompt_path)
-            if observation_grounded_prompt_path.exists()
-            else None
-        )
-
-        self.prompt_delta = read_text(prompts_dir / "delta_v1.md")
+        prompt_loader = PromptLoader(prompts_dir)
+        self.prompt_observation = prompt_loader.load("observation_v1.md", fallback="inventory_v1.md")
+        self.prompt_observation_grounded = prompt_loader.load_optional("observation_grounded_v1.md")
+        self.prompt_delta = prompt_loader.load("delta_v1.md")
 
         self.client = OpenAIAnnotatorClient(
             settings_path=settings_path,
@@ -403,11 +392,11 @@ class TeacherDebugRunner:
             else:
                 try:
                     action_data = json.loads(action.read_text(encoding="utf-8"))
-                    delta_prompt = (
-                        self.prompt_delta
-                        + "\n\nACTION_JSON:\n"
-                        + json.dumps(action_data, ensure_ascii=False)
-                    )
+                    action_json_str = json.dumps(action_data, ensure_ascii=False)
+                    if "{{action_json}}" in self.prompt_delta:
+                        delta_prompt = self.prompt_delta.replace("{{action_json}}", action_json_str)
+                    else:
+                        delta_prompt = self.prompt_delta + "\n\nACTION_JSON:\n" + action_json_str
 
                     r2 = self.client.infer(delta_prompt, image_paths=[before, after], prefer_json=True)
                     delta_latency = r2.latency_s

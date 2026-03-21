@@ -27,7 +27,10 @@ class RobustJSONParser:
     @staticmethod
     def _cleanup(s: str) -> str:
         s = s.strip().lstrip("\ufeff")
-        s = re.sub(r",\s*([}\]])", r"\1", s)  # trailing commas
+        s = re.sub(r",\s*([}\]])", r"\1", s)   # trailing commas
+        s = re.sub(r"\bTrue\b", "true", s)      # Python bool → JSON
+        s = re.sub(r"\bFalse\b", "false", s)
+        s = re.sub(r"\bNone\b", "null", s)      # Python None → JSON null
         return s
 
     @staticmethod
