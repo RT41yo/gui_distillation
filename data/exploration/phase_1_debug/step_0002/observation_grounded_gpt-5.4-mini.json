@@ -8,164 +8,257 @@
       "id": "display",
       "type": "text_field",
       "text": "÷)",
+      "bbox": [
+        67,
+        190,
+        425,
+        252
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.93
+    },
+    {
+      "id": "backspace",
+      "type": "button",
+      "text": "⌫",
+      "bbox": [
+        82,
+        267,
+        145,
+        310
+      ],
       "supported_actions": [
         "click"
       ],
       "confidence": 0.98
     },
     {
-      "id": "backspace",
-      "type": "button",
-      "text": "⌫",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
       "id": "digit_0",
       "type": "button",
       "text": "0",
+      "bbox": [
+        82,
+        459,
+        145,
+        502
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "digit_1",
       "type": "button",
       "text": "1",
+      "bbox": [
+        82,
+        411,
+        145,
+        454
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "digit_2",
       "type": "button",
       "text": "2",
+      "bbox": [
+        149,
+        411,
+        212,
+        454
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "digit_3",
       "type": "button",
       "text": "3",
+      "bbox": [
+        216,
+        411,
+        279,
+        454
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "digit_4",
       "type": "button",
       "text": "4",
+      "bbox": [
+        82,
+        363,
+        145,
+        406
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "digit_5",
       "type": "button",
       "text": "5",
+      "bbox": [
+        149,
+        363,
+        212,
+        406
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "digit_6",
       "type": "button",
       "text": "6",
+      "bbox": [
+        216,
+        363,
+        279,
+        406
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "digit_7",
       "type": "button",
       "text": "7",
+      "bbox": [
+        82,
+        315,
+        145,
+        358
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "digit_8",
       "type": "button",
       "text": "8",
+      "bbox": [
+        149,
+        315,
+        212,
+        358
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_9",
-      "type": "button",
-      "text": "9",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "plus",
       "type": "button",
       "text": "+",
+      "bbox": [
+        349,
+        459,
+        412,
+        502
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "minus",
       "type": "button",
-      "text": "-",
+      "text": "−",
+      "bbox": [
+        349,
+        411,
+        412,
+        454
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "multiply",
       "type": "button",
       "text": "×",
+      "bbox": [
+        349,
+        363,
+        412,
+        406
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "divide",
       "type": "button",
       "text": "÷",
+      "bbox": [
+        349,
+        315,
+        412,
+        358
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "equals",
       "type": "button",
       "text": "=",
+      "bbox": [
+        349,
+        411,
+        412,
+        502
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "decimal",
       "type": "button",
-      "text": ".",
+      "text": ",",
+      "bbox": [
+        149,
+        459,
+        212,
+        502
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.95
+      "confidence": 0.9
     }
   ],
-  "notes": null
+  "notes": "Calculator window visible in Basic mode; some advanced buttons are present but omitted per instructions."
 }

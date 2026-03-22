@@ -7,25 +7,43 @@
     {
       "id": "display",
       "type": "text_field",
-      "text": "÷)",
+      "text": null,
+      "bbox": [
+        66,
+        73,
+        425,
+        189
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "backspace",
+      "type": "button",
+      "text": "⌫",
+      "bbox": [
+        82,
+        267,
+        144,
+        310
+      ],
       "supported_actions": [
         "click"
       ],
       "confidence": 0.98
     },
     {
-      "id": "backspace",
-      "type": "button",
-      "text": "⌫",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
       "id": "digit_0",
       "type": "button",
       "text": "0",
+      "bbox": [
+        82,
+        459,
+        144,
+        502
+      ],
       "supported_actions": [
         "click"
       ],
@@ -35,6 +53,12 @@
       "id": "digit_1",
       "type": "button",
       "text": "1",
+      "bbox": [
+        82,
+        411,
+        144,
+        454
+      ],
       "supported_actions": [
         "click"
       ],
@@ -44,6 +68,12 @@
       "id": "digit_2",
       "type": "button",
       "text": "2",
+      "bbox": [
+        148,
+        411,
+        211,
+        454
+      ],
       "supported_actions": [
         "click"
       ],
@@ -53,6 +83,12 @@
       "id": "digit_3",
       "type": "button",
       "text": "3",
+      "bbox": [
+        214,
+        411,
+        277,
+        454
+      ],
       "supported_actions": [
         "click"
       ],
@@ -62,6 +98,12 @@
       "id": "digit_4",
       "type": "button",
       "text": "4",
+      "bbox": [
+        82,
+        363,
+        144,
+        406
+      ],
       "supported_actions": [
         "click"
       ],
@@ -71,6 +113,12 @@
       "id": "digit_5",
       "type": "button",
       "text": "5",
+      "bbox": [
+        148,
+        363,
+        211,
+        406
+      ],
       "supported_actions": [
         "click"
       ],
@@ -80,6 +128,12 @@
       "id": "digit_6",
       "type": "button",
       "text": "6",
+      "bbox": [
+        214,
+        363,
+        277,
+        406
+      ],
       "supported_actions": [
         "click"
       ],
@@ -89,6 +143,12 @@
       "id": "digit_7",
       "type": "button",
       "text": "7",
+      "bbox": [
+        82,
+        315,
+        144,
+        358
+      ],
       "supported_actions": [
         "click"
       ],
@@ -98,6 +158,12 @@
       "id": "digit_8",
       "type": "button",
       "text": "8",
+      "bbox": [
+        148,
+        315,
+        211,
+        358
+      ],
       "supported_actions": [
         "click"
       ],
@@ -107,6 +173,12 @@
       "id": "digit_9",
       "type": "button",
       "text": "9",
+      "bbox": [
+        214,
+        315,
+        277,
+        358
+      ],
       "supported_actions": [
         "click"
       ],
@@ -116,42 +188,72 @@
       "id": "plus",
       "type": "button",
       "text": "+",
+      "bbox": [
+        280,
+        459,
+        343,
+        502
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "minus",
       "type": "button",
-      "text": "-",
+      "text": "−",
+      "bbox": [
+        280,
+        411,
+        343,
+        454
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "multiply",
       "type": "button",
       "text": "×",
+      "bbox": [
+        280,
+        363,
+        343,
+        406
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "divide",
       "type": "button",
       "text": "÷",
+      "bbox": [
+        280,
+        315,
+        343,
+        358
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
+      "confidence": 0.98
     },
     {
       "id": "equals",
       "type": "button",
       "text": "=",
+      "bbox": [
+        346,
+        411,
+        409,
+        502
+      ],
       "supported_actions": [
         "click"
       ],
@@ -160,12 +262,18 @@
     {
       "id": "decimal",
       "type": "button",
-      "text": ".",
+      "text": ",",
+      "bbox": [
+        148,
+        459,
+        211,
+        502
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.95
+      "confidence": 0.9
     }
   ],
-  "notes": null
+  "notes": "GNOME Calculator basic mode visible; advanced buttons like mod, pi, sqrt, x², parentheses are present but omitted per instructions."
 }

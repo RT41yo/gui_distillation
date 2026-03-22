@@ -7,88 +7,43 @@
     {
       "id": "display",
       "type": "text_field",
-      "text": "÷)",
+      "text": null,
+      "bbox": [
+        68,
+        73,
+        431,
+        252
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.98
+      "confidence": 0.95
     },
     {
       "id": "backspace",
       "type": "button",
       "text": "⌫",
+      "bbox": [
+        82,
+        267,
+        145,
+        310
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_0",
-      "type": "button",
-      "text": "0",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_1",
-      "type": "button",
-      "text": "1",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_2",
-      "type": "button",
-      "text": "2",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_3",
-      "type": "button",
-      "text": "3",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_4",
-      "type": "button",
-      "text": "4",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_5",
-      "type": "button",
-      "text": "5",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_6",
-      "type": "button",
-      "text": "6",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
+      "confidence": 0.97
     },
     {
       "id": "digit_7",
       "type": "button",
       "text": "7",
+      "bbox": [
+        82,
+        315,
+        145,
+        358
+      ],
       "supported_actions": [
         "click"
       ],
@@ -98,6 +53,12 @@
       "id": "digit_8",
       "type": "button",
       "text": "8",
+      "bbox": [
+        150,
+        315,
+        213,
+        358
+      ],
       "supported_actions": [
         "click"
       ],
@@ -107,33 +68,12 @@
       "id": "digit_9",
       "type": "button",
       "text": "9",
-      "supported_actions": [
-        "click"
+      "bbox": [
+        218,
+        315,
+        281,
+        358
       ],
-      "confidence": 0.99
-    },
-    {
-      "id": "plus",
-      "type": "button",
-      "text": "+",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "minus",
-      "type": "button",
-      "text": "-",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "multiply",
-      "type": "button",
-      "text": "×",
       "supported_actions": [
         "click"
       ],
@@ -143,15 +83,162 @@
       "id": "divide",
       "type": "button",
       "text": "÷",
+      "bbox": [
+        286,
+        315,
+        349,
+        358
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_4",
+      "type": "button",
+      "text": "4",
+      "bbox": [
+        82,
+        363,
+        145,
+        406
+      ],
       "supported_actions": [
         "click"
       ],
       "confidence": 0.99
     },
     {
+      "id": "digit_5",
+      "type": "button",
+      "text": "5",
+      "bbox": [
+        150,
+        363,
+        213,
+        406
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "digit_6",
+      "type": "button",
+      "text": "6",
+      "bbox": [
+        218,
+        363,
+        281,
+        406
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "multiply",
+      "type": "button",
+      "text": "×",
+      "bbox": [
+        286,
+        363,
+        349,
+        406
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_1",
+      "type": "button",
+      "text": "1",
+      "bbox": [
+        82,
+        411,
+        145,
+        454
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "digit_2",
+      "type": "button",
+      "text": "2",
+      "bbox": [
+        150,
+        411,
+        213,
+        454
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "digit_3",
+      "type": "button",
+      "text": "3",
+      "bbox": [
+        218,
+        411,
+        281,
+        454
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "minus",
+      "type": "button",
+      "text": "−",
+      "bbox": [
+        286,
+        411,
+        349,
+        454
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
       "id": "equals",
       "type": "button",
       "text": "=",
+      "bbox": [
+        354,
+        411,
+        418,
+        502
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "digit_0",
+      "type": "button",
+      "text": "0",
+      "bbox": [
+        82,
+        459,
+        145,
+        502
+      ],
       "supported_actions": [
         "click"
       ],
@@ -160,12 +247,33 @@
     {
       "id": "decimal",
       "type": "button",
-      "text": ".",
+      "text": ",",
+      "bbox": [
+        150,
+        459,
+        213,
+        502
+      ],
       "supported_actions": [
         "click"
       ],
       "confidence": 0.95
+    },
+    {
+      "id": "plus",
+      "type": "button",
+      "text": "+",
+      "bbox": [
+        286,
+        459,
+        349,
+        502
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
     }
   ],
-  "notes": null
+  "notes": "Calculator UI visible; only canonical basic calculator elements included."
 }

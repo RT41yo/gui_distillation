@@ -1,11 +1,11 @@
 {
   "success": true,
   "change_type": "text_updated",
-  "description": "The display text changed from '÷(' to '÷)', indicating that the ')' button was pressed and the expression was updated.",
+  "description": "The division expression in the calculator display changed from just '÷' to '÷)' after the click, indicating the end-group parenthesis was inserted.",
   "ui_state_changed": false,
   "content_state_changed": true,
-  "confidence": 0.98,
-  "before_text": "÷(",
+  "confidence": 0.97,
+  "before_text": "÷",
   "after_text": "÷)",
   "self_check": {
     "action_visually_plausible": true,

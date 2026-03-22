@@ -1,7 +1,7 @@
 {
   "success": true,
   "change_type": "text_updated",
-  "description": "The expression in the display was updated by appending '%'.",
+  "description": "The calculator display changed from '÷)' to '÷)%', indicating the percent button was clicked and appended to the expression.",
   "ui_state_changed": false,
   "content_state_changed": true,
   "confidence": 0.98,

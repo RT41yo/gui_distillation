@@ -1,7 +1,7 @@
 {
   "success": true,
   "change_type": "text_updated",
-  "description": "The display text was updated to show the division operator '÷'.",
+  "description": "The calculator display changed from empty to showing the division symbol, indicating the clicked divide button was entered into the expression field.",
   "ui_state_changed": false,
   "content_state_changed": true,
   "confidence": 0.98,

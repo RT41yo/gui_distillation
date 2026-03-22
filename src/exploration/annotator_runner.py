@@ -6,10 +6,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+import yaml
 from pydantic import ValidationError
 
-# Backward-compatible import:
-# Prefer ObservationResponse, but fallback to old InventoryResponse if needed.
 try:
     from src.skills.teacher_schemas import DeltaResponse, ObservationResponse, GroundedObservationResponse
 except ImportError:  # pragma: no cover
@@ -38,6 +37,13 @@ def _sum_tokens(usages: List[Optional[JsonDict]]) -> JsonDict:
     }
 
 
+def _model_name_from_teacher_config(teacher_config_path: str) -> str:
+    """Read model name from teacher YAML config (e.g. 'gpt-4.1', 'gpt-5.4-mini')."""
+    with open(teacher_config_path, encoding="utf-8") as f:
+        cfg = yaml.safe_load(f)
+    return str(cfg.get("model", "unknown"))
+
+
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
@@ -64,16 +70,15 @@ class StepRun:
     usage_delta: Optional[JsonDict] = None
 
 
-class TeacherDebugRunner:
+class AnnotatorRunner:
     """
     Offline pass over existing steps:
       - observation(before.png) -> observation.json
+      - observation_grounded(before.png) -> observation_grounded_{model}.json
       - delta(before.png, after.png, action.json) -> delta.json
 
-    Enhancements:
-      - Always saves raw model text on failures (and optionally on success)
-      - Saves parser mode/error for debugging
-      - Saves parsed-data preview if available
+    The grounded observation filename is derived from the model name in the teacher
+    config (e.g. gpt-4.1 -> observation_grounded_gpt-4.1.json).
     """
 
     def __init__(
@@ -89,11 +94,8 @@ class TeacherDebugRunner:
         self.before_name = str(SettingsLoader.get(self.settings, "data.step_files.before", "before.png"))
         self.after_name = str(SettingsLoader.get(self.settings, "data.step_files.after", "after.png"))
         self.metadata_name = str(SettingsLoader.get(self.settings, "data.step_files.metadata", "metadata.json"))
-
-        # settings.yaml may not define "action" key; automation produces action.json → fallback
         self.action_name = str(SettingsLoader.get(self.settings, "data.step_files.action", "action.json"))
 
-        # Where to save model outputs for this debug run
         self.observation_out_name = str(
             SettingsLoader.get(
                 self.settings,
@@ -101,13 +103,11 @@ class TeacherDebugRunner:
                 SettingsLoader.get(self.settings, "data.step_files.inventory", "observation.json"),
             )
         )
-        self.observation_grounded_out_name = str(
-            SettingsLoader.get(
-                self.settings,
-                "data.step_files.observation_grounded",
-                "observation_grounded.json",
-            )
-        )
+
+        # Derive grounded observation filename from model name in teacher config
+        model_name = _model_name_from_teacher_config(teacher_config_path)
+        self.observation_grounded_out_name = f"observation_grounded_{model_name}.json"
+
         self.delta_out_name = str(SettingsLoader.get(self.settings, "data.step_files.delta", "delta.json"))
 
         # Raw/debug filenames
@@ -115,7 +115,6 @@ class TeacherDebugRunner:
         self.observation_grounded_raw_name = self.observation_grounded_out_name.replace(".json", "_raw.json")
         self.delta_raw_name = self.delta_out_name.replace(".json", "_raw.json")
 
-        # Whether to keep raw even on success
         self.keep_raw_on_success = bool(
             SettingsLoader.get(
                 self.settings,
@@ -124,12 +123,10 @@ class TeacherDebugRunner:
             )
         )
 
-        # Optional grounded-observation mode
         self.enable_grounded_observation = bool(
             SettingsLoader.get(self.settings, "features.phase_1.use_grounded_observation", False)
         )
 
-        # Prompts
         prompts_dir = Path(str(SettingsLoader.get(self.settings, "paths.prompts_dir", "config/prompts")))
         prompt_loader = PromptLoader(prompts_dir)
         self.prompt_observation = prompt_loader.load("observation_v1.md", fallback="inventory_v1.md")
@@ -535,15 +532,16 @@ class TeacherDebugRunner:
         write_json(self.steps_root / "annotator_debug_report.json", report)
         return report
 
+
 def main() -> int:
-    ap = argparse.ArgumentParser("teacher_debug_runner")
+    ap = argparse.ArgumentParser("annotator_runner")
     ap.add_argument("--steps-root", required=True)
     ap.add_argument("--settings", default="config/settings.yaml")
     ap.add_argument("--teacher-config", default="config/teachers/openai_gpt.yaml")
     ap.add_argument("--max-steps", type=int, default=None)
     args = ap.parse_args()
 
-    runner = TeacherDebugRunner(
+    runner = AnnotatorRunner(
         steps_root=Path(args.steps_root),
         settings_path=args.settings,
         teacher_config_path=args.teacher_config,

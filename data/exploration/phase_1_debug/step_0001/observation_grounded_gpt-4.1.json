@@ -7,7 +7,13 @@
     {
       "id": "display",
       "type": "text_field",
-      "text": "÷)",
+      "text": "÷",
+      "bbox": [
+        90,
+        140,
+        430,
+        210
+      ],
       "supported_actions": [
         "click"
       ],
@@ -16,79 +22,28 @@
     {
       "id": "backspace",
       "type": "button",
-      "text": "⌫",
+      "text": null,
+      "bbox": [
+        100,
+        220,
+        170,
+        280
+      ],
       "supported_actions": [
         "click"
       ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_0",
-      "type": "button",
-      "text": "0",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_1",
-      "type": "button",
-      "text": "1",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_2",
-      "type": "button",
-      "text": "2",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_3",
-      "type": "button",
-      "text": "3",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_4",
-      "type": "button",
-      "text": "4",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_5",
-      "type": "button",
-      "text": "5",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "digit_6",
-      "type": "button",
-      "text": "6",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
+      "confidence": 0.97
     },
     {
       "id": "digit_7",
       "type": "button",
       "text": "7",
+      "bbox": [
+        100,
+        290,
+        170,
+        350
+      ],
       "supported_actions": [
         "click"
       ],
@@ -98,6 +53,12 @@
       "id": "digit_8",
       "type": "button",
       "text": "8",
+      "bbox": [
+        180,
+        290,
+        250,
+        350
+      ],
       "supported_actions": [
         "click"
       ],
@@ -107,33 +68,12 @@
       "id": "digit_9",
       "type": "button",
       "text": "9",
-      "supported_actions": [
-        "click"
+      "bbox": [
+        260,
+        290,
+        330,
+        350
       ],
-      "confidence": 0.99
-    },
-    {
-      "id": "plus",
-      "type": "button",
-      "text": "+",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "minus",
-      "type": "button",
-      "text": "-",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.99
-    },
-    {
-      "id": "multiply",
-      "type": "button",
-      "text": "×",
       "supported_actions": [
         "click"
       ],
@@ -143,6 +83,177 @@
       "id": "divide",
       "type": "button",
       "text": "÷",
+      "bbox": [
+        340,
+        290,
+        410,
+        350
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "digit_4",
+      "type": "button",
+      "text": "4",
+      "bbox": [
+        100,
+        360,
+        170,
+        420
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "digit_5",
+      "type": "button",
+      "text": "5",
+      "bbox": [
+        180,
+        360,
+        250,
+        420
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "digit_6",
+      "type": "button",
+      "text": "6",
+      "bbox": [
+        260,
+        360,
+        330,
+        420
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "multiply",
+      "type": "button",
+      "text": "×",
+      "bbox": [
+        340,
+        360,
+        410,
+        420
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "digit_1",
+      "type": "button",
+      "text": "1",
+      "bbox": [
+        100,
+        430,
+        170,
+        490
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "digit_2",
+      "type": "button",
+      "text": "2",
+      "bbox": [
+        180,
+        430,
+        250,
+        490
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "digit_3",
+      "type": "button",
+      "text": "3",
+      "bbox": [
+        260,
+        430,
+        330,
+        490
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "minus",
+      "type": "button",
+      "text": "−",
+      "bbox": [
+        340,
+        430,
+        410,
+        490
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "digit_0",
+      "type": "button",
+      "text": "0",
+      "bbox": [
+        100,
+        500,
+        170,
+        560
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.99
+    },
+    {
+      "id": "decimal",
+      "type": "button",
+      "text": ",",
+      "bbox": [
+        180,
+        500,
+        250,
+        560
+      ],
+      "supported_actions": [
+        "click"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "plus",
+      "type": "button",
+      "text": "+",
+      "bbox": [
+        340,
+        500,
+        410,
+        560
+      ],
       "supported_actions": [
         "click"
       ],
@@ -152,19 +263,16 @@
       "id": "equals",
       "type": "button",
       "text": "=",
+      "bbox": [
+        420,
+        430,
+        490,
+        560
+      ],
       "supported_actions": [
         "click"
       ],
       "confidence": 0.99
-    },
-    {
-      "id": "decimal",
-      "type": "button",
-      "text": ".",
-      "supported_actions": [
-        "click"
-      ],
-      "confidence": 0.95
     }
   ],
   "notes": null

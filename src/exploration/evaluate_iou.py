@@ -198,7 +198,13 @@ def main() -> int:
         include_display=not args.exclude_display,
     )
 
-    output_path = Path(args.output) if args.output else pred_path.parent / "iou_eval.json"
+    if args.output:
+        output_path = Path(args.output)
+    else:
+        stem = pred_path.stem  # e.g. "observation_grounded_gpt-4.1"
+        suffix = stem.replace("observation_grounded", "").lstrip("_")
+        out_name = f"iou_eval_{suffix}.json" if suffix else "iou_eval.json"
+        output_path = pred_path.parent / out_name
     write_json(output_path, report)
     print(f"Saved IoU evaluation to: {output_path}")
     return 0
