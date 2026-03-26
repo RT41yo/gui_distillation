@@ -386,8 +386,10 @@ task_run_report.json # сводный отчет по всему запуску
 - `find_unchecked_mode_button()` — ищет radio-кнопку режима, которая сейчас не активна (по AT-SPI states)
 
 **`src/core/automation_dhash.py`** — оркестратор пайплайна:
+- Координаты кнопок берутся исключительно из A11Y-дерева — зависимость от `calculator.yaml` полностью устранена
 - Текущий режим калькулятора читается через `gsettings get org.gnome.calculator button-mode` — надёжнее, чем AT-SPI states (GNOME Calculator не выставляет `checked` на radio-кнопках режима)
 - Смена режима — двухшаговая: клик по `"Mode selection"` (открывает попап) → повторный захват A11Y → клик по целевому режиму
+- После смены режима выполняется ещё 2 вычисления с обновлёнными координатами (fallback на исходный A11Y, если dHash не изменился)
 
 #### Запуск
 
@@ -405,17 +407,21 @@ python -m src.core.automation_dhash \
 
 ```
 run_dhash_001/
+  screenshot_start.png           # Скриншот в начале пайплайна (после запуска)
+  screenshot_final.png           # Скриншот в конце пайплайна (после всех действий)
   a11y_tree_initial.xml          # A11Y дерево до смены режима
   a11y_buttons_initial.txt       # Отфильтрованные кнопки с координатами
-  screenshot_before.png          # Скриншот до вычислений
   step_0000/ … step_0007/        # 2 вычисления (3+5, 7×4), по кнопке на шаг
   step_0008/                     # Клик "Mode selection" (открытие попапа)
   a11y_tree_popup.xml            # A11Y дерево с открытым попапом режимов
   step_0009/                     # Клик целевого режима (before/after + хеши)
-  a11y_tree_after_mode_change.xml   # A11Y дерево после смены режима
+  a11y_tree_after_mode_change.xml   # A11Y дерево после смены режима (если dHash изменился)
   a11y_buttons_after_mode_change.txt
+  step_0010/ … step_0017/        # 2 вычисления после смены режима (9−2, 6÷3)
   dhash_comparison.json          # dHash до/после шага смены режима
   run_summary.json               # Полный отчёт по прогону
+
+# Каждый step_XXXX/ содержит: before.png, after.png, action.json, metadata.json
 ```
 
 #### Результаты эксперимента (Basic → Programming)

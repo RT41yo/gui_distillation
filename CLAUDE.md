@@ -115,13 +115,19 @@ Two modes: **task mode** (execute a specific goal) and **exploration mode** (LLM
 `AnnotatorRunner` processes pre-existing step artifacts without a running GUI. For each step it calls the LLM three times (observation, grounded observation, delta) and saves the JSON annotations back into the step directory. The grounded observation filename is derived from the `model` field in the teacher config YAML. Generates `annotator_debug_report.json` on completion.
 
 ### dHash Experiment Pipeline (`src/core/automation_dhash.py` + `src/core/a11y_capture.py`)
-Experimental pipeline demonstrating that UI state changes (mode switches, layout changes) can be tracked via dHash without manual recalibration:
+Experimental pipeline demonstrating that UI state changes (mode switches, layout changes) can be tracked via dHash without manual recalibration. Uses A11Y tree coordinates exclusively — no dependency on `calculator.yaml`.
+
+Pipeline stages:
 1. Launch calculator → capture A11Y tree (XML + filtered TXT with button coordinates)
-2. Take baseline screenshot + MD5 + dHash
-3. Execute 2 calculations using calibrated coordinates from `calculator.yaml`
-4. Open mode-selection popup → detect current mode via `gsettings` → click a different mode
+2. Take `screenshot_start.png` + MD5 + dHash
+3. Execute 2 calculations using A11Y coordinates (`"3"`, `"+"`, `"5"`, `"="` etc.)
+4. Open mode-selection popup (click `"Mode selection"` toggle) → re-scan A11Y → detect current mode via `gsettings` → click a different mode
 5. Compare dHash before/after the mode click — if changed → re-capture A11Y tree with updated coordinates
-6. Save `dhash_comparison.json` and `run_summary.json`
+6. Run 2 more calculations using updated A11Y coords (fallback to initial A11Y if dHash unchanged)
+7. Take `screenshot_final.png` + MD5 + dHash
+8. Save `dhash_comparison.json` and `run_summary.json`
+
+Root run directory contains exactly two pipeline-level screenshots: `screenshot_start.png` (before any actions) and `screenshot_final.png` (after all stages complete). Each step directory retains its own `before.png` / `after.png` pair.
 
 `A11YCapture` (`src/core/a11y_capture.py`) uses `pyatspi` (AT-SPI2) to traverse the live accessibility tree, serialize it to XML (with element roles, names, coordinates, and states), and filter it to a readable TXT. `find_unchecked_mode_button()` reads AT-SPI states to avoid re-selecting the already-active mode. Current mode is also cross-checked via `gsettings get org.gnome.calculator button-mode`.
 

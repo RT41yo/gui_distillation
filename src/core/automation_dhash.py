@@ -23,8 +23,8 @@ Output structure:
     run_dhash_001/
       a11y_tree_initial.xml
       a11y_buttons_initial.txt
-      screenshot_before.png
-      screenshot_after_mode.png
+      screenshot_start.png
+      screenshot_final.png
       step_0000/   ← calc 1, button: digit_3
       step_0001/   ← calc 1, button: plus
       step_0002/   ← calc 1, button: digit_5
@@ -36,6 +36,7 @@ Output structure:
       step_0008/   ← mode switch click
       a11y_tree_after_mode_change.xml      (only if dHash changed)
       a11y_buttons_after_mode_change.txt   (only if dHash changed)
+      screenshot_after.png
       dhash_comparison.json
       run_summary.json
 """
@@ -72,16 +73,28 @@ def _get_current_calculator_mode() -> str:
 
 
 # ---------------------------------------------------------------------------
-# Calculation sequences (button names from config/apps/calculator.yaml)
+# Calculation sequences — button labels as they appear in the A11Y tree
 # ---------------------------------------------------------------------------
 CALCULATIONS: List[JsonDict] = [
     {
         "description": "3 + 5 = 8",
-        "buttons": ["digit_3", "plus", "digit_5", "equals"],
+        "buttons": ["3", "+", "5", "="],
     },
     {
         "description": "7 × 4 = 28",
-        "buttons": ["digit_7", "multiply", "digit_4", "equals"],
+        "buttons": ["7", "×", "4", "="],
+    },
+]
+
+# Calculations to run after mode change — using new A11Y coordinates
+CALCULATIONS_AFTER: List[JsonDict] = [
+    {
+        "description": "9 − 2 = 7",
+        "buttons": ["9", "−", "2", "="],
+    },
+    {
+        "description": "6 ÷ 3 = 2",
+        "buttons": ["6", "÷", "3", "="],
     },
 ]
 
@@ -102,13 +115,11 @@ class DHashPipeline:
         self,
         output_dir: str = "data/exploration/task_runs/run_dhash_001",
         settings_path: str = "config/settings.yaml",
-        app_config_path: str = "config/apps/calculator.yaml",
         display: Optional[str] = None,
     ) -> None:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.settings_path = settings_path
-        self.app_config_path = app_config_path
         self.display = display
         self.a11y = A11YCapture()
 
@@ -136,7 +147,6 @@ class DHashPipeline:
             app_name="gnome-calculator",
             output_dir=str(self.output_dir),
             settings_path=self.settings_path,
-            app_config_path=self.app_config_path,
             display=self.display,
         )
 
@@ -187,27 +197,27 @@ class DHashPipeline:
         logger.info("  TXT : %s", txt_init)
 
         # ── Stage 3: Baseline screenshot + hashes ────────────────────
-        logger.info("[Stage 3] Taking screenshot_before, computing hashes...")
-        before_path = self.output_dir / "screenshot_before.png"
-        auto.take_screenshot(before_path)
+        logger.info("[Stage 3] Taking screenshot_start, computing hashes...")
+        start_path = self.output_dir / "screenshot_start.png"
+        auto.take_screenshot(start_path)
 
-        md5_before = auto.compute_image_hash(before_path)
-        dhash_before = auto.compute_dhash(before_path)
+        md5_start = auto.compute_image_hash(start_path)
+        dhash_start = auto.compute_dhash(start_path)
 
-        logger.info("  MD5   : %s", md5_before)
-        logger.info("  dHash : %s", dhash_before)
+        logger.info("  MD5   : %s", md5_start)
+        logger.info("  dHash : %s", dhash_start)
 
-        summary["screenshot_before"] = {
-            "path": str(before_path),
-            "md5": md5_before,
-            "dhash": dhash_before,
+        summary["screenshot_start"] = {
+            "path": str(start_path),
+            "md5": md5_start,
+            "dhash": dhash_start,
         }
 
         # ── Stage 4: Run 2 calculations ──────────────────────────────
         step_id = 0
         for calc in CALCULATIONS:
             logger.info("[Stage 4] Calculation: %s", calc["description"])
-            step_id = self._run_calculation(auto, calc, step_id, summary)
+            step_id = self._run_calculation(auto, calc, xml_init, step_id, summary)
             time.sleep(0.5)
 
         # ── Stage 5: Switch calculator mode (2 steps: toggle → Keyboard) ──
@@ -222,9 +232,10 @@ class DHashPipeline:
         )
         logger.info("  Report saved : %s", report_path)
 
-        # ── Stage 6: Re-capture A11Y tree if Keyboard step changed dHash ─
+        # ── Stage 6: Re-capture A11Y tree if mode step changed dHash ────
         dhash_changed = dhash_comparison["dhash_changed"]
         logger.info("[Stage 6] dHash changed: %s", dhash_changed)
+        xml_after = None
         if dhash_changed:
             logger.info("  Interface changed — recapturing A11Y tree...")
             xml_after, txt_after = self.a11y.capture_and_parse(
@@ -239,6 +250,32 @@ class DHashPipeline:
         else:
             logger.info("  dHash unchanged — interface did not change")
 
+        # ── Stage 7: 2 calculations using updated A11Y coords (or initial) ─
+        xml_for_calc2 = xml_after if xml_after is not None else xml_init
+        source = "after_mode_change" if xml_after is not None else "initial (mode unchanged)"
+        logger.info("[Stage 7] Running calculations using A11Y tree: %s", source)
+        for calc in CALCULATIONS_AFTER:
+            logger.info("  Calculation: %s", calc["description"])
+            step_id = self._run_calculation(auto, calc, xml_for_calc2, step_id, summary)
+            time.sleep(0.5)
+
+        # ── Stage 8: Final screenshot ─────────────────────────────────
+        logger.info("[Stage final] Taking screenshot_final, computing hashes...")
+        final_path = self.output_dir / "screenshot_final.png"
+        auto.take_screenshot(final_path)
+
+        md5_final = auto.compute_image_hash(final_path)
+        dhash_final = auto.compute_dhash(final_path)
+
+        logger.info("  MD5   : %s", md5_final)
+        logger.info("  dHash : %s", dhash_final)
+
+        summary["screenshot_final"] = {
+            "path": str(final_path),
+            "md5": md5_final,
+            "dhash": dhash_final,
+        }
+
         summary["success"] = True
 
     # ------------------------------------------------------------------
@@ -249,26 +286,31 @@ class DHashPipeline:
         self,
         auto: GUIAutomation,
         calc: JsonDict,
+        xml_path: Path,
         start_step_id: int,
         summary: JsonDict,
     ) -> int:
         """
-        Execute a multi-button calculation, saving one step artifact per button press.
+        Execute a multi-button calculation using coordinates from the A11Y tree.
+        Saves one step artifact per button press.
 
         Returns the next available step_id.
         """
         step_id = start_step_id
-        for btn_name in calc["buttons"]:
-            coords = auto.get_button_coordinates(btn_name)
+        for btn_label in calc["buttons"]:
+            coords = self.a11y.find_button_by_name(xml_path, btn_label)
             if coords is None:
-                logger.warning("  Button '%s' not in app_config — skipping", btn_name)
+                logger.warning("  Button '%s' not found in A11Y tree — skipping", btn_label)
                 continue
+
+            x, y, w, h = coords
+            cx, cy = x + w // 2, y + h // 2
 
             action: JsonDict = {
                 "action_type": "click",
-                "coordinates": list(coords),
+                "coordinates": [cx, cy],
                 "parameters": {"button": "left", "clicks": 1},
-                "button_name": btn_name,
+                "button_label": btn_label,
                 "calculation": calc["description"],
             }
 
@@ -276,12 +318,12 @@ class DHashPipeline:
 
             summary["steps"].append({
                 "step_id": step_id,
-                "button": btn_name,
+                "button": btn_label,
                 "calculation": calc["description"],
                 "step_dir": str(artifacts.step_dir),
             })
 
-            logger.info("  step_%04d: clicked '%s'", step_id, btn_name)
+            logger.info("  step_%04d: clicked '%s' at (%d, %d)", step_id, btn_label, cx, cy)
             step_id += 1
             time.sleep(0.2)
 
@@ -425,11 +467,6 @@ def main() -> int:
         help="Path to settings.yaml",
     )
     parser.add_argument(
-        "--app-config",
-        default="config/apps/calculator.yaml",
-        help="Path to app config YAML with calibrated button coordinates",
-    )
-    parser.add_argument(
         "--display",
         default=None,
         help="X11 display override, e.g. :99 (default: read from settings.yaml)",
@@ -449,7 +486,6 @@ def main() -> int:
     pipeline = DHashPipeline(
         output_dir=args.output,
         settings_path=args.settings,
-        app_config_path=args.app_config,
         display=args.display,
     )
     summary = pipeline.run()
