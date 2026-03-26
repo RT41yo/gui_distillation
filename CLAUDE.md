@@ -64,6 +64,15 @@ python -m src.exploration.evaluate_iou \
   --predicted data/exploration/phase_1_debug/step_0000/observation_grounded_gpt-4.1.json
 ```
 
+**dHash interface-change detection experiment** (A11Y tree + dHash pipeline):
+```bash
+# Requires virtual display running and DISPLAY=:99
+python -m src.core.automation_dhash \
+  --output data/exploration/task_runs/run_dhash_001 \
+  --display :99 \
+  --verbose
+```
+
 **Infrastructure test**:
 ```bash
 python scripts/tools/test_automation.py --display :99 --app gnome-calculator -v
@@ -104,6 +113,21 @@ Two modes: **task mode** (execute a specific goal) and **exploration mode** (LLM
 
 ### Offline Pipeline (`src/exploration/annotator_runner.py`)
 `AnnotatorRunner` processes pre-existing step artifacts without a running GUI. For each step it calls the LLM three times (observation, grounded observation, delta) and saves the JSON annotations back into the step directory. The grounded observation filename is derived from the `model` field in the teacher config YAML. Generates `annotator_debug_report.json` on completion.
+
+### dHash Experiment Pipeline (`src/core/automation_dhash.py` + `src/core/a11y_capture.py`)
+Experimental pipeline demonstrating that UI state changes (mode switches, layout changes) can be tracked via dHash without manual recalibration:
+1. Launch calculator → capture A11Y tree (XML + filtered TXT with button coordinates)
+2. Take baseline screenshot + MD5 + dHash
+3. Execute 2 calculations using calibrated coordinates from `calculator.yaml`
+4. Open mode-selection popup → detect current mode via `gsettings` → click a different mode
+5. Compare dHash before/after the mode click — if changed → re-capture A11Y tree with updated coordinates
+6. Save `dhash_comparison.json` and `run_summary.json`
+
+`A11YCapture` (`src/core/a11y_capture.py`) uses `pyatspi` (AT-SPI2) to traverse the live accessibility tree, serialize it to XML (with element roles, names, coordinates, and states), and filter it to a readable TXT. `find_unchecked_mode_button()` reads AT-SPI states to avoid re-selecting the already-active mode. Current mode is also cross-checked via `gsettings get org.gnome.calculator button-mode`.
+
+**Key finding:** Basic→Programming mode switch produced 27→96 buttons with all coordinates changed, dHash signal fired correctly, and the re-captured A11Y tree provided accurate new coordinates — demonstrating that dHash + A11Y is a viable self-updating coordinate system.
+
+**`pyatspi` setup note:** `python3-pyatspi` is a system package (not on PyPI). `setup_vm.sh` installs it via apt and creates `system_dist_packages.pth` in the venv's site-packages to make it importable.
 
 ### Core Automation (`src/core/automation.py`)
 `GUIAutomation` owns all interaction with the OS: app launch/close, screenshot capture, action dispatch (click, type, key press, hotkey, mouse move), and artifact persistence. It normalizes coordinates and computes perceptual hashes (dHash via `imagehash`) for state change detection.

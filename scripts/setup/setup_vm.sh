@@ -94,7 +94,20 @@ main() {
   DEBIAN_FRONTEND=noninteractive apt install -y \
     wmctrl \
     xdotool \
-    x11-utils
+    x11-utils \
+    python3-pyatspi
+
+  log "Linking system pyatspi into the project venv (not on PyPI)..."
+  VENV_SITE="/home/${SUDO_USER}/gui-distill-venv/lib/python3.10/site-packages"
+  PTH_FILE="${VENV_SITE}/system_dist_packages.pth"
+  if [[ -d "$VENV_SITE" ]]; then
+    echo "/usr/lib/python3/dist-packages" > "$PTH_FILE"
+    log "  Created: $PTH_FILE"
+  else
+    log "  WARNING: venv not found at $VENV_SITE — skipping .pth setup"
+    log "  Run manually after creating the venv:"
+    log "    echo '/usr/lib/python3/dist-packages' > \$VENV_SITE/system_dist_packages.pth"
+  fi
 
   log "Done."
   log "Next steps:"

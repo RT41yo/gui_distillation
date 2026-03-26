@@ -9,64 +9,64 @@
 
 Фаза 0 создает детерминированную, воспроизводимую инфраструктуру для автоматизации GUI exploration.
 
-Что реализовано:  
+Что реализовано:
 
-- Детерминированная X11-среда (Xvfb)  
-- Ядро GUI-автоматизации  
-- Калиброванные координаты центров кнопок  
-- Формализованные Pydantic-схемы  
-- Полностью воспроизводимый тестовый пайплайн  
+- Детерминированная X11-среда (Xvfb)
+- Ядро GUI-автоматизации
+- Калиброванные координаты центров кнопок
+- Формализованные Pydantic-схемы
+- Полностью воспроизводимый тестовый пайплайн
 
 
-### Структура скриптов  
+### Структура скриптов
 
-**setup_vm.sh**  
+**setup_vm.sh**
 
-Подготовка виртуальной машины:  
+Подготовка виртуальной машины:
 
 ```
 sudo bash scripts/setup/setup_vm.sh
 ```
 
-Устанавливает: python3, pip, venv, git, build-essential, базовые системные зависимости  
+Устанавливает: python3, pip, venv, git, build-essential, базовые системные зависимости, GUI-инструменты (wmctrl, xdotool, x11-utils), а также `python3-pyatspi` для захвата A11Y-дерева. Автоматически создаёт `system_dist_packages.pth` в venv, чтобы `pyatspi` был доступен внутри виртуального окружения.
 
-**install_apps.sh**  
+**install_apps.sh**
 
-Установка GUI-приложения (GNOME Calculator):  
+Установка GUI-приложения (GNOME Calculator):
 
 ```
 sudo bash scripts/setup/install_apps.sh
 ```
 
-**setup_xvfb.sh**  
+**setup_xvfb.sh**
 
-Установка Xvfb и X11-инструментов:  
+Установка Xvfb и X11-инструментов:
 
 ```
 sudo bash scripts/setup/setup_xvfb.sh
 ```
 
-**reset_display.sh**  
+**reset_display.sh**
 
-Очистка и перезапуск виртуального дисплея. Рекомендуется запускать перед тестами.   
+Очистка и перезапуск виртуального дисплея. Рекомендуется запускать перед тестами.
 
 ```
 bash scripts/setup/reset_display.sh
 ```
 
-Скрипт:  
-- убивает старый Xvfb  
-- снимает lock-файл  
-- очищает DISPLAY  
-- запускает новый Xvfb :99  
+Скрипт:
+- убивает старый Xvfb
+- снимает lock-файл
+- очищает DISPLAY
+- запускает новый Xvfb :99
 - проверяет доступность
 
-Это официальный способ подготовки среды.  
+Это официальный способ подготовки среды.
 
 
-### Инструменты (scripts/tools)  
+### Инструменты (scripts/tools)
 
-**find_coordinates.py**  
+**find_coordinates.py**
 
 Используется для калибровки координат центров кнопок.
 
@@ -74,37 +74,37 @@ bash scripts/setup/reset_display.sh
 config/apps/calculator.yaml
 ```
 
-В большинстве случаев повторная калибровка не требуется. Калибровка нужна только если:  
-- изменилось разрешение  
-- изменился размер/позиция окна  
-- используется другая версия калькулятора  
-- тест “digit_5” не проходит  
+В большинстве случаев повторная калибровка не требуется. Калибровка нужна только если:
+- изменилось разрешение
+- изменился размер/позиция окна
+- используется другая версия калькулятора
+- тест "digit_5" не проходит
 
-Запуск:  
+Запуск:
 ```
 export DISPLAY=:0
 gnome-calculator &
 python scripts/tools/find_coordinates.py --output config/apps/calculator.yaml
 ```
 
-**test_automation.py**  
+**test_automation.py**
 
-Полный тест инфраструктуры GUI.  
+Полный тест инфраструктуры GUI.
 
-Проверяет:  
-- доступность дисплея  
-- запуск приложения  
-- создание скриншотов  
-- выполнение кликов  
-- before/after артефакты  
-- клик по digit_5 (если есть координаты)  
+Проверяет:
+- доступность дисплея
+- запуск приложения
+- создание скриншотов
+- выполнение кликов
+- before/after артефакты
+- клик по digit_5 (если есть координаты)
 
-Запуск:  
+Запуск:
 ```
 python scripts/tools/test_automation.py --display :99 --app gnome-calculator -v
 ```
 
-Если все корректно:  
+Если все корректно:
 ```
 🎉 ALL TESTS PASSED! Infrastructure is ready.
 ```
@@ -112,13 +112,13 @@ python scripts/tools/test_automation.py --display :99 --app gnome-calculator -v
 
 ### Unit-тесты схем
 
-Проверка формальных контрактов:  
+Проверка формальных контрактов:
 
 ```
 pytest -q tests/unit/test_schemas.py
 ```
 
-Минимальный сценарий запуска “с нуля”  
+Минимальный сценарий запуска "с нуля"
 
 ```
 git clone <repo>
@@ -155,19 +155,19 @@ python scripts/tools/test_automation.py --display :99 --app gnome-calculator -v
 
 ### Часть 1. Сбор шагов траекторий через `/src/core/automation.py`
 
-Если Xvfb еще не запущен:  
+Если Xvfb еще не запущен:
 ```bash
 Xvfb :99 -screen 0 1280x1024x24 -ac &
 export DISPLAY=:99
 xdpyinfo | grep dimensions
 ```
 
-Перед новым прогоном (рекомендуется):  
+Перед новым прогоном (рекомендуется):
 ```bash
 pkill -f gnome-calculator
 ```
 
-Пример запуска `/src/core/automation.py` на 5 шагах:  
+Пример запуска `/src/core/automation.py` на 5 шагах:
 ```bash
 python -m src.core.automation --random-buttons --steps 5 \
   --settings config/settings.yaml \
@@ -178,7 +178,7 @@ python -m src.core.automation --random-buttons --steps 5 \
 
 ### Часть 2. Аннотирование шагов траекторий
 
-После того как шаги траектории собраны в `data/exploration/phase_1_debug`, запускается annotator:  
+После того как шаги траектории собраны в `data/exploration/phase_1_debug`, запускается annotator:
 
 ```bash
 python -m src.exploration.teacher_debug_runner \
@@ -188,7 +188,7 @@ python -m src.exploration.teacher_debug_runner \
   --max-steps 5
 ```
 
-Для каждого шага набор аннотаций:  
+Для каждого шага набор аннотаций:
 - `before.png`
 - `after.png`
 - `action.json`
@@ -204,11 +204,11 @@ python -m src.exploration.teacher_debug_runner \
 
 Добавлен второй промпт для MLLM - вернуть не только семантическое описание элементов, но и их bbox в абсолютных координатах: `config/prompts/observation_grounded_v1.md`.
 
-В промпте зафиксированы:  
-- полный размер входного скриншота (1280x1024);  
-- требование, чтобы все bbox лежали внутри границ экрана;  
-- `element_id`;  
-- контролируемый список элементов UI.  
+В промпте зафиксированы:
+- полный размер входного скриншота (1280x1024);
+- требование, чтобы все bbox лежали внутри границ экрана;
+- `element_id`;
+- контролируемый список элементов UI.
 
 При включенном флаге:
 ```
@@ -219,7 +219,6 @@ features:
 
 annotator формирует дополнительный файл: `observation_grounded.json` командой:
 
-
 ```bash
 python -m src.exploration.teacher_debug_runner \
   --steps-root data/exploration/phase_1_debug \
@@ -228,7 +227,7 @@ python -m src.exploration.teacher_debug_runner \
   --max-steps 2
 ```
 
-Для первичной оценки качества bbox реализован скрипт `src/exploration/evaluate_bbox.py`.  
+Для первичной оценки качества bbox реализован скрипт `src/exploration/evaluate_bbox.py`.
 Он сравнивает центры bbox, полученных от MLLM с откалиброванными `click points` из `config/apps/calculator.yaml`.
 
 ```bash
@@ -238,11 +237,11 @@ python -m src.exploration.evaluate_bbox \
 ```
 
 
-#### Результаты (для 0000 и 0001 шагов траектории):  
-MLLM стабильно возвращает:  
-- корректный `screen = 1280x1024`;  
-- контролируемый список элементов UI;  
-- bbox.  
+#### Результаты (для 0000 и 0001 шагов траектории):
+MLLM стабильно возвращает:
+- корректный `screen = 1280x1024`;
+- контролируемый список элементов UI;
+- bbox.
 
 Однако количественная проверка показала, что точность bbox пока недостаточна для прямой замены откалиброванных координат в `executor`, поэтому на текущем этапе `calculator.yaml` остается основным источником координат, а `observation_grounded` используется как дополнительная расширенная аннотация.
 
@@ -254,7 +253,7 @@ MLLM стабильно возвращает:
 
 С помощью скрипта `scripts/tools/find_coordinates_bboxes.py` выполнена калибровка bboxes для элементов UI.
 
-Команда запуска:  
+Команда запуска:
 
 ```bash
 export DISPLAY=:0
@@ -266,7 +265,7 @@ python scripts/tools/find_coordinates_bboxes.py --output config/apps/calculator_
 
 `src/exploration/evaluate_iou.py` выполняет расчет IoU-метрики.
 
-Команда запуска:  
+Команда запуска:
 
 ```bash
 python -m src.exploration.evaluate_iou \
@@ -373,12 +372,80 @@ task_run_report.json # сводный отчет по всему запуску
 После запуска task runner можно прогнать офлайн-аннотирование поверх собранных шагов стандартной командой `teacher_debug_runner`.
 
 
+### Часть 6. Эксперимент: dHash + A11Y tree как самообновляемая система координат
 
+#### Идея
 
+Статичный `calculator.yaml` с откалиброванными координатами не работает при смене режима интерфейса (Basic/Advanced/Programming) — кнопки перемещаются или исчезают. Эксперимент доказывает, что можно автоматически отслеживать смену интерфейса через dHash и пересчитывать координаты через повторный захват A11Y-дерева, без ручной перекалибровки.
 
+#### Компоненты
 
+**`src/core/a11y_capture.py`** — захват и парсинг A11Y-дерева:
+- `capture_to_xml()` — обходит AT-SPI2 дерево через `pyatspi`, сохраняет в XML с координатами и состояниями элементов
+- `parse_xml_to_txt()` — фильтрует по ролям (push-button, label и т.д.), сохраняет в tab-separated TXT
+- `find_unchecked_mode_button()` — ищет radio-кнопку режима, которая сейчас не активна (по AT-SPI states)
 
+**`src/core/automation_dhash.py`** — оркестратор пайплайна:
+- Текущий режим калькулятора читается через `gsettings get org.gnome.calculator button-mode` — надёжнее, чем AT-SPI states (GNOME Calculator не выставляет `checked` на radio-кнопках режима)
+- Смена режима — двухшаговая: клик по `"Mode selection"` (открывает попап) → повторный захват A11Y → клик по целевому режиму
 
+#### Запуск
 
+```bash
+# Виртуальный дисплей должен быть запущен
+export DISPLAY=:99
 
+python -m src.core.automation_dhash \
+  --output data/exploration/task_runs/run_dhash_001 \
+  --display :99 \
+  --verbose
+```
 
+#### Структура артефактов
+
+```
+run_dhash_001/
+  a11y_tree_initial.xml          # A11Y дерево до смены режима
+  a11y_buttons_initial.txt       # Отфильтрованные кнопки с координатами
+  screenshot_before.png          # Скриншот до вычислений
+  step_0000/ … step_0007/        # 2 вычисления (3+5, 7×4), по кнопке на шаг
+  step_0008/                     # Клик "Mode selection" (открытие попапа)
+  a11y_tree_popup.xml            # A11Y дерево с открытым попапом режимов
+  step_0009/                     # Клик целевого режима (before/after + хеши)
+  a11y_tree_after_mode_change.xml   # A11Y дерево после смены режима
+  a11y_buttons_after_mode_change.txt
+  dhash_comparison.json          # dHash до/после шага смены режима
+  run_summary.json               # Полный отчёт по прогону
+```
+
+#### Результаты эксперимента (Basic → Programming)
+
+dHash сигнал корректно сработал при смене режима Basic → Programming:
+
+```json
+{
+  "dhash_before": "7070707070000000",
+  "dhash_after":  "7070707070700000",
+  "dhash_changed": true
+}
+```
+
+Масштаб изменений интерфейса:
+
+| Метрика | Basic | Programming |
+|---|---|---|
+| Кнопок (валидных) | 27 | 96 |
+| Изменили координаты | — | 22 из 25 общих |
+| Появились новые | — | A, B, C, D, E, F (HEX) |
+
+Ключевой вывод: при смене режима координаты большинства кнопок меняются (например, цифра `7` переехала с `(82, 314)` на `(235, 562)`). dHash детектировал изменение, повторный захват A11Y-дерева предоставил актуальные координаты для всех 96 кнопок — без ручной перекалибровки.
+
+#### Зависимость pyatspi
+
+`python3-pyatspi` — системный пакет, недоступный через pip. `setup_vm.sh` устанавливает его через apt и автоматически прописывает путь в venv:
+
+```bash
+# Выполняется автоматически в setup_vm.sh:
+echo "/usr/lib/python3/dist-packages" > \
+  /home/$USER/gui-distill-venv/lib/python3.10/site-packages/system_dist_packages.pth
+```
