@@ -1,0 +1,12 @@
+{
+  "step_id": 9,
+  "step_dir": "data/exploration/task_runs/run_dhash_001/step_0009",
+  "screenshot_before": "data/exploration/task_runs/run_dhash_001/step_0009/before.png",
+  "screenshot_after": "data/exploration/task_runs/run_dhash_001/step_0009/after.png",
+  "dhash_before": "7070707070000000",
+  "dhash_after": "7070707070700000",
+  "dhash_changed": true,
+  "md5_before": "f7669b94ed85812cd352b303db7dfa8d",
+  "md5_after": "937cc5e54cea8182fc90d83ca9fba6e6",
+  "md5_changed": true
+}

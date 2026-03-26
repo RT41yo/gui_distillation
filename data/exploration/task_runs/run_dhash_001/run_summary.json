@@ -1,0 +1,144 @@
+{
+  "output_dir": "data/exploration/task_runs/run_dhash_001",
+  "steps": [
+    {
+      "step_id": 0,
+      "button": "3",
+      "calculation": "3 + 5 = 8",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0000"
+    },
+    {
+      "step_id": 1,
+      "button": "+",
+      "calculation": "3 + 5 = 8",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0001"
+    },
+    {
+      "step_id": 2,
+      "button": "5",
+      "calculation": "3 + 5 = 8",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0002"
+    },
+    {
+      "step_id": 3,
+      "button": "=",
+      "calculation": "3 + 5 = 8",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0003"
+    },
+    {
+      "step_id": 4,
+      "button": "7",
+      "calculation": "7 × 4 = 28",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0004"
+    },
+    {
+      "step_id": 5,
+      "button": "×",
+      "calculation": "7 × 4 = 28",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0005"
+    },
+    {
+      "step_id": 6,
+      "button": "4",
+      "calculation": "7 × 4 = 28",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0006"
+    },
+    {
+      "step_id": 7,
+      "button": "=",
+      "calculation": "7 × 4 = 28",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0007"
+    },
+    {
+      "step_id": 8,
+      "button": "mode_selection_toggle",
+      "description": "Open mode selection popup",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0008"
+    },
+    {
+      "step_id": 9,
+      "button": "mode_programming",
+      "description": "Select Programming calculator mode",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0009"
+    },
+    {
+      "step_id": 10,
+      "button": "9",
+      "calculation": "9 − 2 = 7",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0010"
+    },
+    {
+      "step_id": 11,
+      "button": "−",
+      "calculation": "9 − 2 = 7",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0011"
+    },
+    {
+      "step_id": 12,
+      "button": "2",
+      "calculation": "9 − 2 = 7",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0012"
+    },
+    {
+      "step_id": 13,
+      "button": "=",
+      "calculation": "9 − 2 = 7",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0013"
+    },
+    {
+      "step_id": 14,
+      "button": "6",
+      "calculation": "6 ÷ 3 = 2",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0014"
+    },
+    {
+      "step_id": 15,
+      "button": "÷",
+      "calculation": "6 ÷ 3 = 2",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0015"
+    },
+    {
+      "step_id": 16,
+      "button": "3",
+      "calculation": "6 ÷ 3 = 2",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0016"
+    },
+    {
+      "step_id": 17,
+      "button": "=",
+      "calculation": "6 ÷ 3 = 2",
+      "step_dir": "data/exploration/task_runs/run_dhash_001/step_0017"
+    }
+  ],
+  "dhash_comparison": {
+    "step_id": 9,
+    "step_dir": "data/exploration/task_runs/run_dhash_001/step_0009",
+    "screenshot_before": "data/exploration/task_runs/run_dhash_001/step_0009/before.png",
+    "screenshot_after": "data/exploration/task_runs/run_dhash_001/step_0009/after.png",
+    "dhash_before": "7070707070000000",
+    "dhash_after": "7070707070700000",
+    "dhash_changed": true,
+    "md5_before": "f7669b94ed85812cd352b303db7dfa8d",
+    "md5_after": "937cc5e54cea8182fc90d83ca9fba6e6",
+    "md5_changed": true
+  },
+  "a11y_initial": {
+    "xml": "data/exploration/task_runs/run_dhash_001/a11y_tree_initial.xml",
+    "txt": "data/exploration/task_runs/run_dhash_001/a11y_buttons_initial.txt"
+  },
+  "a11y_after": {
+    "xml": "data/exploration/task_runs/run_dhash_001/a11y_tree_after_mode_change.xml",
+    "txt": "data/exploration/task_runs/run_dhash_001/a11y_buttons_after_mode_change.txt"
+  },
+  "success": true,
+  "screenshot_start": {
+    "path": "data/exploration/task_runs/run_dhash_001/screenshot_start.png",
+    "md5": "99b26ea33e22dfeda71e5ea10e017d21",
+    "dhash": "7070707070000000"
+  },
+  "screenshot_final": {
+    "path": "data/exploration/task_runs/run_dhash_001/screenshot_final.png",
+    "md5": "cb23cf224859cf60bc229a5349203250",
+    "dhash": "7070707070600000"
+  }
+}
