@@ -488,7 +488,7 @@ run_a11y_001/
   run_summary.json               # Список шагов с ключевой информацией
   step_0000/
     a11y_tree.xml                # A11Y дерево, снятое перед этим действием
-    a11y_buttons.txt             # Отфильтрованные кнопки с координатами
+    a11y_buttons.txt             # Только видимые элементы (x≥0, y≥0, w>0, h>0) — ~28 строк вместо ~390
     before.png
     after.png
     action.json
