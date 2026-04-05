@@ -233,8 +233,12 @@ class A11YCapture:
             w = elem.get("width", "0")
             h = elem.get("height", "0")
 
-            # Skip invisible / unrendered elements
-            if int(w) == 0 and int(h) == 0:
+            # Skip invisible / unrendered elements.
+            # INT32_MIN (-2147483648) in x or y means the element is registered
+            # in the AT-SPI tree but not currently rendered on screen (hidden
+            # menus, collapsed dropdowns, etc.). Size (1, 1) is the paired sentinel.
+            xi, yi = int(x), int(y)
+            if (int(w) == 0 and int(h) == 0) or xi < 0 or yi < 0:
                 continue
 
             rows.append((
