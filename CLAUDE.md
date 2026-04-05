@@ -73,6 +73,34 @@ python -m src.core.automation_dhash \
   --verbose
 ```
 
+**A11Y per-step experiment** (A11Y tree captured on every step):
+```bash
+python -m src.core.automation_a11y \
+  --output data/exploration/task_runs/run_a11y_001 \
+  --display :99 \
+  --verbose
+```
+
+**A11Y + window move experiment** (proves A11Y coords auto-update after window relocation):
+```bash
+DISPLAY=:0 python -m src.core.automation_a11y_dnd \
+  --output data/exploration/task_runs/run_a11y_dnd_001 \
+  --display :0 \
+  --move-x 600 --move-y 300 \
+  --verbose
+```
+
+**Post-run visualization**:
+```bash
+# For run_a11y_001 (Hamming chart + heatmap + state graph)
+python scripts/tools/visualize_run.py \
+  --run-dir data/exploration/task_runs/run_a11y_001
+
+# For run_a11y_dnd_001 (Hamming chart + heatmap)
+python scripts/tools/visualize_run_dnd.py \
+  --run-dir data/exploration/task_runs/run_a11y_dnd_001
+```
+
 **Infrastructure test**:
 ```bash
 python scripts/tools/test_automation.py --display :99 --app gnome-calculator -v
@@ -114,26 +142,27 @@ Two modes: **task mode** (execute a specific goal) and **exploration mode** (LLM
 ### Offline Pipeline (`src/exploration/annotator_runner.py`)
 `AnnotatorRunner` processes pre-existing step artifacts without a running GUI. For each step it calls the LLM three times (observation, grounded observation, delta) and saves the JSON annotations back into the step directory. The grounded observation filename is derived from the `model` field in the teacher config YAML. Generates `annotator_debug_report.json` on completion.
 
-### dHash Experiment Pipeline (`src/core/automation_dhash.py` + `src/core/a11y_capture.py`)
-Experimental pipeline demonstrating that UI state changes (mode switches, layout changes) can be tracked via dHash without manual recalibration. Uses A11Y tree coordinates exclusively — no dependency on `calculator.yaml`.
+### A11Y Experiment Pipelines (`src/core/automation_a11y*.py` + `src/core/a11y_capture.py`)
 
-Pipeline stages:
-1. Launch calculator → capture A11Y tree (XML + filtered TXT with button coordinates)
-2. Take `screenshot_start.png` + MD5 + dHash
-3. Execute 2 calculations using A11Y coordinates (`"3"`, `"+"`, `"5"`, `"="` etc.)
-4. Open mode-selection popup (click `"Mode selection"` toggle) → re-scan A11Y → detect current mode via `gsettings` → click a different mode
-5. Compare dHash before/after the mode click — if changed → re-capture A11Y tree with updated coordinates
-6. Run 2 more calculations using updated A11Y coords (fallback to initial A11Y if dHash unchanged)
-7. Take `screenshot_final.png` + MD5 + dHash
-8. Save `dhash_comparison.json` and `run_summary.json`
+Three experimental pipelines sharing `A11YCapture` — all use A11Y tree coordinates exclusively, no dependency on `calculator.yaml`.
 
-Root run directory contains exactly two pipeline-level screenshots: `screenshot_start.png` (before any actions) and `screenshot_final.png` (after all stages complete). Each step directory retains its own `before.png` / `after.png` pair.
+**`automation_dhash.py`** — original dHash experiment. Captures A11Y tree once at start and again after mode switch if dHash signals a layout change. Saves `dhash_comparison.json`.
 
-`A11YCapture` (`src/core/a11y_capture.py`) uses `pyatspi` (AT-SPI2) to traverse the live accessibility tree, serialize it to XML (with element roles, names, coordinates, and states), and filter it to a readable TXT. `find_unchecked_mode_button()` reads AT-SPI states to avoid re-selecting the already-active mode. Current mode is also cross-checked via `gsettings get org.gnome.calculator button-mode`.
+**`automation_a11y.py`** — extended version. Captures A11Y tree **before every step** — coordinates always reflect current UI state. Each `step_NNNN/` contains `a11y_tree.xml` + `a11y_buttons.txt`. `metadata.json` includes `dhashes.hamming_distance` (Hamming distance between before/after dHash).
 
-**Key finding:** Basic→Programming mode switch produced 27→96 buttons with all coordinates changed, dHash signal fired correctly, and the re-captured A11Y tree provided accurate new coordinates — demonstrating that dHash + A11Y is a viable self-updating coordinate system.
+**`automation_a11y_dnd.py`** — window relocation experiment. After initial calculations, moves the calculator window via `wmctrl` (using window ID to avoid locale-dependent title matching), then runs further calculations. Proves A11Y coordinates auto-update after window move — no recalibration needed. `run_summary.json` includes a `window_move` section with `position_before`, `position_after`, `wmctrl_success`, and `coord_shift {dx, dy}`.
+
+`A11YCapture` (`src/core/a11y_capture.py`) uses `pyatspi` (AT-SPI2) to traverse the live accessibility tree, serialize it to XML (with element roles, names, coordinates, and states), and filter it to a readable TXT (~28 visible elements; hidden/off-screen elements with INT32_MIN coordinates are filtered out). `find_unchecked_mode_button()` reads AT-SPI states to avoid re-selecting the already-active mode.
+
+**Key findings:**
+- Basic→Programming mode switch: 27→96 buttons, all coordinates changed, dHash signal fired correctly
+- Window move by (dx=1112, dy=592): A11Y coordinates shifted by the same amount in the very next step — zero recalibration required
 
 **`pyatspi` setup note:** `python3-pyatspi` is a system package (not on PyPI). `setup_vm.sh` installs it via apt and creates `system_dist_packages.pth` in the venv's site-packages to make it importable.
+
+**Post-run visualization tools** (`scripts/tools/`):
+- `visualize_run.py` — for `automation_a11y` runs: Hamming bar chart, click heatmap, state-transition graph
+- `visualize_run_dnd.py` — for `automation_a11y_dnd` runs: Hamming bar chart (4 phases, window-move separator), click heatmap
 
 ### Core Automation (`src/core/automation.py`)
 `GUIAutomation` owns all interaction with the OS: app launch/close, screenshot capture, action dispatch (click, type, key press, hotkey, mouse move), and artifact persistence. It normalizes coordinates and computes perceptual hashes (dHash via `imagehash`) for state change detection.
