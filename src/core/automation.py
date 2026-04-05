@@ -121,9 +121,9 @@ class GUIAutomation:
         # NEW: action file (optional)
         self.step_file_action = str(self._get(self.settings, "data.step_files.action", "action.json"))
         self.save_action_file = bool(self._get(self.settings, "data.step_files.save_action", True))
-        # NEW: perceptual hash (for state tracking)
-        self.save_phash = bool(self._get(self.settings, "automation.hash.save_phash", True))
-        self.phash_size = int(self._get(self.settings, "automation.hash.phash_size", 8))  # dHash size
+        # NEW: dHash (for state tracking)
+        self.save_dhash = bool(self._get(self.settings, "automation.hash.save_dhash", True))
+        self.dhash_size = int(self._get(self.settings, "automation.hash.dhash_size", 8))  # dHash grid size
 
         # Hash
         self.hash_algorithm = str(self._get(self.settings, "automation.hash.algorithm", "md5")).lower()
@@ -360,6 +360,19 @@ class GUIAutomation:
         width = (size * size + 3) // 4  # hex digits
         return f"{value:0{width}x}"
 
+    @staticmethod
+    def hamming_distance(hash1: Optional[str], hash2: Optional[str]) -> Optional[int]:
+        """
+        Compute the Hamming distance between two dHash hex strings.
+        Returns None if either hash is missing or invalid.
+        """
+        if not hash1 or not hash2:
+            return None
+        try:
+            return bin(int(hash1, 16) ^ int(hash2, 16)).count("1")
+        except ValueError:
+            return None
+
     # -----------------------------
     # Coordinates utilities
     # -----------------------------
@@ -527,14 +540,14 @@ class GUIAutomation:
 
         before_hash = None
         after_hash = None
-        before_phash = None
-        after_phash = None
+        before_dhash = None
+        after_dhash = None
 
         if before_path:
             self.take_screenshot(before_path)
             before_hash = self.compute_image_hash(before_path)
-            if self.save_phash:
-                before_phash = self.compute_dhash(before_path, size=self.phash_size)
+            if self.save_dhash:
+                before_dhash = self.compute_dhash(before_path, size=self.dhash_size)
 
         if action_path is not None:
             action_path.write_text(json.dumps(action_config, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -544,8 +557,8 @@ class GUIAutomation:
         if after_path:
             self.take_screenshot(after_path)
             after_hash = self.compute_image_hash(after_path)
-            if self.save_phash:
-                after_phash = self.compute_dhash(after_path, size=self.phash_size)
+            if self.save_dhash:
+                after_dhash = self.compute_dhash(after_path, size=self.dhash_size)
 
         changed = None
         if self.compare_hashes and before_hash and after_hash:
@@ -559,7 +572,11 @@ class GUIAutomation:
             "screen": {"width": self.screen_width, "height": self.screen_height},
             "action": action_config,
             "hashes": {"before": before_hash, "after": after_hash},
-            "phashes": {"before": before_phash, "after": after_phash},
+            "dhashes": {
+                "before": before_dhash,
+                "after": after_dhash,
+                "hamming_distance": self.hamming_distance(before_dhash, after_dhash),
+            },
             "changed": changed,
             "timing": {"action_delay": self.action_delay, "screenshot_delay": self.screenshot_delay},
         }

@@ -135,8 +135,8 @@ automation:
   hash:
     algorithm: "md5"              # md5, sha1, sha256
     compare: true
-    save_phash: true              # also compute and save perceptual dHash per step
-    phash_size: 8                 # dHash grid size (8 → 64-bit hash)
+    save_dhash: true              # also compute and save dHash per step
+    dhash_size: 8                 # dHash grid size (8 → 64-bit hash)
 
   mouse:
     default_button: "left"
@@ -248,7 +248,7 @@ exploration:
     stagnation_steps: 100
 
   state:
-    hash_algorithm: "phash"
+    hash_algorithm: "dhash"
     similarity_threshold: 0.95
     max_states: 1000
 

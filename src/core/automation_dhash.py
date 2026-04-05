@@ -424,8 +424,8 @@ class DHashPipeline:
 
         # ── Read dHash from Step B metadata (before vs after click) ──
         meta = json.loads((artifacts_b.step_dir / "metadata.json").read_text(encoding="utf-8"))
-        dhash_before_step = (meta.get("phashes") or {}).get("before", "")
-        dhash_after_step = (meta.get("phashes") or {}).get("after", "")
+        dhash_before_step = (meta.get("dhashes") or {}).get("before", "")
+        dhash_after_step = (meta.get("dhashes") or {}).get("after", "")
         dhash_changed = bool(dhash_before_step and dhash_after_step and
                              dhash_before_step != dhash_after_step)
 
