@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    212,
+    188
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_name": "mode_programming",
+  "description": "Select Programming calculator mode"
+}

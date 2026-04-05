@@ -1,0 +1,196 @@
+{
+  "output_dir": "data/exploration/task_runs/run_a11y_001",
+  "success": true,
+  "screenshot_start": {
+    "path": "data/exploration/task_runs/run_a11y_001/screenshot_start.png",
+    "md5": "99b26ea33e22dfeda71e5ea10e017d21",
+    "dhash": "7070707070000000"
+  },
+  "screenshot_final": {
+    "path": "data/exploration/task_runs/run_a11y_001/screenshot_final.png",
+    "md5": "cb23cf224859cf60bc229a5349203250",
+    "dhash": "7070707070600000"
+  },
+  "steps": [
+    {
+      "step_id": 0,
+      "button": "3",
+      "calculation": "3 + 5 = 8",
+      "coords": [
+        250,
+        432
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0000"
+    },
+    {
+      "step_id": 1,
+      "button": "+",
+      "calculation": "3 + 5 = 8",
+      "coords": [
+        318,
+        480
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0001"
+    },
+    {
+      "step_id": 2,
+      "button": "5",
+      "calculation": "3 + 5 = 8",
+      "coords": [
+        182,
+        384
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0002"
+    },
+    {
+      "step_id": 3,
+      "button": "=",
+      "calculation": "3 + 5 = 8",
+      "coords": [
+        386,
+        456
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0003"
+    },
+    {
+      "step_id": 4,
+      "button": "7",
+      "calculation": "7 × 4 = 28",
+      "coords": [
+        114,
+        336
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0004"
+    },
+    {
+      "step_id": 5,
+      "button": "×",
+      "calculation": "7 × 4 = 28",
+      "coords": [
+        318,
+        384
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0005"
+    },
+    {
+      "step_id": 6,
+      "button": "4",
+      "calculation": "7 × 4 = 28",
+      "coords": [
+        114,
+        384
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0006"
+    },
+    {
+      "step_id": 7,
+      "button": "=",
+      "calculation": "7 × 4 = 28",
+      "coords": [
+        386,
+        456
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0007"
+    },
+    {
+      "step_id": 8,
+      "button": "mode_selection_toggle",
+      "description": "Open mode selection popup",
+      "coords": [
+        212,
+        49
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0008"
+    },
+    {
+      "step_id": 9,
+      "button": "mode_programming",
+      "description": "Select Programming calculator mode",
+      "coords": [
+        212,
+        188
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0009"
+    },
+    {
+      "step_id": 10,
+      "button": "9",
+      "calculation": "9 − 2 = 7",
+      "coords": [
+        156,
+        536
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0010"
+    },
+    {
+      "step_id": 11,
+      "button": "−",
+      "calculation": "9 − 2 = 7",
+      "coords": [
+        318,
+        584
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0011"
+    },
+    {
+      "step_id": 12,
+      "button": "2",
+      "calculation": "9 − 2 = 7",
+      "coords": [
+        207,
+        632
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0012"
+    },
+    {
+      "step_id": 13,
+      "button": "=",
+      "calculation": "9 − 2 = 7",
+      "coords": [
+        386,
+        608
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0013"
+    },
+    {
+      "step_id": 14,
+      "button": "6",
+      "calculation": "6 ÷ 3 = 2",
+      "coords": [
+        207,
+        584
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0014"
+    },
+    {
+      "step_id": 15,
+      "button": "÷",
+      "calculation": "6 ÷ 3 = 2",
+      "coords": [
+        318,
+        488
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0015"
+    },
+    {
+      "step_id": 16,
+      "button": "3",
+      "calculation": "6 ÷ 3 = 2",
+      "coords": [
+        258,
+        632
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0016"
+    },
+    {
+      "step_id": 17,
+      "button": "=",
+      "calculation": "6 ÷ 3 = 2",
+      "coords": [
+        386,
+        608
+      ],
+      "step_dir": "data/exploration/task_runs/run_a11y_001/step_0017"
+    }
+  ]
+}

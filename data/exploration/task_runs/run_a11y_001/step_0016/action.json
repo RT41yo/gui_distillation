@@ -1,0 +1,13 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    258,
+    632
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_label": "3",
+  "calculation": "6 ÷ 3 = 2"
+}
