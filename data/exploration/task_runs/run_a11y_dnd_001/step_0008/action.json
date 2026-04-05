@@ -1,0 +1,14 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    769,
+    346
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_name": "mode_selection_toggle",
+  "description": "Open mode selection popup",
+  "phase": "mode_switch"
+}

@@ -1,0 +1,14 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    942,
+    906
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_label": "=",
+  "calculation": "9 − 2 = 7",
+  "phase": "after_mode"
+}

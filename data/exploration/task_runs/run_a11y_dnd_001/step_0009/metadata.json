@@ -1,0 +1,38 @@
+{
+  "step_id": 9,
+  "timestamp": 1775430918.1392224,
+  "app": "gnome-calculator",
+  "display": ":0",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      769,
+      485
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_name": "mode_programming",
+    "description": "Select Programming calculator mode",
+    "phase": "mode_switch"
+  },
+  "hashes": {
+    "before": "74e20834f7571234d1384747e4fe8c89",
+    "after": "87af526de70a764f11b4b3c5ddb311f7"
+  },
+  "changed": true,
+  "dhashes": {
+    "before": "ce9e878786a6465c",
+    "after": "ce9e87a786866746",
+    "hamming_distance": 7
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

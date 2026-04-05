@@ -1,0 +1,38 @@
+{
+  "step_id": 13,
+  "timestamp": 1775430927.4687235,
+  "app": "gnome-calculator",
+  "display": ":0",
+  "screen": {
+    "width": 1280,
+    "height": 1024
+  },
+  "action": {
+    "action_type": "click",
+    "coordinates": [
+      942,
+      906
+    ],
+    "parameters": {
+      "button": "left",
+      "clicks": 1
+    },
+    "button_label": "=",
+    "calculation": "9 − 2 = 7",
+    "phase": "after_mode"
+  },
+  "hashes": {
+    "before": "b737acac03ccecf3d760e42ff4cc4d2a",
+    "after": "7d27f275ffe8f80bb5ad35a18d62be7f"
+  },
+  "changed": true,
+  "dhashes": {
+    "before": "ce9e87a786866746",
+    "after": "ce9e87a786866746",
+    "hamming_distance": 0
+  },
+  "timing": {
+    "action_delay": 0.5,
+    "screenshot_delay": 1.0
+  }
+}

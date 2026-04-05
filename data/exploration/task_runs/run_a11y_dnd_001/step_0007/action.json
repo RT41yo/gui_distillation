@@ -1,0 +1,14 @@
+{
+  "action_type": "click",
+  "coordinates": [
+    942,
+    754
+  ],
+  "parameters": {
+    "button": "left",
+    "clicks": 1
+  },
+  "button_label": "=",
+  "calculation": "2 + 3 = 5",
+  "phase": "after_move"
+}
