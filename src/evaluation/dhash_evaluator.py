@@ -8,10 +8,19 @@ import logging
 from pathlib import Path
 from typing import List, Optional
 
-from src.core.automation import GUIAutomation
 from src.domain.models import DHashRecord
 
 logger = logging.getLogger(__name__)
+
+
+def _hamming_distance(hash1: Optional[str], hash2: Optional[str]) -> Optional[int]:
+    """Compute Hamming distance between two dHash hex strings."""
+    if not hash1 or not hash2:
+        return None
+    try:
+        return bin(int(hash1, 16) ^ int(hash2, 16)).count("1")
+    except ValueError:
+        return None
 
 
 def compute_dhash_record(
@@ -25,13 +34,12 @@ def compute_dhash_record(
     before_hash: Optional[str] = None
     after_hash: Optional[str] = None
 
-    # GUIAutomation.compute_dhash / hamming_distance are static-compatible helpers
     if before_path and before_path.exists():
         before_hash = _dhash(before_path, dhash_size)
     if after_path and after_path.exists():
         after_hash = _dhash(after_path, dhash_size)
 
-    hamming = GUIAutomation.hamming_distance(before_hash, after_hash)
+    hamming = _hamming_distance(before_hash, after_hash)
 
     return DHashRecord(
         before_dhash=before_hash,
