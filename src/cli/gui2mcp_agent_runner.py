@@ -16,6 +16,9 @@ import logging
 import sys
 from pathlib import Path
 
+from dotenv import load_dotenv
+load_dotenv()
+
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
