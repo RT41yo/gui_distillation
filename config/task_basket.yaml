@@ -1,54 +1,132 @@
 tasks:
   calc:
+    # --- Multi-step arithmetic (Basic mode) ---
+
     - task_id: calc_001
-      instruction: "Compute 17 + 25"
-      category: arithmetic
-      evaluator: display_equals_42
+      instruction: >
+        Compute (17 + 25) × 3, then subtract 18 from the result.
+        Steps: enter 17, press +, enter 25, press =, press ×, enter 3,
+        press =, press −, enter 18, press =.
+        Expected display: 108.
+      category: multi_step_arithmetic
+      evaluator: display_equals_108
+      # 17+25=42, 42×3=126, 126−18=108
 
     - task_id: calc_002
-      instruction: "Compute 9 * 6"
-      category: arithmetic
-      evaluator: display_equals_54
+      instruction: >
+        Divide 144 by 12, then multiply the result by 7.
+        Steps: enter 144, press ÷, enter 12, press =, press ×,
+        enter 7, press =.
+        Expected display: 84.
+      category: multi_step_arithmetic
+      evaluator: display_equals_84
+      # 144÷12=12, 12×7=84
 
     - task_id: calc_003
-      instruction: "Compute 100 - 37"
-      category: arithmetic
-      evaluator: display_equals_63
+      instruction: >
+        Calculate 50% of 240, then add 37 to the result.
+        Steps: enter 240, press ×, enter 50, press %, press +,
+        enter 37, press =.
+        Expected display: 157.
+      category: percentage
+      evaluator: display_equals_157
+      # 240×50%=120, 120+37=157
 
     - task_id: calc_004
-      instruction: "Compute 81 / 9"
-      category: arithmetic
-      evaluator: display_equals_9
+      instruction: >
+        Compute the result of (8 × 8) − (3 × 7).
+        Steps: enter 8, press ×, enter 8, press =, note 64;
+        press −, enter 3, press ×, enter 7, press =.
+        Expected display: 43.
+      category: multi_step_arithmetic
+      evaluator: display_equals_43
+      # 8×8=64, 64−21=43
+
+    # --- Scientific mode ---
 
     - task_id: calc_005
-      instruction: "Compute 15 + 28 + 7"
-      category: arithmetic
-      evaluator: display_equals_50
+      instruction: >
+        Switch to Scientific mode (menu or mode button), then compute
+        2 raised to the power of 10 using the xʸ button.
+        Expected display: 1024.
+      category: scientific_mode
+      evaluator: display_equals_1024
+      # 2^10 = 1024
 
     - task_id: calc_006
-      instruction: "Compute 12 * 12"
-      category: arithmetic
-      evaluator: display_equals_144
+      instruction: >
+        Switch to Scientific mode, compute the square root of 225,
+        then add 15 to the result.
+        Steps: switch mode, enter 225, press √, press +, enter 15, press =.
+        Expected display: 30.
+      category: scientific_mode
+      evaluator: display_equals_30
+      # √225=15, 15+15=30
 
     - task_id: calc_007
-      instruction: "Compute 256 / 16"
-      category: arithmetic
-      evaluator: display_equals_16
+      instruction: >
+        Switch to Scientific mode and compute 5 factorial using the x! button.
+        Steps: switch mode, enter 5, press x!, press =.
+        Expected display: 120.
+      category: scientific_mode
+      evaluator: display_equals_120
+      # 5! = 120
 
     - task_id: calc_008
-      instruction: "Compute 99 - 45"
-      category: arithmetic
-      evaluator: display_equals_54
+      instruction: >
+        Switch to Scientific mode, compute log base 10 of 1000,
+        then multiply the result by 100.
+        Steps: switch mode, enter 1000, press log, press ×, enter 100, press =.
+        Expected display: 300.
+      category: scientific_mode
+      evaluator: display_equals_300
+      # log₁₀(1000)=3, 3×100=300
+
+    # --- Mode switch: Basic → Scientific ---
 
     - task_id: calc_009
-      instruction: "Compute 7 * 8"
-      category: arithmetic
-      evaluator: display_equals_56
+      instruction: >
+        In Basic mode compute 9 × 9, then switch to Scientific mode
+        and take the square root of the displayed result.
+        Steps: enter 9, press ×, enter 9, press =; switch to Scientific mode,
+        press √.
+        Expected display: 9.
+      category: mode_switch
+      evaluator: display_equals_9
+      # 9×9=81, √81=9
+
+    # --- Programming mode ---
 
     - task_id: calc_010
-      instruction: "Compute 1000 - 1"
-      category: arithmetic
-      evaluator: display_equals_999
+      instruction: >
+        Switch to Programming mode (menu or mode button).
+        Enter the decimal number 255, then switch the base display to
+        hexadecimal (HEX button) to see its hex representation.
+        Expected display: ff.
+      category: programming_mode
+      evaluator: display_equals_ff
+      # 255 decimal = ff hex
+
+    - task_id: calc_011
+      instruction: >
+        Switch to Programming mode, then compute the bitwise AND
+        of 60 and 15 using the AND button.
+        Steps: switch mode, enter 60, press AND, enter 15, press =.
+        Expected display: 12.
+      category: programming_mode
+      evaluator: display_equals_12
+      # 0b00111100 AND 0b00001111 = 0b00001100 = 12
+
+    - task_id: calc_012
+      instruction: >
+        Switch to Programming mode and compute the bitwise XOR
+        of 15 and 9, then add 1 to the result.
+        Steps: switch mode, enter 15, press XOR, enter 9, press =,
+        press +, enter 1, press =.
+        Expected display: 7.
+      category: programming_mode
+      evaluator: display_equals_7
+      # 15 XOR 9 = 1111 XOR 1001 = 0110 = 6, 6+1=7
 
   writer:
     - task_id: writer_001
