@@ -52,7 +52,7 @@
 
 * `calc`  
 * `writer`  
-* `chrome`
+* `gedit`
 
 Фактические app IDs и launcher info должны храниться в YAML-конфиге.
 
@@ -101,8 +101,7 @@ LLM:
 │   └── screenshot  
 │       └── gui2mcp\_agent  
 │           ├── all\_result.json  
-│           ├── args.json  
-│           ├── chrome \#директория приложения содержит папки с траекториями  
+│           ├── gedit \#директория приложения содержит папки с траекториями  
 │           ├── calc \#директория приложения содержит папки с траекториями  
 │           ├── libreoffice\_writer \#...  
 └── summary  
@@ -110,7 +109,7 @@ LLM:
 ```
 
 ```
-\#пример структуры и состава одной траектории для приложения chrome  
+\#пример структуры и состава одной траектории для приложения gedit  
 .  
 ├── result.txt  
 ├── step\_1\_20260122@144314466359.png  
@@ -277,15 +276,15 @@ apps:
     mode: a11y_first
     evaluator: writer_evaluator
 
-  - app_id: chrome
-    display_name: Google Chrome
-    launcher: google-chrome
-    a11y_app_name: chrome
+  - app_id: gedit
+    display_name: gedit Text Editor
+    launcher: gedit
+    a11y_app_name: gedit
     mode: a11y_first
-    evaluator: chrome_evaluator
+    evaluator: gedit_evaluator
 ```
 
-## **7.2. `config/basket_task.yaml`**
+## **7.2. `config/task_basket.yaml`**
 
 Хранит задачи для каждого приложения.  
 Для каждого приложения — минимум 10 задач.
@@ -311,11 +310,12 @@ tasks:
       category: text_edit
       evaluator: writer_saved_with_text
 
-  chrome:
-    - task_id: chrome_001
-      instruction: Enable Do Not Track in Chrome settings
-      category: browser_settings
-      evaluator: chrome_do_not_track_enabled
+  gedit:
+    - task_id: gedit_001
+      instruction: "Type 'Hello from gedit' into the document"
+      category: text_edit
+      evaluator: gedit_contains_text
+      expected_text: "Hello from gedit"
 ```
       
 ## **7.3. `config/llm/*.yaml`**
@@ -334,7 +334,7 @@ tasks:
 Пример:
 
 ```
-python -m src.gui2mcp_agent_runner \
+python -m src.cli.gui2mcp_agent_runner \
   --app calc \
   --task-mode  \
   --task-id calc_001 \
@@ -465,9 +465,9 @@ python -m src.gui2mcp_agent_runner \
 ```
 {
   "step_id": 7,
-  "task_id": "chrome_001",
-  "app_id": "chrome",
-  "task_text": "Enable Do Not Track in Chrome settings",
+  "task_id": "gedit_001",
+  "app_id": "gedit",
+  "task_text": "Type 'Hello from gedit' into the document",
   "timestamp": "20260122@144729190355",
   "screenshot_file": "step_0007.png",
   "a11y_tree_file": "step_0007.xml",
@@ -575,7 +575,7 @@ python -m src.gui2mcp_agent_runner \
 ## **12.1 Подготовка**
 
 1. Выбрать приложение из `app_basket.yaml`.  
-2. Выбрать задачу из `basket_task.yaml`.  
+2. Выбрать задачу из `task_basket.yaml`.  
 3. Запустить приложение.  
 4. Подготовить исходное состояние среды.
 
@@ -689,9 +689,9 @@ Evaluator:
 
 Проверка текста документа или признаков сохранения.
 
-**Chrome**
+**gedit**
 
-Проверка состояния нужного setting или итогового UI.
+Проверка текста документа через A11Y tree.
 
 ---
 
@@ -723,7 +723,6 @@ config/
     locator_gpt-5.4-mini.yaml
   prompts/
     planner_task_v1.md
-    planner_exploration_v1.md
     locator_vlm_v1.md
     другие при необходимости
 
@@ -751,8 +750,8 @@ src/
     base_evaluator.py
     calc_evaluator.py
     writer_evaluator.py
-    chrome_evaluator.py
-    IoU_evaluator.py
+    gedit_evaluator.py
+    iou_evaluator.py
     dhash_evaluator.py
 
   storage/
@@ -810,7 +809,7 @@ data/
 Нужно предусмотреть возможность тестировать отдельно:
 
 1. Загрузку `app_basket.yaml`  
-2. Загрузку `basket_task.yaml`  
+2. Загрузку `task_basket.yaml`  
 3. A11Y element lookup  
 4. Planner response parsing  
 5. EpisodeRecord construction  
@@ -856,8 +855,7 @@ data/
 │   └── screenshot
 │       └── gui2mcp_agent
 │           ├── all_result.json
-│           ├── args.json
-│           ├── chrome
+│           ├── gedit
 │           ├── calc
 │           ├── libreoffice_writer
 └── summary
@@ -872,8 +870,7 @@ data/
 │   └── screenshot
 │       └── gui2mcp_agent
 │           ├── all_result.json
-│           ├── args.json
-│           ├── chrome
+│           ├── gedit
 │           │   ├── 030eeff7-b492-4218-b312-701ec99ee0cc #траектория
 │           │   ├── 06fe7178-4491-4589-810f-2e2bc9502122 #траектория
 │           │   ├── 0d8b7de3-e8de-4d86-b9fd-dd2dce58a217 #траектория
@@ -893,7 +890,7 @@ data/
 
 
 ```
-#пример структуры и состава одной траектории для приложения chrome
+#пример структуры и состава одной траектории для приложения gedit
 .
 ├── result.txt
 ├── step\_1\_20260122@144314466359.png
@@ -914,14 +911,14 @@ data/
 #пример /gui2mcp/summary/results.json
 [
   {
-    "application": "chrome",
+    "application": "gedit",
     "task_id": "480bcfea-d68f-4aaa-a0a9-2589ef319381",
     "status": "success",
     "score": 0.0,
     "timestamp": "2026-01-22 11:57:41"
   },
   {
-    "application": "chrome",
+    "application": "gedit",
     "task_id": "2ad9387a-65d8-4e33-ad5b-7580065a27ca",
     "status": "success",
     "score": 1.0,
@@ -935,14 +932,14 @@ data/
     "timestamp": "2026-01-22 12:03:26"
   },
   {
-    "application": "chrome",
+    "application": "gedit",
     "task_id": "bb5e4c0d-f964-439c-97b6-bdb9747de3f4",
     "status": "success",
     "score": 1.0,
     "timestamp": "2026-01-22 12:03:28"
   },
   {
-    "application": "chrome",
+    "application": "gedit",
     "task_id": "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3",
     "status": "success",
     "score": 1.0,
@@ -960,14 +957,14 @@ data/
 
 
 ```
-#/gui2mcp/pyautogui/screenshot/gui2mcp\_agent/chrome/030eeff7-b492-4218-b312-701ec99ee0cc/result.txt
+#/gui2mcp/pyautogui/screenshot/gui2mcp\_agent/gedit/030eeff7-b492-4218-b312-701ec99ee0cc/result.txt
 
 1.0
 ```
 
 
 ```
-#/gui2mcp/pyautogui/screenshot/gui2mcp/chrome/030eeff7-b492-4218-b312-701ec99ee0cc/traj.jsonl
+#/gui2mcp/pyautogui/screenshot/gui2mcp/gedit/030eeff7-b492-4218-b312-701ec99ee0cc/traj.jsonl
 {"step_num": 1, "action_timestamp": "20260122@144314466359", "action": "import pyautogui\nimport time\n'''\nObservation:\n\n\nThought:\nTo enable the Do Not Track feature, I first need to access the settings menu in Chrome. There's an icon with three dots located in the upper right corner of the browser; clicking on it will open up more options.\n'''\n\npyautogui.click(1896.149, 89.011, button='left')", "response": "Thought: To enable the Do Not Track feature, I first need to access the settings menu in Chrome. There's an icon with three dots located in the upper right corner of the browser; clicking on it will open up more options.\nAction: click(start_box='(1908,90)')", "reward": 0, "done": false, "info": {}, "screenshot_file": "step_1_20260122@144314466359.png"}
 {"step_num": 2, "action_timestamp": "20260122@144333635652", "action": "import pyautogui\nimport time\n'''\nObservation:\n\n\nThought:\nThe menu has been expanded, and I've noticed there's an option labeled \"Settings.\" By clicking on it, I can access the settings page where I should be able to find the configurations related to privacy. Let me go ahead and select this option.\n'''\n\npyautogui.click(1593.043, 814.945, button='left')", "response": "Thought: The menu has been expanded, and I've noticed there's an option labeled \"Settings.\" By clicking on it, I can access the settings page where I should be able to find the configurations related to privacy. Let me go ahead and select this option.\nAction: click(start_box='(1603,824)')", "reward": 0, "done": false, "info": {}, "screenshot_file": "step_2_20260122@144333635652.png"}
 ```
