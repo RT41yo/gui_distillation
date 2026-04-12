@@ -1,0 +1,8 @@
+model: gpt-4o-mini
+temperature: 0.0
+max_output_tokens: 512
+image_detail: high
+timeout_s: 30
+retries: 3
+retry_delay_s: 2
+role: planner

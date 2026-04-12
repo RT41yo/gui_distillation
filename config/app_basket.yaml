@@ -1,0 +1,21 @@
+apps:
+  - app_id: calc
+    display_name: GNOME Calculator
+    launcher: gnome-calculator
+    a11y_app_name: gnome-calculator
+    mode: a11y_first
+    evaluator: calc_evaluator
+
+  - app_id: writer
+    display_name: LibreOffice Writer
+    launcher: libreoffice --writer
+    a11y_app_name: libreoffice
+    mode: a11y_first
+    evaluator: writer_evaluator
+
+  - app_id: gedit
+    display_name: gedit Text Editor
+    launcher: gedit
+    a11y_app_name: gedit
+    mode: a11y_first
+    evaluator: gedit_evaluator

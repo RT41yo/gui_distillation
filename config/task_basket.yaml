@@ -1,0 +1,173 @@
+tasks:
+  calc:
+    - task_id: calc_001
+      instruction: "Compute 17 + 25"
+      category: arithmetic
+      evaluator: display_equals_42
+
+    - task_id: calc_002
+      instruction: "Compute 9 * 6"
+      category: arithmetic
+      evaluator: display_equals_54
+
+    - task_id: calc_003
+      instruction: "Compute 100 - 37"
+      category: arithmetic
+      evaluator: display_equals_63
+
+    - task_id: calc_004
+      instruction: "Compute 81 / 9"
+      category: arithmetic
+      evaluator: display_equals_9
+
+    - task_id: calc_005
+      instruction: "Compute 15 + 28 + 7"
+      category: arithmetic
+      evaluator: display_equals_50
+
+    - task_id: calc_006
+      instruction: "Compute 12 * 12"
+      category: arithmetic
+      evaluator: display_equals_144
+
+    - task_id: calc_007
+      instruction: "Compute 256 / 16"
+      category: arithmetic
+      evaluator: display_equals_16
+
+    - task_id: calc_008
+      instruction: "Compute 99 - 45"
+      category: arithmetic
+      evaluator: display_equals_54
+
+    - task_id: calc_009
+      instruction: "Compute 7 * 8"
+      category: arithmetic
+      evaluator: display_equals_56
+
+    - task_id: calc_010
+      instruction: "Compute 1000 - 1"
+      category: arithmetic
+      evaluator: display_equals_999
+
+  writer:
+    - task_id: writer_001
+      instruction: "Type the phrase 'Hello World' into the document"
+      category: text_edit
+      evaluator: writer_contains_text
+      expected_text: "Hello World"
+
+    - task_id: writer_002
+      instruction: "Type 'The quick brown fox jumps over the lazy dog' into the document"
+      category: text_edit
+      evaluator: writer_contains_text
+      expected_text: "The quick brown fox jumps over the lazy dog"
+
+    - task_id: writer_003
+      instruction: "Type 'OpenAI GPT is a large language model.' into the document and save it"
+      category: text_edit_save
+      evaluator: writer_saved_with_text
+      expected_text: "OpenAI GPT is a large language model."
+
+    - task_id: writer_004
+      instruction: "Type 'Linux is an open-source operating system.' into the document"
+      category: text_edit
+      evaluator: writer_contains_text
+      expected_text: "Linux is an open-source operating system."
+
+    - task_id: writer_005
+      instruction: "Type 'GUI automation enables scalable data collection.' into the document and save it"
+      category: text_edit_save
+      evaluator: writer_saved_with_text
+      expected_text: "GUI automation enables scalable data collection."
+
+    - task_id: writer_006
+      instruction: "Type 'Accessibility tree provides structured UI element data.' into the document"
+      category: text_edit
+      evaluator: writer_contains_text
+      expected_text: "Accessibility tree provides structured UI element data."
+
+    - task_id: writer_007
+      instruction: "Type 'Machine learning requires large datasets.' and save the document"
+      category: text_edit_save
+      evaluator: writer_saved_with_text
+      expected_text: "Machine learning requires large datasets."
+
+    - task_id: writer_008
+      instruction: "Type 'Python is a popular programming language.' into the document"
+      category: text_edit
+      evaluator: writer_contains_text
+      expected_text: "Python is a popular programming language."
+
+    - task_id: writer_009
+      instruction: "Type 'Reinforcement learning uses rewards and penalties.' into the document"
+      category: text_edit
+      evaluator: writer_contains_text
+      expected_text: "Reinforcement learning uses rewards and penalties."
+
+    - task_id: writer_010
+      instruction: "Type 'Data distillation compresses knowledge from large models.' and save"
+      category: text_edit_save
+      evaluator: writer_saved_with_text
+      expected_text: "Data distillation compresses knowledge from large models."
+
+  gedit:
+    - task_id: gedit_001
+      instruction: "Type 'Hello from gedit' into the document"
+      category: text_edit
+      evaluator: gedit_contains_text
+      expected_text: "Hello from gedit"
+
+    - task_id: gedit_002
+      instruction: "Type 'The quick brown fox' into the document and save it"
+      category: text_edit_save
+      evaluator: gedit_saved_with_text
+      expected_text: "The quick brown fox"
+
+    - task_id: gedit_003
+      instruction: "Type 'Gedit is a GNOME text editor.' into the document"
+      category: text_edit
+      evaluator: gedit_contains_text
+      expected_text: "Gedit is a GNOME text editor."
+
+    - task_id: gedit_004
+      instruction: "Type 'A11Y tree enables GUI automation.' and save the document"
+      category: text_edit_save
+      evaluator: gedit_saved_with_text
+      expected_text: "A11Y tree enables GUI automation."
+
+    - task_id: gedit_005
+      instruction: "Type 'Open source software is freely available.' into the document"
+      category: text_edit
+      evaluator: gedit_contains_text
+      expected_text: "Open source software is freely available."
+
+    - task_id: gedit_006
+      instruction: "Type 'GNOME desktop environment runs on Linux.' and save"
+      category: text_edit_save
+      evaluator: gedit_saved_with_text
+      expected_text: "GNOME desktop environment runs on Linux."
+
+    - task_id: gedit_007
+      instruction: "Type 'Trajectory data is used for imitation learning.' into the document"
+      category: text_edit
+      evaluator: gedit_contains_text
+      expected_text: "Trajectory data is used for imitation learning."
+
+    - task_id: gedit_008
+      instruction: "Type 'Virtual machines allow safe GUI experimentation.' and save"
+      category: text_edit_save
+      evaluator: gedit_saved_with_text
+      expected_text: "Virtual machines allow safe GUI experimentation."
+
+    - task_id: gedit_009
+      instruction: "Type 'Screenshots capture the visual state of an application.' into the document"
+      category: text_edit
+      evaluator: gedit_contains_text
+      expected_text: "Screenshots capture the visual state of an application."
+
+    - task_id: gedit_010
+      instruction: "Type 'AT-SPI2 is the accessibility framework for Linux.' and save"
+      category: text_edit_save
+      evaluator: gedit_saved_with_text
+      expected_text: "AT-SPI2 is the accessibility framework for Linux."
