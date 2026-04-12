@@ -38,6 +38,9 @@ class TakeScreenshotTool:
 class FindElementVLMInput:
     screenshot_path: Path
     query: str
+    screen_width: int = 1280
+    screen_height: int = 1024
+    app_display_name: str = ""
 
 
 class FindElementVLMTool:
@@ -51,4 +54,7 @@ class FindElementVLMTool:
             query=inp.query,
             xml_path=None,
             screenshot_path=inp.screenshot_path,
+            screen_width=inp.screen_width,
+            screen_height=inp.screen_height,
+            app_display_name=inp.app_display_name,
         )

@@ -32,6 +32,8 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output", default="data/trajectory_runs", help="Internal artifacts output dir")
     parser.add_argument("--dart-output", default="data/exported_dart", help="DART export root dir")
     parser.add_argument("--display", default=":99", help="X11 display (e.g. :99)")
+    parser.add_argument("--screen-width", type=int, default=1280, help="Screen width in pixels")
+    parser.add_argument("--screen-height", type=int, default=1024, help="Screen height in pixels")
     parser.add_argument("--settings", default="config/settings.yaml", help="Path to settings.yaml")
     parser.add_argument("--llm-config", default=None, help="Override planner LLM config path")
     parser.add_argument(
@@ -74,6 +76,8 @@ def main(argv=None) -> int:
         task_basket=args.task_basket,
         max_steps=args.max_steps,
         startup_wait=args.startup_wait,
+        screen_width=args.screen_width,
+        screen_height=args.screen_height,
     )
 
     episode = agent.run_episode(app_id=args.app, task_id=args.task_id)

@@ -21,22 +21,33 @@ _DISPLAY_ROLES = {"label", "text", "entry"}
 
 
 def _read_display_from_xml(xml_path: Path) -> Optional[str]:
-    """Extract the calculator display value from an A11Y XML snapshot."""
+    """Extract the calculator display value from an A11Y XML snapshot.
+
+    GNOME Calculator keeps a history of results in the A11Y tree as labels,
+    so we collect ALL pure numeric labels (no operators, no unit suffixes)
+    and return the LAST one — which corresponds to the most recent result.
+    Hex values (e.g. 'ff') and plain integers/floats are both accepted.
+    """
     if not xml_path.exists():
         return None
     try:
         tree = ET.parse(xml_path)
+        candidates: list[str] = []
         for elem in tree.getroot().iter("element"):
             role = (elem.get("role") or "").lower()
             name = (elem.get("name") or "").strip()
-            if role in _DISPLAY_ROLES and name:
-                # Calculator display is typically the first non-empty label
-                # whose name looks like a number or expression result
-                try:
-                    float(name.replace(",", "."))
-                    return name
-                except ValueError:
-                    continue
+            if role not in _DISPLAY_ROLES or not name:
+                continue
+            # Accept pure numeric (int/float) or pure hex string
+            try:
+                float(name.replace(",", "."))
+                candidates.append(name)
+                continue
+            except ValueError:
+                pass
+            if all(c in "0123456789abcdefABCDEF" for c in name) and name:
+                candidates.append(name)
+        return candidates[-1] if candidates else None
     except Exception as exc:
         logger.warning("Failed to parse A11Y XML %s: %s", xml_path, exc)
     return None

@@ -78,11 +78,25 @@ class VLMLocator(BaseLocator):
         self._client = client
         self._prompt_template = prompt_path.read_text(encoding="utf-8") if prompt_path.exists() else ""
 
-    def locate(self, query: str, xml_path: Optional[Path], screenshot_path: Optional[Path]) -> LocatorResult:
+    def locate(
+        self,
+        query: str,
+        xml_path: Optional[Path],
+        screenshot_path: Optional[Path],
+        screen_width: int = 1280,
+        screen_height: int = 1024,
+        app_display_name: str = "",
+    ) -> LocatorResult:
         if screenshot_path is None or not screenshot_path.exists():
             return LocatorResult(source="vlm", found=False)
 
-        prompt = self._prompt_template.replace("{target_query}", query)
+        prompt = (
+            self._prompt_template
+            .replace("{target_query}", query)
+            .replace("{screen_width}", str(screen_width))
+            .replace("{screen_height}", str(screen_height))
+            .replace("{app_display_name}", app_display_name or query)
+        )
 
         try:
             raw_resp = self._client.infer(

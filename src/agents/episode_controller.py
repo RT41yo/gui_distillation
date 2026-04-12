@@ -57,6 +57,8 @@ class EpisodeController:
         executor: ActionExecutor,
         artifact_store: ArtifactStore,
         max_steps: int = 20,
+        screen_width: int = 1280,
+        screen_height: int = 1024,
     ) -> None:
         self._app = app
         self._task = task
@@ -68,6 +70,8 @@ class EpisodeController:
         self._executor = executor
         self._store = artifact_store
         self._max_steps = max_steps
+        self._screen_width = screen_width
+        self._screen_height = screen_height
 
     def run(self) -> EpisodeRecord:
         """Execute the episode step loop and return the raw EpisodeRecord."""
@@ -121,6 +125,9 @@ class EpisodeController:
                 FindElementVLMInput(
                     screenshot_path=screenshot_path,
                     query=planner_resp.target_query,
+                    screen_width=self._screen_width,
+                    screen_height=self._screen_height,
+                    app_display_name=self._app.display_name,
                 )
             )
             tool_calls.append("find_element_vlm")
