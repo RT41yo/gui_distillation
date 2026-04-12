@@ -205,3 +205,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# gui2mcp: generated data and reference datasets
+assets/
+results/
+data/
