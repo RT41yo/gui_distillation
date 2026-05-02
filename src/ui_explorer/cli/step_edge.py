@@ -14,6 +14,8 @@ from ui_explorer.execution.executor import ActionExecutor
 from ui_explorer.execution.wait import A11YWaiter
 from ui_explorer.graph.scheduler import BFSScheduler, SchedulerPolicy
 from ui_explorer.graph.store import GraphStore
+from ui_explorer.execution.navigator import Navigator
+from ui_explorer.graph.models import EdgeStatus
 
 
 def main() -> int:
@@ -51,28 +53,69 @@ def main() -> int:
     tmp_dir.mkdir(parents=True, exist_ok=True)
 
     waiter = A11YWaiter(a11y_name=app_cfg.a11y_name)
-    before = waiter.capture_once(tmp_dir / "before.xml")
 
-    if before.signature.state_id != edge.from_state:
-        edge.attempts += 1
-        edge.status = edge.status.FAILED_NAVIGATION
-        edge.reason = (
-            f"live state mismatch: expected {edge.from_state}, "
-            f"got {before.signature.state_id}"
+    # Step 12 MVP: if the selected edge starts from root, reset to root first.
+    # For non-root edges replay-path navigation will be added later.
+    if edge.from_state == graph.root_state_id:
+        nav_result, nav_state = Navigator(
+            a11y_name=app_cfg.a11y_name,
+            display=args.display,
+        ).reset_to_root(
+            root_state_id=graph.root_state_id,
+            output_dir=tmp_dir / "reset",
         )
-        store.save(graph)
-        print(json.dumps(
-            {
-                "ok": False,
-                "error": "current live state does not match edge.from_state",
-                "expected_from_state": edge.from_state,
-                "actual_state": before.signature.state_id,
-                "edge_status": edge.status.value,
-            },
-            indent=2,
-            ensure_ascii=False,
-        ))
-        return 2
+
+        if not nav_result.ok or nav_state is None:
+            edge.attempts += 1
+            edge.status = EdgeStatus.FAILED_NAVIGATION
+            edge.reason = nav_result.reason
+            edge.observed = {"navigation": nav_result.to_dict()}
+            store.save(graph)
+            print(json.dumps(
+                {
+                    "ok": False,
+                    "error": "reset_to_root failed",
+                    "navigation": nav_result.to_dict(),
+                    "edge_status": edge.status.value,
+                },
+                indent=2,
+                ensure_ascii=False,
+            ))
+            return 2
+
+        before = nav_state
+    else:
+        before = waiter.capture_once(tmp_dir / "before.xml")
+
+        if before.signature.state_id != edge.from_state:
+            edge.attempts += 1
+            edge.status = EdgeStatus.FAILED_NAVIGATION
+            edge.reason = (
+                f"live state mismatch: expected {edge.from_state}, "
+                f"got {before.signature.state_id}"
+            )
+            edge.observed = {
+                "navigation": {
+                    "ok": False,
+                    "reason": "replay path navigation not implemented yet",
+                    "expected_from_state": edge.from_state,
+                    "actual_state": before.signature.state_id,
+                }
+            }
+            store.save(graph)
+            print(json.dumps(
+                {
+                    "ok": False,
+                    "error": "current live state does not match edge.from_state",
+                    "expected_from_state": edge.from_state,
+                    "actual_state": before.signature.state_id,
+                    "edge_status": edge.status.value,
+                    "hint": "Replay path navigation for non-root edges will be added in the next step.",
+                },
+                indent=2,
+                ensure_ascii=False,
+            ))
+            return 2
 
     execution = ActionExecutor(display=args.display).click_bbox(edge.action["bbox"])
     after = waiter.capture_stable(tmp_dir, "after")

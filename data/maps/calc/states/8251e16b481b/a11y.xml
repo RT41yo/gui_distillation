@@ -1,4 +1,4 @@
-<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1777756382.2924776">
+<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1777757318.7891328">
   <element role="application" name="gnome-calculator" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Calculator" description="" x="416" y="109" width="690" height="682" states="sensitive,showing,visible,enabled">
       <element role="unknown" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>

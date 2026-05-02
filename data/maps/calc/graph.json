@@ -30,35 +30,6 @@
       "visible_node_count": 150,
       "depth": 0,
       "label": "Calculator"
-    },
-    "c5cd52807589": {
-      "state_id": "c5cd52807589",
-      "status": "confirmed",
-      "xml_path": "data/maps/calc/states/c5cd52807589/a11y.xml",
-      "active_root": {
-        "kind": "menu",
-        "reason": "visible menu is active overlay",
-        "role": "menu",
-        "name": "",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/gnome-calculator",
-          "window"
-        ]
-      },
-      "macro_hash": "c5cd52807589b03f3e75e52d9c5d3f5237a97c2470c1e6cd9677c809024ebe28",
-      "content_hash": "c4d8eb4bf52995a831de1ca2c9f5cdb332026f673956843eec0425b34440809b",
-      "macro_action_count": 4,
-      "visible_node_count": 5,
-      "depth": 1,
-      "label": "menu"
     }
   },
   "edges": {
@@ -172,18 +143,12 @@
         ],
         "depth": 9
       },
-      "status": "confirmed",
-      "to_state": "c5cd52807589",
+      "status": "pending",
+      "to_state": null,
       "priority": 10,
-      "attempts": 1,
-      "reason": "macro signature changed",
-      "observed": {
-        "kind": "new_macro_state",
-        "to_state": "c5cd52807589",
-        "macro_changed": true,
-        "content_changed": true,
-        "reason": "macro signature changed"
-      },
+      "attempts": 0,
+      "reason": "combo box commonly opens or switches UI context",
+      "observed": null,
       "created_order": 2
     },
     "8251e16b481b:85b7a6ed2413939d": {
@@ -486,157 +451,11 @@
       "reason": "toggle button may reveal, select, or switch UI structure",
       "observed": null,
       "created_order": 9
-    },
-    "c5cd52807589:50f3797c388d212e": {
-      "edge_id": "c5cd52807589:50f3797c388d212e",
-      "from_state": "c5cd52807589",
-      "action_key": "50f3797c388d212e",
-      "action": {
-        "action_key": "50f3797c388d212e",
-        "role": "menu item",
-        "name": "Binary",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          439,
-          307,
-          126,
-          29
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "window",
-          "menu"
-        ],
-        "depth": 3
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
-      "created_order": 10
-    },
-    "c5cd52807589:783cf74ec3545413": {
-      "edge_id": "c5cd52807589:783cf74ec3545413",
-      "from_state": "c5cd52807589",
-      "action_key": "783cf74ec3545413",
-      "action": {
-        "action_key": "783cf74ec3545413",
-        "role": "menu item",
-        "name": "Octal",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          439,
-          336,
-          126,
-          29
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "window",
-          "menu"
-        ],
-        "depth": 3
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
-      "created_order": 11
-    },
-    "c5cd52807589:1514ab9b8d1ef468": {
-      "edge_id": "c5cd52807589:1514ab9b8d1ef468",
-      "from_state": "c5cd52807589",
-      "action_key": "1514ab9b8d1ef468",
-      "action": {
-        "action_key": "1514ab9b8d1ef468",
-        "role": "menu item",
-        "name": "Decimal",
-        "description": "",
-        "states": [
-          "selected",
-          "focused",
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          439,
-          365,
-          126,
-          29
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "window",
-          "menu"
-        ],
-        "depth": 3
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
-      "created_order": 12
-    },
-    "c5cd52807589:1bfc03d6424d5faa": {
-      "edge_id": "c5cd52807589:1bfc03d6424d5faa",
-      "from_state": "c5cd52807589",
-      "action_key": "1bfc03d6424d5faa",
-      "action": {
-        "action_key": "1bfc03d6424d5faa",
-        "role": "menu item",
-        "name": "Hexadecimal",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          439,
-          394,
-          126,
-          29
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "window",
-          "menu"
-        ],
-        "depth": 3
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
-      "created_order": 13
     }
   },
   "completion": {
     "status": "partial",
-    "pending_edges": 13,
+    "pending_edges": 10,
     "reason": "pending_edges_exist"
   }
 }

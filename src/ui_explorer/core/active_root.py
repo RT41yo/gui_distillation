@@ -76,6 +76,37 @@ def _visible_menu_roots(root: A11YNode) -> list[A11YNode]:
     return result
 
 
+def _visible_popover_roots(root: A11YNode) -> list[A11YNode]:
+    """
+    Return visible popover-like containers.
+
+    Some GTK popovers are not exposed as role=menu/window. They appear as
+    visible panels containing radio/menu/check items outside the main frame.
+    """
+    main_frame = _first_visible_frame(root)
+    result: list[A11YNode] = []
+
+    for node in walk(root):
+        if not node.is_visible:
+            continue
+        if node is main_frame:
+            continue
+
+        descendants = list(walk(node))
+        visible_controls = [
+            d for d in descendants
+            if d.is_visible and d.role in {"radio button", "menu item", "check box"}
+        ]
+
+        if len(visible_controls) >= 2:
+            # Avoid selecting the whole main frame/panel by requiring a reasonably
+            # small overlay-like box.
+            if node.bbox.width <= 400 and node.bbox.height <= 400:
+                result.append(node)
+
+    return result
+
+
 def resolve_active_root(root: A11YNode) -> ActiveRoot:
     """
     Resolve the active interaction root.
@@ -99,6 +130,11 @@ def resolve_active_root(root: A11YNode) -> ActiveRoot:
         if node.role == "menu":
             return ActiveRoot(node=node, kind="menu", reason="visible menu is active overlay")
         return ActiveRoot(node=node, kind="window_overlay", reason="visible menu-like window is active overlay")
+
+    popovers = _visible_popover_roots(root)
+    if popovers:
+        node = popovers[-1]
+        return ActiveRoot(node=node, kind="window_overlay", reason="visible popover-like control group is active overlay")
 
     main_frame = _first_visible_frame(root)
     if main_frame is not None:
