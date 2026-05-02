@@ -117,7 +117,10 @@ def main() -> int:
             ))
             return 2
 
-    execution = ActionExecutor(display=args.display).click_bbox(edge.action["bbox"])
+    execution = ActionExecutor(
+        display=args.display,
+        window_name=app_cfg.display_name,
+    ).click_bbox(edge.action["bbox"])
     after = waiter.capture_stable(tmp_dir, "after")
 
     transition = DiffClassifier().classify(

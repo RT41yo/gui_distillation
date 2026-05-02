@@ -1,4 +1,4 @@
-<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1777757152.6455605">
+<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1777757770.4601455">
   <element role="application" name="gnome-calculator" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Calculator" description="" x="416" y="109" width="690" height="682" states="sensitive,showing,visible,enabled">
       <element role="unknown" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
@@ -222,11 +222,11 @@
                 <element role="filler" name="" description="" x="427" y="354" width="668" height="432" states="sensitive,showing,visible,enabled">
                   <element role="filler" name="" description="" x="427" y="354" width="668" height="40" states="sensitive,showing,visible,enabled">
                     <element role="combo box" name="Decimal" description="" x="439" y="360" width="126" height="34" states="sensitive,showing,visible,enabled">
-                      <element role="menu" name="" description="" x="-2147483648" y="-2147483648" width="126" height="124" states="sensitive,enabled">
-                        <element role="menu item" name="Binary" description="" x="-2147483648" y="-2147483648" width="126" height="29" states="sensitive,visible,enabled"/>
-                        <element role="menu item" name="Octal" description="" x="-2147483648" y="-2147483648" width="126" height="29" states="sensitive,visible,enabled"/>
-                        <element role="menu item" name="Decimal" description="" x="-2147483648" y="-2147483648" width="126" height="29" states="sensitive,visible,enabled"/>
-                        <element role="menu item" name="Hexadecimal" description="" x="-2147483648" y="-2147483648" width="126" height="29" states="sensitive,visible,enabled"/>
+                      <element role="menu" name="" description="" x="439" y="303" width="126" height="124" states="sensitive,showing,visible,enabled">
+                        <element role="menu item" name="Binary" description="" x="439" y="307" width="126" height="29" states="sensitive,showing,visible,enabled"/>
+                        <element role="menu item" name="Octal" description="" x="439" y="336" width="126" height="29" states="sensitive,showing,visible,enabled"/>
+                        <element role="menu item" name="Decimal" description="" x="439" y="365" width="126" height="29" states="selected,focused,sensitive,showing,visible,enabled"/>
+                        <element role="menu item" name="Hexadecimal" description="" x="439" y="394" width="126" height="29" states="sensitive,showing,visible,enabled"/>
                       </element>
                     </element>
                     <element role="panel" name="" description="" x="565" y="360" width="518" height="34" states="sensitive,showing,visible,enabled">
@@ -408,7 +408,7 @@
                   <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 </element>
                 <element role="scroll pane" name="" description="" x="440" y="291" width="642" height="41" states="sensitive,showing,visible,enabled">
-                  <element role="editbar" name="" description="" x="440" y="291" width="642" height="41" states="focused,sensitive,showing,visible,enabled"/>
+                  <element role="editbar" name="" description="" x="440" y="291" width="642" height="41" states="sensitive,showing,visible,enabled"/>
                   <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 </element>
@@ -762,6 +762,14 @@
             <element role="push button" name="" description="Store value into existing or new variable" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
           </element>
         </element>
+      </element>
+    </element>
+    <element role="window" name="" description="" x="439" y="303" width="126" height="124" states="sensitive,showing,visible,enabled">
+      <element role="menu" name="" description="" x="439" y="303" width="126" height="124" states="sensitive,showing,visible,enabled">
+        <element role="menu item" name="Binary" description="" x="439" y="307" width="126" height="29" states="sensitive,showing,visible,enabled"/>
+        <element role="menu item" name="Octal" description="" x="439" y="336" width="126" height="29" states="sensitive,showing,visible,enabled"/>
+        <element role="menu item" name="Decimal" description="" x="439" y="365" width="126" height="29" states="selected,focused,sensitive,showing,visible,enabled"/>
+        <element role="menu item" name="Hexadecimal" description="" x="439" y="394" width="126" height="29" states="sensitive,showing,visible,enabled"/>
       </element>
     </element>
   </element>

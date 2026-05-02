@@ -1,4 +1,4 @@
-<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1777757772.1013346">
+<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1777757770.9600792">
   <element role="application" name="gnome-calculator" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Calculator" description="" x="416" y="109" width="690" height="682" states="sensitive,showing,visible,enabled">
       <element role="unknown" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
@@ -6,7 +6,7 @@
         <element role="filler" name="" description="" x="421" y="114" width="680" height="672" states="sensitive,showing,visible,enabled">
           <element role="panel" name="" description="" x="421" y="114" width="680" height="46" states="sensitive,showing,visible,enabled">
             <element role="push button" name="Undo" description="Undo [Ctrl+Z]" x="426" y="113" width="68" height="46" states="sensitive,showing,visible,enabled"/>
-            <element role="toggle button" name="Mode selection" description="" x="685" y="113" width="151" height="46" states="checked,sensitive,showing,visible,enabled"/>
+            <element role="toggle button" name="Mode selection" description="" x="685" y="113" width="151" height="46" states="sensitive,showing,visible,enabled"/>
             <element role="toggle button" name="Primary menu" description="" x="933" y="113" width="36" height="46" states="sensitive,showing,visible,enabled"/>
           </element>
           <element role="panel" name="" description="" x="421" y="160" width="680" height="626" states="sensitive,showing,visible,enabled">
@@ -408,7 +408,7 @@
                   <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 </element>
                 <element role="scroll pane" name="" description="" x="440" y="291" width="642" height="41" states="sensitive,showing,visible,enabled">
-                  <element role="editbar" name="" description="" x="440" y="291" width="642" height="41" states="sensitive,showing,visible,enabled"/>
+                  <element role="editbar" name="" description="" x="440" y="291" width="642" height="41" states="focused,sensitive,showing,visible,enabled"/>
                   <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 </element>
@@ -635,17 +635,17 @@
           </element>
         </element>
       </element>
-      <element role="panel" name="" description="" x="672" y="159" width="176" height="180" states="sensitive,showing,visible,enabled">
-        <element role="panel" name="" description="" x="687" y="174" width="146" height="150" states="sensitive,showing,visible,enabled">
-          <element role="filler" name="" description="" x="697" y="184" width="126" height="130" states="sensitive,showing,visible,enabled">
-            <element role="filler" name="" description="" x="697" y="184" width="126" height="130" states="sensitive,showing,visible,enabled">
-              <element role="filler" name="" description="" x="697" y="184" width="126" height="130" states="sensitive,showing,visible,enabled">
-                <element role="filler" name="" description="" x="697" y="184" width="126" height="130" states="sensitive,showing,visible,enabled">
-                  <element role="radio button" name="Basic" description="" x="697" y="184" width="126" height="26" states="focused,sensitive,showing,visible,enabled"/>
-                  <element role="radio button" name="Advanced" description="" x="697" y="210" width="126" height="26" states="sensitive,showing,visible,enabled"/>
-                  <element role="radio button" name="Financial" description="" x="697" y="236" width="126" height="26" states="sensitive,showing,visible,enabled"/>
-                  <element role="radio button" name="Programming" description="" x="697" y="262" width="126" height="26" states="sensitive,showing,visible,enabled"/>
-                  <element role="radio button" name="Keyboard" description="" x="697" y="288" width="126" height="26" states="sensitive,showing,visible,enabled"/>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="radio button" name="Basic" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Advanced" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Financial" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Programming" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Keyboard" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 </element>
               </element>
             </element>

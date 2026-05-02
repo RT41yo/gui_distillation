@@ -30,6 +30,69 @@
       "visible_node_count": 150,
       "depth": 0,
       "label": "Calculator"
+    },
+    "9b23b16931c9": {
+      "state_id": "9b23b16931c9",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/9b23b16931c9/a11y.xml",
+      "active_root": {
+        "kind": "window_overlay",
+        "reason": "visible popover-like control group is active overlay",
+        "role": "filler",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ]
+      },
+      "macro_hash": "9b23b16931c96812f4b9c99811cb22168c2b44b05faafd17f2a63d51a7276ef7",
+      "content_hash": "b2a143d59fe5d55c611a86caf733f362d69e7d250851cf3ebb3e626a7963f052",
+      "macro_action_count": 5,
+      "visible_node_count": 6,
+      "depth": 1,
+      "label": "filler"
+    },
+    "c5cd52807589": {
+      "state_id": "c5cd52807589",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/c5cd52807589/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator",
+          "window"
+        ]
+      },
+      "macro_hash": "c5cd52807589b03f3e75e52d9c5d3f5237a97c2470c1e6cd9677c809024ebe28",
+      "content_hash": "c4d8eb4bf52995a831de1ca2c9f5cdb332026f673956843eec0425b34440809b",
+      "macro_action_count": 4,
+      "visible_node_count": 5,
+      "depth": 1,
+      "label": "menu"
     }
   },
   "edges": {
@@ -63,12 +126,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "9b23b16931c9",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "9b23b16931c9",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 0
     },
     "8251e16b481b:52737df6e75fb08f": {
@@ -143,12 +212,18 @@
         ],
         "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "c5cd52807589",
       "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "c5cd52807589",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 2
     },
     "8251e16b481b:85b7a6ed2413939d": {
@@ -451,11 +526,363 @@
       "reason": "toggle button may reveal, select, or switch UI structure",
       "observed": null,
       "created_order": 9
+    },
+    "c5cd52807589:50f3797c388d212e": {
+      "edge_id": "c5cd52807589:50f3797c388d212e",
+      "from_state": "c5cd52807589",
+      "action_key": "50f3797c388d212e",
+      "action": {
+        "action_key": "50f3797c388d212e",
+        "role": "menu item",
+        "name": "Binary",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          439,
+          307,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 10
+    },
+    "c5cd52807589:783cf74ec3545413": {
+      "edge_id": "c5cd52807589:783cf74ec3545413",
+      "from_state": "c5cd52807589",
+      "action_key": "783cf74ec3545413",
+      "action": {
+        "action_key": "783cf74ec3545413",
+        "role": "menu item",
+        "name": "Octal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          439,
+          336,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 11
+    },
+    "c5cd52807589:1514ab9b8d1ef468": {
+      "edge_id": "c5cd52807589:1514ab9b8d1ef468",
+      "from_state": "c5cd52807589",
+      "action_key": "1514ab9b8d1ef468",
+      "action": {
+        "action_key": "1514ab9b8d1ef468",
+        "role": "menu item",
+        "name": "Decimal",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          439,
+          365,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 12
+    },
+    "c5cd52807589:1bfc03d6424d5faa": {
+      "edge_id": "c5cd52807589:1bfc03d6424d5faa",
+      "from_state": "c5cd52807589",
+      "action_key": "1bfc03d6424d5faa",
+      "action": {
+        "action_key": "1bfc03d6424d5faa",
+        "role": "menu item",
+        "name": "Hexadecimal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          439,
+          394,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 13
+    },
+    "9b23b16931c9:be3b04619eb96a40": {
+      "edge_id": "9b23b16931c9:be3b04619eb96a40",
+      "from_state": "9b23b16931c9",
+      "action_key": "be3b04619eb96a40",
+      "action": {
+        "action_key": "be3b04619eb96a40",
+        "role": "radio button",
+        "name": "Basic",
+        "description": "",
+        "states": [
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          697,
+          184,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 14
+    },
+    "9b23b16931c9:8b0a6eda8b871fb0": {
+      "edge_id": "9b23b16931c9:8b0a6eda8b871fb0",
+      "from_state": "9b23b16931c9",
+      "action_key": "8b0a6eda8b871fb0",
+      "action": {
+        "action_key": "8b0a6eda8b871fb0",
+        "role": "radio button",
+        "name": "Advanced",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          697,
+          210,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 15
+    },
+    "9b23b16931c9:3e2814c75df40797": {
+      "edge_id": "9b23b16931c9:3e2814c75df40797",
+      "from_state": "9b23b16931c9",
+      "action_key": "3e2814c75df40797",
+      "action": {
+        "action_key": "3e2814c75df40797",
+        "role": "radio button",
+        "name": "Financial",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          697,
+          236,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 16
+    },
+    "9b23b16931c9:ab8f40498c947f24": {
+      "edge_id": "9b23b16931c9:ab8f40498c947f24",
+      "from_state": "9b23b16931c9",
+      "action_key": "ab8f40498c947f24",
+      "action": {
+        "action_key": "ab8f40498c947f24",
+        "role": "radio button",
+        "name": "Programming",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          697,
+          262,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 17
+    },
+    "9b23b16931c9:db23eae11d92c65a": {
+      "edge_id": "9b23b16931c9:db23eae11d92c65a",
+      "from_state": "9b23b16931c9",
+      "action_key": "db23eae11d92c65a",
+      "action": {
+        "action_key": "db23eae11d92c65a",
+        "role": "radio button",
+        "name": "Keyboard",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          697,
+          288,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 18
     }
   },
   "completion": {
     "status": "partial",
-    "pending_edges": 10,
+    "pending_edges": 17,
     "reason": "pending_edges_exist"
   }
 }
