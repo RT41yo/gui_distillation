@@ -17,6 +17,8 @@ from ui_explorer.graph.models import (
     edge_id,
     state_dir,
 )
+from ui_explorer.core.diff import TransitionKind, TransitionResult
+from ui_explorer.core.active_root import resolve_active_root
 
 
 class GraphStore:
@@ -62,7 +64,8 @@ class GraphStore:
         state_id: str,
         root: A11YNode,
     ) -> int:
-        actions = extract_actions(root)
+        active = resolve_active_root(root)
+        actions = extract_actions(active.node)
         classified = classify_actions(actions)
 
         created = 0
@@ -90,6 +93,71 @@ class GraphStore:
             created += 1
 
         return created
+
+    def add_confirmed_state_from_xml(
+        self,
+        graph: ExplorationGraph,
+        xml_path: Path,
+        depth: int,
+    ) -> StateNode:
+        root = self._parse(xml_path)
+        sig = compute_state_signature(root)
+
+        dst_dir = state_dir(self.base_dir, graph.app_id, sig.state_id)
+        dst_dir.mkdir(parents=True, exist_ok=True)
+        dst_xml = dst_dir / "a11y.xml"
+
+        if not dst_xml.exists():
+            shutil.copy2(xml_path, dst_xml)
+
+        node = self._node_from_signature(sig=sig, xml_path=dst_xml, depth=depth)
+        graph.nodes.setdefault(node.state_id, node)
+
+        self.seed_pending_edges(graph=graph, state_id=node.state_id, root=root)
+        return node
+
+    def apply_transition(
+        self,
+        graph: ExplorationGraph,
+        edge_id_value: str,
+        after_xml_path: Path,
+        transition: TransitionResult,
+    ) -> None:
+        edge = graph.edges[edge_id_value]
+        edge.attempts += 1
+        edge.observed = transition.to_dict()
+
+        if transition.kind == TransitionKind.FAILED_CLICK:
+            edge.status = EdgeStatus.FAILED_CLICK
+            edge.to_state = None
+            edge.reason = transition.reason
+            return
+
+        if transition.kind == TransitionKind.SAME_STATE:
+            edge.status = EdgeStatus.SAME_STATE
+            edge.to_state = edge.from_state
+            edge.reason = transition.reason
+            return
+
+        if transition.kind == TransitionKind.CONTENT_CHANGED:
+            edge.status = EdgeStatus.CONTENT_CHANGED
+            edge.to_state = edge.from_state
+            edge.reason = transition.reason
+            return
+
+        if transition.kind == TransitionKind.NEW_MACRO_STATE:
+            from_node = graph.nodes[edge.from_state]
+            node = self.add_confirmed_state_from_xml(
+                graph=graph,
+                xml_path=after_xml_path,
+                depth=from_node.depth + 1,
+            )
+            edge.status = EdgeStatus.CONFIRMED
+            edge.to_state = node.state_id
+            edge.reason = transition.reason
+            return
+
+        raise ValueError(f"Unsupported transition kind: {transition.kind}")
 
     def _node_from_signature(self, sig: StateSignature, xml_path: Path, depth: int) -> StateNode:
         return StateNode(
