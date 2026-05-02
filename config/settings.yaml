@@ -1,0 +1,10 @@
+runtime:
+  display: ":99"
+  output_dir: "data/maps"
+  a11y_timeout_s: 8.0
+
+exploration:
+  max_depth: 5
+  max_nodes: 50
+  strategy: strict_bfs
+  screenshots: logging_only

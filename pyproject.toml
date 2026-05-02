@@ -1,0 +1,20 @@
+[project]
+name = "ui-explorer"
+version = "0.1.0"
+description = "A11Y-first UI state exploration engine"
+requires-python = ">=3.10"
+dependencies = [
+  "pyyaml>=6.0",
+  "pydantic>=2.0",
+  "python-dotenv>=1.0",
+  "pyautogui>=0.9.54",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

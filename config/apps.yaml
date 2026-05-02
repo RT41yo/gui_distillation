@@ -1,0 +1,5 @@
+apps:
+  - app_id: calc
+    display_name: GNOME Calculator
+    launcher: gnome-calculator
+    a11y_name: gnome-calculator
