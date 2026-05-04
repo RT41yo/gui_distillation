@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0",
   "app_id": "calc",
-  "root_state_id": "8251e16b481b",
+  "root_state_id": "3eb3742139fc",
   "nodes": {
-    "08fc8d736660": {
-      "state_id": "08fc8d736660",
+    "0c58082abe04": {
+      "state_id": "0c58082abe04",
       "status": "confirmed",
-      "xml_path": "data/maps/calc/states/08fc8d736660/a11y.xml",
+      "xml_path": "data/maps/calc/states/0c58082abe04/a11y.xml",
       "active_root": {
         "kind": "main",
         "reason": "no overlay found; using main frame",
@@ -24,253 +24,17 @@
           "application/gnome-calculator"
         ]
       },
-      "macro_hash": "08fc8d736660f46fd6dcf7d6e3a3ef3fee8f9ccf234057a753d5bc8cb025194c",
-      "content_hash": "951950c18956e332ca4d55ea4e69a330045efedf702846f2d33bdfccb1fe2557",
-      "macro_action_count": 10,
-      "visible_node_count": 161,
-      "depth": 1,
-      "label": "Calculator"
-    },
-    "23853b9028a4": {
-      "state_id": "23853b9028a4",
-      "status": "confirmed",
-      "xml_path": "data/maps/calc/states/23853b9028a4/a11y.xml",
-      "active_root": {
-        "kind": "window_overlay",
-        "reason": "visible popover-like control group is active overlay",
-        "role": "filler",
-        "name": "",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "filler"
-        ]
-      },
-      "macro_hash": "23853b9028a49ac1a216149f23b68bb2f45a07fd8eaae7755bcc437a610d8d20",
-      "content_hash": "640fce9f652e8b9f228dba035623feac3e009244cab5970bcca6dff8314a726b",
-      "macro_action_count": 5,
-      "visible_node_count": 6,
-      "depth": 1,
-      "label": "filler"
-    },
-    "5b7204416d87": {
-      "state_id": "5b7204416d87",
-      "status": "confirmed",
-      "xml_path": "data/maps/calc/states/5b7204416d87/a11y.xml",
-      "active_root": {
-        "kind": "main",
-        "reason": "no overlay found; using main frame",
-        "role": "frame",
-        "name": "Calculator",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/gnome-calculator"
-        ]
-      },
-      "macro_hash": "5b7204416d87aba1b99337f97e2389ec1153137c6048f8d32f85d8ddde84e365",
-      "content_hash": "aa8a136fbada14bf4c55417d49696b738ddb06b4420e1e92eea90058cfd903de",
-      "macro_action_count": 10,
-      "visible_node_count": 169,
-      "depth": 1,
-      "label": "Calculator"
-    },
-    "5bb1aebc2e55": {
-      "state_id": "5bb1aebc2e55",
-      "status": "confirmed",
-      "xml_path": "data/maps/calc/states/5bb1aebc2e55/a11y.xml",
-      "active_root": {
-        "kind": "main",
-        "reason": "no overlay found; using main frame",
-        "role": "frame",
-        "name": "Calculator",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/gnome-calculator"
-        ]
-      },
-      "macro_hash": "5bb1aebc2e55427d2fae137d444fe8631a25371ca9b9c3a933570853be298959",
-      "content_hash": "bdf70f50704386946046df4b66000b4c14a31a3a47259f16525cd078f6483784",
-      "macro_action_count": 10,
-      "visible_node_count": 158,
-      "depth": 1,
-      "label": "Calculator"
-    },
-    "67f6d130a995": {
-      "state_id": "67f6d130a995",
-      "status": "confirmed",
-      "xml_path": "data/maps/calc/states/67f6d130a995/a11y.xml",
-      "active_root": {
-        "kind": "main",
-        "reason": "no overlay found; using main frame",
-        "role": "frame",
-        "name": "Calculator",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/gnome-calculator"
-        ]
-      },
-      "macro_hash": "67f6d130a99593738860d882f4126edcff2388cce4ce7bc4817326f4773a707b",
+      "macro_hash": "0c58082abe04255edb1177c7a6e1ab2f55811f8235a3289565258cabbddecc1a",
       "content_hash": "d1b4653b95e8279ca12586c75bd439e91bbbf548da96ff0f0613eae7e83dc569",
       "macro_action_count": 10,
       "visible_node_count": 150,
       "depth": 1,
       "label": "Calculator"
     },
-    "8251e16b481b": {
-      "state_id": "8251e16b481b",
+    "0eff3fa997b3": {
+      "state_id": "0eff3fa997b3",
       "status": "confirmed",
-      "xml_path": "data/maps/calc/states/8251e16b481b/a11y.xml",
-      "active_root": {
-        "kind": "main",
-        "reason": "no overlay found; using main frame",
-        "role": "frame",
-        "name": "Calculator",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/gnome-calculator"
-        ]
-      },
-      "macro_hash": "8251e16b481b7d6dd7b7bedaf8f23596a4527e452845f6d86325f04ea0e51192",
-      "content_hash": "28d54bc14e9be7df6dc7c643cec5d9805bfb40008f821a5cb463c4ca4f5e64fd",
-      "macro_action_count": 10,
-      "visible_node_count": 150,
-      "depth": 0,
-      "label": "Calculator"
-    },
-    "8bc0cc3597e6": {
-      "state_id": "8bc0cc3597e6",
-      "status": "confirmed",
-      "xml_path": "data/maps/calc/states/8bc0cc3597e6/a11y.xml",
-      "active_root": {
-        "kind": "main",
-        "reason": "no overlay found; using main frame",
-        "role": "frame",
-        "name": "Calculator",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/gnome-calculator"
-        ]
-      },
-      "macro_hash": "8bc0cc3597e6cee3f906c8ec21c4e29eea8348433be48d4ce8953915cf287075",
-      "content_hash": "32b9f8a35a0c44aaa5a360e2f40ee52993405a632bf9cc552cd54135b518584b",
-      "macro_action_count": 10,
-      "visible_node_count": 169,
-      "depth": 1,
-      "label": "Calculator"
-    },
-    "9ace005e22ae": {
-      "state_id": "9ace005e22ae",
-      "status": "confirmed",
-      "xml_path": "data/maps/calc/states/9ace005e22ae/a11y.xml",
-      "active_root": {
-        "kind": "main",
-        "reason": "no overlay found; using main frame",
-        "role": "frame",
-        "name": "Calculator",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/gnome-calculator"
-        ]
-      },
-      "macro_hash": "9ace005e22ae6c8e17bd92b97f48a72bf8832080ddced7d8979d9ac5a40d7852",
-      "content_hash": "04452e0870ce03b197de17e92b2547a0deecf20b0f871d177d8ba235391057b0",
-      "macro_action_count": 10,
-      "visible_node_count": 150,
-      "depth": 1,
-      "label": "Calculator"
-    },
-    "9b23b16931c9": {
-      "state_id": "9b23b16931c9",
-      "status": "confirmed",
-      "xml_path": "data/maps/calc/states/9b23b16931c9/a11y.xml",
-      "active_root": {
-        "kind": "window_overlay",
-        "reason": "visible popover-like control group is active overlay",
-        "role": "filler",
-        "name": "",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "filler"
-        ]
-      },
-      "macro_hash": "9b23b16931c96812f4b9c99811cb22168c2b44b05faafd17f2a63d51a7276ef7",
-      "content_hash": "b2a143d59fe5d55c611a86caf733f362d69e7d250851cf3ebb3e626a7963f052",
-      "macro_action_count": 5,
-      "visible_node_count": 6,
-      "depth": 1,
-      "label": "filler"
-    },
-    "c5cd52807589": {
-      "state_id": "c5cd52807589",
-      "status": "confirmed",
-      "xml_path": "data/maps/calc/states/c5cd52807589/a11y.xml",
+      "xml_path": "data/maps/calc/states/0eff3fa997b3/a11y.xml",
       "active_root": {
         "kind": "menu",
         "reason": "visible menu is active overlay",
@@ -289,12 +53,196 @@
           "window"
         ]
       },
-      "macro_hash": "c5cd52807589b03f3e75e52d9c5d3f5237a97c2470c1e6cd9677c809024ebe28",
+      "macro_hash": "0eff3fa997b3b8f4551ecd4cbe7220e8eda62cac19e2c6f20c63e7f0b647173f",
       "content_hash": "c4d8eb4bf52995a831de1ca2c9f5cdb332026f673956843eec0425b34440809b",
       "macro_action_count": 4,
       "visible_node_count": 5,
       "depth": 1,
       "label": "menu"
+    },
+    "3eb3742139fc": {
+      "state_id": "3eb3742139fc",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/3eb3742139fc/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Calculator",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator"
+        ]
+      },
+      "macro_hash": "3eb3742139fca505187197a447eaf136da0ebfe3b29e35f22906b30d08654bee",
+      "content_hash": "28d54bc14e9be7df6dc7c643cec5d9805bfb40008f821a5cb463c4ca4f5e64fd",
+      "macro_action_count": 10,
+      "visible_node_count": 150,
+      "depth": 0,
+      "label": "Calculator"
+    },
+    "4a701cc0ad96": {
+      "state_id": "4a701cc0ad96",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/4a701cc0ad96/a11y.xml",
+      "active_root": {
+        "kind": "window_overlay",
+        "reason": "visible popover-like control group is active overlay",
+        "role": "filler",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "panel",
+          "filler"
+        ]
+      },
+      "macro_hash": "4a701cc0ad9657b822b42905a8233a5f47d517178904e86580f19b2ed66b43fd",
+      "content_hash": "d5f14c6d453670f6f510706f0db7bfdde2ac16cf9276e3ab1dc8f52cdb3ef98b",
+      "macro_action_count": 0,
+      "visible_node_count": 5,
+      "depth": 1,
+      "label": "filler"
+    },
+    "65aaed04088a": {
+      "state_id": "65aaed04088a",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/65aaed04088a/a11y.xml",
+      "active_root": {
+        "kind": "window_overlay",
+        "reason": "visible popover-like control group is active overlay",
+        "role": "filler",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "panel",
+          "filler"
+        ]
+      },
+      "macro_hash": "65aaed04088a3aebea2e25eefc39c101336a32285c5a97cb848ba5c06cc7ce1a",
+      "content_hash": "c93b1a37eef0a0c84770249840eac6cef77c6bea4947dd28051de9e0e42e4efc",
+      "macro_action_count": 0,
+      "visible_node_count": 16,
+      "depth": 1,
+      "label": "filler"
+    },
+    "6d05501ddeb1": {
+      "state_id": "6d05501ddeb1",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/6d05501ddeb1/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Calculator",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator"
+        ]
+      },
+      "macro_hash": "6d05501ddeb114e3dc74baf52cc5d14a8a05eea962ece1dc70f551ee34229637",
+      "content_hash": "04452e0870ce03b197de17e92b2547a0deecf20b0f871d177d8ba235391057b0",
+      "macro_action_count": 10,
+      "visible_node_count": 150,
+      "depth": 1,
+      "label": "Calculator"
+    },
+    "c1e6fd718a6a": {
+      "state_id": "c1e6fd718a6a",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/c1e6fd718a6a/a11y.xml",
+      "active_root": {
+        "kind": "window_overlay",
+        "reason": "visible popover-like control group is active overlay",
+        "role": "filler",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ]
+      },
+      "macro_hash": "c1e6fd718a6a56542a27b6425c428694f5fd8002b734ac2e6f9e6d82e1c8e2a9",
+      "content_hash": "640fce9f652e8b9f228dba035623feac3e009244cab5970bcca6dff8314a726b",
+      "macro_action_count": 5,
+      "visible_node_count": 6,
+      "depth": 1,
+      "label": "filler"
+    },
+    "ce2496d822d6": {
+      "state_id": "ce2496d822d6",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/ce2496d822d6/a11y.xml",
+      "active_root": {
+        "kind": "window_overlay",
+        "reason": "visible popover-like control group is active overlay",
+        "role": "filler",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel"
+        ]
+      },
+      "macro_hash": "ce2496d822d681964d7a9492da770ae63aa338ad38e2bc6bc450b0e294447daf",
+      "content_hash": "c9193a683f306014b00c45e56e1fb25db21df3cff7c826e1f489ab16bdea0307",
+      "macro_action_count": 0,
+      "visible_node_count": 10,
+      "depth": 1,
+      "label": "filler"
     },
     "de52c438ef75": {
       "state_id": "de52c438ef75",
@@ -323,15 +271,49 @@
       "visible_node_count": 9,
       "depth": 1,
       "label": "Insert Character Code"
+    },
+    "f2f277265627": {
+      "state_id": "f2f277265627",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/f2f277265627/a11y.xml",
+      "active_root": {
+        "kind": "window_overlay",
+        "reason": "visible popover-like control group is active overlay",
+        "role": "filler",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ]
+      },
+      "macro_hash": "f2f2772656274ad4654acec793fb91909d90e645c8c52057108ff6ed1bb02156",
+      "content_hash": "b2a143d59fe5d55c611a86caf733f362d69e7d250851cf3ebb3e626a7963f052",
+      "macro_action_count": 5,
+      "visible_node_count": 6,
+      "depth": 1,
+      "label": "filler"
     }
   },
   "edges": {
-    "8251e16b481b:a7ad9c28e37b41c2": {
-      "edge_id": "8251e16b481b:a7ad9c28e37b41c2",
-      "from_state": "8251e16b481b",
-      "action_key": "a7ad9c28e37b41c2",
+    "3eb3742139fc:cfbbbcae23546986": {
+      "edge_id": "3eb3742139fc:cfbbbcae23546986",
+      "from_state": "3eb3742139fc",
+      "action_key": "cfbbbcae23546986",
       "action": {
-        "action_key": "a7ad9c28e37b41c2",
+        "action_key": "cfbbbcae23546986",
         "role": "toggle button",
         "name": "Mode selection",
         "description": "",
@@ -342,8 +324,8 @@
           "enabled"
         ],
         "bbox": [
-          685,
-          113,
+          569,
+          120,
           151,
           46
         ],
@@ -357,25 +339,25 @@
         "depth": 5
       },
       "status": "confirmed",
-      "to_state": "9b23b16931c9",
+      "to_state": "f2f277265627",
       "priority": 20,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "9b23b16931c9",
+        "to_state": "f2f277265627",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
       },
       "created_order": 0
     },
-    "8251e16b481b:52737df6e75fb08f": {
-      "edge_id": "8251e16b481b:52737df6e75fb08f",
-      "from_state": "8251e16b481b",
-      "action_key": "52737df6e75fb08f",
+    "3eb3742139fc:fb3f547c6bd2480f": {
+      "edge_id": "3eb3742139fc:fb3f547c6bd2480f",
+      "from_state": "3eb3742139fc",
+      "action_key": "fb3f547c6bd2480f",
       "action": {
-        "action_key": "52737df6e75fb08f",
+        "action_key": "fb3f547c6bd2480f",
         "role": "toggle button",
         "name": "Primary menu",
         "description": "",
@@ -386,8 +368,8 @@
           "enabled"
         ],
         "bbox": [
-          933,
-          113,
+          817,
+          120,
           36,
           46
         ],
@@ -401,25 +383,25 @@
         "depth": 5
       },
       "status": "confirmed",
-      "to_state": "23853b9028a4",
+      "to_state": "c1e6fd718a6a",
       "priority": 20,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "23853b9028a4",
+        "to_state": "c1e6fd718a6a",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
       },
       "created_order": 1
     },
-    "8251e16b481b:553e8a69a154b4f0": {
-      "edge_id": "8251e16b481b:553e8a69a154b4f0",
-      "from_state": "8251e16b481b",
-      "action_key": "553e8a69a154b4f0",
+    "3eb3742139fc:7d702a9db8a6dd95": {
+      "edge_id": "3eb3742139fc:7d702a9db8a6dd95",
+      "from_state": "3eb3742139fc",
+      "action_key": "7d702a9db8a6dd95",
       "action": {
-        "action_key": "553e8a69a154b4f0",
+        "action_key": "7d702a9db8a6dd95",
         "role": "combo box",
         "name": "Decimal",
         "description": "",
@@ -430,8 +412,8 @@
           "enabled"
         ],
         "bbox": [
-          439,
-          360,
+          323,
+          367,
           126,
           34
         ],
@@ -449,25 +431,25 @@
         "depth": 9
       },
       "status": "confirmed",
-      "to_state": "c5cd52807589",
+      "to_state": "0eff3fa997b3",
       "priority": 10,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "c5cd52807589",
+        "to_state": "0eff3fa997b3",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
       },
       "created_order": 2
     },
-    "8251e16b481b:85b7a6ed2413939d": {
-      "edge_id": "8251e16b481b:85b7a6ed2413939d",
-      "from_state": "8251e16b481b",
-      "action_key": "85b7a6ed2413939d",
+    "3eb3742139fc:e32576df65ef39ab": {
+      "edge_id": "3eb3742139fc:e32576df65ef39ab",
+      "from_state": "3eb3742139fc",
+      "action_key": "e32576df65ef39ab",
       "action": {
-        "action_key": "85b7a6ed2413939d",
+        "action_key": "e32576df65ef39ab",
         "role": "toggle button",
         "name": "Word Size",
         "description": "Change word size",
@@ -478,8 +460,8 @@
           "enabled"
         ],
         "bbox": [
-          959,
-          730,
+          843,
+          737,
           124,
           44
         ],
@@ -498,25 +480,25 @@
         "depth": 10
       },
       "status": "confirmed",
-      "to_state": "5bb1aebc2e55",
+      "to_state": "4a701cc0ad96",
       "priority": 20,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "5bb1aebc2e55",
+        "to_state": "4a701cc0ad96",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
       },
       "created_order": 3
     },
-    "8251e16b481b:1f1e0ceb13b8f26b": {
-      "edge_id": "8251e16b481b:1f1e0ceb13b8f26b",
-      "from_state": "8251e16b481b",
-      "action_key": "1f1e0ceb13b8f26b",
+    "3eb3742139fc:e9c9c1899e468e01": {
+      "edge_id": "3eb3742139fc:e9c9c1899e468e01",
+      "from_state": "3eb3742139fc",
+      "action_key": "e9c9c1899e468e01",
       "action": {
-        "action_key": "1f1e0ceb13b8f26b",
+        "action_key": "e9c9c1899e468e01",
         "role": "toggle button",
         "name": "Store",
         "description": "Memory",
@@ -527,8 +509,8 @@
           "enabled"
         ],
         "bbox": [
-          767,
-          730,
+          651,
+          737,
           124,
           44
         ],
@@ -547,25 +529,25 @@
         "depth": 10
       },
       "status": "confirmed",
-      "to_state": "08fc8d736660",
+      "to_state": "ce2496d822d6",
       "priority": 20,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "08fc8d736660",
+        "to_state": "ce2496d822d6",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
       },
       "created_order": 4
     },
-    "8251e16b481b:d8838602adfcd4b6": {
-      "edge_id": "8251e16b481b:d8838602adfcd4b6",
-      "from_state": "8251e16b481b",
-      "action_key": "d8838602adfcd4b6",
+    "3eb3742139fc:24a6b7b5ba29f30e": {
+      "edge_id": "3eb3742139fc:24a6b7b5ba29f30e",
+      "from_state": "3eb3742139fc",
+      "action_key": "24a6b7b5ba29f30e",
       "action": {
-        "action_key": "d8838602adfcd4b6",
+        "action_key": "24a6b7b5ba29f30e",
         "role": "push button",
         "name": "Insert Character",
         "description": "Insert Character Code",
@@ -576,8 +558,8 @@
           "enabled"
         ],
         "bbox": [
-          959,
-          682,
+          843,
+          689,
           124,
           44
         ],
@@ -609,12 +591,12 @@
       },
       "created_order": 5
     },
-    "8251e16b481b:919fb9d331691387": {
-      "edge_id": "8251e16b481b:919fb9d331691387",
-      "from_state": "8251e16b481b",
-      "action_key": "919fb9d331691387",
+    "3eb3742139fc:99113b724b2fdf73": {
+      "edge_id": "3eb3742139fc:99113b724b2fdf73",
+      "from_state": "3eb3742139fc",
+      "action_key": "99113b724b2fdf73",
       "action": {
-        "action_key": "919fb9d331691387",
+        "action_key": "99113b724b2fdf73",
         "role": "toggle button",
         "name": "Shift Right",
         "description": "Shift Right",
@@ -625,8 +607,8 @@
           "enabled"
         ],
         "bbox": [
-          959,
-          538,
+          843,
+          545,
           60,
           44
         ],
@@ -645,25 +627,25 @@
         "depth": 10
       },
       "status": "confirmed",
-      "to_state": "5b7204416d87",
+      "to_state": "65aaed04088a",
       "priority": 20,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "5b7204416d87",
+        "to_state": "65aaed04088a",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
       },
       "created_order": 6
     },
-    "8251e16b481b:46ea91b6ec1cc4f2": {
-      "edge_id": "8251e16b481b:46ea91b6ec1cc4f2",
-      "from_state": "8251e16b481b",
-      "action_key": "46ea91b6ec1cc4f2",
+    "3eb3742139fc:db42b0892979a9a9": {
+      "edge_id": "3eb3742139fc:db42b0892979a9a9",
+      "from_state": "3eb3742139fc",
+      "action_key": "db42b0892979a9a9",
       "action": {
-        "action_key": "46ea91b6ec1cc4f2",
+        "action_key": "db42b0892979a9a9",
         "role": "toggle button",
         "name": "Shift Left",
         "description": "Shift Left",
@@ -674,8 +656,8 @@
           "enabled"
         ],
         "bbox": [
-          895,
-          538,
+          779,
+          545,
           60,
           44
         ],
@@ -694,25 +676,25 @@
         "depth": 10
       },
       "status": "confirmed",
-      "to_state": "8bc0cc3597e6",
+      "to_state": "65aaed04088a",
       "priority": 20,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "8bc0cc3597e6",
+        "to_state": "65aaed04088a",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
       },
       "created_order": 7
     },
-    "8251e16b481b:c81388877cbbed05": {
-      "edge_id": "8251e16b481b:c81388877cbbed05",
-      "from_state": "8251e16b481b",
-      "action_key": "c81388877cbbed05",
+    "3eb3742139fc:eec91e69c82683f7": {
+      "edge_id": "3eb3742139fc:eec91e69c82683f7",
+      "from_state": "3eb3742139fc",
+      "action_key": "eec91e69c82683f7",
       "action": {
-        "action_key": "c81388877cbbed05",
+        "action_key": "eec91e69c82683f7",
         "role": "toggle button",
         "name": "Superscript",
         "description": "Superscript mode [Ctrl]",
@@ -723,8 +705,8 @@
           "enabled"
         ],
         "bbox": [
-          831,
-          538,
+          715,
+          545,
           60,
           44
         ],
@@ -743,25 +725,25 @@
         "depth": 10
       },
       "status": "confirmed",
-      "to_state": "9ace005e22ae",
+      "to_state": "6d05501ddeb1",
       "priority": 20,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "9ace005e22ae",
+        "to_state": "6d05501ddeb1",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
       },
       "created_order": 8
     },
-    "8251e16b481b:f8c3ae52acd084c0": {
-      "edge_id": "8251e16b481b:f8c3ae52acd084c0",
-      "from_state": "8251e16b481b",
-      "action_key": "f8c3ae52acd084c0",
+    "3eb3742139fc:77ab33d6572f0170": {
+      "edge_id": "3eb3742139fc:77ab33d6572f0170",
+      "from_state": "3eb3742139fc",
+      "action_key": "77ab33d6572f0170",
       "action": {
-        "action_key": "f8c3ae52acd084c0",
+        "action_key": "77ab33d6572f0170",
         "role": "toggle button",
         "name": "Subscript",
         "description": "Subscript mode [Alt]",
@@ -772,8 +754,8 @@
           "enabled"
         ],
         "bbox": [
-          767,
-          538,
+          651,
+          545,
           60,
           44
         ],
@@ -792,25 +774,25 @@
         "depth": 10
       },
       "status": "confirmed",
-      "to_state": "67f6d130a995",
+      "to_state": "0c58082abe04",
       "priority": 20,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "67f6d130a995",
+        "to_state": "0c58082abe04",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
       },
       "created_order": 9
     },
-    "c5cd52807589:50f3797c388d212e": {
-      "edge_id": "c5cd52807589:50f3797c388d212e",
-      "from_state": "c5cd52807589",
-      "action_key": "50f3797c388d212e",
+    "0eff3fa997b3:4bd309c9e09b3a03": {
+      "edge_id": "0eff3fa997b3:4bd309c9e09b3a03",
+      "from_state": "0eff3fa997b3",
+      "action_key": "4bd309c9e09b3a03",
       "action": {
-        "action_key": "50f3797c388d212e",
+        "action_key": "4bd309c9e09b3a03",
         "role": "menu item",
         "name": "Binary",
         "description": "",
@@ -821,8 +803,8 @@
           "enabled"
         ],
         "bbox": [
-          439,
-          307,
+          323,
+          314,
           126,
           29
         ],
@@ -841,12 +823,12 @@
       "observed": null,
       "created_order": 10
     },
-    "c5cd52807589:783cf74ec3545413": {
-      "edge_id": "c5cd52807589:783cf74ec3545413",
-      "from_state": "c5cd52807589",
-      "action_key": "783cf74ec3545413",
+    "0eff3fa997b3:d98476510271c90a": {
+      "edge_id": "0eff3fa997b3:d98476510271c90a",
+      "from_state": "0eff3fa997b3",
+      "action_key": "d98476510271c90a",
       "action": {
-        "action_key": "783cf74ec3545413",
+        "action_key": "d98476510271c90a",
         "role": "menu item",
         "name": "Octal",
         "description": "",
@@ -857,8 +839,8 @@
           "enabled"
         ],
         "bbox": [
-          439,
-          336,
+          323,
+          343,
           126,
           29
         ],
@@ -877,12 +859,12 @@
       "observed": null,
       "created_order": 11
     },
-    "c5cd52807589:1514ab9b8d1ef468": {
-      "edge_id": "c5cd52807589:1514ab9b8d1ef468",
-      "from_state": "c5cd52807589",
-      "action_key": "1514ab9b8d1ef468",
+    "0eff3fa997b3:80f30be8d2324c2c": {
+      "edge_id": "0eff3fa997b3:80f30be8d2324c2c",
+      "from_state": "0eff3fa997b3",
+      "action_key": "80f30be8d2324c2c",
       "action": {
-        "action_key": "1514ab9b8d1ef468",
+        "action_key": "80f30be8d2324c2c",
         "role": "menu item",
         "name": "Decimal",
         "description": "",
@@ -895,8 +877,8 @@
           "enabled"
         ],
         "bbox": [
-          439,
-          365,
+          323,
+          372,
           126,
           29
         ],
@@ -915,12 +897,12 @@
       "observed": null,
       "created_order": 12
     },
-    "c5cd52807589:1bfc03d6424d5faa": {
-      "edge_id": "c5cd52807589:1bfc03d6424d5faa",
-      "from_state": "c5cd52807589",
-      "action_key": "1bfc03d6424d5faa",
+    "0eff3fa997b3:f29ba6190b5fe493": {
+      "edge_id": "0eff3fa997b3:f29ba6190b5fe493",
+      "from_state": "0eff3fa997b3",
+      "action_key": "f29ba6190b5fe493",
       "action": {
-        "action_key": "1bfc03d6424d5faa",
+        "action_key": "f29ba6190b5fe493",
         "role": "menu item",
         "name": "Hexadecimal",
         "description": "",
@@ -931,8 +913,8 @@
           "enabled"
         ],
         "bbox": [
-          439,
-          394,
+          323,
+          401,
           126,
           29
         ],
@@ -951,12 +933,12 @@
       "observed": null,
       "created_order": 13
     },
-    "9b23b16931c9:be3b04619eb96a40": {
-      "edge_id": "9b23b16931c9:be3b04619eb96a40",
-      "from_state": "9b23b16931c9",
-      "action_key": "be3b04619eb96a40",
+    "f2f277265627:628d0c0bf453788f": {
+      "edge_id": "f2f277265627:628d0c0bf453788f",
+      "from_state": "f2f277265627",
+      "action_key": "628d0c0bf453788f",
       "action": {
-        "action_key": "be3b04619eb96a40",
+        "action_key": "628d0c0bf453788f",
         "role": "radio button",
         "name": "Basic",
         "description": "",
@@ -968,8 +950,8 @@
           "enabled"
         ],
         "bbox": [
-          697,
-          184,
+          581,
+          191,
           126,
           26
         ],
@@ -993,12 +975,12 @@
       "observed": null,
       "created_order": 14
     },
-    "9b23b16931c9:8b0a6eda8b871fb0": {
-      "edge_id": "9b23b16931c9:8b0a6eda8b871fb0",
-      "from_state": "9b23b16931c9",
-      "action_key": "8b0a6eda8b871fb0",
+    "f2f277265627:ba9b1ae4b200de2c": {
+      "edge_id": "f2f277265627:ba9b1ae4b200de2c",
+      "from_state": "f2f277265627",
+      "action_key": "ba9b1ae4b200de2c",
       "action": {
-        "action_key": "8b0a6eda8b871fb0",
+        "action_key": "ba9b1ae4b200de2c",
         "role": "radio button",
         "name": "Advanced",
         "description": "",
@@ -1009,8 +991,8 @@
           "enabled"
         ],
         "bbox": [
-          697,
-          210,
+          581,
+          217,
           126,
           26
         ],
@@ -1034,12 +1016,12 @@
       "observed": null,
       "created_order": 15
     },
-    "9b23b16931c9:3e2814c75df40797": {
-      "edge_id": "9b23b16931c9:3e2814c75df40797",
-      "from_state": "9b23b16931c9",
-      "action_key": "3e2814c75df40797",
+    "f2f277265627:20c1babdfc964ab3": {
+      "edge_id": "f2f277265627:20c1babdfc964ab3",
+      "from_state": "f2f277265627",
+      "action_key": "20c1babdfc964ab3",
       "action": {
-        "action_key": "3e2814c75df40797",
+        "action_key": "20c1babdfc964ab3",
         "role": "radio button",
         "name": "Financial",
         "description": "",
@@ -1050,8 +1032,8 @@
           "enabled"
         ],
         "bbox": [
-          697,
-          236,
+          581,
+          243,
           126,
           26
         ],
@@ -1075,12 +1057,12 @@
       "observed": null,
       "created_order": 16
     },
-    "9b23b16931c9:ab8f40498c947f24": {
-      "edge_id": "9b23b16931c9:ab8f40498c947f24",
-      "from_state": "9b23b16931c9",
-      "action_key": "ab8f40498c947f24",
+    "f2f277265627:ca9bbb6e6d49ffd2": {
+      "edge_id": "f2f277265627:ca9bbb6e6d49ffd2",
+      "from_state": "f2f277265627",
+      "action_key": "ca9bbb6e6d49ffd2",
       "action": {
-        "action_key": "ab8f40498c947f24",
+        "action_key": "ca9bbb6e6d49ffd2",
         "role": "radio button",
         "name": "Programming",
         "description": "",
@@ -1091,8 +1073,8 @@
           "enabled"
         ],
         "bbox": [
-          697,
-          262,
+          581,
+          269,
           126,
           26
         ],
@@ -1116,12 +1098,12 @@
       "observed": null,
       "created_order": 17
     },
-    "9b23b16931c9:db23eae11d92c65a": {
-      "edge_id": "9b23b16931c9:db23eae11d92c65a",
-      "from_state": "9b23b16931c9",
-      "action_key": "db23eae11d92c65a",
+    "f2f277265627:0244d02be540d1f1": {
+      "edge_id": "f2f277265627:0244d02be540d1f1",
+      "from_state": "f2f277265627",
+      "action_key": "0244d02be540d1f1",
       "action": {
-        "action_key": "db23eae11d92c65a",
+        "action_key": "0244d02be540d1f1",
         "role": "radio button",
         "name": "Keyboard",
         "description": "",
@@ -1132,8 +1114,8 @@
           "enabled"
         ],
         "bbox": [
-          697,
-          288,
+          581,
+          295,
           126,
           26
         ],
@@ -1157,12 +1139,12 @@
       "observed": null,
       "created_order": 18
     },
-    "23853b9028a4:cab22648fa86a002": {
-      "edge_id": "23853b9028a4:cab22648fa86a002",
-      "from_state": "23853b9028a4",
-      "action_key": "cab22648fa86a002",
+    "c1e6fd718a6a:074e2075c6eb2d55": {
+      "edge_id": "c1e6fd718a6a:074e2075c6eb2d55",
+      "from_state": "c1e6fd718a6a",
+      "action_key": "074e2075c6eb2d55",
       "action": {
-        "action_key": "cab22648fa86a002",
+        "action_key": "074e2075c6eb2d55",
         "role": "push button",
         "name": "Number format",
         "description": "",
@@ -1171,8 +1153,8 @@
           "visible"
         ],
         "bbox": [
-          883,
-          217,
+          767,
+          224,
           136,
           26
         ],
@@ -1196,12 +1178,12 @@
       "observed": null,
       "created_order": 19
     },
-    "23853b9028a4:d3c298dcb6e06bc5": {
-      "edge_id": "23853b9028a4:d3c298dcb6e06bc5",
-      "from_state": "23853b9028a4",
-      "action_key": "d3c298dcb6e06bc5",
+    "c1e6fd718a6a:acb92c0556d8d7b8": {
+      "edge_id": "c1e6fd718a6a:acb92c0556d8d7b8",
+      "from_state": "c1e6fd718a6a",
+      "action_key": "acb92c0556d8d7b8",
       "action": {
-        "action_key": "d3c298dcb6e06bc5",
+        "action_key": "acb92c0556d8d7b8",
         "role": "radio button",
         "name": "Automatic",
         "description": "",
@@ -1212,8 +1194,8 @@
           "enabled"
         ],
         "bbox": [
-          883,
-          243,
+          767,
+          250,
           136,
           26
         ],
@@ -1237,12 +1219,12 @@
       "observed": null,
       "created_order": 20
     },
-    "23853b9028a4:1801b4192e70ecd0": {
-      "edge_id": "23853b9028a4:1801b4192e70ecd0",
-      "from_state": "23853b9028a4",
-      "action_key": "1801b4192e70ecd0",
+    "c1e6fd718a6a:b1fe0e9197b675e8": {
+      "edge_id": "c1e6fd718a6a:b1fe0e9197b675e8",
+      "from_state": "c1e6fd718a6a",
+      "action_key": "b1fe0e9197b675e8",
       "action": {
-        "action_key": "1801b4192e70ecd0",
+        "action_key": "b1fe0e9197b675e8",
         "role": "radio button",
         "name": "Fixed",
         "description": "",
@@ -1253,8 +1235,8 @@
           "enabled"
         ],
         "bbox": [
-          883,
-          269,
+          767,
+          276,
           136,
           26
         ],
@@ -1278,12 +1260,12 @@
       "observed": null,
       "created_order": 21
     },
-    "23853b9028a4:15324b2c263345c6": {
-      "edge_id": "23853b9028a4:15324b2c263345c6",
-      "from_state": "23853b9028a4",
-      "action_key": "15324b2c263345c6",
+    "c1e6fd718a6a:6377e89053586d3f": {
+      "edge_id": "c1e6fd718a6a:6377e89053586d3f",
+      "from_state": "c1e6fd718a6a",
+      "action_key": "6377e89053586d3f",
       "action": {
-        "action_key": "15324b2c263345c6",
+        "action_key": "6377e89053586d3f",
         "role": "radio button",
         "name": "Scientific",
         "description": "",
@@ -1294,8 +1276,8 @@
           "enabled"
         ],
         "bbox": [
-          883,
-          295,
+          767,
+          302,
           136,
           26
         ],
@@ -1319,12 +1301,12 @@
       "observed": null,
       "created_order": 22
     },
-    "23853b9028a4:cf3e3be43e241cff": {
-      "edge_id": "23853b9028a4:cf3e3be43e241cff",
-      "from_state": "23853b9028a4",
-      "action_key": "cf3e3be43e241cff",
+    "c1e6fd718a6a:fa6b3e3af6d483ac": {
+      "edge_id": "c1e6fd718a6a:fa6b3e3af6d483ac",
+      "from_state": "c1e6fd718a6a",
+      "action_key": "fa6b3e3af6d483ac",
       "action": {
-        "action_key": "cf3e3be43e241cff",
+        "action_key": "fa6b3e3af6d483ac",
         "role": "radio button",
         "name": "Engineering",
         "description": "",
@@ -1335,8 +1317,8 @@
           "enabled"
         ],
         "bbox": [
-          883,
-          321,
+          767,
+          328,
           136,
           26
         ],
@@ -1360,12 +1342,12 @@
       "observed": null,
       "created_order": 23
     },
-    "5bb1aebc2e55:a7ad9c28e37b41c2": {
-      "edge_id": "5bb1aebc2e55:a7ad9c28e37b41c2",
-      "from_state": "5bb1aebc2e55",
-      "action_key": "a7ad9c28e37b41c2",
+    "6d05501ddeb1:cfbbbcae23546986": {
+      "edge_id": "6d05501ddeb1:cfbbbcae23546986",
+      "from_state": "6d05501ddeb1",
+      "action_key": "cfbbbcae23546986",
       "action": {
-        "action_key": "a7ad9c28e37b41c2",
+        "action_key": "cfbbbcae23546986",
         "role": "toggle button",
         "name": "Mode selection",
         "description": "",
@@ -1376,8 +1358,8 @@
           "enabled"
         ],
         "bbox": [
-          685,
-          113,
+          569,
+          120,
           151,
           46
         ],
@@ -1398,12 +1380,12 @@
       "observed": null,
       "created_order": 24
     },
-    "5bb1aebc2e55:52737df6e75fb08f": {
-      "edge_id": "5bb1aebc2e55:52737df6e75fb08f",
-      "from_state": "5bb1aebc2e55",
-      "action_key": "52737df6e75fb08f",
+    "6d05501ddeb1:fb3f547c6bd2480f": {
+      "edge_id": "6d05501ddeb1:fb3f547c6bd2480f",
+      "from_state": "6d05501ddeb1",
+      "action_key": "fb3f547c6bd2480f",
       "action": {
-        "action_key": "52737df6e75fb08f",
+        "action_key": "fb3f547c6bd2480f",
         "role": "toggle button",
         "name": "Primary menu",
         "description": "",
@@ -1414,8 +1396,8 @@
           "enabled"
         ],
         "bbox": [
-          933,
-          113,
+          817,
+          120,
           36,
           46
         ],
@@ -1436,12 +1418,12 @@
       "observed": null,
       "created_order": 25
     },
-    "5bb1aebc2e55:553e8a69a154b4f0": {
-      "edge_id": "5bb1aebc2e55:553e8a69a154b4f0",
-      "from_state": "5bb1aebc2e55",
-      "action_key": "553e8a69a154b4f0",
+    "6d05501ddeb1:7d702a9db8a6dd95": {
+      "edge_id": "6d05501ddeb1:7d702a9db8a6dd95",
+      "from_state": "6d05501ddeb1",
+      "action_key": "7d702a9db8a6dd95",
       "action": {
-        "action_key": "553e8a69a154b4f0",
+        "action_key": "7d702a9db8a6dd95",
         "role": "combo box",
         "name": "Decimal",
         "description": "",
@@ -1452,8 +1434,8 @@
           "enabled"
         ],
         "bbox": [
-          439,
-          360,
+          323,
+          367,
           126,
           34
         ],
@@ -1478,25 +1460,24 @@
       "observed": null,
       "created_order": 26
     },
-    "5bb1aebc2e55:9beb6c3325cf73aa": {
-      "edge_id": "5bb1aebc2e55:9beb6c3325cf73aa",
-      "from_state": "5bb1aebc2e55",
-      "action_key": "9beb6c3325cf73aa",
+    "6d05501ddeb1:e32576df65ef39ab": {
+      "edge_id": "6d05501ddeb1:e32576df65ef39ab",
+      "from_state": "6d05501ddeb1",
+      "action_key": "e32576df65ef39ab",
       "action": {
-        "action_key": "9beb6c3325cf73aa",
+        "action_key": "e32576df65ef39ab",
         "role": "toggle button",
         "name": "Word Size",
         "description": "Change word size",
         "states": [
-          "checked",
           "sensitive",
           "showing",
           "visible",
           "enabled"
         ],
         "bbox": [
-          959,
-          730,
+          843,
+          737,
           124,
           44
         ],
@@ -1522,12 +1503,12 @@
       "observed": null,
       "created_order": 27
     },
-    "5bb1aebc2e55:1f1e0ceb13b8f26b": {
-      "edge_id": "5bb1aebc2e55:1f1e0ceb13b8f26b",
-      "from_state": "5bb1aebc2e55",
-      "action_key": "1f1e0ceb13b8f26b",
+    "6d05501ddeb1:e9c9c1899e468e01": {
+      "edge_id": "6d05501ddeb1:e9c9c1899e468e01",
+      "from_state": "6d05501ddeb1",
+      "action_key": "e9c9c1899e468e01",
       "action": {
-        "action_key": "1f1e0ceb13b8f26b",
+        "action_key": "e9c9c1899e468e01",
         "role": "toggle button",
         "name": "Store",
         "description": "Memory",
@@ -1538,8 +1519,8 @@
           "enabled"
         ],
         "bbox": [
-          767,
-          730,
+          651,
+          737,
           124,
           44
         ],
@@ -1565,12 +1546,12 @@
       "observed": null,
       "created_order": 28
     },
-    "5bb1aebc2e55:d8838602adfcd4b6": {
-      "edge_id": "5bb1aebc2e55:d8838602adfcd4b6",
-      "from_state": "5bb1aebc2e55",
-      "action_key": "d8838602adfcd4b6",
+    "6d05501ddeb1:24a6b7b5ba29f30e": {
+      "edge_id": "6d05501ddeb1:24a6b7b5ba29f30e",
+      "from_state": "6d05501ddeb1",
+      "action_key": "24a6b7b5ba29f30e",
       "action": {
-        "action_key": "d8838602adfcd4b6",
+        "action_key": "24a6b7b5ba29f30e",
         "role": "push button",
         "name": "Insert Character",
         "description": "Insert Character Code",
@@ -1581,8 +1562,8 @@
           "enabled"
         ],
         "bbox": [
-          959,
-          682,
+          843,
+          689,
           124,
           44
         ],
@@ -1608,12 +1589,12 @@
       "observed": null,
       "created_order": 29
     },
-    "5bb1aebc2e55:919fb9d331691387": {
-      "edge_id": "5bb1aebc2e55:919fb9d331691387",
-      "from_state": "5bb1aebc2e55",
-      "action_key": "919fb9d331691387",
+    "6d05501ddeb1:99113b724b2fdf73": {
+      "edge_id": "6d05501ddeb1:99113b724b2fdf73",
+      "from_state": "6d05501ddeb1",
+      "action_key": "99113b724b2fdf73",
       "action": {
-        "action_key": "919fb9d331691387",
+        "action_key": "99113b724b2fdf73",
         "role": "toggle button",
         "name": "Shift Right",
         "description": "Shift Right",
@@ -1624,8 +1605,8 @@
           "enabled"
         ],
         "bbox": [
-          959,
-          538,
+          843,
+          545,
           60,
           44
         ],
@@ -1651,12 +1632,12 @@
       "observed": null,
       "created_order": 30
     },
-    "5bb1aebc2e55:46ea91b6ec1cc4f2": {
-      "edge_id": "5bb1aebc2e55:46ea91b6ec1cc4f2",
-      "from_state": "5bb1aebc2e55",
-      "action_key": "46ea91b6ec1cc4f2",
+    "6d05501ddeb1:db42b0892979a9a9": {
+      "edge_id": "6d05501ddeb1:db42b0892979a9a9",
+      "from_state": "6d05501ddeb1",
+      "action_key": "db42b0892979a9a9",
       "action": {
-        "action_key": "46ea91b6ec1cc4f2",
+        "action_key": "db42b0892979a9a9",
         "role": "toggle button",
         "name": "Shift Left",
         "description": "Shift Left",
@@ -1667,8 +1648,8 @@
           "enabled"
         ],
         "bbox": [
-          895,
-          538,
+          779,
+          545,
           60,
           44
         ],
@@ -1694,24 +1675,25 @@
       "observed": null,
       "created_order": 31
     },
-    "5bb1aebc2e55:c81388877cbbed05": {
-      "edge_id": "5bb1aebc2e55:c81388877cbbed05",
-      "from_state": "5bb1aebc2e55",
-      "action_key": "c81388877cbbed05",
+    "6d05501ddeb1:4aa80cd8d12a3883": {
+      "edge_id": "6d05501ddeb1:4aa80cd8d12a3883",
+      "from_state": "6d05501ddeb1",
+      "action_key": "4aa80cd8d12a3883",
       "action": {
-        "action_key": "c81388877cbbed05",
+        "action_key": "4aa80cd8d12a3883",
         "role": "toggle button",
         "name": "Superscript",
         "description": "Superscript mode [Ctrl]",
         "states": [
+          "checked",
           "sensitive",
           "showing",
           "visible",
           "enabled"
         ],
         "bbox": [
-          831,
-          538,
+          715,
+          545,
           60,
           44
         ],
@@ -1737,12 +1719,12 @@
       "observed": null,
       "created_order": 32
     },
-    "5bb1aebc2e55:f8c3ae52acd084c0": {
-      "edge_id": "5bb1aebc2e55:f8c3ae52acd084c0",
-      "from_state": "5bb1aebc2e55",
-      "action_key": "f8c3ae52acd084c0",
+    "6d05501ddeb1:77ab33d6572f0170": {
+      "edge_id": "6d05501ddeb1:77ab33d6572f0170",
+      "from_state": "6d05501ddeb1",
+      "action_key": "77ab33d6572f0170",
       "action": {
-        "action_key": "f8c3ae52acd084c0",
+        "action_key": "77ab33d6572f0170",
         "role": "toggle button",
         "name": "Subscript",
         "description": "Subscript mode [Alt]",
@@ -1753,8 +1735,8 @@
           "enabled"
         ],
         "bbox": [
-          767,
-          538,
+          651,
+          545,
           60,
           44
         ],
@@ -1780,12 +1762,12 @@
       "observed": null,
       "created_order": 33
     },
-    "08fc8d736660:a7ad9c28e37b41c2": {
-      "edge_id": "08fc8d736660:a7ad9c28e37b41c2",
-      "from_state": "08fc8d736660",
-      "action_key": "a7ad9c28e37b41c2",
+    "0c58082abe04:cfbbbcae23546986": {
+      "edge_id": "0c58082abe04:cfbbbcae23546986",
+      "from_state": "0c58082abe04",
+      "action_key": "cfbbbcae23546986",
       "action": {
-        "action_key": "a7ad9c28e37b41c2",
+        "action_key": "cfbbbcae23546986",
         "role": "toggle button",
         "name": "Mode selection",
         "description": "",
@@ -1796,8 +1778,8 @@
           "enabled"
         ],
         "bbox": [
-          685,
-          113,
+          569,
+          120,
           151,
           46
         ],
@@ -1818,12 +1800,12 @@
       "observed": null,
       "created_order": 34
     },
-    "08fc8d736660:52737df6e75fb08f": {
-      "edge_id": "08fc8d736660:52737df6e75fb08f",
-      "from_state": "08fc8d736660",
-      "action_key": "52737df6e75fb08f",
+    "0c58082abe04:fb3f547c6bd2480f": {
+      "edge_id": "0c58082abe04:fb3f547c6bd2480f",
+      "from_state": "0c58082abe04",
+      "action_key": "fb3f547c6bd2480f",
       "action": {
-        "action_key": "52737df6e75fb08f",
+        "action_key": "fb3f547c6bd2480f",
         "role": "toggle button",
         "name": "Primary menu",
         "description": "",
@@ -1834,8 +1816,8 @@
           "enabled"
         ],
         "bbox": [
-          933,
-          113,
+          817,
+          120,
           36,
           46
         ],
@@ -1856,12 +1838,12 @@
       "observed": null,
       "created_order": 35
     },
-    "08fc8d736660:553e8a69a154b4f0": {
-      "edge_id": "08fc8d736660:553e8a69a154b4f0",
-      "from_state": "08fc8d736660",
-      "action_key": "553e8a69a154b4f0",
+    "0c58082abe04:7d702a9db8a6dd95": {
+      "edge_id": "0c58082abe04:7d702a9db8a6dd95",
+      "from_state": "0c58082abe04",
+      "action_key": "7d702a9db8a6dd95",
       "action": {
-        "action_key": "553e8a69a154b4f0",
+        "action_key": "7d702a9db8a6dd95",
         "role": "combo box",
         "name": "Decimal",
         "description": "",
@@ -1872,8 +1854,8 @@
           "enabled"
         ],
         "bbox": [
-          439,
-          360,
+          323,
+          367,
           126,
           34
         ],
@@ -1898,12 +1880,12 @@
       "observed": null,
       "created_order": 36
     },
-    "08fc8d736660:85b7a6ed2413939d": {
-      "edge_id": "08fc8d736660:85b7a6ed2413939d",
-      "from_state": "08fc8d736660",
-      "action_key": "85b7a6ed2413939d",
+    "0c58082abe04:e32576df65ef39ab": {
+      "edge_id": "0c58082abe04:e32576df65ef39ab",
+      "from_state": "0c58082abe04",
+      "action_key": "e32576df65ef39ab",
       "action": {
-        "action_key": "85b7a6ed2413939d",
+        "action_key": "e32576df65ef39ab",
         "role": "toggle button",
         "name": "Word Size",
         "description": "Change word size",
@@ -1914,8 +1896,8 @@
           "enabled"
         ],
         "bbox": [
-          959,
-          730,
+          843,
+          737,
           124,
           44
         ],
@@ -1941,25 +1923,24 @@
       "observed": null,
       "created_order": 37
     },
-    "08fc8d736660:74b2a5c608191f59": {
-      "edge_id": "08fc8d736660:74b2a5c608191f59",
-      "from_state": "08fc8d736660",
-      "action_key": "74b2a5c608191f59",
+    "0c58082abe04:e9c9c1899e468e01": {
+      "edge_id": "0c58082abe04:e9c9c1899e468e01",
+      "from_state": "0c58082abe04",
+      "action_key": "e9c9c1899e468e01",
       "action": {
-        "action_key": "74b2a5c608191f59",
+        "action_key": "e9c9c1899e468e01",
         "role": "toggle button",
         "name": "Store",
         "description": "Memory",
         "states": [
-          "checked",
           "sensitive",
           "showing",
           "visible",
           "enabled"
         ],
         "bbox": [
-          767,
-          730,
+          651,
+          737,
           124,
           44
         ],
@@ -1985,12 +1966,12 @@
       "observed": null,
       "created_order": 38
     },
-    "08fc8d736660:d8838602adfcd4b6": {
-      "edge_id": "08fc8d736660:d8838602adfcd4b6",
-      "from_state": "08fc8d736660",
-      "action_key": "d8838602adfcd4b6",
+    "0c58082abe04:24a6b7b5ba29f30e": {
+      "edge_id": "0c58082abe04:24a6b7b5ba29f30e",
+      "from_state": "0c58082abe04",
+      "action_key": "24a6b7b5ba29f30e",
       "action": {
-        "action_key": "d8838602adfcd4b6",
+        "action_key": "24a6b7b5ba29f30e",
         "role": "push button",
         "name": "Insert Character",
         "description": "Insert Character Code",
@@ -2001,8 +1982,8 @@
           "enabled"
         ],
         "bbox": [
-          959,
-          682,
+          843,
+          689,
           124,
           44
         ],
@@ -2028,12 +2009,12 @@
       "observed": null,
       "created_order": 39
     },
-    "08fc8d736660:919fb9d331691387": {
-      "edge_id": "08fc8d736660:919fb9d331691387",
-      "from_state": "08fc8d736660",
-      "action_key": "919fb9d331691387",
+    "0c58082abe04:99113b724b2fdf73": {
+      "edge_id": "0c58082abe04:99113b724b2fdf73",
+      "from_state": "0c58082abe04",
+      "action_key": "99113b724b2fdf73",
       "action": {
-        "action_key": "919fb9d331691387",
+        "action_key": "99113b724b2fdf73",
         "role": "toggle button",
         "name": "Shift Right",
         "description": "Shift Right",
@@ -2044,8 +2025,8 @@
           "enabled"
         ],
         "bbox": [
-          959,
-          538,
+          843,
+          545,
           60,
           44
         ],
@@ -2071,12 +2052,12 @@
       "observed": null,
       "created_order": 40
     },
-    "08fc8d736660:46ea91b6ec1cc4f2": {
-      "edge_id": "08fc8d736660:46ea91b6ec1cc4f2",
-      "from_state": "08fc8d736660",
-      "action_key": "46ea91b6ec1cc4f2",
+    "0c58082abe04:db42b0892979a9a9": {
+      "edge_id": "0c58082abe04:db42b0892979a9a9",
+      "from_state": "0c58082abe04",
+      "action_key": "db42b0892979a9a9",
       "action": {
-        "action_key": "46ea91b6ec1cc4f2",
+        "action_key": "db42b0892979a9a9",
         "role": "toggle button",
         "name": "Shift Left",
         "description": "Shift Left",
@@ -2087,8 +2068,8 @@
           "enabled"
         ],
         "bbox": [
-          895,
-          538,
+          779,
+          545,
           60,
           44
         ],
@@ -2114,12 +2095,12 @@
       "observed": null,
       "created_order": 41
     },
-    "08fc8d736660:c81388877cbbed05": {
-      "edge_id": "08fc8d736660:c81388877cbbed05",
-      "from_state": "08fc8d736660",
-      "action_key": "c81388877cbbed05",
+    "0c58082abe04:eec91e69c82683f7": {
+      "edge_id": "0c58082abe04:eec91e69c82683f7",
+      "from_state": "0c58082abe04",
+      "action_key": "eec91e69c82683f7",
       "action": {
-        "action_key": "c81388877cbbed05",
+        "action_key": "eec91e69c82683f7",
         "role": "toggle button",
         "name": "Superscript",
         "description": "Superscript mode [Ctrl]",
@@ -2130,8 +2111,8 @@
           "enabled"
         ],
         "bbox": [
-          831,
-          538,
+          715,
+          545,
           60,
           44
         ],
@@ -2157,24 +2138,25 @@
       "observed": null,
       "created_order": 42
     },
-    "08fc8d736660:f8c3ae52acd084c0": {
-      "edge_id": "08fc8d736660:f8c3ae52acd084c0",
-      "from_state": "08fc8d736660",
-      "action_key": "f8c3ae52acd084c0",
+    "0c58082abe04:87dbe653628d2d41": {
+      "edge_id": "0c58082abe04:87dbe653628d2d41",
+      "from_state": "0c58082abe04",
+      "action_key": "87dbe653628d2d41",
       "action": {
-        "action_key": "f8c3ae52acd084c0",
+        "action_key": "87dbe653628d2d41",
         "role": "toggle button",
         "name": "Subscript",
         "description": "Subscript mode [Alt]",
         "states": [
+          "checked",
           "sensitive",
           "showing",
           "visible",
           "enabled"
         ],
         "bbox": [
-          767,
-          538,
+          651,
+          545,
           60,
           44
         ],
@@ -2199,1686 +2181,6 @@
       "reason": "toggle button may reveal, select, or switch UI structure",
       "observed": null,
       "created_order": 43
-    },
-    "5b7204416d87:a7ad9c28e37b41c2": {
-      "edge_id": "5b7204416d87:a7ad9c28e37b41c2",
-      "from_state": "5b7204416d87",
-      "action_key": "a7ad9c28e37b41c2",
-      "action": {
-        "action_key": "a7ad9c28e37b41c2",
-        "role": "toggle button",
-        "name": "Mode selection",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          685,
-          113,
-          151,
-          46
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 44
-    },
-    "5b7204416d87:52737df6e75fb08f": {
-      "edge_id": "5b7204416d87:52737df6e75fb08f",
-      "from_state": "5b7204416d87",
-      "action_key": "52737df6e75fb08f",
-      "action": {
-        "action_key": "52737df6e75fb08f",
-        "role": "toggle button",
-        "name": "Primary menu",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          933,
-          113,
-          36,
-          46
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 45
-    },
-    "5b7204416d87:553e8a69a154b4f0": {
-      "edge_id": "5b7204416d87:553e8a69a154b4f0",
-      "from_state": "5b7204416d87",
-      "action_key": "553e8a69a154b4f0",
-      "action": {
-        "action_key": "553e8a69a154b4f0",
-        "role": "combo box",
-        "name": "Decimal",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          439,
-          360,
-          126,
-          34
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 9
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
-      "created_order": 46
-    },
-    "5b7204416d87:85b7a6ed2413939d": {
-      "edge_id": "5b7204416d87:85b7a6ed2413939d",
-      "from_state": "5b7204416d87",
-      "action_key": "85b7a6ed2413939d",
-      "action": {
-        "action_key": "85b7a6ed2413939d",
-        "role": "toggle button",
-        "name": "Word Size",
-        "description": "Change word size",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          730,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 47
-    },
-    "5b7204416d87:1f1e0ceb13b8f26b": {
-      "edge_id": "5b7204416d87:1f1e0ceb13b8f26b",
-      "from_state": "5b7204416d87",
-      "action_key": "1f1e0ceb13b8f26b",
-      "action": {
-        "action_key": "1f1e0ceb13b8f26b",
-        "role": "toggle button",
-        "name": "Store",
-        "description": "Memory",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          767,
-          730,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 48
-    },
-    "5b7204416d87:d8838602adfcd4b6": {
-      "edge_id": "5b7204416d87:d8838602adfcd4b6",
-      "from_state": "5b7204416d87",
-      "action_key": "d8838602adfcd4b6",
-      "action": {
-        "action_key": "d8838602adfcd4b6",
-        "role": "push button",
-        "name": "Insert Character",
-        "description": "Insert Character Code",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          682,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 49
-    },
-    "5b7204416d87:e6abfbd99a3fd480": {
-      "edge_id": "5b7204416d87:e6abfbd99a3fd480",
-      "from_state": "5b7204416d87",
-      "action_key": "e6abfbd99a3fd480",
-      "action": {
-        "action_key": "e6abfbd99a3fd480",
-        "role": "toggle button",
-        "name": "Shift Right",
-        "description": "Shift Right",
-        "states": [
-          "checked",
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 50
-    },
-    "5b7204416d87:46ea91b6ec1cc4f2": {
-      "edge_id": "5b7204416d87:46ea91b6ec1cc4f2",
-      "from_state": "5b7204416d87",
-      "action_key": "46ea91b6ec1cc4f2",
-      "action": {
-        "action_key": "46ea91b6ec1cc4f2",
-        "role": "toggle button",
-        "name": "Shift Left",
-        "description": "Shift Left",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          895,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 51
-    },
-    "5b7204416d87:c81388877cbbed05": {
-      "edge_id": "5b7204416d87:c81388877cbbed05",
-      "from_state": "5b7204416d87",
-      "action_key": "c81388877cbbed05",
-      "action": {
-        "action_key": "c81388877cbbed05",
-        "role": "toggle button",
-        "name": "Superscript",
-        "description": "Superscript mode [Ctrl]",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          831,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 52
-    },
-    "5b7204416d87:f8c3ae52acd084c0": {
-      "edge_id": "5b7204416d87:f8c3ae52acd084c0",
-      "from_state": "5b7204416d87",
-      "action_key": "f8c3ae52acd084c0",
-      "action": {
-        "action_key": "f8c3ae52acd084c0",
-        "role": "toggle button",
-        "name": "Subscript",
-        "description": "Subscript mode [Alt]",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          767,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 53
-    },
-    "8bc0cc3597e6:a7ad9c28e37b41c2": {
-      "edge_id": "8bc0cc3597e6:a7ad9c28e37b41c2",
-      "from_state": "8bc0cc3597e6",
-      "action_key": "a7ad9c28e37b41c2",
-      "action": {
-        "action_key": "a7ad9c28e37b41c2",
-        "role": "toggle button",
-        "name": "Mode selection",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          685,
-          113,
-          151,
-          46
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 54
-    },
-    "8bc0cc3597e6:52737df6e75fb08f": {
-      "edge_id": "8bc0cc3597e6:52737df6e75fb08f",
-      "from_state": "8bc0cc3597e6",
-      "action_key": "52737df6e75fb08f",
-      "action": {
-        "action_key": "52737df6e75fb08f",
-        "role": "toggle button",
-        "name": "Primary menu",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          933,
-          113,
-          36,
-          46
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 55
-    },
-    "8bc0cc3597e6:553e8a69a154b4f0": {
-      "edge_id": "8bc0cc3597e6:553e8a69a154b4f0",
-      "from_state": "8bc0cc3597e6",
-      "action_key": "553e8a69a154b4f0",
-      "action": {
-        "action_key": "553e8a69a154b4f0",
-        "role": "combo box",
-        "name": "Decimal",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          439,
-          360,
-          126,
-          34
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 9
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
-      "created_order": 56
-    },
-    "8bc0cc3597e6:85b7a6ed2413939d": {
-      "edge_id": "8bc0cc3597e6:85b7a6ed2413939d",
-      "from_state": "8bc0cc3597e6",
-      "action_key": "85b7a6ed2413939d",
-      "action": {
-        "action_key": "85b7a6ed2413939d",
-        "role": "toggle button",
-        "name": "Word Size",
-        "description": "Change word size",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          730,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 57
-    },
-    "8bc0cc3597e6:1f1e0ceb13b8f26b": {
-      "edge_id": "8bc0cc3597e6:1f1e0ceb13b8f26b",
-      "from_state": "8bc0cc3597e6",
-      "action_key": "1f1e0ceb13b8f26b",
-      "action": {
-        "action_key": "1f1e0ceb13b8f26b",
-        "role": "toggle button",
-        "name": "Store",
-        "description": "Memory",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          767,
-          730,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 58
-    },
-    "8bc0cc3597e6:d8838602adfcd4b6": {
-      "edge_id": "8bc0cc3597e6:d8838602adfcd4b6",
-      "from_state": "8bc0cc3597e6",
-      "action_key": "d8838602adfcd4b6",
-      "action": {
-        "action_key": "d8838602adfcd4b6",
-        "role": "push button",
-        "name": "Insert Character",
-        "description": "Insert Character Code",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          682,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 59
-    },
-    "8bc0cc3597e6:919fb9d331691387": {
-      "edge_id": "8bc0cc3597e6:919fb9d331691387",
-      "from_state": "8bc0cc3597e6",
-      "action_key": "919fb9d331691387",
-      "action": {
-        "action_key": "919fb9d331691387",
-        "role": "toggle button",
-        "name": "Shift Right",
-        "description": "Shift Right",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 60
-    },
-    "8bc0cc3597e6:a3bfcebb7a9de2a7": {
-      "edge_id": "8bc0cc3597e6:a3bfcebb7a9de2a7",
-      "from_state": "8bc0cc3597e6",
-      "action_key": "a3bfcebb7a9de2a7",
-      "action": {
-        "action_key": "a3bfcebb7a9de2a7",
-        "role": "toggle button",
-        "name": "Shift Left",
-        "description": "Shift Left",
-        "states": [
-          "checked",
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          895,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 61
-    },
-    "8bc0cc3597e6:c81388877cbbed05": {
-      "edge_id": "8bc0cc3597e6:c81388877cbbed05",
-      "from_state": "8bc0cc3597e6",
-      "action_key": "c81388877cbbed05",
-      "action": {
-        "action_key": "c81388877cbbed05",
-        "role": "toggle button",
-        "name": "Superscript",
-        "description": "Superscript mode [Ctrl]",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          831,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 62
-    },
-    "8bc0cc3597e6:f8c3ae52acd084c0": {
-      "edge_id": "8bc0cc3597e6:f8c3ae52acd084c0",
-      "from_state": "8bc0cc3597e6",
-      "action_key": "f8c3ae52acd084c0",
-      "action": {
-        "action_key": "f8c3ae52acd084c0",
-        "role": "toggle button",
-        "name": "Subscript",
-        "description": "Subscript mode [Alt]",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          767,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 63
-    },
-    "9ace005e22ae:a7ad9c28e37b41c2": {
-      "edge_id": "9ace005e22ae:a7ad9c28e37b41c2",
-      "from_state": "9ace005e22ae",
-      "action_key": "a7ad9c28e37b41c2",
-      "action": {
-        "action_key": "a7ad9c28e37b41c2",
-        "role": "toggle button",
-        "name": "Mode selection",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          685,
-          113,
-          151,
-          46
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 64
-    },
-    "9ace005e22ae:52737df6e75fb08f": {
-      "edge_id": "9ace005e22ae:52737df6e75fb08f",
-      "from_state": "9ace005e22ae",
-      "action_key": "52737df6e75fb08f",
-      "action": {
-        "action_key": "52737df6e75fb08f",
-        "role": "toggle button",
-        "name": "Primary menu",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          933,
-          113,
-          36,
-          46
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 65
-    },
-    "9ace005e22ae:553e8a69a154b4f0": {
-      "edge_id": "9ace005e22ae:553e8a69a154b4f0",
-      "from_state": "9ace005e22ae",
-      "action_key": "553e8a69a154b4f0",
-      "action": {
-        "action_key": "553e8a69a154b4f0",
-        "role": "combo box",
-        "name": "Decimal",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          439,
-          360,
-          126,
-          34
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 9
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
-      "created_order": 66
-    },
-    "9ace005e22ae:85b7a6ed2413939d": {
-      "edge_id": "9ace005e22ae:85b7a6ed2413939d",
-      "from_state": "9ace005e22ae",
-      "action_key": "85b7a6ed2413939d",
-      "action": {
-        "action_key": "85b7a6ed2413939d",
-        "role": "toggle button",
-        "name": "Word Size",
-        "description": "Change word size",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          730,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 67
-    },
-    "9ace005e22ae:1f1e0ceb13b8f26b": {
-      "edge_id": "9ace005e22ae:1f1e0ceb13b8f26b",
-      "from_state": "9ace005e22ae",
-      "action_key": "1f1e0ceb13b8f26b",
-      "action": {
-        "action_key": "1f1e0ceb13b8f26b",
-        "role": "toggle button",
-        "name": "Store",
-        "description": "Memory",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          767,
-          730,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 68
-    },
-    "9ace005e22ae:d8838602adfcd4b6": {
-      "edge_id": "9ace005e22ae:d8838602adfcd4b6",
-      "from_state": "9ace005e22ae",
-      "action_key": "d8838602adfcd4b6",
-      "action": {
-        "action_key": "d8838602adfcd4b6",
-        "role": "push button",
-        "name": "Insert Character",
-        "description": "Insert Character Code",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          682,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 69
-    },
-    "9ace005e22ae:919fb9d331691387": {
-      "edge_id": "9ace005e22ae:919fb9d331691387",
-      "from_state": "9ace005e22ae",
-      "action_key": "919fb9d331691387",
-      "action": {
-        "action_key": "919fb9d331691387",
-        "role": "toggle button",
-        "name": "Shift Right",
-        "description": "Shift Right",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 70
-    },
-    "9ace005e22ae:46ea91b6ec1cc4f2": {
-      "edge_id": "9ace005e22ae:46ea91b6ec1cc4f2",
-      "from_state": "9ace005e22ae",
-      "action_key": "46ea91b6ec1cc4f2",
-      "action": {
-        "action_key": "46ea91b6ec1cc4f2",
-        "role": "toggle button",
-        "name": "Shift Left",
-        "description": "Shift Left",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          895,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 71
-    },
-    "9ace005e22ae:d32f5b3e55a2a4b0": {
-      "edge_id": "9ace005e22ae:d32f5b3e55a2a4b0",
-      "from_state": "9ace005e22ae",
-      "action_key": "d32f5b3e55a2a4b0",
-      "action": {
-        "action_key": "d32f5b3e55a2a4b0",
-        "role": "toggle button",
-        "name": "Superscript",
-        "description": "Superscript mode [Ctrl]",
-        "states": [
-          "checked",
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          831,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 72
-    },
-    "9ace005e22ae:f8c3ae52acd084c0": {
-      "edge_id": "9ace005e22ae:f8c3ae52acd084c0",
-      "from_state": "9ace005e22ae",
-      "action_key": "f8c3ae52acd084c0",
-      "action": {
-        "action_key": "f8c3ae52acd084c0",
-        "role": "toggle button",
-        "name": "Subscript",
-        "description": "Subscript mode [Alt]",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          767,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 73
-    },
-    "67f6d130a995:a7ad9c28e37b41c2": {
-      "edge_id": "67f6d130a995:a7ad9c28e37b41c2",
-      "from_state": "67f6d130a995",
-      "action_key": "a7ad9c28e37b41c2",
-      "action": {
-        "action_key": "a7ad9c28e37b41c2",
-        "role": "toggle button",
-        "name": "Mode selection",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          685,
-          113,
-          151,
-          46
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 74
-    },
-    "67f6d130a995:52737df6e75fb08f": {
-      "edge_id": "67f6d130a995:52737df6e75fb08f",
-      "from_state": "67f6d130a995",
-      "action_key": "52737df6e75fb08f",
-      "action": {
-        "action_key": "52737df6e75fb08f",
-        "role": "toggle button",
-        "name": "Primary menu",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          933,
-          113,
-          36,
-          46
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 75
-    },
-    "67f6d130a995:553e8a69a154b4f0": {
-      "edge_id": "67f6d130a995:553e8a69a154b4f0",
-      "from_state": "67f6d130a995",
-      "action_key": "553e8a69a154b4f0",
-      "action": {
-        "action_key": "553e8a69a154b4f0",
-        "role": "combo box",
-        "name": "Decimal",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          439,
-          360,
-          126,
-          34
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 9
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
-      "created_order": 76
-    },
-    "67f6d130a995:85b7a6ed2413939d": {
-      "edge_id": "67f6d130a995:85b7a6ed2413939d",
-      "from_state": "67f6d130a995",
-      "action_key": "85b7a6ed2413939d",
-      "action": {
-        "action_key": "85b7a6ed2413939d",
-        "role": "toggle button",
-        "name": "Word Size",
-        "description": "Change word size",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          730,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 77
-    },
-    "67f6d130a995:1f1e0ceb13b8f26b": {
-      "edge_id": "67f6d130a995:1f1e0ceb13b8f26b",
-      "from_state": "67f6d130a995",
-      "action_key": "1f1e0ceb13b8f26b",
-      "action": {
-        "action_key": "1f1e0ceb13b8f26b",
-        "role": "toggle button",
-        "name": "Store",
-        "description": "Memory",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          767,
-          730,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 78
-    },
-    "67f6d130a995:d8838602adfcd4b6": {
-      "edge_id": "67f6d130a995:d8838602adfcd4b6",
-      "from_state": "67f6d130a995",
-      "action_key": "d8838602adfcd4b6",
-      "action": {
-        "action_key": "d8838602adfcd4b6",
-        "role": "push button",
-        "name": "Insert Character",
-        "description": "Insert Character Code",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          682,
-          124,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 79
-    },
-    "67f6d130a995:919fb9d331691387": {
-      "edge_id": "67f6d130a995:919fb9d331691387",
-      "from_state": "67f6d130a995",
-      "action_key": "919fb9d331691387",
-      "action": {
-        "action_key": "919fb9d331691387",
-        "role": "toggle button",
-        "name": "Shift Right",
-        "description": "Shift Right",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          959,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 80
-    },
-    "67f6d130a995:46ea91b6ec1cc4f2": {
-      "edge_id": "67f6d130a995:46ea91b6ec1cc4f2",
-      "from_state": "67f6d130a995",
-      "action_key": "46ea91b6ec1cc4f2",
-      "action": {
-        "action_key": "46ea91b6ec1cc4f2",
-        "role": "toggle button",
-        "name": "Shift Left",
-        "description": "Shift Left",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          895,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 81
-    },
-    "67f6d130a995:c81388877cbbed05": {
-      "edge_id": "67f6d130a995:c81388877cbbed05",
-      "from_state": "67f6d130a995",
-      "action_key": "c81388877cbbed05",
-      "action": {
-        "action_key": "c81388877cbbed05",
-        "role": "toggle button",
-        "name": "Superscript",
-        "description": "Superscript mode [Ctrl]",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          831,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 82
-    },
-    "67f6d130a995:63c7a20a004dd6aa": {
-      "edge_id": "67f6d130a995:63c7a20a004dd6aa",
-      "from_state": "67f6d130a995",
-      "action_key": "63c7a20a004dd6aa",
-      "action": {
-        "action_key": "63c7a20a004dd6aa",
-        "role": "toggle button",
-        "name": "Subscript",
-        "description": "Subscript mode [Alt]",
-        "states": [
-          "checked",
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          767,
-          538,
-          60,
-          44
-        ],
-        "parent_path": [
-          "application/gnome-calculator",
-          "frame/Calculator",
-          "panel",
-          "filler",
-          "panel",
-          "panel",
-          "filler",
-          "filler",
-          "panel",
-          "panel"
-        ],
-        "depth": 10
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 83
     },
     "de52c438ef75:4db2aca0d258b186": {
       "edge_id": "de52c438ef75:4db2aca0d258b186",
@@ -3916,7 +2218,7 @@
       "attempts": 0,
       "reason": "push button name suggests menu/dialog/navigation/context change",
       "observed": null,
-      "created_order": 84
+      "created_order": 44
     },
     "de52c438ef75:9253ca1d7d48d7bf": {
       "edge_id": "de52c438ef75:9253ca1d7d48d7bf",
@@ -3954,12 +2256,12 @@
       "attempts": 0,
       "reason": "push button name suggests menu/dialog/navigation/context change",
       "observed": null,
-      "created_order": 85
+      "created_order": 45
     }
   },
   "completion": {
     "status": "partial",
-    "pending_edges": 76,
+    "pending_edges": 36,
     "reason": "pending_edges_exist"
   }
 }

@@ -78,33 +78,272 @@ def _visible_menu_roots(root: A11YNode) -> list[A11YNode]:
 
 def _visible_popover_roots(root: A11YNode) -> list[A11YNode]:
     """
-    Return visible popover-like containers.
+    Detect compact foreground-like popovers that are not exposed as role=menu/dialog.
 
-    Some GTK popovers are not exposed as role=menu/window. They appear as
-    visible panels containing radio/menu/check items outside the main frame.
+    Important: do NOT classify ordinary calculator button grids as overlays.
+
+    A compact container is considered an overlay only if it has strong overlay evidence:
+    - radio/menu/list/check controls;
+    - option-list names like bit/place;
+    - store/memory names like variable/rand/store-value description;
+    - input controls inside a compact container.
+
+    This catches GTK popovers such as:
+    - Word Size selector: 64-bit / 32-bit / 16-bit / 8-bit
+    - Shift selector: 1 place / ... / 15 places
+    - Store popover: rand + variable/store button
     """
     main_frame = _first_visible_frame(root)
-    result: list[A11YNode] = []
+
+    container_roles = {
+        "window",
+        "panel",
+        "filler",
+        "viewport",
+        "scroll pane",
+        "list",
+        "list box",
+        "combo box",
+    }
+
+    strong_control_roles = {
+        "radio button",
+        "check box",
+        "menu item",
+        "list item",
+        "table cell",
+        "row",
+    }
+
+    input_roles = {
+        "entry",
+        "editbar",
+        "text entry",
+        "password text",
+        "spin button",
+    }
+
+    content_roles = {
+        "push button",
+        "toggle button",
+        "button",
+        "radio button",
+        "check box",
+        "menu item",
+        "list item",
+        "entry",
+        "editbar",
+        "text entry",
+        "spin button",
+        "label",
+        "text",
+        "static",
+    }
+
+    main_area = None
+    if main_frame and main_frame.bbox:
+        main_area = main_frame.bbox.width * main_frame.bbox.height
+
+    candidates: list[tuple[int, A11YNode]] = []
 
     for node in walk(root):
         if not node.is_visible:
             continue
         if node is main_frame:
             continue
+        if node.role not in container_roles:
+            continue
+        if not node.bbox or node.bbox.width <= 1 or node.bbox.height <= 1:
+            continue
 
-        descendants = list(walk(node))
-        visible_controls = [
-            d for d in descendants
-            if d.is_visible and d.role in {"radio button", "menu item", "check box"}
+        width = node.bbox.width
+        height = node.bbox.height
+        area = width * height
+
+        # Exclude full-window / large layout containers.
+        if main_area and area > main_area * 0.45:
+            continue
+
+        # Popovers can be tall and narrow, or short and wider.
+        compact = (
+            (width <= 280 and height <= 540)
+            or (width <= 430 and height <= 280)
+        )
+        if not compact:
+            continue
+
+        visible = [d for d in walk(node) if d.is_visible]
+        if len(visible) < 3 or len(visible) > 70:
+            continue
+
+        named_content = [
+            d
+            for d in visible
+            if d is not node
+            and d.role in content_roles
+            and (
+                (d.name or "").strip()
+                or (d.description or "").strip()
+                or d.role in input_roles
+            )
         ]
 
-        if len(visible_controls) >= 2:
-            # Avoid selecting the whole main frame/panel by requiring a reasonably
-            # small overlay-like box.
-            if node.bbox.width <= 400 and node.bbox.height <= 400:
-                result.append(node)
+        if len(named_content) < 2:
+            continue
 
-    return result
+        unique_names = {
+            ((d.name or d.description or d.role) or "").strip()
+            for d in named_content
+            if ((d.name or d.description or d.role) or "").strip()
+        }
+
+        names_text = " ".join(unique_names).lower()
+
+        strong_controls = [
+            d
+            for d in named_content
+            if d.role in strong_control_roles
+        ]
+
+        inputs = [
+            d
+            for d in named_content
+            if d.role in input_roles
+        ]
+
+        has_mode_overlay_controls = len(strong_controls) >= 2
+        has_input = len(inputs) >= 1
+        has_bit_options = "bit" in names_text
+        has_place_options = "place" in names_text
+
+        # Strong store/memory popover evidence.
+        # A plain main-panel "Store" button is NOT enough.
+        has_store_memory_hint = (
+            "store value into existing or new variable" in names_text
+            or "variable" in names_text
+            or "rand" in names_text
+            or "memory" in names_text
+        )
+
+        # Permanent calculator controls that often live in the right-side main panel.
+        # If a compact container contains these controls but has no overlay-specific
+        # evidence, it is probably part of the normal main UI, not a popover.
+        main_control_hints = {
+            "word size",
+            "insert character",
+            "shift right",
+            "shift left",
+            "superscript",
+            "subscript",
+            "factorize",
+            "absolute value",
+            "inverse",
+            "exponent",
+            "twos",
+            "ones",
+            "not",
+            "and",
+            "or",
+            "xor",
+        }
+
+        has_main_panel_controls = any(
+            hint in names_text
+            for hint in main_control_hints
+        )
+
+        has_overlay_specific_hint = (
+            has_mode_overlay_controls
+            or has_input
+            or has_bit_options
+            or has_place_options
+            or has_store_memory_hint
+        )
+
+        if has_main_panel_controls and not has_overlay_specific_hint:
+            continue
+
+        # Ordinary calculator grids often have many one-character names:
+        # F, E, D, C, B, A, 9, 8, +, −, ×, etc.
+        one_char_names = [
+            n
+            for n in unique_names
+            if len(n.strip()) == 1
+        ]
+        one_char_ratio = len(one_char_names) / max(len(unique_names), 1)
+
+        looks_like_plain_button_grid = (
+            len(unique_names) >= 8
+            and one_char_ratio >= 0.55
+            and not has_overlay_specific_hint
+        )
+
+        if looks_like_plain_button_grid:
+            continue
+
+        # Large compact panels with many controls and no specific overlay hint
+        # are likely normal UI groups, not foreground popovers.
+        if len(unique_names) > 18 and not has_overlay_specific_hint:
+            continue
+
+        score = 0
+
+        if has_mode_overlay_controls:
+            score += 120
+
+        if has_input:
+            score += 90
+
+        if has_bit_options:
+            score += 100
+
+        if has_place_options:
+            score += 100
+
+        if has_store_memory_hint:
+            score += 100
+
+        # Compact selector lists with meaningful multi-item labels.
+        if len(unique_names) >= 3 and (
+            has_bit_options
+            or has_place_options
+            or has_mode_overlay_controls
+        ):
+            score += 40
+
+        # Store popover can have only 2 semantic named items.
+        if len(unique_names) >= 2 and has_store_memory_hint:
+            score += 40
+
+        # Prefer smaller/deeper foreground containers.
+        if width <= 160:
+            score += 15
+
+        if len(visible) <= 25:
+            score += 15
+
+        if score >= 90:
+            candidates.append((score, node))
+
+    # Choose best candidate:
+    # 1. highest score;
+    # 2. deeper subtree;
+    # 3. smaller area.
+    #
+    # resolve_active_root uses popovers[-1], so sort ascending by these keys.
+    candidates.sort(
+        key=lambda item: (
+            item[0],
+            len(item[1].parent_path),
+            -(
+                item[1].bbox.width * item[1].bbox.height
+                if item[1].bbox
+                else 0
+            ),
+        )
+    )
+
+    return [node for _, node in candidates]
 
 
 def resolve_active_root(root: A11YNode) -> ActiveRoot:
@@ -112,7 +351,7 @@ def resolve_active_root(root: A11YNode) -> ActiveRoot:
     Resolve the active interaction root.
 
     Important:
-    The last visible secondary/menu root is treated as topmost because many GTK apps
+    The last visible secondary/menu/popover root is treated as topmost because many GTK apps
     append newer transient windows later in the A11Y tree.
     """
     secondary = _visible_secondary_roots(root)
@@ -134,7 +373,11 @@ def resolve_active_root(root: A11YNode) -> ActiveRoot:
     popovers = _visible_popover_roots(root)
     if popovers:
         node = popovers[-1]
-        return ActiveRoot(node=node, kind="window_overlay", reason="visible popover-like control group is active overlay")
+        return ActiveRoot(
+            node=node,
+            kind="window_overlay",
+            reason="visible popover-like control group is active overlay",
+        )
 
     main_frame = _first_visible_frame(root)
     if main_frame is not None:
