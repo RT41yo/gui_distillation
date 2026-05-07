@@ -606,3 +606,47 @@ Not implemented yet:
 - semantic state labels;
 - graph visualization;
 - LLM annotations.
+
+---
+
+## 21. Эксперименты с другими приложениями
+
+Помимо GNOME Calculator были проверены другие GUI-приложения, чтобы убедиться, что подход не захардкожен под калькулятор.
+
+Краткий результат:
+
+```text
+VLC:
+  GUI запускается, X11-окна видны, но AT-SPI отдаёт только application/vlc с childCount=0.
+  В текущей среде приложение непригодно для A11Y-only exploration.
+
+Thunderbird:
+  X11-окна появляются, но приложение не регистрируется в AT-SPI registry.
+  В текущей среде приложение непригодно без дополнительной настройки accessibility/DBus.
+
+gedit:
+  A11Y Tree полноценный.
+  Root-level exploration успешно построил отдельный граф в data/maps/gedit/.
+  Подтверждены root-level переходы для Menu и Open.
+
+Nautilus:
+  A11Y Tree полноценный.
+  Эксперимент выявил важную проблему active_root detection: постоянный sidebar был ошибочно принят за overlay.
+  После уточнения эвристики sidebar исключается из overlay-кандидатов.
+  Также выявлено ограничение reset-to-root: Escape не всегда возвращает приложение в root-состояние.
+```
+
+Выводы:
+
+- проект не привязан к calc: gedit успешно прошёл root-level exploration;
+- не каждое GUI-приложение отдаёт полезный AT-SPI tree в текущей среде;
+- для приложений вроде Nautilus нужен более надёжный reset strategy, например fallback через restart приложения;
+- текущий универсальный следующий шаг — реализовать replay-path navigation для depth > 0.
+
+
+Для визуализации графа используется CLI-команда:
+```bash
+ui-explorer-visualize-graph --app calc
+ui-explorer-visualize-graph --app gedit
+ui-explorer-visualize-graph --app nautilus
+```
