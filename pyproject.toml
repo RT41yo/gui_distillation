@@ -13,7 +13,12 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "pytest>=8.0",
+  "matplotlib>=3.8",
+  "networkx>=3.2",
 ]
+
+[project.scripts]
+ui-explorer-visualize-graph = "ui_explorer.cli.visualize_graph:main"
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
