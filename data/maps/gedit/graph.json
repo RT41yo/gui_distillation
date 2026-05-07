@@ -1,0 +1,265 @@
+{
+  "schema_version": "1.0",
+  "app_id": "gedit",
+  "root_state_id": "e3bf0e978ed8",
+  "nodes": {
+    "251ffe64e49e": {
+      "state_id": "251ffe64e49e",
+      "status": "confirmed",
+      "xml_path": "data/maps/gedit/states/251ffe64e49e/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Untitled Document 1 - gedit",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gedit"
+        ]
+      },
+      "macro_hash": "251ffe64e49ef0d0a75e4b12ab5b0b65cbee32663ade82fa0cb29b373649ae64",
+      "content_hash": "c291bd46f47b3388f473fcfd32d0926dbdf51f723b0ac82b7ac4656bfbdb94a0",
+      "macro_action_count": 2,
+      "visible_node_count": 37,
+      "depth": 1,
+      "label": "Untitled Document 1 - gedit"
+    },
+    "d0e0b61bd22c": {
+      "state_id": "d0e0b61bd22c",
+      "status": "confirmed",
+      "xml_path": "data/maps/gedit/states/d0e0b61bd22c/a11y.xml",
+      "active_root": {
+        "kind": "window_overlay",
+        "reason": "visible popover-like control group is active overlay",
+        "role": "filler",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gedit",
+          "frame/Untitled Document 1 - gedit",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ]
+      },
+      "macro_hash": "d0e0b61bd22c0bc306e9319cff411fbd081ad171fd2d0004b930ad181f2ca718",
+      "content_hash": "9c0f8faa65fe4ff9f4e93231d86ed4736ca7d7d02fc6c11895ffdbac88a51165",
+      "macro_action_count": 0,
+      "visible_node_count": 5,
+      "depth": 1,
+      "label": "filler"
+    },
+    "e3bf0e978ed8": {
+      "state_id": "e3bf0e978ed8",
+      "status": "confirmed",
+      "xml_path": "data/maps/gedit/states/e3bf0e978ed8/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Untitled Document 1 - gedit",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gedit"
+        ]
+      },
+      "macro_hash": "e3bf0e978ed8f5f4c4207a8d15e5691c5dcdaaaf68650146ee5c21dffec53ea9",
+      "content_hash": "de002b71d547304f2f4839b9776a39e9c624c0bd5923885bde0ef4bbbb0f30a5",
+      "macro_action_count": 2,
+      "visible_node_count": 28,
+      "depth": 0,
+      "label": "Untitled Document 1 - gedit"
+    }
+  },
+  "edges": {
+    "e3bf0e978ed8:ed8afc773597e49c": {
+      "edge_id": "e3bf0e978ed8:ed8afc773597e49c",
+      "from_state": "e3bf0e978ed8",
+      "action_key": "ed8afc773597e49c",
+      "action": {
+        "action_key": "ed8afc773597e49c",
+        "role": "toggle button",
+        "name": "Menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          732,
+          3,
+          36,
+          46
+        ],
+        "parent_path": [
+          "application/gedit",
+          "frame/Untitled Document 1 - gedit",
+          "split pane",
+          "panel"
+        ],
+        "depth": 4
+      },
+      "status": "confirmed",
+      "to_state": "d0e0b61bd22c",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "d0e0b61bd22c",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 0
+    },
+    "e3bf0e978ed8:da0116d96b96c04c": {
+      "edge_id": "e3bf0e978ed8:da0116d96b96c04c",
+      "from_state": "e3bf0e978ed8",
+      "action_key": "da0116d96b96c04c",
+      "action": {
+        "action_key": "da0116d96b96c04c",
+        "role": "toggle button",
+        "name": "Open",
+        "description": "Open a file",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          15,
+          3,
+          84,
+          46
+        ],
+        "parent_path": [
+          "application/gedit",
+          "frame/Untitled Document 1 - gedit",
+          "split pane",
+          "panel"
+        ],
+        "depth": 4
+      },
+      "status": "confirmed",
+      "to_state": "251ffe64e49e",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "251ffe64e49e",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 1
+    },
+    "251ffe64e49e:ed8afc773597e49c": {
+      "edge_id": "251ffe64e49e:ed8afc773597e49c",
+      "from_state": "251ffe64e49e",
+      "action_key": "ed8afc773597e49c",
+      "action": {
+        "action_key": "ed8afc773597e49c",
+        "role": "toggle button",
+        "name": "Menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          732,
+          3,
+          36,
+          46
+        ],
+        "parent_path": [
+          "application/gedit",
+          "frame/Untitled Document 1 - gedit",
+          "split pane",
+          "panel"
+        ],
+        "depth": 4
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 2
+    },
+    "251ffe64e49e:a22d80f91cd8bf06": {
+      "edge_id": "251ffe64e49e:a22d80f91cd8bf06",
+      "from_state": "251ffe64e49e",
+      "action_key": "a22d80f91cd8bf06",
+      "action": {
+        "action_key": "a22d80f91cd8bf06",
+        "role": "toggle button",
+        "name": "Open",
+        "description": "Open a file",
+        "states": [
+          "checked",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          15,
+          3,
+          84,
+          46
+        ],
+        "parent_path": [
+          "application/gedit",
+          "frame/Untitled Document 1 - gedit",
+          "split pane",
+          "panel"
+        ],
+        "depth": 4
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 3
+    }
+  },
+  "completion": {
+    "status": "partial",
+    "pending_edges": 2,
+    "reason": "pending_edges_exist"
+  }
+}

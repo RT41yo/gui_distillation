@@ -81,6 +81,13 @@ MACRO_NAME_HINTS = (
 )
 
 
+WINDOW_CONTROL_NAMES = frozenset({
+    "Close",
+    "Minimize",
+    "Maximize",
+})
+
+
 def _looks_like_bit_cell(action: UIAction) -> bool:
     # GNOME Calculator bit-grid-like cells appear as tiny push buttons,
     # often with name "0" and description as bit index.
@@ -92,6 +99,14 @@ def classify_action(action: UIAction) -> ClassifiedAction:
     role = action.role
     name = action.name.strip()
     name_lower = name.lower()
+
+    if name in WINDOW_CONTROL_NAMES:
+        return ClassifiedAction(
+            action=action,
+            kind=ActionKind.IGNORED,
+            priority=100,
+            reason="window control action is ignored for safe exploration",
+        )
 
     if role in {"entry", "editbar", "spin button"}:
         return ClassifiedAction(

@@ -3,3 +3,18 @@ apps:
     display_name: GNOME Calculator
     launcher: gnome-calculator
     a11y_name: gnome-calculator
+
+  - app_id: vlc
+    display_name: VLC media player
+    launcher: vlc
+    a11y_name: vlc
+
+  - app_id: thunderbird
+    display_name: Thunderbird
+    launcher: thunderbird
+    a11y_name: thunderbird
+
+  - app_id: gedit
+    display_name: gedit
+    launcher: gedit
+    a11y_name: gedit

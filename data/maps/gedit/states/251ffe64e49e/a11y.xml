@@ -1,0 +1,567 @@
+<accessibility-tree app_query="gedit" app_accessible_name="gedit" captured_at="1778191010.3850245">
+  <element role="application" name="gedit" description="" x="0" y="0" width="0" height="0">
+    <element role="frame" name="Untitled Document 1 - gedit" description="" x="0" y="0" width="910" height="756" states="sensitive,showing,visible,enabled">
+      <element role="split pane" name="" description="" x="5" y="5" width="900" height="46" states="sensitive,showing,visible,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+            <element role="push button" name="Minimize" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            <element role="push button" name="Maximize" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            <element role="push button" name="Close" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          </element>
+          <element role="toggle button" name="Change side panel page" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+        </element>
+        <element role="panel" name="" description="" x="10" y="4" width="890" height="46" states="sensitive,showing,visible,enabled">
+          <element role="filler" name="" description="" x="774" y="3" width="121" height="46" states="sensitive,showing,visible,enabled">
+            <element role="separator" name="" description="" x="774" y="3" width="1" height="46" states="sensitive,showing,visible,enabled"/>
+            <element role="push button" name="Minimize" description="" x="781" y="11" width="34" height="30" states="sensitive,showing,visible,enabled"/>
+            <element role="push button" name="Maximize" description="" x="821" y="11" width="34" height="30" states="sensitive,showing,visible,enabled"/>
+            <element role="push button" name="Close" description="" x="861" y="11" width="34" height="30" states="sensitive,showing,visible,enabled"/>
+          </element>
+          <element role="push button" name="Save" description="Save the current file" x="660" y="3" width="66" height="46" states="sensitive,showing,visible,enabled"/>
+          <element role="toggle button" name="Menu" description="" x="732" y="3" width="36" height="46" states="sensitive,showing,visible,enabled"/>
+          <element role="filler" name="" description="" x="365" y="17" width="179" height="17" states="sensitive,showing,visible,enabled">
+            <element role="label" name="Untitled Document 1" description="" x="365" y="17" width="179" height="17" states="sensitive,showing,visible,enabled"/>
+            <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+          </element>
+          <element role="push button" name="New" description="Create a new document" x="105" y="3" width="36" height="46" states="sensitive,showing,visible,enabled"/>
+          <element role="toggle button" name="Open" description="Open a file" x="15" y="3" width="84" height="46" states="checked,sensitive,showing,visible,enabled"/>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="5" y="51" width="900" height="700" states="sensitive,showing,visible,enabled">
+        <element role="filler" name="" description="" x="5" y="51" width="900" height="700" states="sensitive,showing,visible,enabled">
+          <element role="split pane" name="" description="" x="5" y="51" width="900" height="700" states="sensitive,showing,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+              <element role="toggle button" name="Documents" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+              <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="scroll pane" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                    <element role="viewport" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="list box" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                          <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                              <element role="label" name="Tab Group 1" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                              <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                              <element role="push button" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            </element>
+                          </element>
+                        </element>
+                        <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="selected,sensitive,visible,enabled">
+                          <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                              </element>
+                              <element role="label" name="Untitled Document 1" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                              <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                              <element role="push button" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            </element>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  </element>
+                </element>
+              </element>
+            </element>
+            <element role="filler" name="" description="" x="5" y="51" width="900" height="700" states="sensitive,showing,visible,enabled">
+              <element role="split pane" name="" description="" x="5" y="51" width="900" height="672" states="sensitive,showing,visible,enabled">
+                <element role="panel" name="" description="" x="5" y="51" width="900" height="672" states="sensitive,showing,visible,enabled">
+                  <element role="page tab list" name="" description="" x="5" y="51" width="900" height="672" states="sensitive,showing,visible,enabled">
+                    <element role="page tab" name="" description="" x="-1" y="-1" width="-1" height="-1" states="selected,showing,visible,enabled">
+                      <element role="filler" name="" description="" x="5" y="51" width="900" height="672" states="sensitive,showing,visible,enabled">
+                        <element role="panel" name="" description="" x="5" y="51" width="900" height="672" states="sensitive,showing,visible,enabled">
+                          <element role="panel" name="" description="" x="5" y="51" width="900" height="672" states="sensitive,showing,visible,enabled">
+                            <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                              <element role="text" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            </element>
+                            <element role="panel" name="" description="" x="5" y="51" width="900" height="672" states="sensitive,showing,visible,enabled">
+                              <element role="filler" name="" description="" x="5" y="51" width="900" height="672" states="sensitive,showing,visible,enabled">
+                                <element role="drawing area" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                                <element role="scroll pane" name="" description="" x="5" y="51" width="900" height="672" states="sensitive,showing,visible,enabled">
+                                  <element role="text" name="" description="" x="5" y="51" width="900" height="672" states="sensitive,showing,visible,enabled"/>
+                                  <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                                  <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                                </element>
+                              </element>
+                            </element>
+                          </element>
+                          <element role="panel" name="" description="" x="637" y="51" width="256" height="1" states="sensitive,showing,visible,enabled">
+                            <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="256" height="43" states="sensitive,visible,enabled">
+                              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="238" height="34" states="sensitive,visible,enabled">
+                                <element role="text" name="Search" description="" x="-2147483648" y="-2147483648" width="167" height="34" states="sensitive,visible,enabled">
+                                  <element role="icon" name="edit-find-symbolic" description="" x="-2147483648" y="-2147483648" width="167" height="34" states="sensitive,visible,enabled"/>
+                                </element>
+                                <element role="push button" name="" description="" x="-2147483648" y="-2147483648" width="35" height="34" states="sensitive,visible,enabled"/>
+                                <element role="push button" name="" description="" x="-2147483648" y="-2147483648" width="36" height="34" states="sensitive,visible,enabled"/>
+                              </element>
+                            </element>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                  </element>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                  <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                    <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="page tab list" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    </element>
+                  </element>
+                  <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                    <element role="push button" name="Close" description="Hide panel" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  </element>
+                </element>
+              </element>
+              <element role="status bar" name="" description="" x="5" y="723" width="900" height="28" states="sensitive,showing,visible,enabled"/>
+            </element>
+          </element>
+        </element>
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+          <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="push button" name="Save" description="Save the current file" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="toggle button" name="Menu" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="Leave Fullscreen" description="Leave Fullscreen" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="label" name="Untitled Document 1" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+              </element>
+              <element role="push button" name="New" description="Create a new document" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="toggle button" name="Open" description="Open a file" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="5" y="49" width="448" height="421" states="sensitive,showing,visible,enabled">
+        <element role="filler" name="" description="" x="29" y="73" width="400" height="373" states="sensitive,showing,visible,enabled">
+          <element role="text" name="Search" description="" x="29" y="73" width="400" height="34" states="focused,sensitive,showing,visible,enabled">
+            <element role="icon" name="edit-find-symbolic" description="" x="38" y="82" width="16" height="16" states="showing,visible"/>
+          </element>
+          <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="icon" name="Find" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="label" name="No results" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+            </element>
+          </element>
+          <element role="scroll pane" name="" description="" x="29" y="113" width="400" height="287" states="sensitive,showing,visible,enabled">
+            <element role="table" name="" description="" x="30" y="114" width="398" height="285" states="sensitive,showing,visible,enabled">
+              <element role="table column header" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+              <element role="table cell" name="" description="" x="32" y="115" width="394" height="55" states="sensitive,showing,visible,enabled">
+                <element role="table cell" name="claude_start" description="" x="32" y="115" width="398" height="55" states="sensitive,showing,visible,enabled"/>
+                <element role="table cell" name="/home/gui_exploration/Desktop" description="" x="32" y="115" width="0" height="55" states="sensitive,showing,visible,enabled"/>
+              </element>
+            </element>
+            <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="6" height="46" states="sensitive,visible,enabled"/>
+          </element>
+          <element role="push button" name="Other Documents…" description="Open another file" x="29" y="412" width="400" height="34" states="sensitive,showing,visible,enabled"/>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="265" height="467" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="235" height="437" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="417" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="417" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="34" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="34" states="sensitive,visible,enabled">
+                  <element role="push button" name="Reload" description="" x="-2147483648" y="-2147483648" width="72" height="34" states="visible"/>
+                  <element role="push button" name="Print…" description="" x="-2147483648" y="-2147483648" width="71" height="34" states="sensitive,visible,enabled"/>
+                  <element role="check box" name="Fullscreen" description="" x="-2147483648" y="-2147483648" width="72" height="34" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="36" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled">
+                  <element role="push button" name="New Window" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="1" states="sensitive,visible,enabled"/>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="59" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="215" height="7" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="52" states="sensitive,visible,enabled">
+                  <element role="push button" name="Save As…" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Save All" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="1" states="sensitive,visible,enabled"/>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="1" states="sensitive,visible,enabled"/>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="111" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="215" height="7" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="104" states="sensitive,visible,enabled">
+                  <element role="push button" name="Find…" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Find and Replace…" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Clear Highlight" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="visible"/>
+                  <element role="push button" name="Go to Line…" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="59" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="215" height="7" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="52" states="sensitive,visible,enabled">
+                  <element role="push button" name="View" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Tools" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="33" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="215" height="7" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled">
+                  <element role="push button" name="Preferences" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="85" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="215" height="7" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="215" height="78" states="sensitive,visible,enabled">
+                  <element role="push button" name="Keyboard Shortcuts" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Help" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="About Text Editor" description="" x="-2147483648" y="-2147483648" width="215" height="26" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="radio button" name="Documents" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
+          <element role="radio button" name="File Browser" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="text" name="Search" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="icon" name="edit-find-symbolic" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+          </element>
+          <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="icon" name="Find" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="label" name="No results" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+            </element>
+          </element>
+          <element role="scroll pane" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="table" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="table column header" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="" description="" x="32338" y="1073792640" width="0" height="0" states="sensitive,visible,enabled">
+                <element role="table cell" name="claude_start" description="" x="32338" y="1073792640" width="0" height="0" states="sensitive,visible,enabled"/>
+                <element role="table cell" name="/home/gui_exploration/Desktop" description="" x="32338" y="1073792640" width="0" height="0" states="sensitive,visible,enabled"/>
+              </element>
+            </element>
+            <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          </element>
+          <element role="push button" name="Other Documents…" description="Open another file" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Reload" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="push button" name="Print…" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="check box" name="Fullscreen" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="New Window" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Save As…" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Save All" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Find…" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Find and Replace…" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Clear Highlight" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="push button" name="Go to Line…" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="View" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Tools" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Preferences" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Keyboard Shortcuts" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Help" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="About Text Editor" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="check box" name="Display line numbers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="check box" name="Display right margin" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="check box" name="Highlight current line" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="check box" name="Text wrapping" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="check box" name="Automatic Indentation" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="radio button" name="2" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="4" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="8" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="check box" name="Use Spaces" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="scroll pane" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="table" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="table column header" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Plain Text" description="" x="23683" y="-742217600" width="0" height="0" states="selected,sensitive,visible,enabled"/>
+              <element role="table cell" name="ABNF" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="ActionScript" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Ada" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="ANS-Forth94" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="AsciiDoc" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="ASP" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Automake" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="awk" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="BennuGD" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="BibTeX" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Bluespec SystemVerilog" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Boo" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="C" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="C#" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="C++" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="CG Shader Language" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="ChangeLog" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="C++ Header" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="CMake" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="C/ObjC Header" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="COBOL" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Common Lisp" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="CSS" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="CSV" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="CUDA" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="D" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Dart" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name=".desktop" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Diff" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Django Template" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="DocBook" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Dockerfile" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="DOS Batch" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="DPatch" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="DTD" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Eiffel" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="ERB" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="ERB (HTML)" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="ERB (JavaScript)" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Erlang" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="F#" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="FCL" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Fish" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Fluent" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Forth" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Fortran 95" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="GAP" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="GDB Log" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="GDScript" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Genie" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="gettext translation" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Go" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Gradle" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Graphviz Dot" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Groovy" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="GtkRC" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Haskell" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Haxe" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="HTML" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="IDL" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="IDL/PV-WAVE/GDL" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="ImageJ" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name=".ini" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="J" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Jade" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Java" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="JavaScript" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="JSON" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="JSX" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Julia" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Kotlin" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="LaTeX" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Lean" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Less" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Lex" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="libtool" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Literate Haskell" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="LLVM IR" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="logcat" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Logtalk" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Lua" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="m4" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Makefile" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Mallard" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Markdown" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Matlab" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Maxima" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="MediaWiki" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Meson" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Modelica" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="MXML" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Nemerle" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="NetRexx" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="NSIS" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Objective-C" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Objective-J" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="OCaml" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="OCL" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Octave" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="OOC" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Opal" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="OpenCL" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="OpenGL Shading Language" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Pascal" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Perl" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="PHP" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Pig" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="pkg-config" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="PowerShell" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Prolog" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Protobuf" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Puppet" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Python" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Python 2" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="R" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="reStructuredText" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="RPM spec" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Ruby" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Rust" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Scala" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Scheme" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Scilab" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="SCSS" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="sh" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Solidity" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="SPARQL" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="SPICE" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="SQL" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Standard ML" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="STAR" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Sweave" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Swift" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="SystemVerilog" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Tcl" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Tera Template" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Terraform" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Texinfo" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Thrift" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="TOML" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="txt2tags" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="TypeScript" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="TypeScript JSX" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Vala" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="VB.NET" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Verilog" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="VHDL" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="XML" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="XSLT" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="Yacc" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="YAML" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+              <element role="table cell" name="YARA" description="" x="23683" y="-742217600" width="0" height="0" states="sensitive,visible,enabled"/>
+            </element>
+            <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          </element>
+          <element role="text" name="Search" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="icon" name="edit-find-symbolic" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="scroll pane" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="table" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="table column header" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            <element role="table column header" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="" description="" x="23683" y="-741751600" width="0" height="0" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="Bookmarks" description="" x="23683" y="-741751600" width="0" height="0" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="" description="" x="23683" y="-741751600" width="0" height="0" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="" description="" x="23683" y="-741751600" width="0" height="0" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="" description="" x="23683" y="-741751600" width="0" height="0" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="File System" description="" x="23683" y="-741751600" width="0" height="0" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="" description="" x="23683" y="-741751600" width="0" height="0" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="home" description="" x="23683" y="-741751600" width="0" height="0" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="" description="" x="23683" y="-741751600" width="0" height="0" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="Home" description="" x="23683" y="-741751600" width="0" height="0" states="sensitive,visible,enabled"/>
+            <element role="table cell" name="" description="" x="23683" y="-741751600" width="0" height="0" states="selected,sensitive,visible,enabled"/>
+            <element role="table cell" name="Desktop" description="" x="23683" y="-741751600" width="0" height="0" states="selected,sensitive,visible,enabled"/>
+          </element>
+          <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="radio button" name="Documents" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
+          <element role="radio button" name="File Browser" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+        </element>
+      </element>
+    </element>
+  </element>
+</accessibility-tree>
