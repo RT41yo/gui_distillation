@@ -18,3 +18,8 @@ apps:
     display_name: gedit
     launcher: gedit
     a11y_name: gedit
+
+  - app_id: nautilus
+    display_name: Files
+    launcher: nautilus
+    a11y_name: nautilus

@@ -92,6 +92,9 @@ def _visible_popover_roots(root: A11YNode) -> list[A11YNode]:
     - Word Size selector: 64-bit / 32-bit / 16-bit / 8-bit
     - Shift selector: 1 place / ... / 15 places
     - Store popover: rand + variable/store button
+
+    It must NOT catch persistent application regions, for example:
+    - Nautilus left sidebar / navigation list.
     """
     main_frame = _first_visible_frame(root)
 
@@ -159,6 +162,69 @@ def _visible_popover_roots(root: A11YNode) -> list[A11YNode]:
         width = node.bbox.width
         height = node.bbox.height
         area = width * height
+
+        # Exclude persistent sidebars/navigation lists.
+        #
+        # Example: Nautilus left sidebar can be exposed as:
+        #   role=list box, bbox roughly [5, 51, 188, 504]
+        #
+        # It is compact and contains many list items, so the generic popover
+        # heuristic can otherwise mistake it for a foreground overlay.
+        if main_frame is not None and main_frame.bbox:
+            main_x = main_frame.bbox.x
+            main_h = main_frame.bbox.height
+
+            near_left_edge = node.bbox.x <= main_x + 24
+            tall_relative_to_window = height >= main_h * 0.50
+            sidebar_width = width <= 280
+
+            if (
+                node.role in {"list", "list box", "tree", "tree table"}
+                and near_left_edge
+                and tall_relative_to_window
+                and sidebar_width
+            ):
+                continue
+
+        # Exclude containers that wrap a persistent sidebar/navigation list.
+        #
+        # Example: Nautilus sidebar may be selected not only as role=list box,
+        # but also as its parent viewport / scroll pane / filler with the same
+        # bbox. This filter catches those wrappers by inspecting descendants.
+        if main_frame is not None and main_frame.bbox:
+            main_x = main_frame.bbox.x
+            main_h = main_frame.bbox.height
+
+            near_left_edge = node.bbox.x <= main_x + 24
+            tall_relative_to_window = height >= main_h * 0.50
+            sidebar_width = width <= 280
+
+            if near_left_edge and tall_relative_to_window and sidebar_width:
+                descendants = [
+                    d
+                    for d in walk(node)
+                    if d is not node and d.is_visible
+                ]
+
+                has_sidebar_list = any(
+                    d.role in {"list", "list box", "tree", "tree table"}
+                    for d in descendants
+                )
+
+                list_item_count = sum(
+                    1
+                    for d in descendants
+                    if d.role in {"list item", "tree item"}
+                )
+
+                label_count = sum(
+                    1
+                    for d in descendants
+                    if d.role == "label" and (d.name or "").strip()
+                )
+
+                if has_sidebar_list and (list_item_count >= 3 or label_count >= 3):
+                    continue
 
         # Exclude full-window / large layout containers.
         if main_area and area > main_area * 0.45:
