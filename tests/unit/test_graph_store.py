@@ -27,3 +27,19 @@ def test_graph_edges_are_keyed_by_state_and_action(tmp_path):
         assert edge_id == f"{edge.from_state}:{edge.action_key}"
         assert edge.status.value == "pending"
         assert edge.to_state is None
+
+def test_find_confirmed_path_root(graph_store, graph_model):
+    path = graph_store.find_confirmed_path(
+        graph_model,
+        graph_model.root_state_id,
+    )
+
+    assert path == []
+
+def test_find_confirmed_path_unknown(graph_store, graph_model):
+    path = graph_store.find_confirmed_path(
+        graph_model,
+        "unknown",
+    )
+
+    assert path is None

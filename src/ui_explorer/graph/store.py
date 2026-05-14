@@ -20,6 +20,8 @@ from ui_explorer.graph.models import (
 from ui_explorer.core.diff import TransitionKind, TransitionResult
 from ui_explorer.core.active_root import resolve_active_root
 
+from collections import deque
+
 
 class GraphStore:
     def __init__(self, base_dir: Path = Path("data/maps")) -> None:
@@ -192,3 +194,48 @@ class GraphStore:
             "pending_edges": pending,
             "reason": "no_pending_edges" if pending == 0 else "pending_edges_exist",
         }
+
+    def find_confirmed_path(
+        self,
+        graph: ExplorationGraph,
+        target_state_id: str,
+    ) -> list[GraphEdge] | None:
+
+
+        if target_state_id == graph.root_state_id:
+            return []
+
+        outgoing: dict[str, list[GraphEdge]] = {}
+
+        for edge in graph.edges.values():
+            if edge.status != EdgeStatus.CONFIRMED:
+                continue
+
+            if not edge.to_state:
+                continue
+
+            outgoing.setdefault(edge.from_state, []).append(edge)
+
+        queue = deque()
+        queue.append((graph.root_state_id, []))
+
+        visited = {graph.root_state_id}
+
+        while queue:
+            state_id, path = queue.popleft()
+
+            for edge in outgoing.get(state_id, []):
+                next_state = edge.to_state
+
+                if not next_state or next_state in visited:
+                    continue
+
+                next_path = path + [edge]
+
+                if next_state == target_state_id:
+                    return next_path
+
+                visited.add(next_state)
+                queue.append((next_state, next_path))
+
+        return None

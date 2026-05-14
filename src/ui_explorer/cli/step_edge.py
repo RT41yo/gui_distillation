@@ -11,15 +11,18 @@ from ui_explorer.app.launcher import AppLauncher
 from ui_explorer.app.registry import AppRegistry
 from ui_explorer.core.diff import DiffClassifier
 from ui_explorer.execution.executor import ActionExecutor
+from ui_explorer.execution.navigator import Navigator
 from ui_explorer.execution.wait import A11YWaiter
+from ui_explorer.graph.models import EdgeStatus
 from ui_explorer.graph.scheduler import BFSScheduler, SchedulerPolicy
 from ui_explorer.graph.store import GraphStore
-from ui_explorer.execution.navigator import Navigator
-from ui_explorer.graph.models import EdgeStatus
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Execute next pending edge and update graph.")
+    parser = argparse.ArgumentParser(
+        description="Execute next pending edge and update graph."
+    )
+
     parser.add_argument("--app", required=True)
     parser.add_argument("--display", default=":99")
     parser.add_argument("--maps", default="data/maps")
@@ -27,6 +30,7 @@ def main() -> int:
     parser.add_argument("--launch", action="store_true")
     parser.add_argument("--max-depth", type=int, default=5)
     parser.add_argument("--verbose", "-v", action="store_true")
+
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -37,90 +41,83 @@ def main() -> int:
     app_cfg = AppRegistry(Path(args.apps_config)).get(args.app)
 
     if args.launch:
-        AppLauncher().launch(app_cfg.launcher, display=args.display)
+        AppLauncher().launch(
+            app_cfg.launcher,
+            display=args.display,
+        )
 
     store = GraphStore(Path(args.maps))
     graph = store.load(args.app)
 
-    edge = BFSScheduler(SchedulerPolicy(max_depth=args.max_depth)).next_edge(graph)
+    edge = BFSScheduler(
+        SchedulerPolicy(max_depth=args.max_depth)
+    ).next_edge(graph)
+
     if edge is None:
-        print(json.dumps({"ok": False, "error": "no pending edge"}, indent=2))
+        print(json.dumps(
+            {"ok": False, "error": "no pending edge"},
+            indent=2,
+        ))
         return 1
 
-    tmp_dir = Path(args.maps) / args.app / "_tmp" / "step_edge"
+    tmp_dir = (
+        Path(args.maps)
+        / args.app
+        / "_tmp"
+        / "step_edge"
+    )
+
     if tmp_dir.exists():
         shutil.rmtree(tmp_dir)
+
     tmp_dir.mkdir(parents=True, exist_ok=True)
 
     waiter = A11YWaiter(a11y_name=app_cfg.a11y_name)
 
-    # Step 12 MVP: if the selected edge starts from root, reset to root first.
-    # For non-root edges replay-path navigation will be added later.
-    if edge.from_state == graph.root_state_id:
-        nav_result, nav_state = Navigator(
-            a11y_name=app_cfg.a11y_name,
-            display=args.display,
-        ).reset_to_root(
-            root_state_id=graph.root_state_id,
-            output_dir=tmp_dir / "reset",
-        )
+    navigator = Navigator(
+        a11y_name=app_cfg.a11y_name,
+        display=args.display,
+        graph_store=store,
+        window_name=app_cfg.display_name,
+    )
 
-        if not nav_result.ok or nav_state is None:
-            edge.attempts += 1
-            edge.status = EdgeStatus.FAILED_NAVIGATION
-            edge.reason = nav_result.reason
-            edge.observed = {"navigation": nav_result.to_dict()}
-            store.save(graph)
-            print(json.dumps(
-                {
-                    "ok": False,
-                    "error": "reset_to_root failed",
-                    "navigation": nav_result.to_dict(),
-                    "edge_status": edge.status.value,
-                },
-                indent=2,
-                ensure_ascii=False,
-            ))
-            return 2
+    navigation_dir = tmp_dir / "navigation"
+    navigation_dir.mkdir(parents=True, exist_ok=True)
 
-        before = nav_state
-    else:
-        before = waiter.capture_once(tmp_dir / "before.xml")
+    nav_result, before = navigator.navigate_to_state(
+        graph=graph,
+        target_state_id=edge.from_state,
+        output_dir=navigation_dir,
+    )
 
-        if before.signature.state_id != edge.from_state:
-            edge.attempts += 1
-            edge.status = EdgeStatus.FAILED_NAVIGATION
-            edge.reason = (
-                f"live state mismatch: expected {edge.from_state}, "
-                f"got {before.signature.state_id}"
-            )
-            edge.observed = {
-                "navigation": {
-                    "ok": False,
-                    "reason": "replay path navigation not implemented yet",
-                    "expected_from_state": edge.from_state,
-                    "actual_state": before.signature.state_id,
-                }
-            }
-            store.save(graph)
-            print(json.dumps(
-                {
-                    "ok": False,
-                    "error": "current live state does not match edge.from_state",
-                    "expected_from_state": edge.from_state,
-                    "actual_state": before.signature.state_id,
-                    "edge_status": edge.status.value,
-                    "hint": "Replay path navigation for non-root edges will be added in the next step.",
-                },
-                indent=2,
-                ensure_ascii=False,
-            ))
-            return 2
+    if not nav_result.ok or before is None:
+        edge.attempts += 1
+        edge.status = EdgeStatus.FAILED_NAVIGATION
+        edge.reason = nav_result.reason
+        edge.observed = {
+            "navigation": nav_result.to_dict(),
+        }
+
+        store.save(graph)
+
+        print(json.dumps(
+            {
+                "ok": False,
+                "error": "navigation failed",
+                "navigation": nav_result.to_dict(),
+                "edge_status": edge.status.value,
+            },
+            indent=2,
+            ensure_ascii=False,
+        ))
+
+        return 2
 
     execution = ActionExecutor(
         display=args.display,
         window_name=app_cfg.display_name,
     ).click_bbox(edge.action["bbox"])
+
     after = waiter.capture_stable(tmp_dir, "after")
 
     transition = DiffClassifier().classify(
@@ -135,11 +132,15 @@ def main() -> int:
         after_xml_path=after.xml_path,
         transition=transition,
     )
+
     graph_path = store.save(graph)
 
     status_counts: dict[str, int] = {}
+
     for e in graph.edges.values():
-        status_counts[e.status.value] = status_counts.get(e.status.value, 0) + 1
+        status_counts[e.status.value] = (
+            status_counts.get(e.status.value, 0) + 1
+        )
 
     print(json.dumps(
         {
@@ -151,6 +152,7 @@ def main() -> int:
                 "name": edge.action.get("name"),
                 "action_key": edge.action_key,
             },
+            "navigation": nav_result.to_dict(),
             "execution": execution.to_dict(),
             "transition": transition.to_dict(),
             "before_state": before.signature.state_id,
