@@ -1,4 +1,4 @@
-<accessibility-tree app_query="nautilus" app_accessible_name="org.gnome.Nautilus" captured_at="1778882545.5637865">
+<accessibility-tree app_query="nautilus" app_accessible_name="org.gnome.Nautilus" captured_at="1778882400.826909">
   <element role="application" name="org.gnome.Nautilus" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Home" description="" x="0" y="0" width="900" height="560" states="sensitive,showing,visible,enabled">
       <element role="unknown" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>

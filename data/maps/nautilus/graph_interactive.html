@@ -1,0 +1,564 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GUI Exploration Interactive Graph</title>
+
+  <script src="https://unpkg.com/cytoscape@3.30.2/dist/cytoscape.min.js"></script>
+  <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+  <script src="https://unpkg.com/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: #f7f7f7;
+      color: #222;
+      overflow: hidden;
+    }
+
+    #app {
+      display: grid;
+      grid-template-columns: 320px 1fr 390px;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    aside {
+      background: #ffffff;
+      border-right: 1px solid #ddd;
+      padding: 16px;
+      overflow: auto;
+    }
+
+    #details {
+      border-right: none;
+      border-left: 1px solid #ddd;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin: 0 0 12px 0;
+    }
+
+    h2 {
+      font-size: 14px;
+      margin: 20px 0 8px 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 6px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .card {
+      background: #f4f6f8;
+      border: 1px solid #e1e4e8;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 13px;
+    }
+
+    .card strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      font-size: 13px;
+    }
+
+    input[type="number"] {
+      width: 70px;
+    }
+
+    button {
+      margin: 4px 4px 4px 0;
+      padding: 7px 9px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    button:hover {
+      background: #f0f0f0;
+    }
+
+    #cy {
+      height: 100vh;
+      width: 100%;
+      background: #fbfbfb;
+    }
+
+    code {
+      background: #f2f2f2;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    .small {
+      color: #666;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 6px 0;
+      font-size: 13px;
+    }
+
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1px solid #777;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    td, th {
+      border-bottom: 1px solid #eee;
+      padding: 5px 3px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      color: #555;
+      font-weight: 600;
+    }
+
+    .edge-status {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .muted {
+      color: #777;
+    }
+
+    .details-block {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 8px 0;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+
+<body>
+<div id="app">
+  <aside>
+    <h1>GUI Graph</h1>
+
+    <div class="summary-grid">
+      <div class="card"><span>Nodes</span><strong id="summaryNodes"></strong></div>
+      <div class="card"><span>Edges</span><strong id="summaryEdges"></strong></div>
+      <div class="card"><span>Max depth</span><strong id="summaryDepth"></strong></div>
+      <div class="card"><span>Root</span><strong id="summaryRoot" style="font-size:11px"></strong></div>
+    </div>
+
+    <h2>Filters</h2>
+
+    <label>
+      Max depth:
+      <input id="maxDepth" type="number" min="0" value="2">
+    </label>
+
+    <label><input class="status-filter" type="checkbox" value="confirmed" checked> confirmed</label>
+    <label><input class="status-filter" type="checkbox" value="same_state" checked> same_state</label>
+    <label><input class="status-filter" type="checkbox" value="failed_navigation" checked> failed_navigation</label>
+    <label><input class="status-filter" type="checkbox" value="pending" checked> pending stubs</label>
+
+    <label><input id="showLabels" type="checkbox" checked> show node labels</label>
+    <label><input id="showEdgeLabels" type="checkbox"> show edge labels</label>
+
+    <h2>Layout</h2>
+    <button onclick="runLayout('dagre')">Dagre</button>
+    <button onclick="runLayout('breadthfirst')">Breadthfirst</button>
+    <button onclick="runLayout('cose')">Force</button>
+    <button onclick="fitGraph()">Fit</button>
+
+    <h2>Depth counts</h2>
+    <div id="depthCounts"></div>
+
+    <h2>Status counts</h2>
+    <div id="statusCounts"></div>
+
+    <h2>Legend</h2>
+    <div id="legend"></div>
+
+    <p class="small">
+      Pending edges without known target are not drawn as regular edges by default.
+      They are shown as <code>pending=N</code> in node labels and in the node details panel.
+    </p>
+  </aside>
+
+  <main>
+    <div id="cy"></div>
+  </main>
+
+  <aside id="details">
+    <h1>Details</h1>
+    <div id="selectedDetails" class="small">
+      Click a node or edge to inspect it.
+    </div>
+  </aside>
+</div>
+
+<script>
+const graphSummary = {"app_id": "nautilus", "root_state_id": "60bf7f8ab3bb", "nodes": 14, "edges": 71, "depth_counts": {"0": 1, "1": 3, "2": 10}, "status_counts": {"confirmed": 55, "failed_navigation": 1, "pending": 3, "same_state": 12}, "max_depth": 2, "completion": {"status": "partial", "pending_edges": 3, "reason": "pending_edges_exist"}};
+const elements = [{"group": "nodes", "data": {"id": "60bf7f8ab3bb", "label": "Home\\n60bf7f8ab3bb\\nd=0, main", "title": "Home", "kind": "main", "depth": 0, "role": "frame", "active_name": "Home", "pending": 0, "confirmed": 3, "same_state": 0, "failed_navigation": 0, "action_count": 0, "color": "#4C78A8"}}, {"group": "nodes", "data": {"id": "61dd2fb2ef2e", "label": "filler\\n61dd2fb2ef2e\\nd=2, window_overlay", "title": "filler", "kind": "window_overlay", "depth": 2, "role": "filler", "active_name": "", "pending": 0, "confirmed": 5, "same_state": 1, "failed_navigation": 0, "action_count": 0, "color": "#72B7B2"}}, {"group": "nodes", "data": {"id": "64a5e351ed9c", "label": "filler\\n64a5e351ed9c\\nd=2, window_overlay", "title": "filler", "kind": "window_overlay", "depth": 2, "role": "filler", "active_name": "", "pending": 0, "confirmed": 5, "same_state": 1, "failed_navigation": 0, "action_count": 0, "color": "#72B7B2"}}, {"group": "nodes", "data": {"id": "8924dc823814", "label": "filler\\n8924dc823814\\nd=1, window_overlay", "title": "filler", "kind": "window_overlay", "depth": 1, "role": "filler", "active_name": "", "pending": 0, "confirmed": 6, "same_state": 0, "failed_navigation": 0, "action_count": 0, "color": "#72B7B2"}}, {"group": "nodes", "data": {"id": "8e253d6149e0", "label": "Home\\n8e253d6149e0\\nd=1, main", "title": "Home", "kind": "main", "depth": 1, "role": "frame", "active_name": "Home", "pending": 0, "confirmed": 4, "same_state": 1, "failed_navigation": 0, "action_count": 0, "color": "#4C78A8"}}, {"group": "nodes", "data": {"id": "961ae169746d", "label": "filler\\n961ae169746d\\nd=2, window_overlay", "title": "filler", "kind": "window_overlay", "depth": 2, "role": "filler", "active_name": "", "pending": 0, "confirmed": 5, "same_state": 1, "failed_navigation": 0, "action_count": 0, "color": "#72B7B2"}}, {"group": "nodes", "data": {"id": "98858c882185", "label": "frame\\n98858c882185\\nd=2, secondary_frame", "title": "frame", "kind": "secondary_frame", "depth": 2, "role": "frame", "active_name": "", "pending": 0, "confirmed": 0, "same_state": 0, "failed_navigation": 0, "action_count": 0, "color": "#9D9D9D"}}, {"group": "nodes", "data": {"id": "b06afef1c5f0", "label": "filler\\nb06afef1c5f0\\nd=2, window_overlay", "title": "filler", "kind": "window_overlay", "depth": 2, "role": "filler", "active_name": "", "pending": 0, "confirmed": 5, "same_state": 1, "failed_navigation": 0, "action_count": 0, "color": "#72B7B2"}}, {"group": "nodes", "data": {"id": "b5f458da7d52", "label": "filler\\nb5f458da7d52\\nd=2, window_overlay", "title": "filler", "kind": "window_overlay", "depth": 2, "role": "filler", "active_name": "", "pending": 0, "confirmed": 5, "same_state": 1, "failed_navigation": 0, "action_count": 0, "color": "#72B7B2"}}, {"group": "nodes", "data": {"id": "c9884c58a3d1", "label": "filler\\nc9884c58a3d1\\nd=2, window_overlay", "title": "filler", "kind": "window_overlay", "depth": 2, "role": "filler", "active_name": "", "pending": 0, "confirmed": 5, "same_state": 1, "failed_navigation": 0, "action_count": 0, "color": "#72B7B2"}}, {"group": "nodes", "data": {"id": "d4fb4df9ae9a", "label": "filler\\nd4fb4df9ae9a\\nd=1, window_overlay", "title": "filler", "kind": "window_overlay", "depth": 1, "role": "filler", "active_name": "", "pending": 0, "confirmed": 6, "same_state": 1, "failed_navigation": 0, "action_count": 0, "color": "#72B7B2"}}, {"group": "nodes", "data": {"id": "dbae654913d9", "label": "filler\\ndbae654913d9\\nd=2, window_overlay", "title": "filler", "kind": "window_overlay", "depth": 2, "role": "filler", "active_name": "", "pending": 0, "confirmed": 5, "same_state": 2, "failed_navigation": 0, "action_count": 0, "color": "#72B7B2"}}, {"group": "nodes", "data": {"id": "df1650529a16", "label": "Preferences\\ndf1650529a16\\nd=2, secondary_frame", "title": "Preferences", "kind": "secondary_frame", "depth": 2, "role": "frame", "active_name": "Preferences", "pending": 0, "confirmed": 0, "same_state": 0, "failed_navigation": 0, "action_count": 0, "color": "#9D9D9D"}}, {"group": "nodes", "data": {"id": "f409643e693b", "label": "filler\\nf409643e693b\\nd=2, window_overlay\\npending=3", "title": "filler", "kind": "window_overlay", "depth": 2, "role": "filler", "active_name": "", "pending": 3, "confirmed": 1, "same_state": 2, "failed_navigation": 1, "action_count": 0, "color": "#72B7B2"}}, {"group": "edges", "data": {"id": "60bf7f8ab3bb:23cd08280770a67f", "source": "60bf7f8ab3bb", "target": "8e253d6149e0", "label": "Menu", "status": "confirmed", "priority": 20, "created_order": 0, "action_key": "23cd08280770a67f", "action_name": "Menu", "action_role": "toggle button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "60bf7f8ab3bb:0e6814e26efd9c5d", "source": "60bf7f8ab3bb", "target": "8924dc823814", "label": "Menu", "status": "confirmed", "priority": 20, "created_order": 1, "action_key": "0e6814e26efd9c5d", "action_name": "Menu", "action_role": "toggle button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "60bf7f8ab3bb:a442bb2608a94d62", "source": "60bf7f8ab3bb", "target": "d4fb4df9ae9a", "label": "Menu", "status": "confirmed", "priority": 20, "created_order": 2, "action_key": "a442bb2608a94d62", "action_name": "Menu", "action_role": "toggle button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "8e253d6149e0:437211b97b0dbc24", "source": "8e253d6149e0", "target": "60bf7f8ab3bb", "label": "Menu", "status": "confirmed", "priority": 20, "created_order": 3, "action_key": "437211b97b0dbc24", "action_name": "Menu", "action_role": "toggle button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "8e253d6149e0:0e6814e26efd9c5d", "source": "8e253d6149e0", "target": "60bf7f8ab3bb", "label": "Menu", "status": "confirmed", "priority": 20, "created_order": 4, "action_key": "0e6814e26efd9c5d", "action_name": "Menu", "action_role": "toggle button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "8e253d6149e0:a442bb2608a94d62", "source": "8e253d6149e0", "target": "60bf7f8ab3bb", "label": "Menu", "status": "confirmed", "priority": 20, "created_order": 5, "action_key": "a442bb2608a94d62", "action_name": "Menu", "action_role": "toggle button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "8e253d6149e0:c5c68242df95bdac", "source": "8e253d6149e0", "target": "8e253d6149e0", "label": "Add to Bookmarks", "status": "same_state", "priority": 30, "created_order": 6, "action_key": "c5c68242df95bdac", "action_name": "Add to Bookmarks", "action_role": "push button", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "8e253d6149e0:81536f34e8c3c05c", "source": "8e253d6149e0", "target": "60bf7f8ab3bb", "label": "Open in Terminal", "status": "confirmed", "priority": 30, "created_order": 7, "action_key": "81536f34e8c3c05c", "action_name": "Open in Terminal", "action_role": "push button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "8924dc823814:98ebc6ff8823a368", "source": "8924dc823814", "target": "b5f458da7d52", "label": "A-Z", "status": "confirmed", "priority": 20, "created_order": 8, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "8924dc823814:0ffd399697616cfe", "source": "8924dc823814", "target": "64a5e351ed9c", "label": "Z-A", "status": "confirmed", "priority": 20, "created_order": 9, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "8924dc823814:d7af1f9e2716c12c", "source": "8924dc823814", "target": "61dd2fb2ef2e", "label": "Last Modified", "status": "confirmed", "priority": 20, "created_order": 10, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "8924dc823814:3f52541bee544af1", "source": "8924dc823814", "target": "b06afef1c5f0", "label": "First Modified", "status": "confirmed", "priority": 20, "created_order": 11, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "8924dc823814:567db6e2fbf4247b", "source": "8924dc823814", "target": "c9884c58a3d1", "label": "Size", "status": "confirmed", "priority": 20, "created_order": 12, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "8924dc823814:cc0d03ab9e3d4677", "source": "8924dc823814", "target": "961ae169746d", "label": "Type", "status": "confirmed", "priority": 20, "created_order": 13, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "d4fb4df9ae9a:dab12492368196fc", "source": "d4fb4df9ae9a", "target": "60bf7f8ab3bb", "label": "New Window", "status": "confirmed", "priority": 30, "created_order": 14, "action_key": "dab12492368196fc", "action_name": "New Window", "action_role": "push button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "d4fb4df9ae9a:92c3a4db159a20b8", "source": "d4fb4df9ae9a", "target": "dbae654913d9", "label": "Show Hidden Files", "status": "confirmed", "priority": 20, "created_order": 15, "action_key": "92c3a4db159a20b8", "action_name": "Show Hidden Files", "action_role": "check box", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "d4fb4df9ae9a:73bf59ccf9ded379", "source": "d4fb4df9ae9a", "target": "f409643e693b", "label": "Show Sidebar", "status": "confirmed", "priority": 20, "created_order": 16, "action_key": "73bf59ccf9ded379", "action_name": "Show Sidebar", "action_role": "check box", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "d4fb4df9ae9a:f54e9f00737264a9", "source": "d4fb4df9ae9a", "target": "df1650529a16", "label": "Preferences", "status": "confirmed", "priority": 30, "created_order": 17, "action_key": "f54e9f00737264a9", "action_name": "Preferences", "action_role": "push button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "d4fb4df9ae9a:be1e4ce867f7fd62", "source": "d4fb4df9ae9a", "target": "98858c882185", "label": "Keyboard Shortcuts", "status": "confirmed", "priority": 30, "created_order": 18, "action_key": "be1e4ce867f7fd62", "action_name": "Keyboard Shortcuts", "action_role": "push button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "d4fb4df9ae9a:d60a53362aff0ce7", "source": "d4fb4df9ae9a", "target": "60bf7f8ab3bb", "label": "Help", "status": "confirmed", "priority": 30, "created_order": 19, "action_key": "d60a53362aff0ce7", "action_name": "Help", "action_role": "push button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "d4fb4df9ae9a:8d91203571f9551f", "source": "d4fb4df9ae9a", "target": "d4fb4df9ae9a", "label": "About Files", "status": "same_state", "priority": 30, "created_order": 20, "action_key": "8d91203571f9551f", "action_name": "About Files", "action_role": "push button", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "b5f458da7d52:74a24e261ea82af6", "source": "b5f458da7d52", "target": "b5f458da7d52", "label": "A-Z", "status": "same_state", "priority": 20, "created_order": 21, "action_key": "74a24e261ea82af6", "action_name": "A-Z", "action_role": "radio button", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "b5f458da7d52:0ffd399697616cfe", "source": "b5f458da7d52", "target": "64a5e351ed9c", "label": "Z-A", "status": "confirmed", "priority": 20, "created_order": 22, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "b5f458da7d52:d7af1f9e2716c12c", "source": "b5f458da7d52", "target": "61dd2fb2ef2e", "label": "Last Modified", "status": "confirmed", "priority": 20, "created_order": 23, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "b5f458da7d52:3f52541bee544af1", "source": "b5f458da7d52", "target": "b06afef1c5f0", "label": "First Modified", "status": "confirmed", "priority": 20, "created_order": 24, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "b5f458da7d52:567db6e2fbf4247b", "source": "b5f458da7d52", "target": "c9884c58a3d1", "label": "Size", "status": "confirmed", "priority": 20, "created_order": 25, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "b5f458da7d52:cc0d03ab9e3d4677", "source": "b5f458da7d52", "target": "961ae169746d", "label": "Type", "status": "confirmed", "priority": 20, "created_order": 26, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "64a5e351ed9c:98ebc6ff8823a368", "source": "64a5e351ed9c", "target": "b5f458da7d52", "label": "A-Z", "status": "confirmed", "priority": 20, "created_order": 27, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "64a5e351ed9c:48f0a9f09960962d", "source": "64a5e351ed9c", "target": "64a5e351ed9c", "label": "Z-A", "status": "same_state", "priority": 20, "created_order": 28, "action_key": "48f0a9f09960962d", "action_name": "Z-A", "action_role": "radio button", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "64a5e351ed9c:d7af1f9e2716c12c", "source": "64a5e351ed9c", "target": "61dd2fb2ef2e", "label": "Last Modified", "status": "confirmed", "priority": 20, "created_order": 29, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "64a5e351ed9c:3f52541bee544af1", "source": "64a5e351ed9c", "target": "b06afef1c5f0", "label": "First Modified", "status": "confirmed", "priority": 20, "created_order": 30, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "64a5e351ed9c:567db6e2fbf4247b", "source": "64a5e351ed9c", "target": "c9884c58a3d1", "label": "Size", "status": "confirmed", "priority": 20, "created_order": 31, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "64a5e351ed9c:cc0d03ab9e3d4677", "source": "64a5e351ed9c", "target": "961ae169746d", "label": "Type", "status": "confirmed", "priority": 20, "created_order": 32, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "61dd2fb2ef2e:98ebc6ff8823a368", "source": "61dd2fb2ef2e", "target": "b5f458da7d52", "label": "A-Z", "status": "confirmed", "priority": 20, "created_order": 33, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "61dd2fb2ef2e:0ffd399697616cfe", "source": "61dd2fb2ef2e", "target": "64a5e351ed9c", "label": "Z-A", "status": "confirmed", "priority": 20, "created_order": 34, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "61dd2fb2ef2e:e6affd9eb08c561e", "source": "61dd2fb2ef2e", "target": "61dd2fb2ef2e", "label": "Last Modified", "status": "same_state", "priority": 20, "created_order": 35, "action_key": "e6affd9eb08c561e", "action_name": "Last Modified", "action_role": "radio button", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "61dd2fb2ef2e:3f52541bee544af1", "source": "61dd2fb2ef2e", "target": "b06afef1c5f0", "label": "First Modified", "status": "confirmed", "priority": 20, "created_order": 36, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "61dd2fb2ef2e:567db6e2fbf4247b", "source": "61dd2fb2ef2e", "target": "c9884c58a3d1", "label": "Size", "status": "confirmed", "priority": 20, "created_order": 37, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "61dd2fb2ef2e:cc0d03ab9e3d4677", "source": "61dd2fb2ef2e", "target": "961ae169746d", "label": "Type", "status": "confirmed", "priority": 20, "created_order": 38, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "b06afef1c5f0:98ebc6ff8823a368", "source": "b06afef1c5f0", "target": "b5f458da7d52", "label": "A-Z", "status": "confirmed", "priority": 20, "created_order": 39, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "b06afef1c5f0:0ffd399697616cfe", "source": "b06afef1c5f0", "target": "64a5e351ed9c", "label": "Z-A", "status": "confirmed", "priority": 20, "created_order": 40, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "b06afef1c5f0:d7af1f9e2716c12c", "source": "b06afef1c5f0", "target": "61dd2fb2ef2e", "label": "Last Modified", "status": "confirmed", "priority": 20, "created_order": 41, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "b06afef1c5f0:94cb5c1d82519737", "source": "b06afef1c5f0", "target": "b06afef1c5f0", "label": "First Modified", "status": "same_state", "priority": 20, "created_order": 42, "action_key": "94cb5c1d82519737", "action_name": "First Modified", "action_role": "radio button", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "b06afef1c5f0:567db6e2fbf4247b", "source": "b06afef1c5f0", "target": "c9884c58a3d1", "label": "Size", "status": "confirmed", "priority": 20, "created_order": 43, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "b06afef1c5f0:cc0d03ab9e3d4677", "source": "b06afef1c5f0", "target": "961ae169746d", "label": "Type", "status": "confirmed", "priority": 20, "created_order": 44, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "c9884c58a3d1:98ebc6ff8823a368", "source": "c9884c58a3d1", "target": "b5f458da7d52", "label": "A-Z", "status": "confirmed", "priority": 20, "created_order": 45, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "c9884c58a3d1:0ffd399697616cfe", "source": "c9884c58a3d1", "target": "64a5e351ed9c", "label": "Z-A", "status": "confirmed", "priority": 20, "created_order": 46, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "c9884c58a3d1:d7af1f9e2716c12c", "source": "c9884c58a3d1", "target": "61dd2fb2ef2e", "label": "Last Modified", "status": "confirmed", "priority": 20, "created_order": 47, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "c9884c58a3d1:3f52541bee544af1", "source": "c9884c58a3d1", "target": "b06afef1c5f0", "label": "First Modified", "status": "confirmed", "priority": 20, "created_order": 48, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "c9884c58a3d1:f0ab802888983bc7", "source": "c9884c58a3d1", "target": "c9884c58a3d1", "label": "Size", "status": "same_state", "priority": 20, "created_order": 49, "action_key": "f0ab802888983bc7", "action_name": "Size", "action_role": "radio button", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "c9884c58a3d1:cc0d03ab9e3d4677", "source": "c9884c58a3d1", "target": "961ae169746d", "label": "Type", "status": "confirmed", "priority": 20, "created_order": 50, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "961ae169746d:98ebc6ff8823a368", "source": "961ae169746d", "target": "b5f458da7d52", "label": "A-Z", "status": "confirmed", "priority": 20, "created_order": 51, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "961ae169746d:0ffd399697616cfe", "source": "961ae169746d", "target": "64a5e351ed9c", "label": "Z-A", "status": "confirmed", "priority": 20, "created_order": 52, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "961ae169746d:d7af1f9e2716c12c", "source": "961ae169746d", "target": "61dd2fb2ef2e", "label": "Last Modified", "status": "confirmed", "priority": 20, "created_order": 53, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "961ae169746d:3f52541bee544af1", "source": "961ae169746d", "target": "b06afef1c5f0", "label": "First Modified", "status": "confirmed", "priority": 20, "created_order": 54, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "961ae169746d:567db6e2fbf4247b", "source": "961ae169746d", "target": "c9884c58a3d1", "label": "Size", "status": "confirmed", "priority": 20, "created_order": 55, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "961ae169746d:19e5d0b8b89b51f2", "source": "961ae169746d", "target": "961ae169746d", "label": "Type", "status": "same_state", "priority": 20, "created_order": 56, "action_key": "19e5d0b8b89b51f2", "action_name": "Type", "action_role": "radio button", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "dbae654913d9:71a63435ee1acf4e", "source": "dbae654913d9", "target": "60bf7f8ab3bb", "label": "New Window", "status": "confirmed", "priority": 30, "created_order": 57, "action_key": "71a63435ee1acf4e", "action_name": "New Window", "action_role": "push button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "dbae654913d9:b3a9ad2fffdd88fb", "source": "dbae654913d9", "target": "dbae654913d9", "label": "Show Hidden Files", "status": "same_state", "priority": 20, "created_order": 58, "action_key": "b3a9ad2fffdd88fb", "action_name": "Show Hidden Files", "action_role": "check box", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "dbae654913d9:73bf59ccf9ded379", "source": "dbae654913d9", "target": "f409643e693b", "label": "Show Sidebar", "status": "confirmed", "priority": 20, "created_order": 59, "action_key": "73bf59ccf9ded379", "action_name": "Show Sidebar", "action_role": "check box", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "dbae654913d9:f54e9f00737264a9", "source": "dbae654913d9", "target": "df1650529a16", "label": "Preferences", "status": "confirmed", "priority": 30, "created_order": 60, "action_key": "f54e9f00737264a9", "action_name": "Preferences", "action_role": "push button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "dbae654913d9:be1e4ce867f7fd62", "source": "dbae654913d9", "target": "98858c882185", "label": "Keyboard Shortcuts", "status": "confirmed", "priority": 30, "created_order": 61, "action_key": "be1e4ce867f7fd62", "action_name": "Keyboard Shortcuts", "action_role": "push button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "dbae654913d9:d60a53362aff0ce7", "source": "dbae654913d9", "target": "60bf7f8ab3bb", "label": "Help", "status": "confirmed", "priority": 30, "created_order": 62, "action_key": "d60a53362aff0ce7", "action_name": "Help", "action_role": "push button", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "dbae654913d9:8d91203571f9551f", "source": "dbae654913d9", "target": "dbae654913d9", "label": "About Files", "status": "same_state", "priority": 30, "created_order": 63, "action_key": "8d91203571f9551f", "action_name": "About Files", "action_role": "push button", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "f409643e693b:92c3a4db159a20b8", "source": "f409643e693b", "target": "dbae654913d9", "label": "Show Hidden Files", "status": "confirmed", "priority": 20, "created_order": 65, "action_key": "92c3a4db159a20b8", "action_name": "Show Hidden Files", "action_role": "check box", "color": "#2ca25f"}}, {"group": "edges", "data": {"id": "f409643e693b:b54751a9598264cb", "source": "f409643e693b", "target": "f409643e693b", "label": "Show Sidebar", "status": "same_state", "priority": 20, "created_order": 66, "action_key": "b54751a9598264cb", "action_name": "Show Sidebar", "action_role": "check box", "color": "#756bb1"}}, {"group": "edges", "data": {"id": "f409643e693b:8d91203571f9551f", "source": "f409643e693b", "target": "f409643e693b", "label": "About Files", "status": "same_state", "priority": 30, "created_order": 70, "action_key": "8d91203571f9551f", "action_name": "About Files", "action_role": "push button", "color": "#756bb1"}}];
+const outgoingByNode = {"60bf7f8ab3bb": [{"edge_id": "60bf7f8ab3bb:23cd08280770a67f", "status": "confirmed", "to_state": "8e253d6149e0", "priority": 20, "created_order": 0, "action_key": "23cd08280770a67f", "action_name": "Menu", "action_role": "toggle button", "description": "", "bbox": [504, 10, 36, 34]}, {"edge_id": "60bf7f8ab3bb:0e6814e26efd9c5d", "status": "confirmed", "to_state": "8924dc823814", "priority": 20, "created_order": 1, "action_key": "0e6814e26efd9c5d", "action_name": "Menu", "action_role": "toggle button", "description": "View options", "bbox": [695, 4, 26, 46]}, {"edge_id": "60bf7f8ab3bb:a442bb2608a94d62", "status": "confirmed", "to_state": "d4fb4df9ae9a", "priority": 20, "created_order": 2, "action_key": "a442bb2608a94d62", "action_name": "Menu", "action_role": "toggle button", "description": "", "bbox": [727, 4, 36, 46]}], "8e253d6149e0": [{"edge_id": "8e253d6149e0:437211b97b0dbc24", "status": "confirmed", "to_state": "60bf7f8ab3bb", "priority": 20, "created_order": 3, "action_key": "437211b97b0dbc24", "action_name": "Menu", "action_role": "toggle button", "description": "", "bbox": [504, 10, 36, 34]}, {"edge_id": "8e253d6149e0:0e6814e26efd9c5d", "status": "confirmed", "to_state": "60bf7f8ab3bb", "priority": 20, "created_order": 4, "action_key": "0e6814e26efd9c5d", "action_name": "Menu", "action_role": "toggle button", "description": "View options", "bbox": [695, 4, 26, 46]}, {"edge_id": "8e253d6149e0:a442bb2608a94d62", "status": "confirmed", "to_state": "60bf7f8ab3bb", "priority": 20, "created_order": 5, "action_key": "a442bb2608a94d62", "action_name": "Menu", "action_role": "toggle button", "description": "", "bbox": [727, 4, 36, 46]}, {"edge_id": "8e253d6149e0:c5c68242df95bdac", "status": "same_state", "to_state": "8e253d6149e0", "priority": 30, "created_order": 6, "action_key": "c5c68242df95bdac", "action_name": "Add to Bookmarks", "action_role": "push button", "description": "", "bbox": [457, 95, 130, 26]}, {"edge_id": "8e253d6149e0:81536f34e8c3c05c", "status": "confirmed", "to_state": "60bf7f8ab3bb", "priority": 30, "created_order": 7, "action_key": "81536f34e8c3c05c", "action_name": "Open in Terminal", "action_role": "push button", "description": "", "bbox": [457, 187, 130, 26]}], "8924dc823814": [{"edge_id": "8924dc823814:98ebc6ff8823a368", "status": "confirmed", "to_state": "b5f458da7d52", "priority": 20, "created_order": 8, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "description": "", "bbox": [645, 126, 126, 26]}, {"edge_id": "8924dc823814:0ffd399697616cfe", "status": "confirmed", "to_state": "64a5e351ed9c", "priority": 20, "created_order": 9, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "description": "", "bbox": [645, 152, 126, 26]}, {"edge_id": "8924dc823814:d7af1f9e2716c12c", "status": "confirmed", "to_state": "61dd2fb2ef2e", "priority": 20, "created_order": 10, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "description": "", "bbox": [645, 178, 126, 26]}, {"edge_id": "8924dc823814:3f52541bee544af1", "status": "confirmed", "to_state": "b06afef1c5f0", "priority": 20, "created_order": 11, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "description": "", "bbox": [645, 204, 126, 26]}, {"edge_id": "8924dc823814:567db6e2fbf4247b", "status": "confirmed", "to_state": "c9884c58a3d1", "priority": 20, "created_order": 12, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "description": "", "bbox": [645, 230, 126, 26]}, {"edge_id": "8924dc823814:cc0d03ab9e3d4677", "status": "confirmed", "to_state": "961ae169746d", "priority": 20, "created_order": 13, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "description": "", "bbox": [645, 256, 126, 26]}], "d4fb4df9ae9a": [{"edge_id": "d4fb4df9ae9a:dab12492368196fc", "status": "confirmed", "to_state": "60bf7f8ab3bb", "priority": 30, "created_order": 14, "action_key": "dab12492368196fc", "action_name": "New Window", "action_role": "push button", "description": "", "bbox": [667, 75, 52, 34]}, {"edge_id": "d4fb4df9ae9a:92c3a4db159a20b8", "status": "confirmed", "to_state": "dbae654913d9", "priority": 20, "created_order": 15, "action_key": "92c3a4db159a20b8", "action_name": "Show Hidden Files", "action_role": "check box", "description": "", "bbox": [667, 178, 157, 26]}, {"edge_id": "d4fb4df9ae9a:73bf59ccf9ded379", "status": "confirmed", "to_state": "f409643e693b", "priority": 20, "created_order": 16, "action_key": "73bf59ccf9ded379", "action_name": "Show Sidebar", "action_role": "check box", "description": "", "bbox": [667, 204, 157, 26]}, {"edge_id": "d4fb4df9ae9a:f54e9f00737264a9", "status": "confirmed", "to_state": "df1650529a16", "priority": 30, "created_order": 17, "action_key": "f54e9f00737264a9", "action_name": "Preferences", "action_role": "push button", "description": "", "bbox": [667, 237, 157, 26]}, {"edge_id": "d4fb4df9ae9a:be1e4ce867f7fd62", "status": "confirmed", "to_state": "98858c882185", "priority": 30, "created_order": 18, "action_key": "be1e4ce867f7fd62", "action_name": "Keyboard Shortcuts", "action_role": "push button", "description": "", "bbox": [667, 263, 157, 26]}, {"edge_id": "d4fb4df9ae9a:d60a53362aff0ce7", "status": "confirmed", "to_state": "60bf7f8ab3bb", "priority": 30, "created_order": 19, "action_key": "d60a53362aff0ce7", "action_name": "Help", "action_role": "push button", "description": "", "bbox": [667, 289, 157, 26]}, {"edge_id": "d4fb4df9ae9a:8d91203571f9551f", "status": "same_state", "to_state": null, "priority": 30, "created_order": 20, "action_key": "8d91203571f9551f", "action_name": "About Files", "action_role": "push button", "description": "", "bbox": [667, 315, 157, 26]}], "b5f458da7d52": [{"edge_id": "b5f458da7d52:74a24e261ea82af6", "status": "same_state", "to_state": "b5f458da7d52", "priority": 20, "created_order": 21, "action_key": "74a24e261ea82af6", "action_name": "A-Z", "action_role": "radio button", "description": "", "bbox": [645, 126, 126, 26]}, {"edge_id": "b5f458da7d52:0ffd399697616cfe", "status": "confirmed", "to_state": "64a5e351ed9c", "priority": 20, "created_order": 22, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "description": "", "bbox": [645, 152, 126, 26]}, {"edge_id": "b5f458da7d52:d7af1f9e2716c12c", "status": "confirmed", "to_state": "61dd2fb2ef2e", "priority": 20, "created_order": 23, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "description": "", "bbox": [645, 178, 126, 26]}, {"edge_id": "b5f458da7d52:3f52541bee544af1", "status": "confirmed", "to_state": "b06afef1c5f0", "priority": 20, "created_order": 24, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "description": "", "bbox": [645, 204, 126, 26]}, {"edge_id": "b5f458da7d52:567db6e2fbf4247b", "status": "confirmed", "to_state": "c9884c58a3d1", "priority": 20, "created_order": 25, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "description": "", "bbox": [645, 230, 126, 26]}, {"edge_id": "b5f458da7d52:cc0d03ab9e3d4677", "status": "confirmed", "to_state": "961ae169746d", "priority": 20, "created_order": 26, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "description": "", "bbox": [645, 256, 126, 26]}], "64a5e351ed9c": [{"edge_id": "64a5e351ed9c:98ebc6ff8823a368", "status": "confirmed", "to_state": "b5f458da7d52", "priority": 20, "created_order": 27, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "description": "", "bbox": [645, 126, 126, 26]}, {"edge_id": "64a5e351ed9c:48f0a9f09960962d", "status": "same_state", "to_state": "64a5e351ed9c", "priority": 20, "created_order": 28, "action_key": "48f0a9f09960962d", "action_name": "Z-A", "action_role": "radio button", "description": "", "bbox": [645, 152, 126, 26]}, {"edge_id": "64a5e351ed9c:d7af1f9e2716c12c", "status": "confirmed", "to_state": "61dd2fb2ef2e", "priority": 20, "created_order": 29, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "description": "", "bbox": [645, 178, 126, 26]}, {"edge_id": "64a5e351ed9c:3f52541bee544af1", "status": "confirmed", "to_state": "b06afef1c5f0", "priority": 20, "created_order": 30, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "description": "", "bbox": [645, 204, 126, 26]}, {"edge_id": "64a5e351ed9c:567db6e2fbf4247b", "status": "confirmed", "to_state": "c9884c58a3d1", "priority": 20, "created_order": 31, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "description": "", "bbox": [645, 230, 126, 26]}, {"edge_id": "64a5e351ed9c:cc0d03ab9e3d4677", "status": "confirmed", "to_state": "961ae169746d", "priority": 20, "created_order": 32, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "description": "", "bbox": [645, 256, 126, 26]}], "61dd2fb2ef2e": [{"edge_id": "61dd2fb2ef2e:98ebc6ff8823a368", "status": "confirmed", "to_state": "b5f458da7d52", "priority": 20, "created_order": 33, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "description": "", "bbox": [645, 126, 126, 26]}, {"edge_id": "61dd2fb2ef2e:0ffd399697616cfe", "status": "confirmed", "to_state": "64a5e351ed9c", "priority": 20, "created_order": 34, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "description": "", "bbox": [645, 152, 126, 26]}, {"edge_id": "61dd2fb2ef2e:e6affd9eb08c561e", "status": "same_state", "to_state": "61dd2fb2ef2e", "priority": 20, "created_order": 35, "action_key": "e6affd9eb08c561e", "action_name": "Last Modified", "action_role": "radio button", "description": "", "bbox": [645, 178, 126, 26]}, {"edge_id": "61dd2fb2ef2e:3f52541bee544af1", "status": "confirmed", "to_state": "b06afef1c5f0", "priority": 20, "created_order": 36, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "description": "", "bbox": [645, 204, 126, 26]}, {"edge_id": "61dd2fb2ef2e:567db6e2fbf4247b", "status": "confirmed", "to_state": "c9884c58a3d1", "priority": 20, "created_order": 37, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "description": "", "bbox": [645, 230, 126, 26]}, {"edge_id": "61dd2fb2ef2e:cc0d03ab9e3d4677", "status": "confirmed", "to_state": "961ae169746d", "priority": 20, "created_order": 38, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "description": "", "bbox": [645, 256, 126, 26]}], "b06afef1c5f0": [{"edge_id": "b06afef1c5f0:98ebc6ff8823a368", "status": "confirmed", "to_state": "b5f458da7d52", "priority": 20, "created_order": 39, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "description": "", "bbox": [645, 126, 126, 26]}, {"edge_id": "b06afef1c5f0:0ffd399697616cfe", "status": "confirmed", "to_state": "64a5e351ed9c", "priority": 20, "created_order": 40, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "description": "", "bbox": [645, 152, 126, 26]}, {"edge_id": "b06afef1c5f0:d7af1f9e2716c12c", "status": "confirmed", "to_state": "61dd2fb2ef2e", "priority": 20, "created_order": 41, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "description": "", "bbox": [645, 178, 126, 26]}, {"edge_id": "b06afef1c5f0:94cb5c1d82519737", "status": "same_state", "to_state": "b06afef1c5f0", "priority": 20, "created_order": 42, "action_key": "94cb5c1d82519737", "action_name": "First Modified", "action_role": "radio button", "description": "", "bbox": [645, 204, 126, 26]}, {"edge_id": "b06afef1c5f0:567db6e2fbf4247b", "status": "confirmed", "to_state": "c9884c58a3d1", "priority": 20, "created_order": 43, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "description": "", "bbox": [645, 230, 126, 26]}, {"edge_id": "b06afef1c5f0:cc0d03ab9e3d4677", "status": "confirmed", "to_state": "961ae169746d", "priority": 20, "created_order": 44, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "description": "", "bbox": [645, 256, 126, 26]}], "c9884c58a3d1": [{"edge_id": "c9884c58a3d1:98ebc6ff8823a368", "status": "confirmed", "to_state": "b5f458da7d52", "priority": 20, "created_order": 45, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "description": "", "bbox": [645, 126, 126, 26]}, {"edge_id": "c9884c58a3d1:0ffd399697616cfe", "status": "confirmed", "to_state": "64a5e351ed9c", "priority": 20, "created_order": 46, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "description": "", "bbox": [645, 152, 126, 26]}, {"edge_id": "c9884c58a3d1:d7af1f9e2716c12c", "status": "confirmed", "to_state": "61dd2fb2ef2e", "priority": 20, "created_order": 47, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "description": "", "bbox": [645, 178, 126, 26]}, {"edge_id": "c9884c58a3d1:3f52541bee544af1", "status": "confirmed", "to_state": "b06afef1c5f0", "priority": 20, "created_order": 48, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "description": "", "bbox": [645, 204, 126, 26]}, {"edge_id": "c9884c58a3d1:f0ab802888983bc7", "status": "same_state", "to_state": "c9884c58a3d1", "priority": 20, "created_order": 49, "action_key": "f0ab802888983bc7", "action_name": "Size", "action_role": "radio button", "description": "", "bbox": [645, 230, 126, 26]}, {"edge_id": "c9884c58a3d1:cc0d03ab9e3d4677", "status": "confirmed", "to_state": "961ae169746d", "priority": 20, "created_order": 50, "action_key": "cc0d03ab9e3d4677", "action_name": "Type", "action_role": "radio button", "description": "", "bbox": [645, 256, 126, 26]}], "961ae169746d": [{"edge_id": "961ae169746d:98ebc6ff8823a368", "status": "confirmed", "to_state": "b5f458da7d52", "priority": 20, "created_order": 51, "action_key": "98ebc6ff8823a368", "action_name": "A-Z", "action_role": "radio button", "description": "", "bbox": [645, 126, 126, 26]}, {"edge_id": "961ae169746d:0ffd399697616cfe", "status": "confirmed", "to_state": "64a5e351ed9c", "priority": 20, "created_order": 52, "action_key": "0ffd399697616cfe", "action_name": "Z-A", "action_role": "radio button", "description": "", "bbox": [645, 152, 126, 26]}, {"edge_id": "961ae169746d:d7af1f9e2716c12c", "status": "confirmed", "to_state": "61dd2fb2ef2e", "priority": 20, "created_order": 53, "action_key": "d7af1f9e2716c12c", "action_name": "Last Modified", "action_role": "radio button", "description": "", "bbox": [645, 178, 126, 26]}, {"edge_id": "961ae169746d:3f52541bee544af1", "status": "confirmed", "to_state": "b06afef1c5f0", "priority": 20, "created_order": 54, "action_key": "3f52541bee544af1", "action_name": "First Modified", "action_role": "radio button", "description": "", "bbox": [645, 204, 126, 26]}, {"edge_id": "961ae169746d:567db6e2fbf4247b", "status": "confirmed", "to_state": "c9884c58a3d1", "priority": 20, "created_order": 55, "action_key": "567db6e2fbf4247b", "action_name": "Size", "action_role": "radio button", "description": "", "bbox": [645, 230, 126, 26]}, {"edge_id": "961ae169746d:19e5d0b8b89b51f2", "status": "same_state", "to_state": "961ae169746d", "priority": 20, "created_order": 56, "action_key": "19e5d0b8b89b51f2", "action_name": "Type", "action_role": "radio button", "description": "", "bbox": [645, 256, 126, 26]}], "dbae654913d9": [{"edge_id": "dbae654913d9:71a63435ee1acf4e", "status": "confirmed", "to_state": "60bf7f8ab3bb", "priority": 30, "created_order": 57, "action_key": "71a63435ee1acf4e", "action_name": "New Window", "action_role": "push button", "description": "", "bbox": [667, 75, 52, 34]}, {"edge_id": "dbae654913d9:b3a9ad2fffdd88fb", "status": "same_state", "to_state": "dbae654913d9", "priority": 20, "created_order": 58, "action_key": "b3a9ad2fffdd88fb", "action_name": "Show Hidden Files", "action_role": "check box", "description": "", "bbox": [667, 178, 157, 26]}, {"edge_id": "dbae654913d9:73bf59ccf9ded379", "status": "confirmed", "to_state": "f409643e693b", "priority": 20, "created_order": 59, "action_key": "73bf59ccf9ded379", "action_name": "Show Sidebar", "action_role": "check box", "description": "", "bbox": [667, 204, 157, 26]}, {"edge_id": "dbae654913d9:f54e9f00737264a9", "status": "confirmed", "to_state": "df1650529a16", "priority": 30, "created_order": 60, "action_key": "f54e9f00737264a9", "action_name": "Preferences", "action_role": "push button", "description": "", "bbox": [667, 237, 157, 26]}, {"edge_id": "dbae654913d9:be1e4ce867f7fd62", "status": "confirmed", "to_state": "98858c882185", "priority": 30, "created_order": 61, "action_key": "be1e4ce867f7fd62", "action_name": "Keyboard Shortcuts", "action_role": "push button", "description": "", "bbox": [667, 263, 157, 26]}, {"edge_id": "dbae654913d9:d60a53362aff0ce7", "status": "confirmed", "to_state": "60bf7f8ab3bb", "priority": 30, "created_order": 62, "action_key": "d60a53362aff0ce7", "action_name": "Help", "action_role": "push button", "description": "", "bbox": [667, 289, 157, 26]}, {"edge_id": "dbae654913d9:8d91203571f9551f", "status": "same_state", "to_state": null, "priority": 30, "created_order": 63, "action_key": "8d91203571f9551f", "action_name": "About Files", "action_role": "push button", "description": "", "bbox": [667, 315, 157, 26]}], "f409643e693b": [{"edge_id": "f409643e693b:71a63435ee1acf4e", "status": "failed_navigation", "to_state": null, "priority": 30, "created_order": 64, "action_key": "71a63435ee1acf4e", "action_name": "New Window", "action_role": "push button", "description": "", "bbox": [667, 75, 52, 34]}, {"edge_id": "f409643e693b:92c3a4db159a20b8", "status": "confirmed", "to_state": "dbae654913d9", "priority": 20, "created_order": 65, "action_key": "92c3a4db159a20b8", "action_name": "Show Hidden Files", "action_role": "check box", "description": "", "bbox": [667, 178, 157, 26]}, {"edge_id": "f409643e693b:b54751a9598264cb", "status": "same_state", "to_state": "f409643e693b", "priority": 20, "created_order": 66, "action_key": "b54751a9598264cb", "action_name": "Show Sidebar", "action_role": "check box", "description": "", "bbox": [667, 204, 157, 26]}, {"edge_id": "f409643e693b:f54e9f00737264a9", "status": "pending", "to_state": null, "priority": 30, "created_order": 67, "action_key": "f54e9f00737264a9", "action_name": "Preferences", "action_role": "push button", "description": "", "bbox": [667, 237, 157, 26]}, {"edge_id": "f409643e693b:be1e4ce867f7fd62", "status": "pending", "to_state": null, "priority": 30, "created_order": 68, "action_key": "be1e4ce867f7fd62", "action_name": "Keyboard Shortcuts", "action_role": "push button", "description": "", "bbox": [667, 263, 157, 26]}, {"edge_id": "f409643e693b:d60a53362aff0ce7", "status": "pending", "to_state": null, "priority": 30, "created_order": 69, "action_key": "d60a53362aff0ce7", "action_name": "Help", "action_role": "push button", "description": "", "bbox": [667, 289, 157, 26]}, {"edge_id": "f409643e693b:8d91203571f9551f", "status": "same_state", "to_state": null, "priority": 30, "created_order": 70, "action_key": "8d91203571f9551f", "action_name": "About Files", "action_role": "push button", "description": "", "bbox": [667, 315, 157, 26]}]};
+const kindColors = {"main": "#4C78A8", "menu": "#F58518", "dialog": "#E45756", "window_overlay": "#72B7B2", "unknown": "#9D9D9D"};
+const statusColors = {"confirmed": "#2ca25f", "pending": "#9e9e9e", "failed_navigation": "#de2d26", "same_state": "#756bb1"};
+
+document.getElementById("summaryNodes").textContent = graphSummary.nodes;
+document.getElementById("summaryEdges").textContent = graphSummary.edges;
+document.getElementById("summaryDepth").textContent = graphSummary.max_depth;
+document.getElementById("summaryRoot").textContent = graphSummary.root_state_id || "";
+
+function renderCounts() {
+  const depthDiv = document.getElementById("depthCounts");
+  depthDiv.innerHTML = Object.entries(graphSummary.depth_counts)
+    .map(([k, v]) => `<div class="legend-item"><code>depth ${k}</code> ${v}</div>`)
+    .join("");
+
+  const statusDiv = document.getElementById("statusCounts");
+  statusDiv.innerHTML = Object.entries(graphSummary.status_counts)
+    .map(([k, v]) => `<div class="legend-item"><code>${k}</code> ${v}</div>`)
+    .join("");
+
+  const legendDiv = document.getElementById("legend");
+  legendDiv.innerHTML = Object.entries(kindColors)
+    .map(([kind, color]) => `
+      <div class="legend-item">
+        <span class="swatch" style="background:${color}"></span>
+        <span>${kind}</span>
+      </div>
+    `)
+    .join("");
+}
+
+renderCounts();
+
+const cy = cytoscape({
+  container: document.getElementById("cy"),
+  elements,
+
+  wheelSensitivity: 0.18,
+
+  style: [
+    {
+      selector: "node",
+      style: {
+        "shape": "round-rectangle",
+        "background-color": "data(color)",
+        "border-color": "#1f1f1f",
+        "border-width": 1,
+        "label": "data(label)",
+        "font-size": 9,
+        "text-wrap": "wrap",
+        "text-max-width": 110,
+        "text-valign": "center",
+        "text-halign": "center",
+        "color": "#111",
+        "width": ele => 78 + Math.min((ele.data("pending") || 0) * 4, 40),
+        "height": ele => 42 + Math.min((ele.data("pending") || 0) * 3, 30),
+        "padding": "7px",
+        "overlay-padding": "6px"
+      }
+    },
+    {
+      selector: 'node[is_stub]',
+      style: {
+        "background-color": "#eeeeee",
+        "border-style": "dashed",
+        "border-color": "#999",
+        "color": "#666"
+      }
+    },
+    {
+      selector: "edge",
+      style: {
+        "curve-style": "bezier",
+        "target-arrow-shape": "triangle",
+        "target-arrow-color": "data(color)",
+        "line-color": "data(color)",
+        "width": 1.4,
+        "opacity": 0.58,
+        "label": "",
+        "font-size": 8,
+        "text-rotation": "autorotate",
+        "text-background-opacity": 0.75,
+        "text-background-color": "#ffffff",
+        "text-background-padding": "2px"
+      }
+    },
+    {
+      selector: 'edge[status = "same_state"]',
+      style: {
+        "line-style": "dashed",
+        "opacity": 0.45
+      }
+    },
+    {
+      selector: 'edge[status = "failed_navigation"]',
+      style: {
+        "line-style": "dotted",
+        "width": 2,
+        "opacity": 0.8
+      }
+    },
+    {
+      selector: ".hidden-by-filter",
+      style: {
+        "display": "none"
+      }
+    },
+    {
+      selector: ".selected",
+      style: {
+        "border-width": 4,
+        "border-color": "#000",
+        "opacity": 1,
+        "z-index": 999
+      }
+    },
+    {
+      selector: "edge.selected",
+      style: {
+        "width": 4,
+        "opacity": 1,
+        "z-index": 999
+      }
+    },
+    {
+      selector: ".faded",
+      style: {
+        "opacity": 0.12
+      }
+    }
+  ],
+
+  layout: {
+    name: "dagre",
+    rankDir: "LR",
+    nodeSep: 55,
+    edgeSep: 12,
+    rankSep: 130,
+    animate: false
+  }
+});
+
+function runLayout(name) {
+  let options;
+
+  if (name === "dagre") {
+    options = {
+      name: "dagre",
+      rankDir: "LR",
+      nodeSep: 55,
+      edgeSep: 12,
+      rankSep: 130,
+      animate: true,
+      animationDuration: 350
+    };
+  } else if (name === "breadthfirst") {
+    options = {
+      name: "breadthfirst",
+      directed: true,
+      spacingFactor: 1.25,
+      animate: true,
+      animationDuration: 350
+    };
+  } else {
+    options = {
+      name: "cose",
+      animate: true,
+      animationDuration: 500,
+      nodeRepulsion: 120000,
+      idealEdgeLength: 130,
+      edgeElasticity: 0.12
+    };
+  }
+
+  cy.layout(options).run();
+}
+
+function fitGraph() {
+  cy.fit(undefined, 40);
+}
+
+function selectedStatuses() {
+  return new Set(
+    Array.from(document.querySelectorAll(".status-filter"))
+      .filter(el => el.checked)
+      .map(el => el.value)
+  );
+}
+
+function applyFilters() {
+  const maxDepth = Number(document.getElementById("maxDepth").value);
+  const statuses = selectedStatuses();
+  const showLabels = document.getElementById("showLabels").checked;
+  const showEdgeLabels = document.getElementById("showEdgeLabels").checked;
+
+  cy.elements().removeClass("hidden-by-filter");
+
+  cy.nodes().forEach(node => {
+    const depth = Number(node.data("depth") || 0);
+    if (depth > maxDepth) {
+      node.addClass("hidden-by-filter");
+    }
+  });
+
+  cy.edges().forEach(edge => {
+    const status = edge.data("status");
+    const sourceHidden = edge.source().hasClass("hidden-by-filter");
+    const targetHidden = edge.target().hasClass("hidden-by-filter");
+
+    if (!statuses.has(status) || sourceHidden || targetHidden) {
+      edge.addClass("hidden-by-filter");
+    }
+  });
+
+  cy.style()
+    .selector("node")
+    .style("label", showLabels ? "data(label)" : "")
+    .selector("edge")
+    .style("label", showEdgeLabels ? "data(label)" : "")
+    .update();
+}
+
+document.getElementById("maxDepth").addEventListener("change", applyFilters);
+document.getElementById("showLabels").addEventListener("change", applyFilters);
+document.getElementById("showEdgeLabels").addEventListener("change", applyFilters);
+document.querySelectorAll(".status-filter").forEach(el => {
+  el.addEventListener("change", applyFilters);
+});
+
+function htmlEscape(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function renderNodeDetails(node) {
+  const d = node.data();
+  const outgoing = outgoingByNode[d.id] || [];
+
+  const rows = outgoing.map(edge => `
+    <tr>
+      <td><span class="edge-status" style="color:${statusColors[edge.status] || "#555"}">${htmlEscape(edge.status)}</span></td>
+      <td>${htmlEscape(edge.action_name || edge.action_role || edge.action_key || "")}</td>
+      <td>${htmlEscape(edge.to_state || "unknown")}</td>
+    </tr>
+  `).join("");
+
+  document.getElementById("selectedDetails").innerHTML = `
+    <div class="details-block">
+      <strong>Node</strong><br>
+      <code>${htmlEscape(d.id)}</code>
+    </div>
+
+    <table>
+      <tr><th>title</th><td>${htmlEscape(d.title)}</td></tr>
+      <tr><th>kind</th><td>${htmlEscape(d.kind)}</td></tr>
+      <tr><th>depth</th><td>${htmlEscape(d.depth)}</td></tr>
+      <tr><th>role</th><td>${htmlEscape(d.role)}</td></tr>
+      <tr><th>active name</th><td>${htmlEscape(d.active_name)}</td></tr>
+      <tr><th>confirmed out</th><td>${htmlEscape(d.confirmed)}</td></tr>
+      <tr><th>pending out</th><td>${htmlEscape(d.pending)}</td></tr>
+      <tr><th>same_state out</th><td>${htmlEscape(d.same_state)}</td></tr>
+    </table>
+
+    <h2>Outgoing edges</h2>
+    <table>
+      <thead>
+        <tr><th>Status</th><th>Action</th><th>To</th></tr>
+      </thead>
+      <tbody>
+        ${rows || '<tr><td colspan="3" class="muted">No outgoing edges</td></tr>'}
+      </tbody>
+    </table>
+  `;
+}
+
+function renderEdgeDetails(edge) {
+  const d = edge.data();
+
+  document.getElementById("selectedDetails").innerHTML = `
+    <div class="details-block">
+      <strong>Edge</strong><br>
+      <code>${htmlEscape(d.id)}</code>
+    </div>
+
+    <table>
+      <tr><th>status</th><td>${htmlEscape(d.status)}</td></tr>
+      <tr><th>action</th><td>${htmlEscape(d.label)}</td></tr>
+      <tr><th>role</th><td>${htmlEscape(d.action_role)}</td></tr>
+      <tr><th>action key</th><td><code>${htmlEscape(d.action_key)}</code></td></tr>
+      <tr><th>source</th><td><code>${htmlEscape(d.source)}</code></td></tr>
+      <tr><th>target</th><td><code>${htmlEscape(d.target)}</code></td></tr>
+      <tr><th>priority</th><td>${htmlEscape(d.priority)}</td></tr>
+      <tr><th>created order</th><td>${htmlEscape(d.created_order)}</td></tr>
+    </table>
+  `;
+}
+
+cy.on("tap", "node", evt => {
+  const node = evt.target;
+
+  cy.elements().removeClass("selected faded");
+  cy.elements().addClass("faded");
+  node.removeClass("faded").addClass("selected");
+  node.connectedEdges().removeClass("faded").addClass("selected");
+  node.connectedEdges().connectedNodes().removeClass("faded");
+
+  renderNodeDetails(node);
+});
+
+cy.on("tap", "edge", evt => {
+  const edge = evt.target;
+
+  cy.elements().removeClass("selected faded");
+  cy.elements().addClass("faded");
+  edge.removeClass("faded").addClass("selected");
+  edge.connectedNodes().removeClass("faded").addClass("selected");
+
+  renderEdgeDetails(edge);
+});
+
+cy.on("tap", evt => {
+  if (evt.target === cy) {
+    cy.elements().removeClass("selected faded");
+    document.getElementById("selectedDetails").innerHTML =
+      '<span class="small">Click a node or edge to inspect it.</span>';
+  }
+});
+
+applyFilters();
+setTimeout(() => cy.fit(undefined, 40), 400);
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<accessibility-tree app_query="nautilus" app_accessible_name="org.gnome.Nautilus" captured_at="1778882545.5637865">
+<accessibility-tree app_query="nautilus" app_accessible_name="org.gnome.Nautilus" captured_at="1778882707.093506">
   <element role="application" name="org.gnome.Nautilus" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Home" description="" x="0" y="0" width="900" height="560" states="sensitive,showing,visible,enabled">
       <element role="unknown" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
@@ -13,7 +13,7 @@
               <element role="panel" name="" description="" x="87" y="4" width="453" height="46" states="sensitive,showing,visible,enabled">
                 <element role="filler" name="" description="" x="87" y="10" width="453" height="34" states="sensitive,showing,visible,enabled">
                   <element role="filler" name="" description="" x="87" y="10" width="453" height="34" states="sensitive,showing,visible,enabled">
-                    <element role="scroll pane" name="" description="" x="87" y="10" width="417" height="34" states="focused,sensitive,showing,visible,enabled">
+                    <element role="scroll pane" name="" description="" x="87" y="10" width="417" height="34" states="sensitive,showing,visible,enabled">
                       <element role="viewport" name="" description="" x="88" y="11" width="416" height="32" states="sensitive,showing,visible,enabled">
                         <element role="filler" name="" description="" x="88" y="11" width="416" height="32" states="sensitive,showing,visible,enabled">
                           <element role="filler" name="" description="" x="88" y="11" width="416" height="32" states="sensitive,showing,visible,enabled">
@@ -38,7 +38,7 @@
                 <element role="push button" name="" description="Show list" x="660" y="4" width="35" height="46" states="sensitive,showing,visible,enabled"/>
                 <element role="toggle button" name="Menu" description="View options" x="695" y="4" width="26" height="46" states="sensitive,showing,visible,enabled"/>
               </element>
-              <element role="toggle button" name="Menu" description="" x="727" y="4" width="36" height="46" states="sensitive,showing,visible,enabled"/>
+              <element role="toggle button" name="Menu" description="" x="727" y="4" width="36" height="46" states="checked,sensitive,showing,visible,enabled"/>
             </element>
           </element>
           <element role="split pane" name="" description="" x="5" y="51" width="890" height="504" states="sensitive,showing,visible,enabled">
@@ -230,6 +230,20 @@
                             <element role="canvas" name="snap" description="" x="223" y="149" width="48" height="68" states="showing,visible"/>
                             <element role="canvas" name="Templates" description="" x="308" y="149" width="76" height="68" states="showing,visible"/>
                             <element role="canvas" name="Videos" description="" x="419" y="149" width="53" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".cache" description="" x="519" y="149" width="50" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".claude" description="" x="616" y="149" width="56" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".config" description="" x="717" y="149" width="52" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".gnupg" description="" x="816" y="149" width="52" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".local" description="" x="223" y="223" width="48" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".mozilla" description="" x="316" y="223" width="60" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".ssh" description="" x="421" y="223" width="48" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".thunderbird" description="" x="500" y="223" width="88" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".claude.json" description="" x="601" y="223" width="86" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".bash_history" description="" x="716" y="223" width="53" height="85" states="showing,visible"/>
+                            <element role="canvas" name=".bash_logout" description="" x="817" y="223" width="50" height="85" states="showing,visible"/>
+                            <element role="canvas" name=".bashrc" description="" x="220" y="314" width="55" height="69" states="showing,visible"/>
+                            <element role="canvas" name=".profile" description="" x="319" y="314" width="54" height="69" states="showing,visible"/>
+                            <element role="canvas" name=".sudo_as_admin_successful" description="" x="407" y="314" width="77" height="103" states="showing,visible"/>
                           </element>
                           <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                           <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -280,6 +294,43 @@
                     <element role="push button" name="" description="" x="-2147483648" y="-2147483648" width="50" height="34" states="sensitive,visible,enabled"/>
                     <element role="push button" name="" description="" x="-2147483648" y="-2147483648" width="36" height="34" states="sensitive,visible,enabled"/>
                   </element>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="642" y="50" width="207" height="316" states="sensitive,showing,visible,enabled">
+        <element role="panel" name="" description="" x="657" y="65" width="177" height="286" states="sensitive,showing,visible,enabled">
+          <element role="filler" name="" description="" x="667" y="75" width="157" height="266" states="sensitive,showing,visible,enabled">
+            <element role="filler" name="" description="" x="667" y="75" width="157" height="266" states="sensitive,showing,visible,enabled">
+              <element role="filler" name="" description="" x="667" y="75" width="157" height="34" states="sensitive,showing,visible,enabled">
+                <element role="filler" name="" description="" x="667" y="75" width="157" height="34" states="sensitive,showing,visible,enabled">
+                  <element role="push button" name="New Window" description="" x="667" y="75" width="52" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="push button" name="New Tab" description="" x="719" y="75" width="52" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="push button" name="New Folder" description="" x="771" y="75" width="53" height="34" states="sensitive,showing,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="667" y="109" width="157" height="62" states="sensitive,showing,visible,enabled">
+                <element role="filler" name="" description="" x="667" y="119" width="157" height="52" states="sensitive,showing,visible,enabled">
+                  <element role="push button" name="Undo" description="" x="667" y="119" width="157" height="26" states="showing,visible"/>
+                  <element role="push button" name="Redo" description="" x="667" y="145" width="157" height="26" states="showing,visible"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="667" y="171" width="157" height="59" states="sensitive,showing,visible,enabled">
+                <element role="separator" name="" description="" x="667" y="171" width="157" height="7" states="sensitive,showing,visible,enabled"/>
+                <element role="filler" name="" description="" x="667" y="178" width="157" height="52" states="sensitive,showing,visible,enabled">
+                  <element role="check box" name="Show Hidden Files" description="" x="667" y="178" width="157" height="26" states="focused,sensitive,showing,visible,enabled"/>
+                  <element role="check box" name="Show Sidebar" description="" x="667" y="204" width="157" height="26" states="sensitive,showing,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="667" y="230" width="157" height="111" states="sensitive,showing,visible,enabled">
+                <element role="separator" name="" description="" x="667" y="230" width="157" height="7" states="sensitive,showing,visible,enabled"/>
+                <element role="filler" name="" description="" x="667" y="237" width="157" height="104" states="sensitive,showing,visible,enabled">
+                  <element role="push button" name="Preferences" description="" x="667" y="237" width="157" height="26" states="sensitive,showing,visible,enabled"/>
+                  <element role="push button" name="Keyboard Shortcuts" description="" x="667" y="263" width="157" height="26" states="sensitive,showing,visible,enabled"/>
+                  <element role="push button" name="Help" description="" x="667" y="289" width="157" height="26" states="sensitive,showing,visible,enabled"/>
+                  <element role="push button" name="About Files" description="" x="667" y="315" width="157" height="26" states="sensitive,showing,visible,enabled"/>
                 </element>
               </element>
             </element>
@@ -359,43 +410,6 @@
                 <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
                   <element role="push button" name="Reload" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                </element>
-              </element>
-            </element>
-          </element>
-        </element>
-      </element>
-      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
-        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                  <element role="push button" name="New Window" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="push button" name="New Tab" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="push button" name="New Folder" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                </element>
-              </element>
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                  <element role="push button" name="Undo" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                  <element role="push button" name="Redo" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                </element>
-              </element>
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                  <element role="check box" name="Show Hidden Files" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="check box" name="Show Sidebar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                </element>
-              </element>
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                  <element role="push button" name="Preferences" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="push button" name="Keyboard Shortcuts" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="push button" name="Help" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="push button" name="About Files" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 </element>
               </element>
             </element>

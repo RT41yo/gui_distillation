@@ -1,0 +1,1019 @@
+{
+  "schema_version": "1.0",
+  "app_id": "nautilus",
+  "root_state_id": "60bf7f8ab3bb",
+  "nodes": {
+    "3cd7b00f271d": {
+      "state_id": "3cd7b00f271d",
+      "status": "confirmed",
+      "xml_path": "data/maps/nautilus/states/3cd7b00f271d/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Home",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/org.gnome.Nautilus"
+        ]
+      },
+      "macro_hash": "3cd7b00f271d71123fa8ca7dd69a4cacbc7aa79cdf531c5a83e9561c44c8a853",
+      "content_hash": "b319d35447f8814045e8894f9501266ae1cee01a1b087ec07147e69ad5746eee",
+      "macro_action_count": 5,
+      "visible_node_count": 130,
+      "depth": 1,
+      "label": "Home"
+    },
+    "60bf7f8ab3bb": {
+      "state_id": "60bf7f8ab3bb",
+      "status": "confirmed",
+      "xml_path": "data/maps/nautilus/states/60bf7f8ab3bb/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Home",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/org.gnome.Nautilus"
+        ]
+      },
+      "macro_hash": "60bf7f8ab3bb464a2126e5fc6ada9cc078c01c68665e33cc985444f430093380",
+      "content_hash": "4d98b5e1ca9f19c8f94b27d5cf74fc32eae55e1d93767ad4d2c64a5efbfd2cdf",
+      "macro_action_count": 3,
+      "visible_node_count": 111,
+      "depth": 0,
+      "label": "Home"
+    },
+    "8924dc823814": {
+      "state_id": "8924dc823814",
+      "status": "confirmed",
+      "xml_path": "data/maps/nautilus/states/8924dc823814/a11y.xml",
+      "active_root": {
+        "kind": "window_overlay",
+        "reason": "visible popover-like control group is active overlay",
+        "role": "filler",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ]
+      },
+      "macro_hash": "8924dc823814ea6c6117782b9a0a96633f3d40e8e5ca40e49c5d724dd34eb750",
+      "content_hash": "27a4da716a9cd9d003e66207d5228ec022ea268c9cd24c2dc16f1dfe973f354c",
+      "macro_action_count": 6,
+      "visible_node_count": 7,
+      "depth": 1,
+      "label": "filler"
+    },
+    "d4fb4df9ae9a": {
+      "state_id": "d4fb4df9ae9a",
+      "status": "confirmed",
+      "xml_path": "data/maps/nautilus/states/d4fb4df9ae9a/a11y.xml",
+      "active_root": {
+        "kind": "window_overlay",
+        "reason": "visible popover-like control group is active overlay",
+        "role": "filler",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler"
+        ]
+      },
+      "macro_hash": "d4fb4df9ae9ae170e0f7ac075a5afac849dd0215a5b7897ba4c23c2367a6ca0c",
+      "content_hash": "3fe8b77401d8a79163d3ba0cf12491307978087bc3b411eae9fd5d5bab536f2f",
+      "macro_action_count": 7,
+      "visible_node_count": 22,
+      "depth": 1,
+      "label": "filler"
+    }
+  },
+  "edges": {
+    "60bf7f8ab3bb:23cd08280770a67f": {
+      "edge_id": "60bf7f8ab3bb:23cd08280770a67f",
+      "from_state": "60bf7f8ab3bb",
+      "action_key": "23cd08280770a67f",
+      "action": {
+        "action_key": "23cd08280770a67f",
+        "role": "toggle button",
+        "name": "Menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          504,
+          10,
+          36,
+          34
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "filler",
+          "panel",
+          "filler",
+          "panel",
+          "filler",
+          "filler"
+        ],
+        "depth": 9
+      },
+      "status": "confirmed",
+      "to_state": "3cd7b00f271d",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3cd7b00f271d",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 0
+    },
+    "60bf7f8ab3bb:0e6814e26efd9c5d": {
+      "edge_id": "60bf7f8ab3bb:0e6814e26efd9c5d",
+      "from_state": "60bf7f8ab3bb",
+      "action_key": "0e6814e26efd9c5d",
+      "action": {
+        "action_key": "0e6814e26efd9c5d",
+        "role": "toggle button",
+        "name": "Menu",
+        "description": "View options",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          695,
+          4,
+          26,
+          46
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "filler",
+          "panel",
+          "filler",
+          "filler"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "8924dc823814",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "8924dc823814",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 1
+    },
+    "60bf7f8ab3bb:a442bb2608a94d62": {
+      "edge_id": "60bf7f8ab3bb:a442bb2608a94d62",
+      "from_state": "60bf7f8ab3bb",
+      "action_key": "a442bb2608a94d62",
+      "action": {
+        "action_key": "a442bb2608a94d62",
+        "role": "toggle button",
+        "name": "Menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          727,
+          4,
+          36,
+          46
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "filler",
+          "panel",
+          "filler"
+        ],
+        "depth": 6
+      },
+      "status": "confirmed",
+      "to_state": "d4fb4df9ae9a",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "d4fb4df9ae9a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 2
+    },
+    "3cd7b00f271d:437211b97b0dbc24": {
+      "edge_id": "3cd7b00f271d:437211b97b0dbc24",
+      "from_state": "3cd7b00f271d",
+      "action_key": "437211b97b0dbc24",
+      "action": {
+        "action_key": "437211b97b0dbc24",
+        "role": "toggle button",
+        "name": "Menu",
+        "description": "",
+        "states": [
+          "checked",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          504,
+          10,
+          36,
+          34
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "filler",
+          "panel",
+          "filler",
+          "panel",
+          "filler",
+          "filler"
+        ],
+        "depth": 9
+      },
+      "status": "failed_navigation",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 1,
+      "reason": "replay state mismatch: expected=3cd7b00f271d actual=8e253d6149e0",
+      "observed": {
+        "navigation_strategy": "hard",
+        "navigation": {
+          "ok": false,
+          "target_state": "3cd7b00f271d",
+          "actual_state": "8e253d6149e0",
+          "attempts": 1,
+          "reason": "replay state mismatch: expected=3cd7b00f271d actual=8e253d6149e0",
+          "xml_path": "data/maps/nautilus/_tmp/step_edge/navigation/replay_01.xml"
+        }
+      },
+      "created_order": 3
+    },
+    "3cd7b00f271d:0e6814e26efd9c5d": {
+      "edge_id": "3cd7b00f271d:0e6814e26efd9c5d",
+      "from_state": "3cd7b00f271d",
+      "action_key": "0e6814e26efd9c5d",
+      "action": {
+        "action_key": "0e6814e26efd9c5d",
+        "role": "toggle button",
+        "name": "Menu",
+        "description": "View options",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          695,
+          4,
+          26,
+          46
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "filler",
+          "panel",
+          "filler",
+          "filler"
+        ],
+        "depth": 7
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 4
+    },
+    "3cd7b00f271d:a442bb2608a94d62": {
+      "edge_id": "3cd7b00f271d:a442bb2608a94d62",
+      "from_state": "3cd7b00f271d",
+      "action_key": "a442bb2608a94d62",
+      "action": {
+        "action_key": "a442bb2608a94d62",
+        "role": "toggle button",
+        "name": "Menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          727,
+          4,
+          36,
+          46
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "filler",
+          "panel",
+          "filler"
+        ],
+        "depth": 6
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 5
+    },
+    "3cd7b00f271d:c5c68242df95bdac": {
+      "edge_id": "3cd7b00f271d:c5c68242df95bdac",
+      "from_state": "3cd7b00f271d",
+      "action_key": "c5c68242df95bdac",
+      "action": {
+        "action_key": "c5c68242df95bdac",
+        "role": "push button",
+        "name": "Add to Bookmarks",
+        "description": "",
+        "states": [
+          "showing",
+          "visible"
+        ],
+        "bbox": [
+          457,
+          95,
+          130,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler"
+        ],
+        "depth": 6
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 6
+    },
+    "3cd7b00f271d:81536f34e8c3c05c": {
+      "edge_id": "3cd7b00f271d:81536f34e8c3c05c",
+      "from_state": "3cd7b00f271d",
+      "action_key": "81536f34e8c3c05c",
+      "action": {
+        "action_key": "81536f34e8c3c05c",
+        "role": "push button",
+        "name": "Open in Terminal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          457,
+          187,
+          130,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 7
+    },
+    "8924dc823814:98ebc6ff8823a368": {
+      "edge_id": "8924dc823814:98ebc6ff8823a368",
+      "from_state": "8924dc823814",
+      "action_key": "98ebc6ff8823a368",
+      "action": {
+        "action_key": "98ebc6ff8823a368",
+        "role": "radio button",
+        "name": "A-Z",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          645,
+          126,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 8
+    },
+    "8924dc823814:0ffd399697616cfe": {
+      "edge_id": "8924dc823814:0ffd399697616cfe",
+      "from_state": "8924dc823814",
+      "action_key": "0ffd399697616cfe",
+      "action": {
+        "action_key": "0ffd399697616cfe",
+        "role": "radio button",
+        "name": "Z-A",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          645,
+          152,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 9
+    },
+    "8924dc823814:d7af1f9e2716c12c": {
+      "edge_id": "8924dc823814:d7af1f9e2716c12c",
+      "from_state": "8924dc823814",
+      "action_key": "d7af1f9e2716c12c",
+      "action": {
+        "action_key": "d7af1f9e2716c12c",
+        "role": "radio button",
+        "name": "Last Modified",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          645,
+          178,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 10
+    },
+    "8924dc823814:3f52541bee544af1": {
+      "edge_id": "8924dc823814:3f52541bee544af1",
+      "from_state": "8924dc823814",
+      "action_key": "3f52541bee544af1",
+      "action": {
+        "action_key": "3f52541bee544af1",
+        "role": "radio button",
+        "name": "First Modified",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          645,
+          204,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 11
+    },
+    "8924dc823814:567db6e2fbf4247b": {
+      "edge_id": "8924dc823814:567db6e2fbf4247b",
+      "from_state": "8924dc823814",
+      "action_key": "567db6e2fbf4247b",
+      "action": {
+        "action_key": "567db6e2fbf4247b",
+        "role": "radio button",
+        "name": "Size",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          645,
+          230,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 12
+    },
+    "8924dc823814:cc0d03ab9e3d4677": {
+      "edge_id": "8924dc823814:cc0d03ab9e3d4677",
+      "from_state": "8924dc823814",
+      "action_key": "cc0d03ab9e3d4677",
+      "action": {
+        "action_key": "cc0d03ab9e3d4677",
+        "role": "radio button",
+        "name": "Type",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          645,
+          256,
+          126,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "radio button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 13
+    },
+    "d4fb4df9ae9a:dab12492368196fc": {
+      "edge_id": "d4fb4df9ae9a:dab12492368196fc",
+      "from_state": "d4fb4df9ae9a",
+      "action_key": "dab12492368196fc",
+      "action": {
+        "action_key": "dab12492368196fc",
+        "role": "push button",
+        "name": "New Window",
+        "description": "",
+        "states": [
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          667,
+          75,
+          52,
+          34
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 14
+    },
+    "d4fb4df9ae9a:92c3a4db159a20b8": {
+      "edge_id": "d4fb4df9ae9a:92c3a4db159a20b8",
+      "from_state": "d4fb4df9ae9a",
+      "action_key": "92c3a4db159a20b8",
+      "action": {
+        "action_key": "92c3a4db159a20b8",
+        "role": "check box",
+        "name": "Show Hidden Files",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          667,
+          178,
+          157,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "check box may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 15
+    },
+    "d4fb4df9ae9a:73bf59ccf9ded379": {
+      "edge_id": "d4fb4df9ae9a:73bf59ccf9ded379",
+      "from_state": "d4fb4df9ae9a",
+      "action_key": "73bf59ccf9ded379",
+      "action": {
+        "action_key": "73bf59ccf9ded379",
+        "role": "check box",
+        "name": "Show Sidebar",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          667,
+          204,
+          157,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "check box may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 16
+    },
+    "d4fb4df9ae9a:f54e9f00737264a9": {
+      "edge_id": "d4fb4df9ae9a:f54e9f00737264a9",
+      "from_state": "d4fb4df9ae9a",
+      "action_key": "f54e9f00737264a9",
+      "action": {
+        "action_key": "f54e9f00737264a9",
+        "role": "push button",
+        "name": "Preferences",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          667,
+          237,
+          157,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 17
+    },
+    "d4fb4df9ae9a:be1e4ce867f7fd62": {
+      "edge_id": "d4fb4df9ae9a:be1e4ce867f7fd62",
+      "from_state": "d4fb4df9ae9a",
+      "action_key": "be1e4ce867f7fd62",
+      "action": {
+        "action_key": "be1e4ce867f7fd62",
+        "role": "push button",
+        "name": "Keyboard Shortcuts",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          667,
+          263,
+          157,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 18
+    },
+    "d4fb4df9ae9a:d60a53362aff0ce7": {
+      "edge_id": "d4fb4df9ae9a:d60a53362aff0ce7",
+      "from_state": "d4fb4df9ae9a",
+      "action_key": "d60a53362aff0ce7",
+      "action": {
+        "action_key": "d60a53362aff0ce7",
+        "role": "push button",
+        "name": "Help",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          667,
+          289,
+          157,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 19
+    },
+    "d4fb4df9ae9a:8d91203571f9551f": {
+      "edge_id": "d4fb4df9ae9a:8d91203571f9551f",
+      "from_state": "d4fb4df9ae9a",
+      "action_key": "8d91203571f9551f",
+      "action": {
+        "action_key": "8d91203571f9551f",
+        "role": "push button",
+        "name": "About Files",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          667,
+          315,
+          157,
+          26
+        ],
+        "parent_path": [
+          "application/org.gnome.Nautilus",
+          "frame/Home",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 20
+    }
+  },
+  "completion": {
+    "status": "partial",
+    "pending_edges": 17,
+    "reason": "pending_edges_exist"
+  }
+}

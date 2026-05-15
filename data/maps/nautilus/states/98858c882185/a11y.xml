@@ -1,0 +1,1204 @@
+<accessibility-tree app_query="nautilus" app_accessible_name="org.gnome.Nautilus" captured_at="1778882759.6563747">
+  <element role="application" name="org.gnome.Nautilus" description="" x="0" y="0" width="0" height="0">
+    <element role="frame" name="Home" description="" x="0" y="0" width="900" height="560" states="sensitive,showing,visible,enabled">
+      <element role="unknown" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+      <element role="panel" name="" description="" x="5" y="5" width="890" height="550" states="sensitive,showing,visible,enabled">
+        <element role="filler" name="" description="" x="5" y="5" width="890" height="550" states="sensitive,showing,visible,enabled">
+          <element role="panel" name="" description="" x="5" y="5" width="890" height="46" states="sensitive,showing,visible,enabled">
+            <element role="filler" name="" description="" x="10" y="4" width="71" height="46" states="sensitive,showing,visible,enabled">
+              <element role="push button" name="" description="Go back" x="10" y="4" width="35" height="46" states="showing,visible"/>
+              <element role="push button" name="" description="Go forward" x="45" y="4" width="36" height="46" states="showing,visible"/>
+            </element>
+            <element role="filler" name="" description="" x="87" y="4" width="495" height="46" states="sensitive,showing,visible,enabled">
+              <element role="panel" name="" description="" x="87" y="4" width="453" height="46" states="sensitive,showing,visible,enabled">
+                <element role="filler" name="" description="" x="87" y="10" width="453" height="34" states="sensitive,showing,visible,enabled">
+                  <element role="filler" name="" description="" x="87" y="10" width="453" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="scroll pane" name="" description="" x="87" y="10" width="417" height="34" states="sensitive,showing,visible,enabled">
+                      <element role="viewport" name="" description="" x="88" y="11" width="416" height="32" states="sensitive,showing,visible,enabled">
+                        <element role="filler" name="" description="" x="88" y="11" width="416" height="32" states="sensitive,showing,visible,enabled">
+                          <element role="filler" name="" description="" x="88" y="11" width="416" height="32" states="sensitive,showing,visible,enabled">
+                            <element role="push button" name="Home" description="" x="88" y="11" width="416" height="32" states="sensitive,showing,visible,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                      <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    </element>
+                    <element role="toggle button" name="Menu" description="" x="504" y="10" width="36" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                </element>
+              </element>
+              <element role="toggle button" name="" description="Search" x="546" y="4" width="36" height="46" states="sensitive,showing,visible,enabled"/>
+            </element>
+            <element role="filler" name="" description="" x="660" y="4" width="103" height="46" states="sensitive,showing,visible,enabled">
+              <element role="panel" name="" description="" x="660" y="4" width="1" height="46" states="sensitive,showing,visible,enabled">
+                <element role="toggle button" name="Menu" description="Show operations" x="-2147483648" y="-2147483648" width="36" height="46" states="sensitive,visible,enabled"/>
+              </element>
+              <element role="filler" name="" description="" x="660" y="4" width="61" height="46" states="sensitive,showing,visible,enabled">
+                <element role="push button" name="" description="Show list" x="660" y="4" width="35" height="46" states="sensitive,showing,visible,enabled"/>
+                <element role="toggle button" name="Menu" description="View options" x="695" y="4" width="26" height="46" states="sensitive,showing,visible,enabled"/>
+              </element>
+              <element role="toggle button" name="Menu" description="" x="727" y="4" width="36" height="46" states="sensitive,showing,visible,enabled"/>
+            </element>
+          </element>
+          <element role="split pane" name="" description="" x="5" y="51" width="890" height="504" states="sensitive,showing,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+              <element role="scroll pane" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="viewport" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="list box" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                    <element role="list item" name="" description="Recent files" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Recent" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="Favorite files" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Starred" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="Open your personal folder" x="-2147483648" y="-2147483648" width="1" height="1" states="selected,sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Home" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="Open the contents of your desktop in a folder" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Desktop" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="/home/gui_exploration/Documents" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Documents" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="/home/gui_exploration/Downloads" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Downloads" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="/home/gui_exploration/Music" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Music" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="/home/gui_exploration/Pictures" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Pictures" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="/home/gui_exploration/Videos" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Videos" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="Open the trash" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Trash" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="Add a new bookmark" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="New bookmark" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="list item" name="" description="Show other locations" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="icon" name="Add" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="Other Locations" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="push button" name="" description="Unmount" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                            <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          </element>
+                        </element>
+                      </element>
+                    </element>
+                  </element>
+                </element>
+                <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              </element>
+            </element>
+            <element role="panel" name="" description="" x="5" y="51" width="890" height="504" states="sensitive,showing,visible,enabled">
+              <element role="page tab list" name="" description="" x="5" y="51" width="890" height="504" states="sensitive,showing,visible,enabled">
+                <element role="page tab" name="" description="" x="-1" y="-1" width="-1" height="-1" states="selected,showing,visible,enabled">
+                  <element role="filler" name="" description="" x="5" y="51" width="890" height="504" states="sensitive,showing,visible,enabled">
+                    <element role="filler" name="" description="" x="5" y="51" width="890" height="1" states="sensitive,showing,visible,enabled"/>
+                    <element role="panel" name="" description="" x="5" y="51" width="890" height="1" states="sensitive,showing,visible,enabled">
+                      <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="890" height="21" states="sensitive,visible,enabled"/>
+                    </element>
+                    <element role="panel" name="Content View" description="View of the current folder" x="5" y="51" width="890" height="504" states="sensitive,showing,visible,enabled">
+                      <element role="panel" name="" description="" x="5" y="51" width="890" height="504" states="sensitive,showing,visible,enabled">
+                        <element role="scroll pane" name="" description="" x="5" y="51" width="890" height="504" states="sensitive,showing,visible,enabled">
+                          <element role="layered pane" name="Icon View" description="" x="5" y="51" width="890" height="504" states="sensitive,showing,visible,enabled">
+                            <element role="canvas" name="Desktop" description="" x="26" y="57" width="62" height="68" states="showing,visible"/>
+                            <element role="canvas" name="Documents" description="" x="115" y="57" width="82" height="68" states="showing,visible"/>
+                            <element role="canvas" name="Downloads" description="" x="214" y="57" width="80" height="68" states="showing,visible"/>
+                            <element role="canvas" name="gui-distill-venv" description="" x="314" y="57" width="74" height="86" states="showing,visible"/>
+                            <element role="canvas" name="Music" description="" x="425" y="57" width="49" height="68" states="showing,visible"/>
+                            <element role="canvas" name="Pictures" description="" x="517" y="57" width="61" height="68" states="showing,visible"/>
+                            <element role="canvas" name="Public" description="" x="622" y="57" width="48" height="68" states="showing,visible"/>
+                            <element role="canvas" name="snap" description="" x="720" y="57" width="49" height="68" states="showing,visible"/>
+                            <element role="canvas" name="Templates" description="" x="805" y="57" width="75" height="68" states="showing,visible"/>
+                            <element role="canvas" name="Videos" description="" x="31" y="149" width="53" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".cache" description="" x="130" y="149" width="51" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".claude" description="" x="226" y="149" width="56" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".config" description="" x="325" y="149" width="52" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".gnupg" description="" x="424" y="149" width="52" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".local" description="" x="523" y="149" width="49" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".mozilla" description="" x="616" y="149" width="60" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".ssh" description="" x="720" y="149" width="49" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".thunderbird" description="" x="799" y="149" width="87" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".claude.json" description="" x="14" y="223" width="86" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".bash_history" description="" x="129" y="223" width="53" height="85" states="showing,visible"/>
+                            <element role="canvas" name=".bash_logout" description="" x="229" y="223" width="50" height="85" states="showing,visible"/>
+                            <element role="canvas" name=".bashrc" description="" x="324" y="223" width="55" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".profile" description="" x="423" y="223" width="53" height="68" states="showing,visible"/>
+                            <element role="canvas" name=".sudo_as_admin_successful" description="" x="510" y="223" width="76" height="103" states="showing,visible"/>
+                          </element>
+                          <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                          <element role="label" name="Try a different search" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="label" name="No Results Found" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="icon" name="Find" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                          <element role="label" name="Folder is Empty" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                          <element role="label" name="Starred files will appear here" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                          <element role="label" name="Trash is Empty" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                          <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                            <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                            <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          </element>
+                          <element role="push button" name="Stop" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                        </element>
+                      </element>
+                    </element>
+                  </element>
+                </element>
+              </element>
+              <element role="panel" name="" description="" x="362" y="51" width="176" height="1" states="sensitive,showing,visible,enabled">
+                <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="176" height="54" states="sensitive,visible,enabled">
+                  <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="140" height="34" states="sensitive,visible,enabled">
+                    <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="34" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="Undo" description="" x="-2147483648" y="-2147483648" width="68" height="34" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="" description="" x="-2147483648" y="-2147483648" width="36" height="34" states="sensitive,visible,enabled"/>
+                  </element>
+                </element>
+              </element>
+              <element role="panel" name="" description="" x="371" y="51" width="158" height="1" states="sensitive,showing,visible,enabled">
+                <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="158" height="54" states="sensitive,visible,enabled">
+                  <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="122" height="34" states="sensitive,visible,enabled">
+                    <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="34" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="" description="" x="-2147483648" y="-2147483648" width="50" height="34" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="" description="" x="-2147483648" y="-2147483648" width="36" height="34" states="sensitive,visible,enabled"/>
+                  </element>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="207" height="316" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="177" height="286" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="157" height="266" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="157" height="266" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="157" height="34" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="157" height="34" states="sensitive,visible,enabled">
+                  <element role="push button" name="New Window" description="" x="-2147483648" y="-2147483648" width="52" height="34" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="New Tab" description="" x="-2147483648" y="-2147483648" width="52" height="34" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="New Folder" description="" x="-2147483648" y="-2147483648" width="53" height="34" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="157" height="62" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="157" height="52" states="sensitive,visible,enabled">
+                  <element role="push button" name="Undo" description="" x="-2147483648" y="-2147483648" width="157" height="26" states="visible"/>
+                  <element role="push button" name="Redo" description="" x="-2147483648" y="-2147483648" width="157" height="26" states="visible"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="157" height="59" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="157" height="7" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="157" height="52" states="sensitive,visible,enabled">
+                  <element role="check box" name="Show Hidden Files" description="" x="-2147483648" y="-2147483648" width="157" height="26" states="sensitive,visible,enabled"/>
+                  <element role="check box" name="Show Sidebar" description="" x="-2147483648" y="-2147483648" width="157" height="26" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="157" height="111" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="157" height="7" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="157" height="104" states="sensitive,visible,enabled">
+                  <element role="push button" name="Preferences" description="" x="-2147483648" y="-2147483648" width="157" height="26" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Keyboard Shortcuts" description="" x="-2147483648" y="-2147483648" width="157" height="26" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Help" description="" x="-2147483648" y="-2147483648" width="157" height="26" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="About Files" description="" x="-2147483648" y="-2147483648" width="157" height="26" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1"/>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1"/>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="push button" name="New Folder" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="Add to Bookmarks" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Paste" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="push button" name="Select All" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Open in Terminal" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Properties" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="scroll pane" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="viewport" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="list box" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          </element>
+          <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Zoom out" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="push button" name="50%" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Zoom in" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Sort" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="radio button" name="A-Z" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Z-A" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Last Modified" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="First Modified" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Size" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Type" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Reload" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="radio button" name="Full Text" description="Search on the file content and name" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
+            <element role="radio button" name="File Name" description="Search only on the file name" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          </element>
+          <element role="label" name="Search" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+          <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="push button" name="Anything" description="Which file types will be searched" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          </element>
+          <element role="label" name="What" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+            <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="radio button" name="Created" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="radio button" name="Last used" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
+              <element role="radio button" name="Last modified" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="scroll pane" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="viewport" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                    <element role="list box" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="Any time" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="1 day ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="3 days ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="5 days ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="Last week" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="2 weeks ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="3 weeks ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="4 weeks ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="Last month" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="3 months ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="7 months ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="10 months ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="Last year" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="2 years ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="3 years ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="4 years ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="label" name="5 years ago" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                    </element>
+                  </element>
+                  <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="label" name="Since…" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            </element>
+          </element>
+          <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="push button" name="Select Dates…" description="Select a date" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="" description="Clear the currently selected date" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+            </element>
+          </element>
+          <element role="label" name="When" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+        </element>
+      </element>
+    </element>
+    <element role="frame" name="" description="" x="0" y="0" width="973" height="723" states="sensitive,showing,visible,enabled">
+      <element role="panel" name="" description="" x="5" y="5" width="963" height="46" states="sensitive,showing,visible,enabled">
+        <element role="filler" name="" description="" x="929" y="4" width="34" height="46" states="sensitive,showing,visible,enabled">
+          <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+          <element role="push button" name="Close" description="" x="929" y="12" width="34" height="30" states="sensitive,showing,visible,enabled"/>
+        </element>
+        <element role="panel" name="" description="" x="418" y="4" width="136" height="46" states="sensitive,showing,visible,enabled">
+          <element role="label" name="Shortcuts" description="" x="418" y="4" width="136" height="46" states="sensitive,showing,visible,enabled"/>
+        </element>
+        <element role="toggle button" name="" description="" x="10" y="4" width="36" height="46" states="sensitive,showing,visible,enabled"/>
+      </element>
+      <element role="filler" name="" description="" x="5" y="51" width="963" height="667" states="sensitive,showing,visible,enabled">
+        <element role="panel" name="" description="" x="5" y="51" width="963" height="1" states="sensitive,showing,visible,enabled">
+          <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="963" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="951" height="35" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="34" states="sensitive,visible,enabled"/>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="338" height="34" states="sensitive,visible,enabled">
+                <element role="text" name="Search" description="" x="-2147483648" y="-2147483648" width="338" height="34" states="sensitive,visible,enabled">
+                  <element role="icon" name="edit-find-symbolic" description="" x="-2147483648" y="-2147483648" width="338" height="34" states="visible"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="34" states="sensitive,visible,enabled">
+                <element role="push button" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+              </element>
+            </element>
+          </element>
+        </element>
+        <element role="panel" name="" description="" x="5" y="51" width="963" height="667" states="sensitive,showing,visible,enabled">
+          <element role="filler" name="" description="" x="29" y="75" width="915" height="619" states="sensitive,showing,visible,enabled">
+            <element role="filler" name="" description="" x="29" y="75" width="365" height="395" states="sensitive,showing,visible,enabled">
+              <element role="filler" name="" description="" x="29" y="102" width="365" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="29" y="102" width="180" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="29" y="102" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="85" y="102" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="N" description="" x="102" y="102" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="221" y="109" width="173" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="New window" description="" x="221" y="109" width="173" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="29" y="144" width="365" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="29" y="144" width="180" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="29" y="144" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="85" y="144" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="W" description="" x="102" y="144" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="221" y="151" width="173" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Close window or tab" description="" x="221" y="151" width="173" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="29" y="186" width="365" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="29" y="186" width="180" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="29" y="186" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="85" y="186" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Q" description="" x="102" y="186" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="221" y="193" width="173" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Quit" description="" x="221" y="193" width="173" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="29" y="228" width="365" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="29" y="228" width="180" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="29" y="228" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="85" y="228" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="F" description="" x="102" y="228" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="221" y="235" width="173" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Search" description="" x="221" y="235" width="173" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="29" y="270" width="365" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="29" y="270" width="180" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="29" y="270" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="85" y="270" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="D" description="" x="102" y="270" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="221" y="277" width="173" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Bookmark current location" description="" x="221" y="277" width="173" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="29" y="312" width="365" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="29" y="312" width="180" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="F1" description="" x="29" y="312" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="221" y="319" width="173" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Show help" description="" x="221" y="319" width="173" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="29" y="354" width="365" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="29" y="354" width="180" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="29" y="354" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="85" y="354" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="?" description="" x="102" y="354" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="221" y="361" width="173" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Shortcuts" description="" x="221" y="361" width="173" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="29" y="396" width="365" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="29" y="396" width="180" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="29" y="396" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="85" y="396" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Z" description="" x="102" y="396" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="221" y="403" width="173" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Undo" description="" x="221" y="403" width="173" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="29" y="438" width="365" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="29" y="438" width="180" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Shift" description="" x="29" y="438" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="85" y="438" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Ctrl" description="" x="102" y="438" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="158" y="438" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Z" description="" x="175" y="438" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="221" y="445" width="173" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Redo" description="" x="221" y="445" width="173" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+            </element>
+            <element role="filler" name="" description="" x="416" y="75" width="528" height="269" states="sensitive,showing,visible,enabled">
+              <element role="filler" name="" description="" x="416" y="102" width="528" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="416" y="102" width="230" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="⏎" description="" x="416" y="102" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="/" description="" x="456" y="102" width="4" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Ctrl" description="" x="466" y="102" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="522" y="102" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="O" description="" x="539" y="102" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="658" y="109" width="286" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Open" description="" x="658" y="109" width="286" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="416" y="144" width="528" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="416" y="144" width="230" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="416" y="144" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="472" y="144" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="⏎" description="" x="489" y="144" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="658" y="151" width="286" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Open in new tab" description="" x="658" y="151" width="286" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="416" y="186" width="528" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="416" y="186" width="230" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Shift" description="" x="416" y="186" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="472" y="186" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="⏎" description="" x="489" y="186" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="658" y="193" width="286" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Open in new window" description="" x="658" y="193" width="286" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="416" y="228" width="528" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="416" y="228" width="230" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="416" y="228" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="472" y="228" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Alt" description="" x="489" y="228" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="545" y="228" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="O" description="" x="562" y="228" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="658" y="235" width="286" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Open item location (search and recent only)" description="" x="658" y="235" width="286" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="416" y="270" width="528" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="416" y="270" width="230" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Shift" description="" x="416" y="270" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="472" y="270" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Ctrl" description="" x="489" y="270" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="545" y="270" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="↓" description="" x="562" y="270" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="658" y="277" width="286" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Open file and close window" description="" x="658" y="277" width="286" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="416" y="312" width="528" height="32" states="sensitive,showing,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="416" y="312" width="230" height="32" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="416" y="312" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="472" y="312" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="O" description="" x="489" y="312" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="/" description="" x="529" y="312" width="4" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Alt" description="" x="539" y="312" width="50" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="+" description="" x="595" y="312" width="11" height="32" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="↓" description="" x="612" y="312" width="34" height="32" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="658" y="319" width="286" height="17" states="sensitive,showing,visible,enabled">
+                  <element role="label" name="Open with default application" description="" x="658" y="319" width="286" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+            </element>
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="T" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="New tab" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Page Up" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Go to previous tab" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Page Down" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Go to next tab" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Alt" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="0" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="⋯" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="8" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Open tab" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Shift" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Page Up" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Move tab left" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Shift" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Page Down" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Move tab right" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Shift" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="T" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Restore tab" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+            </element>
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Alt" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="←" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Go back" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Alt" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="→" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Go forward" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Alt" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="↑" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Go up" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Alt" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="↓" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Go down" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Alt" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Home" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Go to home folder" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="L" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Enter location" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="/" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Location bar with root location" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="~" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Location bar with home location" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+            </element>
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Zoom in" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="-" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Zoom out" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="0" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Reset zoom" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="F5" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="/" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="R" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Refresh view" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="H" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Show/hide hidden files" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="F9" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Show/hide sidebar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="F10" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Show/hide action menu" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="1" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="List view" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="2" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Grid view" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+            </element>
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Shift" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="N" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Create folder" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="F2" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Rename" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Delete" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Move to trash" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Shift" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Delete" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Delete permanently" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="M" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Create link to copied item" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Shift" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="M" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Create link to selected item" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="X" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Cut" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="C" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Copy" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="V" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Paste" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="A" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Select all" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Shift" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="I" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Invert selection" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="S" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Select items matching" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="icon" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Ctrl" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="I" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="/" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="Alt" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="+" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="⏎" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="label" name="Show item properties" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="list box" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          </element>
+        </element>
+      </element>
+    </element>
+  </element>
+</accessibility-tree>

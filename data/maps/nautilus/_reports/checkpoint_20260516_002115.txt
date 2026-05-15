@@ -1,0 +1,114 @@
+=== Nautilus exploration checkpoint ===
+za 16 mei 2026  0:21:15 CEST
+
+=== inspect_graph ===
+{
+  "app_id": "nautilus",
+  "root_state_id": "60bf7f8ab3bb",
+  "nodes": 14,
+  "edges": 71,
+  "completion": {
+    "status": "partial",
+    "pending_edges": 3,
+    "reason": "pending_edges_exist"
+  },
+  "node_depth_counts": {
+    "0": 1,
+    "1": 3,
+    "2": 10
+  },
+  "edge_status_counts": {
+    "confirmed": 55,
+    "failed_navigation": 1,
+    "pending": 3,
+    "same_state": 12
+  },
+  "next_pending_preview": [
+    {
+      "edge_id": "f409643e693b:f54e9f00737264a9",
+      "from_state": "f409643e693b",
+      "from_depth": 2,
+      "action": {
+        "role": "push button",
+        "name": "Preferences",
+        "action_key": "f54e9f00737264a9"
+      },
+      "priority": 30,
+      "attempts": 0,
+      "created_order": 67,
+      "reason": "push button name suggests menu/dialog/navigation/context change"
+    },
+    {
+      "edge_id": "f409643e693b:be1e4ce867f7fd62",
+      "from_state": "f409643e693b",
+      "from_depth": 2,
+      "action": {
+        "role": "push button",
+        "name": "Keyboard Shortcuts",
+        "action_key": "be1e4ce867f7fd62"
+      },
+      "priority": 30,
+      "attempts": 0,
+      "created_order": 68,
+      "reason": "push button name suggests menu/dialog/navigation/context change"
+    },
+    {
+      "edge_id": "f409643e693b:d60a53362aff0ce7",
+      "from_state": "f409643e693b",
+      "from_depth": 2,
+      "action": {
+        "role": "push button",
+        "name": "Help",
+        "action_key": "d60a53362aff0ce7"
+      },
+      "priority": 30,
+      "attempts": 0,
+      "created_order": 69,
+      "reason": "push button name suggests menu/dialog/navigation/context change"
+    }
+  ]
+}
+
+=== next_edge ===
+{
+  "next_edge": {
+    "edge_id": "f409643e693b:f54e9f00737264a9",
+    "from_state": "f409643e693b",
+    "from_depth": 2,
+    "to_state": null,
+    "status": "pending",
+    "priority": 30,
+    "attempts": 0,
+    "created_order": 67,
+    "reason": "push button name suggests menu/dialog/navigation/context change",
+    "action": {
+      "action_key": "f54e9f00737264a9",
+      "role": "push button",
+      "name": "Preferences",
+      "description": "",
+      "states": [
+        "sensitive",
+        "showing",
+        "visible",
+        "enabled"
+      ],
+      "bbox": [
+        667,
+        237,
+        157,
+        26
+      ],
+      "parent_path": [
+        "application/org.gnome.Nautilus",
+        "frame/Home",
+        "panel",
+        "panel",
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "depth": 8
+    }
+  }
+}

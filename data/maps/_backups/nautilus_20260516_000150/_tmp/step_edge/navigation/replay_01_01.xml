@@ -1,4 +1,4 @@
-<accessibility-tree app_query="nautilus" app_accessible_name="org.gnome.Nautilus" captured_at="1778882545.5637865">
+<accessibility-tree app_query="nautilus" app_accessible_name="org.gnome.Nautilus" captured_at="1778882402.15897">
   <element role="application" name="org.gnome.Nautilus" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Home" description="" x="0" y="0" width="900" height="560" states="sensitive,showing,visible,enabled">
       <element role="unknown" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
@@ -13,7 +13,7 @@
               <element role="panel" name="" description="" x="87" y="4" width="453" height="46" states="sensitive,showing,visible,enabled">
                 <element role="filler" name="" description="" x="87" y="10" width="453" height="34" states="sensitive,showing,visible,enabled">
                   <element role="filler" name="" description="" x="87" y="10" width="453" height="34" states="sensitive,showing,visible,enabled">
-                    <element role="scroll pane" name="" description="" x="87" y="10" width="417" height="34" states="focused,sensitive,showing,visible,enabled">
+                    <element role="scroll pane" name="" description="" x="87" y="10" width="417" height="34" states="sensitive,showing,visible,enabled">
                       <element role="viewport" name="" description="" x="88" y="11" width="416" height="32" states="sensitive,showing,visible,enabled">
                         <element role="filler" name="" description="" x="88" y="11" width="416" height="32" states="sensitive,showing,visible,enabled">
                           <element role="filler" name="" description="" x="88" y="11" width="416" height="32" states="sensitive,showing,visible,enabled">
@@ -24,7 +24,7 @@
                       <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     </element>
-                    <element role="toggle button" name="Menu" description="" x="504" y="10" width="36" height="34" states="sensitive,showing,visible,enabled"/>
+                    <element role="toggle button" name="Menu" description="" x="504" y="10" width="36" height="34" states="checked,sensitive,showing,visible,enabled"/>
                   </element>
                 </element>
               </element>
@@ -286,40 +286,40 @@
           </element>
         </element>
       </element>
-      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1"/>
-      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1"/>
-      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
-        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-              <element role="push button" name="New Folder" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-              <element role="push button" name="Add to Bookmarks" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+      <element role="panel" name="" description="" x="432" y="44" width="180" height="227" states="sensitive,showing,visible,enabled">
+        <element role="panel" name="" description="" x="447" y="59" width="150" height="197" states="sensitive,showing,visible,enabled">
+          <element role="filler" name="" description="" x="457" y="69" width="130" height="177" states="sensitive,showing,visible,enabled">
+            <element role="filler" name="" description="" x="457" y="69" width="130" height="177" states="sensitive,showing,visible,enabled">
+              <element role="push button" name="New Folder" description="" x="457" y="69" width="130" height="26" states="focused,sensitive,showing,visible,enabled"/>
+              <element role="push button" name="Add to Bookmarks" description="" x="457" y="95" width="130" height="26" states="showing,visible"/>
+              <element role="filler" name="" description="" x="457" y="121" width="130" height="1" states="sensitive,showing,visible,enabled">
+                <element role="filler" name="" description="" x="457" y="122" width="130" height="1" states="sensitive,showing,visible,enabled"/>
               </element>
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                  <element role="push button" name="Paste" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                  <element role="push button" name="Select All" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="filler" name="" description="" x="457" y="121" width="130" height="59" states="sensitive,showing,visible,enabled">
+                <element role="separator" name="" description="" x="457" y="121" width="130" height="7" states="sensitive,showing,visible,enabled"/>
+                <element role="filler" name="" description="" x="457" y="128" width="130" height="52" states="sensitive,showing,visible,enabled">
+                  <element role="push button" name="Paste" description="" x="457" y="128" width="130" height="26" states="showing,visible"/>
+                  <element role="push button" name="Select All" description="" x="457" y="154" width="130" height="26" states="sensitive,showing,visible,enabled"/>
                 </element>
               </element>
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                  <element role="push button" name="Open in Terminal" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="filler" name="" description="" x="457" y="180" width="130" height="33" states="sensitive,showing,visible,enabled">
+                <element role="separator" name="" description="" x="457" y="180" width="130" height="7" states="sensitive,showing,visible,enabled"/>
+                <element role="filler" name="" description="" x="457" y="187" width="130" height="26" states="sensitive,showing,visible,enabled">
+                  <element role="push button" name="Open in Terminal" description="" x="457" y="187" width="130" height="26" states="sensitive,showing,visible,enabled"/>
                 </element>
               </element>
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                  <element role="push button" name="Properties" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="filler" name="" description="" x="457" y="213" width="130" height="33" states="sensitive,showing,visible,enabled">
+                <element role="separator" name="" description="" x="457" y="213" width="130" height="7" states="sensitive,showing,visible,enabled"/>
+                <element role="filler" name="" description="" x="457" y="220" width="130" height="26" states="sensitive,showing,visible,enabled">
+                  <element role="push button" name="Properties" description="" x="457" y="220" width="130" height="26" states="sensitive,showing,visible,enabled"/>
                 </element>
               </element>
             </element>
           </element>
         </element>
       </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1"/>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1"/>
       <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
         <element role="scroll pane" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
           <element role="viewport" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">

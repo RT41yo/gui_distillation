@@ -22,30 +22,32 @@ from ui_explorer.graph.store import GraphStore
 
 def _launcher_binary(launcher: list[str] | str) -> str:
     """
-    Extract executable name from app launcher config.
+    Extract executable basename from app launcher config.
     """
     if isinstance(launcher, str):
-        return launcher.split()[0]
+        binary = launcher.split()[0]
+    else:
+        if not launcher:
+            raise ValueError("empty launcher")
+        binary = str(launcher[0])
 
-    if not launcher:
-        raise ValueError("empty launcher")
-
-    return str(launcher[0])
+    return Path(binary).name
 
 
 def _terminate_app(launcher: list[str] | str) -> None:
     """
-    Generic best-effort process termination by configured launcher binary.
+    Generic best-effort process termination by exact executable name.
 
-    This is intentionally not app-specific. For calc it becomes equivalent to
-    pkill -f gnome-calculator, but for another app it uses its configured
-    launcher executable.
+    Uses pkill -x instead of pkill -f so that:
+    - gnome-calculator is terminated as before;
+    - nautilus is terminated safely;
+    - the current command `python -m ... --app nautilus` is not killed.
     """
     binary = _launcher_binary(launcher)
 
     try:
         subprocess.run(
-            ["pkill", "-f", binary],
+            ["pkill", "-x", binary],
             check=False,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
