@@ -25,6 +25,7 @@ src/ui_explorer/cli/step_edge.py
 src/ui_explorer/cli/try_edge.py
 src/ui_explorer/cli/visualize_graph.py
 src/ui_explorer/cli/visualize_graph_extra.py
+src/ui_explorer/cli/visualize_graph_interactive.py
 src/ui_explorer/core/__init__.py
 src/ui_explorer/core/a11y_capture.py
 src/ui_explorer/core/a11y_parser.py
