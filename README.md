@@ -13,10 +13,12 @@ A11Y-first UI exploration prototype.
 - классификацию действий на `macro_candidate`, `micro_candidate`, `input_candidate`, `ignored`;
 - построение A11Y-only state signature;
 - инициализацию `graph.json`;
-- BFS scheduler;
-- выполнение одного pending edge;
-- reset к root-состоянию для root-level exploration;
-- построение полного первого слоя графа `depth 0 → depth 1`.
+- strict BFS scheduler;
+- выполнение одного pending edge с обновлением `graph.json`;
+- replay confirmed path для состояний глубины `depth > 0`;
+- hard-reset navigation через перезапуск приложения перед exploration step;
+- построение карты состояний GNOME Calculator до clean frontier `depth 5`;
+- статичную и интерактивную визуализацию графа.
 
 ---
 
@@ -373,125 +375,177 @@ DISPLAY=:99 python -m ui_explorer.cli.step_edge \
 
 Один запуск = один exploration step.
 
-На каждом шаге происходит:
+По умолчанию используется стратегия навигации `hard`:
 
-1. загрузка `graph.json`;
-2. выбор следующего pending edge;
-3. reset к root, если edge начинается из root;
-4. выполнение одного действия;
-5. захват A11Y после действия;
-6. сравнение before/after;
-7. обновление edge status;
-8. добавление нового state, если найден новый macro state;
-9. seed новых pending edges из active root нового состояния.
-
----
-
-## 14. Root-level exploration workflow
-
-После `init_graph` можно закрыть первый слой графа:
-
-```bash
-python -m ui_explorer.cli.next_edge --app calc
+```text
+hard reset app → capture root → replay confirmed path → execute edge → capture after → update graph
 ```
 
-Если вывод содержит:
+То есть перед каждым шагом приложение перезапускается из `config/apps.yaml`, затем система проверяет root-состояние и воспроизводит подтверждённый путь до `edge.from_state`. Это делает exploration устойчивым к persistent GUI-состояниям, которые не закрываются через `Escape`.
 
-```json
-"from_depth": 0
-```
-
-запустить:
+Старый soft-режим доступен явно:
 
 ```bash
 DISPLAY=:99 python -m ui_explorer.cli.step_edge \
   --app calc \
   --display :99 \
+  --navigation soft \
   --verbose
 ```
 
-Затем снова проверить:
+В `soft`-режиме сначала выполняется попытка навигации из текущего live-состояния, а при неудаче используется hard fallback.
+
+На каждом шаге происходит:
+
+1. загрузка `graph.json`;
+2. выбор следующего pending edge по strict BFS scheduler;
+3. hard reset приложения, если выбран `--navigation hard`;
+4. захват root/current A11Y-состояния;
+5. replay confirmed path от root до `edge.from_state`;
+6. проверка, что достигнут ожидаемый `from_state`;
+7. выполнение одного действия;
+8. захват A11Y после действия;
+9. сравнение before/after;
+10. обновление edge status;
+11. добавление нового state, если найден новый macro state;
+12. seed новых pending edges из active root нового состояния.
+
+---
+
+## 14. BFS exploration workflow
+
+После `init_graph` можно запускать exploration пошагово:
 
 ```bash
-python -m ui_explorer.cli.inspect_graph --app calc
 python -m ui_explorer.cli.next_edge --app calc
+
+DISPLAY=:99 python -m ui_explorer.cli.step_edge \
+  --app calc \
+  --display :99 \
+  --navigation hard \
+  --verbose
+
+python -m ui_explorer.cli.inspect_graph --app calc
 ```
 
-Повторять, пока `next_edge` не покажет:
+Чтобы автоматически идти до clean frontier заданной глубины, например `depth 5`:
 
-```json
-"from_depth": 1
+```bash
+while true; do
+  depth=$(python -m ui_explorer.cli.next_edge --app calc | python -c '
+import json,sys
+d=json.load(sys.stdin)
+e=d.get("next_edge")
+print(e.get("from_depth") if e else "done")
+')
+
+  echo "next from_depth=$depth"
+
+  if [ "$depth" = "done" ]; then
+    echo "No pending edges. Exploration complete."
+    break
+  fi
+
+  if [ "$depth" -ge 5 ]; then
+    echo "Reached clean depth 5 frontier."
+    break
+  fi
+
+  DISPLAY=:99 python -m ui_explorer.cli.step_edge \
+    --app calc \
+    --display :99 \
+    --navigation hard \
+    --max-depth 5 || break
+done
 ```
 
-Это означает, что root-level exploration завершён.
+Интерпретация остановки:
+
+```text
+next_edge.from_depth = 5
+```
+
+означает, что все pending edges с меньшей глубиной уже обработаны, и scheduler перешёл к frontier глубины 5.
 
 ---
 
 ## 15. Текущий подтверждённый результат для GNOME Calculator
 
-После закрытия слоя `depth 0 → depth 1` был получен граф:
+После перехода на hard-reset navigation был построен граф GNOME Calculator до clean frontier `depth 5`.
+
+Текущий результат:
 
 ```text
-nodes: 11
-edges: 86
+root_state_id: 3eb3742139fc
+nodes: 55
+edges: 299
+completion: partial, pending_edges=54
+
 node_depth_counts:
   0: 1
-  1: 10
+  1: 9
+  2: 11
+  3: 17
+  4: 9
+  5: 8
+
 edge_status_counts:
-  confirmed: 10
-  pending: 76
+  confirmed: 230
+  pending: 54
+  same_state: 15
+  failed_navigation: 0
 ```
 
-Root state:
+Ключевой checkpoint:
 
 ```text
-8251e16b481b
+next_edge.from_depth = 5
 ```
 
-Подтверждённые root-level transitions:
+Это означает, что exploration чисто закрыл frontier до `depth 4` и перешёл к действиям из состояний глубины 5. Ошибок навигации нет.
+
+Граф уже достаточно большой для использования как статическая карта состояний приложения:
 
 ```text
-Mode selection       -> confirmed -> 9b23b16931c9
-Primary menu         -> confirmed -> 23853b9028a4
-Decimal              -> confirmed -> c5cd52807589
-Word Size            -> confirmed -> 5bb1aebc2e55
-Store                -> confirmed -> 08fc8d736660
-Insert Character     -> confirmed -> de52c438ef75
-Shift Right          -> confirmed -> 5b7204416d87
-Shift Left           -> confirmed -> 8bc0cc3597e6
-Superscript          -> confirmed -> 9ace005e22ae
-Subscript            -> confirmed -> 67f6d130a995
+graph.json = source of truth / карта GUI-состояний
+states/<state_id>/a11y.xml = сохранённые A11Y snapshots
+confirmed edges = проверенные переходы между состояниями
+pending edges = frontier для возможного дальнейшего углубления
 ```
-
-После этого exploration нужно остановить до реализации replay-path navigation для `depth > 0`.
 
 ---
 
-## 16. Важное ограничение текущей версии
+## 16. Navigation strategy
 
-Сейчас реализован reset к root для root-level exploration.
+Первоначальная soft-навигация через `Escape` оказалась недостаточной для persistent GUI-состояний GNOME Calculator: Binary/Octal/Keyboard/unit-conversion режимы и dialog states не всегда возвращались к root-состоянию через `Escape`.
 
-Replay path для состояний глубины больше 0 пока не реализован.
-
-Поэтому если:
-
-```bash
-python -m ui_explorer.cli.next_edge --app calc
-```
-
-показывает:
-
-```json
-"from_depth": 1
-```
-
-не нужно продолжать запускать `step_edge`, пока не будет реализован navigation:
+Текущая основная стратегия — hard reset перед каждым edge:
 
 ```text
-reset_to_root
-replay confirmed path root -> target from_state
-verify state
-execute action
+1. закрыть процесс приложения по launcher из config/apps.yaml;
+2. запустить приложение заново на нужном DISPLAY;
+3. дождаться A11Y root;
+4. проверить root_state_id;
+5. воспроизвести confirmed path от root до target from_state;
+6. выполнить исследуемое действие.
+```
+
+Плюсы hard-reset navigation:
+
+- каждый edge стартует из контролируемого baseline;
+- exploration меньше зависит от остаточного live-состояния GUI;
+- confirmed path replay становится воспроизводимым;
+- `failed_navigation` исчезает для проверенного depth-5 прогона;
+- стратегия не захардкожена под калькулятор: используется launcher из `config/apps.yaml`.
+
+Soft-navigation сохранена как дополнительный режим для отладки:
+
+```bash
+DISPLAY=:99 python -m ui_explorer.cli.step_edge \
+  --app calc \
+  --display :99 \
+  --navigation soft \
+  --verbose
 ```
 
 ---
@@ -591,21 +645,38 @@ Implemented:
 - active root resolver;
 - action extraction;
 - action classification policy;
-- state signature;
+- A11Y-only state signature;
 - graph models and store;
 - strict BFS scheduler;
-- one-edge execution;
-- reset-to-root navigation for root edges;
-- root-level exploration checkpoint.
+- one-edge execution with graph update;
+- replay confirmed path navigation for `depth > 0`;
+- hard-reset navigation before edge execution;
+- soft-navigation fallback mode;
+- GNOME Calculator exploration to clean frontier `depth 5`;
+- static graph visualization;
+- extra graph visualizations: Sankey, frontier chart, metro map;
+- interactive Cytoscape.js graph visualization prototype.
 
-Not implemented yet:
+Current GNOME Calculator checkpoint:
 
-- replay path navigation for `depth > 0`;
-- full autonomous exploration loop;
+```text
+nodes: 55
+edges: 299
+confirmed: 230
+pending: 54
+same_state: 15
+failed_navigation: 0
+frontier: depth 5
+```
+
+Not implemented yet / next steps:
+
+- MCP/graph-tool API for Computer-use agent navigation;
+- compact state/action indexes for agent memory;
+- semantic state labels and goal aliases;
 - advanced transition classification;
-- semantic state labels;
-- graph visualization;
-- LLM annotations.
+- autonomous exploration loop with stopping policy;
+- broader validation on non-calculator applications.
 
 ---
 
@@ -644,9 +715,94 @@ Nautilus:
 - текущий универсальный следующий шаг — реализовать replay-path navigation для depth > 0.
 
 
-Для визуализации графа используется CLI-команда:
+Для базовой визуализации графа используется CLI-команда:
+
 ```bash
 ui-explorer-visualize-graph --app calc
 ui-explorer-visualize-graph --app gedit
 ui-explorer-visualize-graph --app nautilus
 ```
+
+---
+
+## 22. Визуализация графа
+
+Для маленьких графов достаточно статичного PDF:
+
+```bash
+ui-explorer-visualize-graph --app calc
+```
+
+Ожидаемый результат:
+
+```text
+data/maps/calc/graph.pdf
+```
+
+Для более крупного графа GNOME Calculator на `depth 5` статичный PDF становится плотным, поэтому используются дополнительные представления:
+
+```bash
+python -m ui_explorer.cli.visualize_graph_extra --app calc
+python -m ui_explorer.cli.visualize_graph_interactive --app calc
+```
+
+Ожидаемые файлы:
+
+```text
+data/maps/calc/graph_sankey.html
+data/maps/calc/graph_frontier.pdf
+data/maps/calc/graph_metro.pdf
+data/maps/calc/graph_interactive.html
+```
+
+Назначение:
+
+```text
+graph.pdf              полный технический layered graph
+graph_metro.pdf        упрощённая карта confirmed-переходов
+graph_frontier.pdf     pending frontier по состояниям
+graph_sankey.html      интерактивный flow depth/kind
+graph_interactive.html полный интерактивный Cytoscape.js graph
+```
+
+Практическое правило:
+
+- для отчёта использовать `graph_metro.pdf`, `graph_frontier.pdf` и summary;
+- полный `graph.pdf` хранить как техническое приложение;
+- для анализа большого графа использовать `graph_interactive.html`.
+
+---
+
+## 23. Использование graph.json как карты для Computer-use агента
+
+`graph.json` рассматривается как статическая карта GUI-состояний приложения. Он строится один раз во время exploration, а затем может использоваться Computer-use агентом как внешняя навигационная память.
+
+Рекомендуемая архитектура:
+
+```text
+graph.json
+  ↓
+Graph Memory / MCP-tool API
+  ↓
+Computer-use agent
+```
+
+Модель не должна читать весь `graph.json` как prompt. Вместо этого graph-tool должен отдавать компактные и точные ответы:
+
+```text
+inspect_graph(app)
+identify_state(current_a11y_xml)
+get_state(state_id)
+get_actions(state_id)
+find_path(from_state, to_state)
+next_step(current_state, goal)
+get_frontier(depth)
+```
+
+Для управления GUI важно выполнять не semantic search по всему JSON, а детерминированную навигацию по confirmed edges:
+
+```text
+current A11Y snapshot → state_id → confirmed path → live action lookup → click → verify expected state
+```
+
+RAG может использоваться только как дополнительный semantic layer для поиска целей по человеческим описаниям, например `binary mode`, `hexadecimal`, `unit conversion`. После выбора цели путь должен строиться строго по графу.
