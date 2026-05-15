@@ -8,7 +8,7 @@ from pathlib import Path
 
 from ui_explorer.core.active_root import resolve_active_root
 from ui_explorer.core.actions import UIAction, extract_actions
-from ui_explorer.core.a11y_parser import A11YNode, parse_a11y_xml
+from ui_explorer.core.a11y_parser import parse_a11y_xml
 from ui_explorer.execution.executor import ActionExecutor
 from ui_explorer.execution.wait import A11YWaiter, CapturedState
 from ui_explorer.graph.models import ExplorationGraph, GraphEdge
@@ -44,6 +44,7 @@ class Navigator:
 
     Supports:
     - reset_to_root via Escape for transient overlays;
+    - generic dialog dismissal;
     - generic option-based root normalization for persistent state drift;
     - replay-path navigation for depth > 0.
 
@@ -163,6 +164,59 @@ class Navigator:
         return None
 
     @staticmethod
+    def _find_action_matching_edge(
+        actions: list[UIAction],
+        edge: GraphEdge,
+    ) -> UIAction | None:
+        """
+        Find the same logical action in the current live state.
+
+        Prefer action_key because it is stable across equivalent states.
+        Fallback to role + name + description.
+        """
+        edge_action = edge.action or {}
+
+        edge_key = (edge_action.get("action_key") or "").strip()
+        edge_role = (edge_action.get("role") or "").strip()
+        edge_name = (edge_action.get("name") or "").strip()
+        edge_description = (edge_action.get("description") or "").strip()
+
+        if edge_key:
+            for action in actions:
+                if action.action_key == edge_key:
+                    return action
+
+        for action in actions:
+            if action.role != edge_role:
+                continue
+            if action.name.strip() != edge_name:
+                continue
+            if edge_description and action.description.strip() != edge_description:
+                continue
+            return action
+
+        return None
+
+    def _find_live_action_matching_edge(
+        self,
+        *,
+        state: CapturedState,
+        edge: GraphEdge,
+    ) -> UIAction | None:
+        """
+        Find a graph edge's logical action in a captured live state.
+
+        This avoids clicking stale bboxes saved in root/depth-1 states when
+        replaying or normalizing from another persistent state.
+        """
+        try:
+            actions = self._active_actions_from_xml(state.xml_path)
+        except Exception:
+            return None
+
+        return self._find_action_matching_edge(actions, edge)
+
+    @staticmethod
     def _candidate_root_openers(graph: ExplorationGraph) -> list[GraphEdge]:
         """
         Find confirmed root actions that open option-like overlays.
@@ -228,10 +282,11 @@ class Navigator:
         Try one root opener as a generic normalizer.
 
         Strategy:
-        - click opener bbox in current persistent state;
+        - find the same opener action in the current live state;
+        - click its current bbox;
         - inspect opened overlay options;
         - for each option spec:
-            reopen the same opener from the current state;
+            reopen the same opener from the latest live state;
             click that option;
             check whether root_state_id is restored.
 
@@ -240,14 +295,32 @@ class Navigator:
 
         output_dir.mkdir(parents=True, exist_ok=True)
 
-        if not self._click_action_bbox(opener.action):
+        live_opener = self._find_live_action_matching_edge(
+            state=current_state,
+            edge=opener,
+        )
+
+        if live_opener is None:
             return (
                 NavigationResult(
                     ok=False,
                     target_state=graph.root_state_id,
                     actual_state=current_state.signature.state_id,
                     attempts=1,
-                    reason=f"normalizer opener click failed: {opener.edge_id}",
+                    reason=f"normalizer live opener not found: {opener.edge_id}",
+                    xml_path=str(current_state.xml_path),
+                ),
+                current_state,
+            )
+
+        if not self._click_action_bbox(live_opener):
+            return (
+                NavigationResult(
+                    ok=False,
+                    target_state=graph.root_state_id,
+                    actual_state=current_state.signature.state_id,
+                    attempts=1,
+                    reason=f"normalizer live opener click failed: {opener.edge_id}",
                     xml_path=str(current_state.xml_path),
                 ),
                 current_state,
@@ -305,7 +378,17 @@ class Navigator:
         attempts = 1
 
         for option_index, option_spec in enumerate(option_specs, start=1):
-            if not self._click_action_bbox(opener.action):
+            live_opener = self._find_live_action_matching_edge(
+                state=latest_state,
+                edge=opener,
+            )
+
+            if live_opener is None:
+                latest_state = latest_state
+                continue
+
+            if not self._click_action_bbox(live_opener):
+                latest_state = latest_state
                 continue
 
             attempts += 1
@@ -559,6 +642,70 @@ class Navigator:
             last_state,
         )
 
+    def _try_dismiss_dialog(
+        self,
+        *,
+        current_state: CapturedState,
+        output_dir: Path,
+    ) -> CapturedState | None:
+        """
+        Generic modal/dialog dismissal.
+
+        This is not app-specific. It tries common safe dialog actions:
+        Cancel / Close / Dismiss / OK.
+        """
+
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        try:
+            actions = self._active_actions_from_xml(current_state.xml_path)
+        except Exception:
+            return None
+
+        candidates: list[UIAction] = []
+
+        for action in actions:
+            name = action.name.strip().lower()
+            if not name:
+                continue
+
+            if name not in self.DISMISS_ACTION_NAMES:
+                continue
+
+            if action.role not in {
+                "push button",
+                "toggle button",
+                "menu item",
+            }:
+                continue
+
+            candidates.append(action)
+
+        if not candidates:
+            return None
+
+        # Prefer Cancel/Close before OK.
+        candidates.sort(
+            key=lambda action: (
+                0
+                if action.name.strip().lower() in {"cancel", "close", "dismiss"}
+                else 1,
+                action.depth,
+                action.name,
+            )
+        )
+
+        for index, action in enumerate(candidates, start=1):
+            if not self._click_action_bbox(action):
+                continue
+
+            return self.waiter.capture_stable(
+                output_dir=output_dir,
+                prefix=f"dismiss_dialog_{index:02d}",
+            )
+
+        return None
+
     def navigate_to_state(
         self,
         *,
@@ -760,8 +907,25 @@ class Navigator:
         for step_index, edge in enumerate(path, start=1):
             self._activate_window()
 
-            bbox = tuple(edge.action["bbox"])
-            execution = self.executor.click_bbox(bbox)
+            live_action = self._find_live_action_matching_edge(
+                state=current_state,
+                edge=edge,
+            )
+
+            if live_action is None:
+                return (
+                    NavigationResult(
+                        ok=False,
+                        target_state=target_state_id,
+                        actual_state=current_state.signature.state_id,
+                        attempts=step_index,
+                        reason=f"replay live action not found at edge {edge.edge_id}",
+                        xml_path=str(current_state.xml_path),
+                    ),
+                    current_state,
+                )
+
+            execution = self.executor.click_bbox(tuple(live_action.bbox))
 
             if not execution.ok:
                 return (
@@ -817,65 +981,3 @@ class Navigator:
             ),
             current_state,
         )
-
-    def _try_dismiss_dialog(
-        self,
-        *,
-        current_state: CapturedState,
-        output_dir: Path,
-    ) -> CapturedState | None:
-        """
-        Generic modal/dialog dismissal.
-
-        This is not app-specific. It tries common safe dialog actions:
-        Cancel / Close / Dismiss / OK.
-        """
-
-        output_dir.mkdir(parents=True, exist_ok=True)
-
-        try:
-            actions = self._active_actions_from_xml(current_state.xml_path)
-        except Exception:
-            return None
-
-        candidates: list[UIAction] = []
-
-        for action in actions:
-            name = action.name.strip().lower()
-            if not name:
-                continue
-
-            if name not in self.DISMISS_ACTION_NAMES:
-                continue
-
-            if action.role not in {
-                "push button",
-                "toggle button",
-                "menu item",
-            }:
-                continue
-
-            candidates.append(action)
-
-        if not candidates:
-            return None
-
-        # Prefer Cancel/Close before OK.
-        candidates.sort(
-            key=lambda action: (
-                0 if action.name.strip().lower() in {"cancel", "close", "dismiss"} else 1,
-                action.depth,
-                action.name,
-            )
-        )
-
-        for index, action in enumerate(candidates, start=1):
-            if not self._click_action_bbox(action):
-                continue
-
-            return self.waiter.capture_stable(
-                output_dir=output_dir,
-                prefix=f"dismiss_dialog_{index:02d}",
-            )
-
-        return None

@@ -1,4 +1,4 @@
-<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1777929043.879172">
+<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1778874429.6198194">
   <element role="application" name="gnome-calculator" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Calculator" description="" x="300" y="116" width="690" height="682" states="sensitive,showing,visible,enabled">
       <element role="unknown" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
@@ -222,11 +222,11 @@
                 <element role="filler" name="" description="" x="311" y="361" width="668" height="432" states="sensitive,showing,visible,enabled">
                   <element role="filler" name="" description="" x="311" y="361" width="668" height="40" states="sensitive,showing,visible,enabled">
                     <element role="combo box" name="Decimal" description="" x="323" y="367" width="126" height="34" states="sensitive,showing,visible,enabled">
-                      <element role="menu" name="" description="" x="-2147483648" y="-2147483648" width="126" height="124" states="sensitive,enabled">
-                        <element role="menu item" name="Binary" description="" x="-2147483648" y="-2147483648" width="126" height="29" states="sensitive,visible,enabled"/>
-                        <element role="menu item" name="Octal" description="" x="-2147483648" y="-2147483648" width="126" height="29" states="sensitive,visible,enabled"/>
-                        <element role="menu item" name="Decimal" description="" x="-2147483648" y="-2147483648" width="126" height="29" states="sensitive,visible,enabled"/>
-                        <element role="menu item" name="Hexadecimal" description="" x="-2147483648" y="-2147483648" width="126" height="29" states="sensitive,visible,enabled"/>
+                      <element role="menu" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                        <element role="menu item" name="Binary" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Octal" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Decimal" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Hexadecimal" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       </element>
                     </element>
                     <element role="panel" name="" description="" x="449" y="367" width="518" height="34" states="sensitive,showing,visible,enabled">
@@ -647,49 +647,49 @@
           </element>
         </element>
       </element>
-      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="186" height="324" states="sensitive,enabled">
-        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="156" height="294" states="sensitive,visible,enabled">
-          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="136" height="274" states="sensitive,visible,enabled">
-            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="136" height="274" states="sensitive,visible,enabled">
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled">
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled">
-                  <element role="push button" name="New Window" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled"/>
-                </element>
-              </element>
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="136" height="137" states="sensitive,visible,enabled">
-                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="136" height="7" states="sensitive,visible,enabled"/>
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="136" height="130" states="sensitive,visible,enabled">
-                  <element role="push button" name="Number format" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="visible"/>
-                  <element role="radio button" name="Automatic" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled"/>
-                  <element role="radio button" name="Fixed" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled"/>
-                  <element role="radio button" name="Scientific" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled"/>
-                  <element role="radio button" name="Engineering" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled"/>
-                </element>
-              </element>
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="136" height="111" states="sensitive,visible,enabled">
-                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="136" height="7" states="sensitive,visible,enabled"/>
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="136" height="104" states="sensitive,visible,enabled">
-                  <element role="push button" name="Preferences" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled"/>
-                  <element role="push button" name="Keyboard Shortcuts" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled"/>
-                  <element role="push button" name="Help" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled"/>
-                  <element role="push button" name="About Calculator" description="" x="-2147483648" y="-2147483648" width="136" height="26" states="sensitive,visible,enabled"/>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="radio button" name="Basic" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Advanced" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Financial" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Programming" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Keyboard" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 </element>
               </element>
             </element>
           </element>
         </element>
       </element>
-      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="176" height="180" states="sensitive,enabled">
-        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="146" height="150" states="sensitive,visible,enabled">
-          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="126" height="130" states="sensitive,visible,enabled">
-            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="126" height="130" states="sensitive,visible,enabled">
-              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="126" height="130" states="sensitive,visible,enabled">
-                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="126" height="130" states="sensitive,visible,enabled">
-                  <element role="radio button" name="Basic" description="" x="-2147483648" y="-2147483648" width="126" height="26" states="sensitive,visible,enabled"/>
-                  <element role="radio button" name="Advanced" description="" x="-2147483648" y="-2147483648" width="126" height="26" states="sensitive,visible,enabled"/>
-                  <element role="radio button" name="Financial" description="" x="-2147483648" y="-2147483648" width="126" height="26" states="sensitive,visible,enabled"/>
-                  <element role="radio button" name="Programming" description="" x="-2147483648" y="-2147483648" width="126" height="26" states="sensitive,visible,enabled"/>
-                  <element role="radio button" name="Keyboard" description="" x="-2147483648" y="-2147483648" width="126" height="26" states="sensitive,visible,enabled"/>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="New Window" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Number format" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="radio button" name="Automatic" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Fixed" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Scientific" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Engineering" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Preferences" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Keyboard Shortcuts" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Help" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="About Calculator" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 </element>
               </element>
             </element>

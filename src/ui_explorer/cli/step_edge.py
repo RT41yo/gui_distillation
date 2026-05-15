@@ -4,7 +4,9 @@ import argparse
 import json
 import logging
 import shutil
+import subprocess
 import sys
+import time
 from pathlib import Path
 
 from ui_explorer.app.launcher import AppLauncher
@@ -18,6 +20,71 @@ from ui_explorer.graph.scheduler import BFSScheduler, SchedulerPolicy
 from ui_explorer.graph.store import GraphStore
 
 
+def _launcher_binary(launcher: list[str] | str) -> str:
+    """
+    Extract executable name from app launcher config.
+    """
+    if isinstance(launcher, str):
+        return launcher.split()[0]
+
+    if not launcher:
+        raise ValueError("empty launcher")
+
+    return str(launcher[0])
+
+
+def _terminate_app(launcher: list[str] | str) -> None:
+    """
+    Generic best-effort process termination by configured launcher binary.
+
+    This is intentionally not app-specific. For calc it becomes equivalent to
+    pkill -f gnome-calculator, but for another app it uses its configured
+    launcher executable.
+    """
+    binary = _launcher_binary(launcher)
+
+    try:
+        subprocess.run(
+            ["pkill", "-f", binary],
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    except Exception:
+        logging.exception("App termination failed")
+
+    time.sleep(0.7)
+
+
+def _hard_reset_app(
+    *,
+    launcher: list[str] | str,
+    display: str,
+    wait_s: float,
+) -> None:
+    """
+    Restart app from a clean process baseline.
+    """
+    logging.info("Hard reset app via relaunch")
+    _terminate_app(launcher)
+    AppLauncher().launch(launcher, display=display)
+    time.sleep(wait_s)
+
+
+def _make_navigator(
+    *,
+    app_cfg,
+    display: str,
+    store: GraphStore,
+) -> Navigator:
+    return Navigator(
+        a11y_name=app_cfg.a11y_name,
+        display=display,
+        graph_store=store,
+        window_name=app_cfg.display_name,
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Execute next pending edge and update graph."
@@ -29,6 +96,22 @@ def main() -> int:
     parser.add_argument("--apps-config", default="config/apps.yaml")
     parser.add_argument("--launch", action="store_true")
     parser.add_argument("--max-depth", type=int, default=5)
+    parser.add_argument(
+        "--navigation",
+        choices=["hard", "soft"],
+        default="hard",
+        help=(
+            "Navigation strategy before executing an edge. "
+            "hard = relaunch app before every edge; "
+            "soft = try current-state navigation first, then hard fallback."
+        ),
+    )
+    parser.add_argument(
+        "--hard-reset-wait",
+        type=float,
+        default=3.0,
+        help="Seconds to wait after hard app relaunch.",
+    )
     parser.add_argument("--verbose", "-v", action="store_true")
 
     args = parser.parse_args()
@@ -40,7 +123,7 @@ def main() -> int:
 
     app_cfg = AppRegistry(Path(args.apps_config)).get(args.app)
 
-    if args.launch:
+    if args.launch and args.navigation == "soft":
         AppLauncher().launch(
             app_cfg.launcher,
             display=args.display,
@@ -74,15 +157,21 @@ def main() -> int:
 
     waiter = A11YWaiter(a11y_name=app_cfg.a11y_name)
 
-    navigator = Navigator(
-        a11y_name=app_cfg.a11y_name,
-        display=args.display,
-        graph_store=store,
-        window_name=app_cfg.display_name,
-    )
-
     navigation_dir = tmp_dir / "navigation"
     navigation_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.navigation == "hard":
+        _hard_reset_app(
+            launcher=app_cfg.launcher,
+            display=args.display,
+            wait_s=args.hard_reset_wait,
+        )
+
+    navigator = _make_navigator(
+        app_cfg=app_cfg,
+        display=args.display,
+        store=store,
+    )
 
     nav_result, before = navigator.navigate_to_state(
         graph=graph,
@@ -90,11 +179,39 @@ def main() -> int:
         output_dir=navigation_dir,
     )
 
+    # In soft mode, keep old behavior first. If it fails, retry once from a
+    # clean app process baseline. In hard mode this retry is unnecessary
+    # because the app was already relaunched before navigation.
+    if (not nav_result.ok or before is None) and args.navigation == "soft":
+        logging.warning(
+            "Soft navigation failed; trying hard reset fallback: %s",
+            nav_result.reason,
+        )
+
+        _hard_reset_app(
+            launcher=app_cfg.launcher,
+            display=args.display,
+            wait_s=args.hard_reset_wait,
+        )
+
+        navigator = _make_navigator(
+            app_cfg=app_cfg,
+            display=args.display,
+            store=store,
+        )
+
+        nav_result, before = navigator.navigate_to_state(
+            graph=graph,
+            target_state_id=edge.from_state,
+            output_dir=navigation_dir / "after_hard_reset",
+        )
+
     if not nav_result.ok or before is None:
         edge.attempts += 1
         edge.status = EdgeStatus.FAILED_NAVIGATION
         edge.reason = nav_result.reason
         edge.observed = {
+            "navigation_strategy": args.navigation,
             "navigation": nav_result.to_dict(),
         }
 
@@ -104,6 +221,14 @@ def main() -> int:
             {
                 "ok": False,
                 "error": "navigation failed",
+                "navigation_strategy": args.navigation,
+                "selected_edge": edge.edge_id,
+                "selected_from_state": edge.from_state,
+                "selected_action": {
+                    "role": edge.action.get("role"),
+                    "name": edge.action.get("name"),
+                    "action_key": edge.action_key,
+                },
                 "navigation": nav_result.to_dict(),
                 "edge_status": edge.status.value,
             },
@@ -146,6 +271,7 @@ def main() -> int:
         {
             "ok": execution.ok,
             "graph_path": str(graph_path),
+            "navigation_strategy": args.navigation,
             "executed_edge": edge.edge_id,
             "executed_action": {
                 "role": edge.action.get("role"),
