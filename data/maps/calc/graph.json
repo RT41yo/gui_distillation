@@ -38,6 +38,35 @@
       "depth": 4,
       "label": "panel"
     },
+    "02ecca42525b": {
+      "state_id": "02ecca42525b",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/02ecca42525b/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator",
+          "window"
+        ]
+      },
+      "macro_hash": "02ecca42525b11d3e1aa2e3004407ff77d52811c0c8a246a1f2e839095a8418d",
+      "content_hash": "16c9000072858fa74a82743691453b889165d9aed2c4d498171f74525824204f",
+      "macro_action_count": 4,
+      "visible_node_count": 5,
+      "depth": 7,
+      "label": "menu"
+    },
     "02f881f937e5": {
       "state_id": "02f881f937e5",
       "status": "confirmed",
@@ -368,6 +397,35 @@
       "depth": 2,
       "label": "Calculator"
     },
+    "2843c8a4c3b1": {
+      "state_id": "2843c8a4c3b1",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/2843c8a4c3b1/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator",
+          "window"
+        ]
+      },
+      "macro_hash": "2843c8a4c3b163fb5540146cdd6413163e53af58475e3caddcb1ac823efa2c3a",
+      "content_hash": "4c5d5f629a403abf44d2c867928959ff88b30c45705b2eb5d61e9319a09f04ab",
+      "macro_action_count": 4,
+      "visible_node_count": 5,
+      "depth": 7,
+      "label": "menu"
+    },
     "2ba75e3a500b": {
       "state_id": "2ba75e3a500b",
       "status": "confirmed",
@@ -396,6 +454,62 @@
       "depth": 6,
       "label": "Calculator"
     },
+    "307e876b9733": {
+      "state_id": "307e876b9733",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/307e876b9733/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Calculator",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator"
+        ]
+      },
+      "macro_hash": "307e876b97335a526bc5d3364a0214f8915a5b5e1165e0ac909d372633bb6b1d",
+      "content_hash": "3b85dff60cf8d17d573238fef95d7583b50b5297c3dcd41dc9ca74112f1438ef",
+      "macro_action_count": 10,
+      "visible_node_count": 150,
+      "depth": 7,
+      "label": "Calculator"
+    },
+    "33b5b6d4a342": {
+      "state_id": "33b5b6d4a342",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/33b5b6d4a342/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Calculator",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator"
+        ]
+      },
+      "macro_hash": "33b5b6d4a342cf905a57179da7e27a9c3a9f8d3566e1c0b459fbf72ac468f9d9",
+      "content_hash": "f57cd0e9b875c2c50b26f8bd269881b8c8ef4aa4fd136ad77a93dc3bde346145",
+      "macro_action_count": 10,
+      "visible_node_count": 150,
+      "depth": 7,
+      "label": "Calculator"
+    },
     "3469fe634f0b": {
       "state_id": "3469fe634f0b",
       "status": "confirmed",
@@ -422,6 +536,34 @@
       "macro_action_count": 10,
       "visible_node_count": 150,
       "depth": 2,
+      "label": "Calculator"
+    },
+    "398de162f58a": {
+      "state_id": "398de162f58a",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/398de162f58a/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Calculator",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator"
+        ]
+      },
+      "macro_hash": "398de162f58acbd58f47e4222d97ed0a5426f14b07c1b4aceb1c76e4244a35f9",
+      "content_hash": "fc224df954a2b14db88535aec9c91bb57cdc3fdb201a24b65478c479ae79acda",
+      "macro_action_count": 10,
+      "visible_node_count": 150,
+      "depth": 7,
       "label": "Calculator"
     },
     "3b4bc848561d": {
@@ -728,6 +870,34 @@
       "visible_node_count": 4,
       "depth": 5,
       "label": "menu"
+    },
+    "6f540d3b58d1": {
+      "state_id": "6f540d3b58d1",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/6f540d3b58d1/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Calculator",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator"
+        ]
+      },
+      "macro_hash": "6f540d3b58d1514ce3a729a9f55c8419e193fbd421ceb663a18e71a7de192dd0",
+      "content_hash": "e7f56b447d70fb46cba74b9b37266fadd176a01f4ffcf0f13e3f87d51e056e69",
+      "macro_action_count": 10,
+      "visible_node_count": 150,
+      "depth": 7,
+      "label": "Calculator"
     },
     "70eee10d766d": {
       "state_id": "70eee10d766d",
@@ -1296,6 +1466,35 @@
       "depth": 4,
       "label": "Calculator"
     },
+    "cad2903c8e04": {
+      "state_id": "cad2903c8e04",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/cad2903c8e04/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator",
+          "window"
+        ]
+      },
+      "macro_hash": "cad2903c8e04347517d29cc74eee0bec6f5ad3514e8da149790350b533ac34f3",
+      "content_hash": "d008953b3c1ce50282acc56556c38a2092e73f44a5fcec7d550edb09b2cf6541",
+      "macro_action_count": 4,
+      "visible_node_count": 5,
+      "depth": 7,
+      "label": "menu"
+    },
     "ce2496d822d6": {
       "state_id": "ce2496d822d6",
       "status": "confirmed",
@@ -1439,6 +1638,34 @@
       "depth": 0,
       "label": "Calculator"
     },
+    "e209c9aba7da": {
+      "state_id": "e209c9aba7da",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/e209c9aba7da/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Calculator",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator"
+        ]
+      },
+      "macro_hash": "e209c9aba7dae4a7a989faae6935f8508cc9b65396d6eecd255a2b00942cad60",
+      "content_hash": "317010f7bb303a0327751fa0230489ef7115fe07d450163b9683b19ea198d2c4",
+      "macro_action_count": 10,
+      "visible_node_count": 150,
+      "depth": 7,
+      "label": "Calculator"
+    },
     "e491ac715680": {
       "state_id": "e491ac715680",
       "status": "confirmed",
@@ -1465,6 +1692,34 @@
       "macro_action_count": 10,
       "visible_node_count": 150,
       "depth": 5,
+      "label": "Calculator"
+    },
+    "e801a339ab7f": {
+      "state_id": "e801a339ab7f",
+      "status": "confirmed",
+      "xml_path": "data/maps/calc/states/e801a339ab7f/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Calculator",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/gnome-calculator"
+        ]
+      },
+      "macro_hash": "e801a339ab7f7d9fe8db9f5516a9beeda7cf86baa192172c08aca2ec716dda22",
+      "content_hash": "b23bf93c2fb95dfbba5c7169eefd47db7be44641f68cf6bc3cbb645f86d6ae1c",
+      "macro_action_count": 10,
+      "visible_node_count": 150,
+      "depth": 7,
       "label": "Calculator"
     },
     "f0240f02880d": {
@@ -13841,12 +14096,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "1cbae21a9462",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "1cbae21a9462",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 260
     },
     "f7fcc6f359d2:1766cb6adfee3b7c": {
@@ -13879,12 +14140,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "3b4bc848561d",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3b4bc848561d",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 261
     },
     "f7fcc6f359d2:94238a358b940224": {
@@ -13921,12 +14188,18 @@
         ],
         "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "02ecca42525b",
       "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "02ecca42525b",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 262
     },
     "f7fcc6f359d2:841613d1241d9302": {
@@ -13964,12 +14237,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "4a701cc0ad96",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "4a701cc0ad96",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 263
     },
     "f7fcc6f359d2:c3c2d21f99912054": {
@@ -14007,12 +14286,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "ce2496d822d6",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "ce2496d822d6",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 264
     },
     "f7fcc6f359d2:78769c6dadf44ace": {
@@ -14050,12 +14335,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "de52c438ef75",
       "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "de52c438ef75",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 265
     },
     "f7fcc6f359d2:5b298320b631a126": {
@@ -14093,12 +14384,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 266
     },
     "f7fcc6f359d2:0a6dba8ac0956471": {
@@ -14136,12 +14433,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 267
     },
     "f7fcc6f359d2:4cc10ff62834d14a": {
@@ -14179,12 +14482,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "398de162f58a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "398de162f58a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 268
     },
     "f7fcc6f359d2:a148f8e335770f5e": {
@@ -14222,12 +14531,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "e209c9aba7da",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "e209c9aba7da",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 269
     },
     "b560e13fb543:5d005f2ff66323b9": {
@@ -14260,12 +14575,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "1cbae21a9462",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "1cbae21a9462",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 270
     },
     "b560e13fb543:1766cb6adfee3b7c": {
@@ -14298,12 +14619,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "3b4bc848561d",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3b4bc848561d",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 271
     },
     "b560e13fb543:bd312d625b395626": {
@@ -14340,12 +14667,18 @@
         ],
         "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "cad2903c8e04",
       "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "cad2903c8e04",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 272
     },
     "b560e13fb543:841613d1241d9302": {
@@ -14383,12 +14716,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "4a701cc0ad96",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "4a701cc0ad96",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 273
     },
     "b560e13fb543:c3c2d21f99912054": {
@@ -14426,12 +14765,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "ce2496d822d6",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "ce2496d822d6",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 274
     },
     "b560e13fb543:78769c6dadf44ace": {
@@ -14469,12 +14814,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "de52c438ef75",
       "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "de52c438ef75",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 275
     },
     "b560e13fb543:5b298320b631a126": {
@@ -14512,12 +14863,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 276
     },
     "b560e13fb543:0a6dba8ac0956471": {
@@ -14555,12 +14912,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 277
     },
     "b560e13fb543:4cc10ff62834d14a": {
@@ -14598,12 +14961,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "307e876b9733",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "307e876b9733",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 278
     },
     "b560e13fb543:a148f8e335770f5e": {
@@ -14641,12 +15010,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "6f540d3b58d1",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "6f540d3b58d1",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 279
     },
     "2ba75e3a500b:5d005f2ff66323b9": {
@@ -14679,12 +15054,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "1cbae21a9462",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "1cbae21a9462",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 280
     },
     "2ba75e3a500b:1766cb6adfee3b7c": {
@@ -14717,12 +15098,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "3b4bc848561d",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3b4bc848561d",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 281
     },
     "2ba75e3a500b:992777b7355d2a58": {
@@ -14759,17 +15146,922 @@
         ],
         "depth": 9
       },
+      "status": "confirmed",
+      "to_state": "2843c8a4c3b1",
+      "priority": 10,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "2843c8a4c3b1",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 282
+    },
+    "2ba75e3a500b:841613d1241d9302": {
+      "edge_id": "2ba75e3a500b:841613d1241d9302",
+      "from_state": "2ba75e3a500b",
+      "action_key": "841613d1241d9302",
+      "action": {
+        "action_key": "841613d1241d9302",
+        "role": "toggle button",
+        "name": "Word Size",
+        "description": "Change word size",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "confirmed",
+      "to_state": "4a701cc0ad96",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "4a701cc0ad96",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 283
+    },
+    "2ba75e3a500b:c3c2d21f99912054": {
+      "edge_id": "2ba75e3a500b:c3c2d21f99912054",
+      "from_state": "2ba75e3a500b",
+      "action_key": "c3c2d21f99912054",
+      "action": {
+        "action_key": "c3c2d21f99912054",
+        "role": "toggle button",
+        "name": "Store",
+        "description": "Memory",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "confirmed",
+      "to_state": "ce2496d822d6",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "ce2496d822d6",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 284
+    },
+    "2ba75e3a500b:78769c6dadf44ace": {
+      "edge_id": "2ba75e3a500b:78769c6dadf44ace",
+      "from_state": "2ba75e3a500b",
+      "action_key": "78769c6dadf44ace",
+      "action": {
+        "action_key": "78769c6dadf44ace",
+        "role": "push button",
+        "name": "Insert Character",
+        "description": "Insert Character Code",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          579,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "confirmed",
+      "to_state": "de52c438ef75",
+      "priority": 30,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "de52c438ef75",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 285
+    },
+    "2ba75e3a500b:5b298320b631a126": {
+      "edge_id": "2ba75e3a500b:5b298320b631a126",
+      "from_state": "2ba75e3a500b",
+      "action_key": "5b298320b631a126",
+      "action": {
+        "action_key": "5b298320b631a126",
+        "role": "toggle button",
+        "name": "Shift Right",
+        "description": "Shift Right",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 286
+    },
+    "2ba75e3a500b:0a6dba8ac0956471": {
+      "edge_id": "2ba75e3a500b:0a6dba8ac0956471",
+      "from_state": "2ba75e3a500b",
+      "action_key": "0a6dba8ac0956471",
+      "action": {
+        "action_key": "0a6dba8ac0956471",
+        "role": "toggle button",
+        "name": "Shift Left",
+        "description": "Shift Left",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          479,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 287
+    },
+    "2ba75e3a500b:4cc10ff62834d14a": {
+      "edge_id": "2ba75e3a500b:4cc10ff62834d14a",
+      "from_state": "2ba75e3a500b",
+      "action_key": "4cc10ff62834d14a",
+      "action": {
+        "action_key": "4cc10ff62834d14a",
+        "role": "toggle button",
+        "name": "Superscript",
+        "description": "Superscript mode [Ctrl]",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          415,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "confirmed",
+      "to_state": "33b5b6d4a342",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "33b5b6d4a342",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 288
+    },
+    "2ba75e3a500b:a148f8e335770f5e": {
+      "edge_id": "2ba75e3a500b:a148f8e335770f5e",
+      "from_state": "2ba75e3a500b",
+      "action_key": "a148f8e335770f5e",
+      "action": {
+        "action_key": "a148f8e335770f5e",
+        "role": "toggle button",
+        "name": "Subscript",
+        "description": "Subscript mode [Alt]",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "confirmed",
+      "to_state": "e801a339ab7f",
+      "priority": 20,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "e801a339ab7f",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 289
+    },
+    "02ecca42525b:4383757e5a38c5b2": {
+      "edge_id": "02ecca42525b:4383757e5a38c5b2",
+      "from_state": "02ecca42525b",
+      "action_key": "4383757e5a38c5b2",
+      "action": {
+        "action_key": "4383757e5a38c5b2",
+        "role": "menu item",
+        "name": "Binary",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          262,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 290
+    },
+    "02ecca42525b:7e5ea0ed078d644c": {
+      "edge_id": "02ecca42525b:7e5ea0ed078d644c",
+      "from_state": "02ecca42525b",
+      "action_key": "7e5ea0ed078d644c",
+      "action": {
+        "action_key": "7e5ea0ed078d644c",
+        "role": "menu item",
+        "name": "Octal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          291,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 291
+    },
+    "02ecca42525b:14c360d7f24811b3": {
+      "edge_id": "02ecca42525b:14c360d7f24811b3",
+      "from_state": "02ecca42525b",
+      "action_key": "14c360d7f24811b3",
+      "action": {
+        "action_key": "14c360d7f24811b3",
+        "role": "menu item",
+        "name": "Decimal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          320,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 292
+    },
+    "02ecca42525b:9704e9aa545ee0bb": {
+      "edge_id": "02ecca42525b:9704e9aa545ee0bb",
+      "from_state": "02ecca42525b",
+      "action_key": "9704e9aa545ee0bb",
+      "action": {
+        "action_key": "9704e9aa545ee0bb",
+        "role": "menu item",
+        "name": "Hexadecimal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          349,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 293
+    },
+    "cad2903c8e04:2060059c1e8893b7": {
+      "edge_id": "cad2903c8e04:2060059c1e8893b7",
+      "from_state": "cad2903c8e04",
+      "action_key": "2060059c1e8893b7",
+      "action": {
+        "action_key": "2060059c1e8893b7",
+        "role": "menu item",
+        "name": "Binary",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          233,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 294
+    },
+    "cad2903c8e04:d0082458ee82387c": {
+      "edge_id": "cad2903c8e04:d0082458ee82387c",
+      "from_state": "cad2903c8e04",
+      "action_key": "d0082458ee82387c",
+      "action": {
+        "action_key": "d0082458ee82387c",
+        "role": "menu item",
+        "name": "Octal",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          262,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 295
+    },
+    "cad2903c8e04:4d0ebe94cc99fb09": {
+      "edge_id": "cad2903c8e04:4d0ebe94cc99fb09",
+      "from_state": "cad2903c8e04",
+      "action_key": "4d0ebe94cc99fb09",
+      "action": {
+        "action_key": "4d0ebe94cc99fb09",
+        "role": "menu item",
+        "name": "Decimal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          291,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 296
+    },
+    "cad2903c8e04:3e3b47477b5408b8": {
+      "edge_id": "cad2903c8e04:3e3b47477b5408b8",
+      "from_state": "cad2903c8e04",
+      "action_key": "3e3b47477b5408b8",
+      "action": {
+        "action_key": "3e3b47477b5408b8",
+        "role": "menu item",
+        "name": "Hexadecimal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          320,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 297
+    },
+    "2843c8a4c3b1:b8cb8bc53a69ec69": {
+      "edge_id": "2843c8a4c3b1:b8cb8bc53a69ec69",
+      "from_state": "2843c8a4c3b1",
+      "action_key": "b8cb8bc53a69ec69",
+      "action": {
+        "action_key": "b8cb8bc53a69ec69",
+        "role": "menu item",
+        "name": "Binary",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          175,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 298
+    },
+    "2843c8a4c3b1:1161e8d27f7d4ac4": {
+      "edge_id": "2843c8a4c3b1:1161e8d27f7d4ac4",
+      "from_state": "2843c8a4c3b1",
+      "action_key": "1161e8d27f7d4ac4",
+      "action": {
+        "action_key": "1161e8d27f7d4ac4",
+        "role": "menu item",
+        "name": "Octal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          204,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 299
+    },
+    "2843c8a4c3b1:82e0bdb74b92c5d2": {
+      "edge_id": "2843c8a4c3b1:82e0bdb74b92c5d2",
+      "from_state": "2843c8a4c3b1",
+      "action_key": "82e0bdb74b92c5d2",
+      "action": {
+        "action_key": "82e0bdb74b92c5d2",
+        "role": "menu item",
+        "name": "Decimal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          233,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 300
+    },
+    "2843c8a4c3b1:d9cfab4b46ae4ed9": {
+      "edge_id": "2843c8a4c3b1:d9cfab4b46ae4ed9",
+      "from_state": "2843c8a4c3b1",
+      "action_key": "d9cfab4b46ae4ed9",
+      "action": {
+        "action_key": "d9cfab4b46ae4ed9",
+        "role": "menu item",
+        "name": "Hexadecimal",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          262,
+          126,
+          29
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "window",
+          "menu"
+        ],
+        "depth": 3
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "menu item may navigate, open a dialog, or change UI context",
+      "observed": null,
+      "created_order": 301
+    },
+    "398de162f58a:5d005f2ff66323b9": {
+      "edge_id": "398de162f58a:5d005f2ff66323b9",
+      "from_state": "398de162f58a",
+      "action_key": "5d005f2ff66323b9",
+      "action": {
+        "action_key": "5d005f2ff66323b9",
+        "role": "toggle button",
+        "name": "Mode selection",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          269,
+          4,
+          151,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 302
+    },
+    "398de162f58a:1766cb6adfee3b7c": {
+      "edge_id": "398de162f58a:1766cb6adfee3b7c",
+      "from_state": "398de162f58a",
+      "action_key": "1766cb6adfee3b7c",
+      "action": {
+        "action_key": "1766cb6adfee3b7c",
+        "role": "toggle button",
+        "name": "Primary menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          517,
+          4,
+          36,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 303
+    },
+    "398de162f58a:94238a358b940224": {
+      "edge_id": "398de162f58a:94238a358b940224",
+      "from_state": "398de162f58a",
+      "action_key": "94238a358b940224",
+      "action": {
+        "action_key": "94238a358b940224",
+        "role": "combo box",
+        "name": "Binary",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          257,
+          126,
+          34
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 9
+      },
       "status": "pending",
       "to_state": null,
       "priority": 10,
       "attempts": 0,
       "reason": "combo box commonly opens or switches UI context",
       "observed": null,
-      "created_order": 282
+      "created_order": 304
     },
-    "2ba75e3a500b:841613d1241d9302": {
-      "edge_id": "2ba75e3a500b:841613d1241d9302",
-      "from_state": "2ba75e3a500b",
+    "398de162f58a:841613d1241d9302": {
+      "edge_id": "398de162f58a:841613d1241d9302",
+      "from_state": "398de162f58a",
       "action_key": "841613d1241d9302",
       "action": {
         "action_key": "841613d1241d9302",
@@ -14808,11 +16100,11 @@
       "attempts": 0,
       "reason": "toggle button may reveal, select, or switch UI structure",
       "observed": null,
-      "created_order": 283
+      "created_order": 305
     },
-    "2ba75e3a500b:c3c2d21f99912054": {
-      "edge_id": "2ba75e3a500b:c3c2d21f99912054",
-      "from_state": "2ba75e3a500b",
+    "398de162f58a:c3c2d21f99912054": {
+      "edge_id": "398de162f58a:c3c2d21f99912054",
+      "from_state": "398de162f58a",
       "action_key": "c3c2d21f99912054",
       "action": {
         "action_key": "c3c2d21f99912054",
@@ -14851,11 +16143,11 @@
       "attempts": 0,
       "reason": "toggle button may reveal, select, or switch UI structure",
       "observed": null,
-      "created_order": 284
+      "created_order": 306
     },
-    "2ba75e3a500b:78769c6dadf44ace": {
-      "edge_id": "2ba75e3a500b:78769c6dadf44ace",
-      "from_state": "2ba75e3a500b",
+    "398de162f58a:78769c6dadf44ace": {
+      "edge_id": "398de162f58a:78769c6dadf44ace",
+      "from_state": "398de162f58a",
       "action_key": "78769c6dadf44ace",
       "action": {
         "action_key": "78769c6dadf44ace",
@@ -14894,11 +16186,11 @@
       "attempts": 0,
       "reason": "push button name suggests menu/dialog/navigation/context change",
       "observed": null,
-      "created_order": 285
+      "created_order": 307
     },
-    "2ba75e3a500b:5b298320b631a126": {
-      "edge_id": "2ba75e3a500b:5b298320b631a126",
-      "from_state": "2ba75e3a500b",
+    "398de162f58a:5b298320b631a126": {
+      "edge_id": "398de162f58a:5b298320b631a126",
+      "from_state": "398de162f58a",
       "action_key": "5b298320b631a126",
       "action": {
         "action_key": "5b298320b631a126",
@@ -14937,11 +16229,11 @@
       "attempts": 0,
       "reason": "toggle button may reveal, select, or switch UI structure",
       "observed": null,
-      "created_order": 286
+      "created_order": 308
     },
-    "2ba75e3a500b:0a6dba8ac0956471": {
-      "edge_id": "2ba75e3a500b:0a6dba8ac0956471",
-      "from_state": "2ba75e3a500b",
+    "398de162f58a:0a6dba8ac0956471": {
+      "edge_id": "398de162f58a:0a6dba8ac0956471",
+      "from_state": "398de162f58a",
       "action_key": "0a6dba8ac0956471",
       "action": {
         "action_key": "0a6dba8ac0956471",
@@ -14980,18 +16272,19 @@
       "attempts": 0,
       "reason": "toggle button may reveal, select, or switch UI structure",
       "observed": null,
-      "created_order": 287
+      "created_order": 309
     },
-    "2ba75e3a500b:4cc10ff62834d14a": {
-      "edge_id": "2ba75e3a500b:4cc10ff62834d14a",
-      "from_state": "2ba75e3a500b",
-      "action_key": "4cc10ff62834d14a",
+    "398de162f58a:df5b900297593ccb": {
+      "edge_id": "398de162f58a:df5b900297593ccb",
+      "from_state": "398de162f58a",
+      "action_key": "df5b900297593ccb",
       "action": {
-        "action_key": "4cc10ff62834d14a",
+        "action_key": "df5b900297593ccb",
         "role": "toggle button",
         "name": "Superscript",
         "description": "Superscript mode [Ctrl]",
         "states": [
+          "checked",
           "sensitive",
           "showing",
           "visible",
@@ -15023,11 +16316,11 @@
       "attempts": 0,
       "reason": "toggle button may reveal, select, or switch UI structure",
       "observed": null,
-      "created_order": 288
+      "created_order": 310
     },
-    "2ba75e3a500b:a148f8e335770f5e": {
-      "edge_id": "2ba75e3a500b:a148f8e335770f5e",
-      "from_state": "2ba75e3a500b",
+    "398de162f58a:a148f8e335770f5e": {
+      "edge_id": "398de162f58a:a148f8e335770f5e",
+      "from_state": "398de162f58a",
       "action_key": "a148f8e335770f5e",
       "action": {
         "action_key": "a148f8e335770f5e",
@@ -15066,12 +16359,2112 @@
       "attempts": 0,
       "reason": "toggle button may reveal, select, or switch UI structure",
       "observed": null,
-      "created_order": 289
+      "created_order": 311
+    },
+    "e209c9aba7da:5d005f2ff66323b9": {
+      "edge_id": "e209c9aba7da:5d005f2ff66323b9",
+      "from_state": "e209c9aba7da",
+      "action_key": "5d005f2ff66323b9",
+      "action": {
+        "action_key": "5d005f2ff66323b9",
+        "role": "toggle button",
+        "name": "Mode selection",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          269,
+          4,
+          151,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 312
+    },
+    "e209c9aba7da:1766cb6adfee3b7c": {
+      "edge_id": "e209c9aba7da:1766cb6adfee3b7c",
+      "from_state": "e209c9aba7da",
+      "action_key": "1766cb6adfee3b7c",
+      "action": {
+        "action_key": "1766cb6adfee3b7c",
+        "role": "toggle button",
+        "name": "Primary menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          517,
+          4,
+          36,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 313
+    },
+    "e209c9aba7da:94238a358b940224": {
+      "edge_id": "e209c9aba7da:94238a358b940224",
+      "from_state": "e209c9aba7da",
+      "action_key": "94238a358b940224",
+      "action": {
+        "action_key": "94238a358b940224",
+        "role": "combo box",
+        "name": "Binary",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          257,
+          126,
+          34
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 9
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 10,
+      "attempts": 0,
+      "reason": "combo box commonly opens or switches UI context",
+      "observed": null,
+      "created_order": 314
+    },
+    "e209c9aba7da:841613d1241d9302": {
+      "edge_id": "e209c9aba7da:841613d1241d9302",
+      "from_state": "e209c9aba7da",
+      "action_key": "841613d1241d9302",
+      "action": {
+        "action_key": "841613d1241d9302",
+        "role": "toggle button",
+        "name": "Word Size",
+        "description": "Change word size",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 315
+    },
+    "e209c9aba7da:c3c2d21f99912054": {
+      "edge_id": "e209c9aba7da:c3c2d21f99912054",
+      "from_state": "e209c9aba7da",
+      "action_key": "c3c2d21f99912054",
+      "action": {
+        "action_key": "c3c2d21f99912054",
+        "role": "toggle button",
+        "name": "Store",
+        "description": "Memory",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 316
+    },
+    "e209c9aba7da:78769c6dadf44ace": {
+      "edge_id": "e209c9aba7da:78769c6dadf44ace",
+      "from_state": "e209c9aba7da",
+      "action_key": "78769c6dadf44ace",
+      "action": {
+        "action_key": "78769c6dadf44ace",
+        "role": "push button",
+        "name": "Insert Character",
+        "description": "Insert Character Code",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          579,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 317
+    },
+    "e209c9aba7da:5b298320b631a126": {
+      "edge_id": "e209c9aba7da:5b298320b631a126",
+      "from_state": "e209c9aba7da",
+      "action_key": "5b298320b631a126",
+      "action": {
+        "action_key": "5b298320b631a126",
+        "role": "toggle button",
+        "name": "Shift Right",
+        "description": "Shift Right",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 318
+    },
+    "e209c9aba7da:0a6dba8ac0956471": {
+      "edge_id": "e209c9aba7da:0a6dba8ac0956471",
+      "from_state": "e209c9aba7da",
+      "action_key": "0a6dba8ac0956471",
+      "action": {
+        "action_key": "0a6dba8ac0956471",
+        "role": "toggle button",
+        "name": "Shift Left",
+        "description": "Shift Left",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          479,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 319
+    },
+    "e209c9aba7da:4cc10ff62834d14a": {
+      "edge_id": "e209c9aba7da:4cc10ff62834d14a",
+      "from_state": "e209c9aba7da",
+      "action_key": "4cc10ff62834d14a",
+      "action": {
+        "action_key": "4cc10ff62834d14a",
+        "role": "toggle button",
+        "name": "Superscript",
+        "description": "Superscript mode [Ctrl]",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          415,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 320
+    },
+    "e209c9aba7da:9ea3d62f73a6d2e3": {
+      "edge_id": "e209c9aba7da:9ea3d62f73a6d2e3",
+      "from_state": "e209c9aba7da",
+      "action_key": "9ea3d62f73a6d2e3",
+      "action": {
+        "action_key": "9ea3d62f73a6d2e3",
+        "role": "toggle button",
+        "name": "Subscript",
+        "description": "Subscript mode [Alt]",
+        "states": [
+          "checked",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 321
+    },
+    "307e876b9733:5d005f2ff66323b9": {
+      "edge_id": "307e876b9733:5d005f2ff66323b9",
+      "from_state": "307e876b9733",
+      "action_key": "5d005f2ff66323b9",
+      "action": {
+        "action_key": "5d005f2ff66323b9",
+        "role": "toggle button",
+        "name": "Mode selection",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          269,
+          4,
+          151,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 322
+    },
+    "307e876b9733:1766cb6adfee3b7c": {
+      "edge_id": "307e876b9733:1766cb6adfee3b7c",
+      "from_state": "307e876b9733",
+      "action_key": "1766cb6adfee3b7c",
+      "action": {
+        "action_key": "1766cb6adfee3b7c",
+        "role": "toggle button",
+        "name": "Primary menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          517,
+          4,
+          36,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 323
+    },
+    "307e876b9733:bd312d625b395626": {
+      "edge_id": "307e876b9733:bd312d625b395626",
+      "from_state": "307e876b9733",
+      "action_key": "bd312d625b395626",
+      "action": {
+        "action_key": "bd312d625b395626",
+        "role": "combo box",
+        "name": "Octal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          257,
+          126,
+          34
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 9
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 10,
+      "attempts": 0,
+      "reason": "combo box commonly opens or switches UI context",
+      "observed": null,
+      "created_order": 324
+    },
+    "307e876b9733:841613d1241d9302": {
+      "edge_id": "307e876b9733:841613d1241d9302",
+      "from_state": "307e876b9733",
+      "action_key": "841613d1241d9302",
+      "action": {
+        "action_key": "841613d1241d9302",
+        "role": "toggle button",
+        "name": "Word Size",
+        "description": "Change word size",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 325
+    },
+    "307e876b9733:c3c2d21f99912054": {
+      "edge_id": "307e876b9733:c3c2d21f99912054",
+      "from_state": "307e876b9733",
+      "action_key": "c3c2d21f99912054",
+      "action": {
+        "action_key": "c3c2d21f99912054",
+        "role": "toggle button",
+        "name": "Store",
+        "description": "Memory",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 326
+    },
+    "307e876b9733:78769c6dadf44ace": {
+      "edge_id": "307e876b9733:78769c6dadf44ace",
+      "from_state": "307e876b9733",
+      "action_key": "78769c6dadf44ace",
+      "action": {
+        "action_key": "78769c6dadf44ace",
+        "role": "push button",
+        "name": "Insert Character",
+        "description": "Insert Character Code",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          579,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 327
+    },
+    "307e876b9733:5b298320b631a126": {
+      "edge_id": "307e876b9733:5b298320b631a126",
+      "from_state": "307e876b9733",
+      "action_key": "5b298320b631a126",
+      "action": {
+        "action_key": "5b298320b631a126",
+        "role": "toggle button",
+        "name": "Shift Right",
+        "description": "Shift Right",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 328
+    },
+    "307e876b9733:0a6dba8ac0956471": {
+      "edge_id": "307e876b9733:0a6dba8ac0956471",
+      "from_state": "307e876b9733",
+      "action_key": "0a6dba8ac0956471",
+      "action": {
+        "action_key": "0a6dba8ac0956471",
+        "role": "toggle button",
+        "name": "Shift Left",
+        "description": "Shift Left",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          479,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 329
+    },
+    "307e876b9733:df5b900297593ccb": {
+      "edge_id": "307e876b9733:df5b900297593ccb",
+      "from_state": "307e876b9733",
+      "action_key": "df5b900297593ccb",
+      "action": {
+        "action_key": "df5b900297593ccb",
+        "role": "toggle button",
+        "name": "Superscript",
+        "description": "Superscript mode [Ctrl]",
+        "states": [
+          "checked",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          415,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 330
+    },
+    "307e876b9733:a148f8e335770f5e": {
+      "edge_id": "307e876b9733:a148f8e335770f5e",
+      "from_state": "307e876b9733",
+      "action_key": "a148f8e335770f5e",
+      "action": {
+        "action_key": "a148f8e335770f5e",
+        "role": "toggle button",
+        "name": "Subscript",
+        "description": "Subscript mode [Alt]",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 331
+    },
+    "6f540d3b58d1:5d005f2ff66323b9": {
+      "edge_id": "6f540d3b58d1:5d005f2ff66323b9",
+      "from_state": "6f540d3b58d1",
+      "action_key": "5d005f2ff66323b9",
+      "action": {
+        "action_key": "5d005f2ff66323b9",
+        "role": "toggle button",
+        "name": "Mode selection",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          269,
+          4,
+          151,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 332
+    },
+    "6f540d3b58d1:1766cb6adfee3b7c": {
+      "edge_id": "6f540d3b58d1:1766cb6adfee3b7c",
+      "from_state": "6f540d3b58d1",
+      "action_key": "1766cb6adfee3b7c",
+      "action": {
+        "action_key": "1766cb6adfee3b7c",
+        "role": "toggle button",
+        "name": "Primary menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          517,
+          4,
+          36,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 333
+    },
+    "6f540d3b58d1:bd312d625b395626": {
+      "edge_id": "6f540d3b58d1:bd312d625b395626",
+      "from_state": "6f540d3b58d1",
+      "action_key": "bd312d625b395626",
+      "action": {
+        "action_key": "bd312d625b395626",
+        "role": "combo box",
+        "name": "Octal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          257,
+          126,
+          34
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 9
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 10,
+      "attempts": 0,
+      "reason": "combo box commonly opens or switches UI context",
+      "observed": null,
+      "created_order": 334
+    },
+    "6f540d3b58d1:841613d1241d9302": {
+      "edge_id": "6f540d3b58d1:841613d1241d9302",
+      "from_state": "6f540d3b58d1",
+      "action_key": "841613d1241d9302",
+      "action": {
+        "action_key": "841613d1241d9302",
+        "role": "toggle button",
+        "name": "Word Size",
+        "description": "Change word size",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 335
+    },
+    "6f540d3b58d1:c3c2d21f99912054": {
+      "edge_id": "6f540d3b58d1:c3c2d21f99912054",
+      "from_state": "6f540d3b58d1",
+      "action_key": "c3c2d21f99912054",
+      "action": {
+        "action_key": "c3c2d21f99912054",
+        "role": "toggle button",
+        "name": "Store",
+        "description": "Memory",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 336
+    },
+    "6f540d3b58d1:78769c6dadf44ace": {
+      "edge_id": "6f540d3b58d1:78769c6dadf44ace",
+      "from_state": "6f540d3b58d1",
+      "action_key": "78769c6dadf44ace",
+      "action": {
+        "action_key": "78769c6dadf44ace",
+        "role": "push button",
+        "name": "Insert Character",
+        "description": "Insert Character Code",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          579,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 337
+    },
+    "6f540d3b58d1:5b298320b631a126": {
+      "edge_id": "6f540d3b58d1:5b298320b631a126",
+      "from_state": "6f540d3b58d1",
+      "action_key": "5b298320b631a126",
+      "action": {
+        "action_key": "5b298320b631a126",
+        "role": "toggle button",
+        "name": "Shift Right",
+        "description": "Shift Right",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 338
+    },
+    "6f540d3b58d1:0a6dba8ac0956471": {
+      "edge_id": "6f540d3b58d1:0a6dba8ac0956471",
+      "from_state": "6f540d3b58d1",
+      "action_key": "0a6dba8ac0956471",
+      "action": {
+        "action_key": "0a6dba8ac0956471",
+        "role": "toggle button",
+        "name": "Shift Left",
+        "description": "Shift Left",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          479,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 339
+    },
+    "6f540d3b58d1:4cc10ff62834d14a": {
+      "edge_id": "6f540d3b58d1:4cc10ff62834d14a",
+      "from_state": "6f540d3b58d1",
+      "action_key": "4cc10ff62834d14a",
+      "action": {
+        "action_key": "4cc10ff62834d14a",
+        "role": "toggle button",
+        "name": "Superscript",
+        "description": "Superscript mode [Ctrl]",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          415,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 340
+    },
+    "6f540d3b58d1:9ea3d62f73a6d2e3": {
+      "edge_id": "6f540d3b58d1:9ea3d62f73a6d2e3",
+      "from_state": "6f540d3b58d1",
+      "action_key": "9ea3d62f73a6d2e3",
+      "action": {
+        "action_key": "9ea3d62f73a6d2e3",
+        "role": "toggle button",
+        "name": "Subscript",
+        "description": "Subscript mode [Alt]",
+        "states": [
+          "checked",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 341
+    },
+    "33b5b6d4a342:5d005f2ff66323b9": {
+      "edge_id": "33b5b6d4a342:5d005f2ff66323b9",
+      "from_state": "33b5b6d4a342",
+      "action_key": "5d005f2ff66323b9",
+      "action": {
+        "action_key": "5d005f2ff66323b9",
+        "role": "toggle button",
+        "name": "Mode selection",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          269,
+          4,
+          151,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 342
+    },
+    "33b5b6d4a342:1766cb6adfee3b7c": {
+      "edge_id": "33b5b6d4a342:1766cb6adfee3b7c",
+      "from_state": "33b5b6d4a342",
+      "action_key": "1766cb6adfee3b7c",
+      "action": {
+        "action_key": "1766cb6adfee3b7c",
+        "role": "toggle button",
+        "name": "Primary menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          517,
+          4,
+          36,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 343
+    },
+    "33b5b6d4a342:992777b7355d2a58": {
+      "edge_id": "33b5b6d4a342:992777b7355d2a58",
+      "from_state": "33b5b6d4a342",
+      "action_key": "992777b7355d2a58",
+      "action": {
+        "action_key": "992777b7355d2a58",
+        "role": "combo box",
+        "name": "Hexadecimal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          257,
+          126,
+          34
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 9
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 10,
+      "attempts": 0,
+      "reason": "combo box commonly opens or switches UI context",
+      "observed": null,
+      "created_order": 344
+    },
+    "33b5b6d4a342:841613d1241d9302": {
+      "edge_id": "33b5b6d4a342:841613d1241d9302",
+      "from_state": "33b5b6d4a342",
+      "action_key": "841613d1241d9302",
+      "action": {
+        "action_key": "841613d1241d9302",
+        "role": "toggle button",
+        "name": "Word Size",
+        "description": "Change word size",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 345
+    },
+    "33b5b6d4a342:c3c2d21f99912054": {
+      "edge_id": "33b5b6d4a342:c3c2d21f99912054",
+      "from_state": "33b5b6d4a342",
+      "action_key": "c3c2d21f99912054",
+      "action": {
+        "action_key": "c3c2d21f99912054",
+        "role": "toggle button",
+        "name": "Store",
+        "description": "Memory",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 346
+    },
+    "33b5b6d4a342:78769c6dadf44ace": {
+      "edge_id": "33b5b6d4a342:78769c6dadf44ace",
+      "from_state": "33b5b6d4a342",
+      "action_key": "78769c6dadf44ace",
+      "action": {
+        "action_key": "78769c6dadf44ace",
+        "role": "push button",
+        "name": "Insert Character",
+        "description": "Insert Character Code",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          579,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 347
+    },
+    "33b5b6d4a342:5b298320b631a126": {
+      "edge_id": "33b5b6d4a342:5b298320b631a126",
+      "from_state": "33b5b6d4a342",
+      "action_key": "5b298320b631a126",
+      "action": {
+        "action_key": "5b298320b631a126",
+        "role": "toggle button",
+        "name": "Shift Right",
+        "description": "Shift Right",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 348
+    },
+    "33b5b6d4a342:0a6dba8ac0956471": {
+      "edge_id": "33b5b6d4a342:0a6dba8ac0956471",
+      "from_state": "33b5b6d4a342",
+      "action_key": "0a6dba8ac0956471",
+      "action": {
+        "action_key": "0a6dba8ac0956471",
+        "role": "toggle button",
+        "name": "Shift Left",
+        "description": "Shift Left",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          479,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 349
+    },
+    "33b5b6d4a342:df5b900297593ccb": {
+      "edge_id": "33b5b6d4a342:df5b900297593ccb",
+      "from_state": "33b5b6d4a342",
+      "action_key": "df5b900297593ccb",
+      "action": {
+        "action_key": "df5b900297593ccb",
+        "role": "toggle button",
+        "name": "Superscript",
+        "description": "Superscript mode [Ctrl]",
+        "states": [
+          "checked",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          415,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 350
+    },
+    "33b5b6d4a342:a148f8e335770f5e": {
+      "edge_id": "33b5b6d4a342:a148f8e335770f5e",
+      "from_state": "33b5b6d4a342",
+      "action_key": "a148f8e335770f5e",
+      "action": {
+        "action_key": "a148f8e335770f5e",
+        "role": "toggle button",
+        "name": "Subscript",
+        "description": "Subscript mode [Alt]",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 351
+    },
+    "e801a339ab7f:5d005f2ff66323b9": {
+      "edge_id": "e801a339ab7f:5d005f2ff66323b9",
+      "from_state": "e801a339ab7f",
+      "action_key": "5d005f2ff66323b9",
+      "action": {
+        "action_key": "5d005f2ff66323b9",
+        "role": "toggle button",
+        "name": "Mode selection",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          269,
+          4,
+          151,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 352
+    },
+    "e801a339ab7f:1766cb6adfee3b7c": {
+      "edge_id": "e801a339ab7f:1766cb6adfee3b7c",
+      "from_state": "e801a339ab7f",
+      "action_key": "1766cb6adfee3b7c",
+      "action": {
+        "action_key": "1766cb6adfee3b7c",
+        "role": "toggle button",
+        "name": "Primary menu",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          517,
+          4,
+          36,
+          46
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 353
+    },
+    "e801a339ab7f:992777b7355d2a58": {
+      "edge_id": "e801a339ab7f:992777b7355d2a58",
+      "from_state": "e801a339ab7f",
+      "action_key": "992777b7355d2a58",
+      "action": {
+        "action_key": "992777b7355d2a58",
+        "role": "combo box",
+        "name": "Hexadecimal",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          23,
+          257,
+          126,
+          34
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 9
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 10,
+      "attempts": 0,
+      "reason": "combo box commonly opens or switches UI context",
+      "observed": null,
+      "created_order": 354
+    },
+    "e801a339ab7f:841613d1241d9302": {
+      "edge_id": "e801a339ab7f:841613d1241d9302",
+      "from_state": "e801a339ab7f",
+      "action_key": "841613d1241d9302",
+      "action": {
+        "action_key": "841613d1241d9302",
+        "role": "toggle button",
+        "name": "Word Size",
+        "description": "Change word size",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 355
+    },
+    "e801a339ab7f:c3c2d21f99912054": {
+      "edge_id": "e801a339ab7f:c3c2d21f99912054",
+      "from_state": "e801a339ab7f",
+      "action_key": "c3c2d21f99912054",
+      "action": {
+        "action_key": "c3c2d21f99912054",
+        "role": "toggle button",
+        "name": "Store",
+        "description": "Memory",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          627,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 356
+    },
+    "e801a339ab7f:78769c6dadf44ace": {
+      "edge_id": "e801a339ab7f:78769c6dadf44ace",
+      "from_state": "e801a339ab7f",
+      "action_key": "78769c6dadf44ace",
+      "action": {
+        "action_key": "78769c6dadf44ace",
+        "role": "push button",
+        "name": "Insert Character",
+        "description": "Insert Character Code",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          579,
+          124,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 357
+    },
+    "e801a339ab7f:5b298320b631a126": {
+      "edge_id": "e801a339ab7f:5b298320b631a126",
+      "from_state": "e801a339ab7f",
+      "action_key": "5b298320b631a126",
+      "action": {
+        "action_key": "5b298320b631a126",
+        "role": "toggle button",
+        "name": "Shift Right",
+        "description": "Shift Right",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          543,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 358
+    },
+    "e801a339ab7f:0a6dba8ac0956471": {
+      "edge_id": "e801a339ab7f:0a6dba8ac0956471",
+      "from_state": "e801a339ab7f",
+      "action_key": "0a6dba8ac0956471",
+      "action": {
+        "action_key": "0a6dba8ac0956471",
+        "role": "toggle button",
+        "name": "Shift Left",
+        "description": "Shift Left",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          479,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 359
+    },
+    "e801a339ab7f:4cc10ff62834d14a": {
+      "edge_id": "e801a339ab7f:4cc10ff62834d14a",
+      "from_state": "e801a339ab7f",
+      "action_key": "4cc10ff62834d14a",
+      "action": {
+        "action_key": "4cc10ff62834d14a",
+        "role": "toggle button",
+        "name": "Superscript",
+        "description": "Superscript mode [Ctrl]",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          415,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 360
+    },
+    "e801a339ab7f:9ea3d62f73a6d2e3": {
+      "edge_id": "e801a339ab7f:9ea3d62f73a6d2e3",
+      "from_state": "e801a339ab7f",
+      "action_key": "9ea3d62f73a6d2e3",
+      "action": {
+        "action_key": "9ea3d62f73a6d2e3",
+        "role": "toggle button",
+        "name": "Subscript",
+        "description": "Subscript mode [Alt]",
+        "states": [
+          "checked",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          351,
+          435,
+          60,
+          44
+        ],
+        "parent_path": [
+          "application/gnome-calculator",
+          "frame/Calculator",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "panel",
+          "panel"
+        ],
+        "depth": 10
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 361
     }
   },
   "completion": {
     "status": "partial",
-    "pending_edges": 30,
+    "pending_edges": 72,
     "reason": "pending_edges_exist"
   }
 }
