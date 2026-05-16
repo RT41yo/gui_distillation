@@ -1,9 +1,24 @@
 from pathlib import Path
 
+import pytest
+
 from ui_explorer.graph.store import GraphStore
 
 
 FIXTURE = Path("data/maps/calc/_captures/a11y_tree.xml")
+
+
+@pytest.fixture
+def graph_store(tmp_path):
+    return GraphStore(tmp_path / "maps")
+
+
+@pytest.fixture
+def graph_model(graph_store):
+    return graph_store.init_from_xml(
+        app_id="calc",
+        xml_path=FIXTURE,
+    )
 
 
 def test_init_graph_from_xml(tmp_path):
@@ -28,6 +43,7 @@ def test_graph_edges_are_keyed_by_state_and_action(tmp_path):
         assert edge.status.value == "pending"
         assert edge.to_state is None
 
+
 def test_find_confirmed_path_root(graph_store, graph_model):
     path = graph_store.find_confirmed_path(
         graph_model,
@@ -35,6 +51,7 @@ def test_find_confirmed_path_root(graph_store, graph_model):
     )
 
     assert path == []
+
 
 def test_find_confirmed_path_unknown(graph_store, graph_model):
     path = graph_store.find_confirmed_path(

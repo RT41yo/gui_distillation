@@ -469,7 +469,7 @@ next_edge.from_depth = 5
 
 ---
 
-## 15. Текущий подтверждённый результат для GNOME Calculator
+## 15. Результат для GNOME Calculator для --max-depth 5
 
 После перехода на hard-reset navigation был построен граф GNOME Calculator до clean frontier `depth 5`.
 
@@ -502,7 +502,7 @@ edge_status_counts:
 next_edge.from_depth = 5
 ```
 
-Это означает, что exploration чисто закрыл frontier до `depth 4` и перешёл к действиям из состояний глубины 5. Ошибок навигации нет.
+Это означает, что exploration чисто закрыл frontier до `depth 4` включительно и перешёл к действиям из состояний глубины 5. Ошибок навигации нет.
 
 Граф уже достаточно большой для использования как статическая карта состояний приложения:
 
@@ -561,7 +561,7 @@ pytest -q
 Ожидаемый текущий результат:
 
 ```text
-24 passed
+32 passed
 ```
 
 ---
@@ -652,7 +652,7 @@ Implemented:
 - replay confirmed path navigation for `depth > 0`;
 - hard-reset navigation before edge execution;
 - soft-navigation fallback mode;
-- GNOME Calculator exploration to clean frontier `depth 5`;
+- complete GNOME Calculator exploration under current macro-action policy;
 - static graph visualization;
 - extra graph visualizations: Sankey, frontier chart, metro map;
 - interactive Cytoscape.js graph visualization prototype.
@@ -660,13 +660,14 @@ Implemented:
 Current GNOME Calculator checkpoint:
 
 ```text
-nodes: 55
-edges: 299
-confirmed: 230
-pending: 54
+nodes: 61
+edges: 362
+confirmed: 347
 same_state: 15
+pending: 0
 failed_navigation: 0
-frontier: depth 5
+max_depth: 7
+root_state_id: e14ee107e46f
 ```
 
 Not implemented yet / next steps:
@@ -675,7 +676,7 @@ Not implemented yet / next steps:
 - compact state/action indexes for agent memory;
 - semantic state labels and goal aliases;
 - advanced transition classification;
-- autonomous exploration loop with stopping policy;
+- built-in autonomous exploration runner with configurable stopping policy;
 - broader validation on non-calculator applications.
 
 ---
@@ -739,7 +740,7 @@ ui-explorer-visualize-graph --app calc
 data/maps/calc/graph.pdf
 ```
 
-Для более крупного графа GNOME Calculator на `depth 5` статичный PDF становится плотным, поэтому используются дополнительные представления:
+Для более крупного графа GNOME Calculator на `depth > 5` статичный PDF становится плотным, поэтому используются дополнительные представления:
 
 ```bash
 python -m ui_explorer.cli.visualize_graph_extra --app calc
