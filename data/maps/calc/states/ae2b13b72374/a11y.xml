@@ -1,0 +1,773 @@
+<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1778938232.37842">
+  <element role="application" name="gnome-calculator" description="" x="0" y="0" width="0" height="0">
+    <element role="frame" name="Calculator" description="" x="0" y="0" width="690" height="688" states="sensitive,showing,visible,enabled">
+      <element role="unknown" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+      <element role="panel" name="" description="" x="5" y="5" width="680" height="678" states="sensitive,showing,visible,enabled">
+        <element role="filler" name="" description="" x="5" y="5" width="680" height="678" states="sensitive,showing,visible,enabled">
+          <element role="panel" name="" description="" x="5" y="5" width="680" height="46" states="sensitive,showing,visible,enabled">
+            <element role="push button" name="Undo" description="Undo [Ctrl+Z]" x="10" y="4" width="68" height="46" states="sensitive,showing,visible,enabled"/>
+            <element role="toggle button" name="Mode selection" description="" x="269" y="4" width="151" height="46" states="sensitive,showing,visible,enabled"/>
+            <element role="toggle button" name="Primary menu" description="" x="517" y="4" width="36" height="46" states="sensitive,showing,visible,enabled"/>
+          </element>
+          <element role="panel" name="" description="" x="5" y="51" width="680" height="632" states="sensitive,showing,visible,enabled">
+            <element role="panel" name="" description="" x="11" y="51" width="668" height="632" states="sensitive,showing,visible,enabled">
+              <element role="filler" name="" description="" x="11" y="251" width="668" height="432" states="sensitive,showing,visible,enabled">
+                <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                  <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                    <element role="combo box" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="menu" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                        <element role="menu" name="Angle" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Degrees" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Radians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Gradians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="menu" name="Length" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Parsecs" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Light Years" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Astronomical Units" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Rack Units" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Nautical Miles" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Miles" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Kilometers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Cables" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Fathoms" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Yards" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Feet" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Inches" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Centimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Millimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Micrometers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Nanometers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Desktop Publishing Point" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="menu" name="Speed" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Kilometers per hour" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Miles per hour" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Meters per second" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Feet per second" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Knots" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="menu" name="Area" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Hectares" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Acres" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Square Foot" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Square Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Square Centimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Square Millimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="menu" name="Volume" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Cubic Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="US Gallons" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Liters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="US Quarts" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="US Pints" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Metric Cups" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Milliliters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Microliters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="menu" name="Mass" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Tonnes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Kilograms" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Pounds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Ounces" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Grams" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Stone" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="menu" name="Duration" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Centuries" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Decades" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Years" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Months" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Weeks" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Days" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Hours" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Minutes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Seconds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Milliseconds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Microseconds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="menu" name="Frequency" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Hertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Kilohertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Megahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Gigahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Terahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="menu" name="Temperature" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Celsius" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Fahrenheit" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Kelvin" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Rankine" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="menu" name="Digital Storage" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Bits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Bytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Nibbles" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Kilobits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Kilobytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Kibibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Kibibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Megabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Megabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Mebibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Mebibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Gigabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Gigabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Gibibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Gibibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Terabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Terabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Tebibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Tebibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Petabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Petabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Pebibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Pebibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Exabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Exabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Exbibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Exbibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Zettabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Zettabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Zebibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Zebibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Yottabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Yottabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Yobibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Yobibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                        <element role="menu" name="Currency" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                          <element role="menu item" name="Algerian Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Australian Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Bahraini Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Bangladeshi Taka" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Botswana Pula" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Brazilian Real" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="British Pound Sterling" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Brunei Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Bulgarian Lev" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Canadian Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="CFA Franc" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Chilean Peso" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Chinese Yuan" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Colombian Peso" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Croatian Kuna" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Czech Koruna" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Danish Krone" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Estonian Kroon" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Euro" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Hong Kong Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Hungarian Forint" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Icelandic Krona" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Indian Rupee" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Indonesian Rupiah" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Iranian Rial" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Israeli New Shekel" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Japanese Yen" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Kazakhstani Tenge" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Kuwaiti Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Libyan Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Malaysian Ringgit" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Mauritian Rupee" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Mexican Peso" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Nepalese Rupee" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="New Romanian Leu" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="New Zealand Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Norwegian Krone" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Omani Rial" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Pakistani Rupee" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Peruvian Nuevo Sol" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Philippine Peso" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Polish Zloty" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Qatari Riyal" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Russian Rouble" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Saudi Riyal" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Serbian Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Singapore Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="South African Rand" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="South Korean Won" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Sri Lankan Rupee" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Swedish Krona" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Swiss Franc" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Thai Baht" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="T&amp;T Dollar (TTD)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Tunisian Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Turkish Lira" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="UAE Dirham" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Uruguayan Peso" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="US Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                          <element role="menu item" name="Venezuelan Bolívar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        </element>
+                      </element>
+                    </element>
+                    <element role="push button" name=" to " description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="combo box" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="menu" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    </element>
+                    <element role="push button" name="⇆" description="Switch conversion units" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                      <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="label" name="=" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    </element>
+                    <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                      <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="label" name="=" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="label" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="toggle button" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    </element>
+                  </element>
+                </element>
+                <element role="filler" name="" description="" x="11" y="251" width="668" height="432" states="sensitive,showing,visible,enabled">
+                  <element role="filler" name="" description="" x="11" y="251" width="668" height="40" states="sensitive,showing,visible,enabled">
+                    <element role="combo box" name="Decimal" description="" x="23" y="257" width="126" height="34" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="" description="" x="23" y="200" width="126" height="124" states="sensitive,showing,visible,enabled">
+                        <element role="menu item" name="Binary" description="" x="23" y="204" width="126" height="29" states="sensitive,showing,visible,enabled"/>
+                        <element role="menu item" name="Octal" description="" x="23" y="233" width="126" height="29" states="sensitive,showing,visible,enabled"/>
+                        <element role="menu item" name="Decimal" description="" x="23" y="262" width="126" height="29" states="selected,focused,sensitive,showing,visible,enabled"/>
+                        <element role="menu item" name="Hexadecimal" description="" x="23" y="291" width="126" height="29" states="sensitive,showing,visible,enabled"/>
+                      </element>
+                    </element>
+                    <element role="panel" name="" description="" x="149" y="257" width="518" height="34" states="sensitive,showing,visible,enabled">
+                      <element role="label" name="0₈ = 0₁₆" description="" x="611" y="257" width="56" height="34" states="sensitive,showing,visible,enabled"/>
+                      <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    </element>
+                    <element role="toggle button" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                  </element>
+                  <element role="filler" name="" description="" x="11" y="291" width="668" height="132" states="sensitive,showing,visible,enabled">
+                    <element role="panel" name="" description="" x="186" y="304" width="318" height="112" states="sensitive,showing,visible,enabled">
+                      <element role="label" name="15" description="" x="186" y="388" width="40" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="label" name="47" description="" x="186" y="332" width="40" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="0" x="451" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="1" x="438" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="2" x="425" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="3" x="412" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="4" x="389" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="5" x="376" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="6" x="363" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="7" x="350" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="8" x="327" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="9" x="314" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="10" x="301" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="11" x="288" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="12" x="265" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="13" x="252" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="14" x="239" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="15" x="226" y="388" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="16" x="451" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="17" x="438" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="18" x="425" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="19" x="412" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="20" x="389" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="21" x="376" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="22" x="363" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="23" x="350" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="24" x="327" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="25" x="314" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="26" x="301" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="27" x="288" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="28" x="265" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="29" x="252" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="30" x="239" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="31" x="226" y="360" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="label" name=" 0" description="" x="464" y="388" width="36" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="label" name="16" description="" x="464" y="360" width="40" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="label" name="32" description="" x="464" y="332" width="40" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="label" name="48" description="" x="464" y="304" width="40" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="label" name="31" description="" x="186" y="360" width="40" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="label" name="63" description="" x="186" y="304" width="40" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="47" x="226" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="46" x="239" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="45" x="252" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="44" x="265" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="43" x="288" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="42" x="301" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="41" x="314" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="40" x="327" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="39" x="350" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="38" x="363" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="37" x="376" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="36" x="389" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="35" x="412" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="34" x="425" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="33" x="438" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="32" x="451" y="332" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="48" x="451" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="49" x="438" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="50" x="425" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="51" x="412" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="52" x="389" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="53" x="376" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="54" x="363" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="55" x="350" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="56" x="327" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="57" x="314" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="58" x="301" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="59" x="288" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="60" x="265" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="61" x="252" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="62" x="239" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="0" description="63" x="226" y="304" width="13" height="28" states="sensitive,showing,visible,enabled"/>
+                    </element>
+                  </element>
+                  <element role="panel" name="" description="" x="11" y="423" width="668" height="260" states="sensitive,showing,visible,enabled">
+                    <element role="panel" name="" description="" x="11" y="423" width="334" height="260" states="sensitive,showing,visible,enabled">
+                      <element role="push button" name=")" description="End Group [)]" x="151" y="435" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="(" description="Start Group [(]" x="87" y="435" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="mod" description="Modulus divide" x="215" y="435" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="," description="" x="279" y="531" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="panel" name="" description="" x="23" y="483" width="188" height="188" states="sensitive,showing,visible,enabled">
+                        <element role="push button" name="F" description="" x="167" y="483" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="E" description="" x="119" y="483" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="D" description="" x="71" y="483" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="C" description="" x="23" y="483" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="B" description="" x="167" y="531" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="A" description="" x="119" y="531" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="9" description="" x="71" y="531" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="8" description="" x="23" y="531" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="7" description="" x="167" y="579" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="6" description="" x="119" y="579" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="5" description="" x="71" y="579" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="4" description="" x="23" y="579" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="3" description="" x="167" y="627" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="2" description="" x="119" y="627" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="1" description="" x="71" y="627" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                        <element role="push button" name="0" description="" x="23" y="627" width="44" height="44" states="sensitive,showing,visible,enabled"/>
+                      </element>
+                      <element role="push button" name="" description="Clear Display [Escape]" x="23" y="435" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="=" description="Calculate Result" x="279" y="579" width="60" height="92" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="+" description="Add [+]" x="215" y="627" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="−" description="Subtract [-]" x="215" y="579" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="×" description="Multiply [*]" x="215" y="531" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="÷" description="Divide [/]" x="215" y="483" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="π" description="Pi [Ctrl+P]" x="279" y="435" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="√" description="Root [Ctrl+R]" x="279" y="483" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                    </element>
+                    <element role="panel" name="" description="" x="345" y="423" width="334" height="260" states="sensitive,showing,visible,enabled">
+                      <element role="toggle button" name="Word Size" description="Change word size" x="543" y="627" width="124" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="toggle button" name="Store" description="Memory" x="351" y="627" width="124" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="Insert Character" description="Insert Character Code" x="543" y="579" width="124" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="Factorize" description="Factorize [Ctrl+F]" x="479" y="627" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="frac" description="Fractional Component" x="479" y="579" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="int" description="Integer Component" x="479" y="531" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="Absolute Value" description="Absolute Value [|]" x="415" y="579" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="Factorial" description="Factorial [!]" x="351" y="579" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="log₂" description="Binary Logarithm" x="543" y="531" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="log" description="Logarithm" x="607" y="531" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="Inverse" description="Inverse [Ctrl+I]" x="415" y="531" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="Exponent" description="Exponent [^ or **]" x="351" y="531" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="twos" description="Two’s Complement" x="415" y="483" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="ones" description="Ones’ Complement" x="351" y="483" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="NOT" description="Boolean NOT" x="479" y="483" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="AND" description="Boolean AND" x="543" y="483" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="OR" description="Boolean OR" x="607" y="483" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="push button" name="XOR" description="Boolean Exclusive OR" x="607" y="435" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="toggle button" name="Shift Right" description="Shift Right" x="543" y="435" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="toggle button" name="Shift Left" description="Shift Left" x="479" y="435" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="toggle button" name="Superscript" description="Superscript mode [Ctrl]" x="415" y="435" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                      <element role="toggle button" name="Subscript" description="Subscript mode [Alt]" x="351" y="435" width="60" height="44" states="sensitive,showing,visible,enabled"/>
+                    </element>
+                  </element>
+                </element>
+                <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                  <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                    <element role="push button" name="=" description="Calculate Result" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="%" description="Percentage [%]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name=")" description="End Group [)]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="(" description="Start Group [(]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="" description="Clear Display [Escape]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="Exponent" description="Square [Ctrl+2]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="√" description="Root [Ctrl+R]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="π" description="Pi [Ctrl+P]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="+" description="Add [+]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="−" description="Subtract [-]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="×" description="Multiply [*]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="3" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="," description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="0" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="2" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="1" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="÷" description="Divide [/]" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="mod" description="Modulus divide" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="6" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="5" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="9" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="8" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="7" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="push button" name="4" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  </element>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="11" y="51" width="668" height="200" states="sensitive,showing,visible,enabled">
+                <element role="scroll pane" name="" description="" x="24" y="64" width="642" height="124" states="sensitive,showing,visible,enabled">
+                  <element role="viewport" name="" description="" x="24" y="64" width="642" height="123" states="sensitive,showing,visible,enabled">
+                    <element role="list box" name="" description="" x="24" y="187" width="642" height="1" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="scroll pane" name="" description="" x="24" y="188" width="642" height="41" states="sensitive,showing,visible,enabled">
+                  <element role="editbar" name="" description="" x="24" y="188" width="642" height="41" states="sensitive,showing,visible,enabled"/>
+                  <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+                <element role="filler" name="" description="" x="24" y="229" width="642" height="21" states="sensitive,showing,visible,enabled">
+                  <element role="text" name="" description="" x="24" y="229" width="642" height="21" states="sensitive,showing,visible,enabled"/>
+                  <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                </element>
+              </element>
+              <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="668" height="52" states="sensitive,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="554" height="34" states="sensitive,visible,enabled">
+                  <element role="combo box" name="Degrees" description="" x="-2147483648" y="-2147483648" width="202" height="34" states="sensitive,visible,enabled">
+                    <element role="menu" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                      <element role="menu" name="Angle" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Degrees" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Radians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Gradians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="menu" name="Length" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Parsecs" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Light Years" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Astronomical Units" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Rack Units" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Nautical Miles" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Miles" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Kilometers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Cables" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Fathoms" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Yards" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Feet" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Inches" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Centimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Millimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Micrometers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Nanometers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Desktop Publishing Point" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="menu" name="Speed" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Kilometers per hour" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Miles per hour" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Meters per second" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Feet per second" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Knots" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="menu" name="Area" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Hectares" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Acres" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Square Foot" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Square Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Square Centimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Square Millimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="menu" name="Volume" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Cubic Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="US Gallons" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Liters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="US Quarts" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="US Pints" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Metric Cups" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Milliliters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Microliters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="menu" name="Mass" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Tonnes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Kilograms" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Pounds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Ounces" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Grams" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Stone" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="menu" name="Duration" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Centuries" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Decades" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Years" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Months" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Weeks" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Days" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Hours" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Minutes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Seconds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Milliseconds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Microseconds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="menu" name="Frequency" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Hertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Kilohertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Megahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Gigahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Terahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="menu" name="Temperature" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Celsius" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Fahrenheit" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Kelvin" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Rankine" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="menu" name="Digital Storage" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Bits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Bytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Nibbles" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Kilobits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Kilobytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Kibibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Kibibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Megabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Megabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Mebibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Mebibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Gigabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Gigabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Gibibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Gibibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Terabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Terabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Tebibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Tebibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Petabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Petabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Pebibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Pebibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Exabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Exabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Exbibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Exbibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Zettabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Zettabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Zebibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Zebibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Yottabits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Yottabytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Yobibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Yobibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                      <element role="menu" name="Currency" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                        <element role="menu item" name="Algerian Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Australian Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Bahraini Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Bangladeshi Taka" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Botswana Pula" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Brazilian Real" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="British Pound Sterling" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Brunei Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Bulgarian Lev" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Canadian Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="CFA Franc" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Chilean Peso" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Chinese Yuan" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Colombian Peso" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Croatian Kuna" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Czech Koruna" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Danish Krone" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Estonian Kroon" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Euro" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Hong Kong Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Hungarian Forint" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Icelandic Krona" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Indian Rupee" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Indonesian Rupiah" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Iranian Rial" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Israeli New Shekel" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Japanese Yen" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Kazakhstani Tenge" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Kuwaiti Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Libyan Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Malaysian Ringgit" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Mauritian Rupee" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Mexican Peso" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Nepalese Rupee" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="New Romanian Leu" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="New Zealand Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Norwegian Krone" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Omani Rial" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Pakistani Rupee" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Peruvian Nuevo Sol" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Philippine Peso" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Polish Zloty" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Qatari Riyal" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Russian Rouble" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Saudi Riyal" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Serbian Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Singapore Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="South African Rand" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="South Korean Won" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Sri Lankan Rupee" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Swedish Krona" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Swiss Franc" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Thai Baht" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="T&amp;T Dollar (TTD)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Tunisian Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Turkish Lira" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="UAE Dirham" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Uruguayan Peso" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="US Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Venezuelan Bolívar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      </element>
+                    </element>
+                  </element>
+                  <element role="push button" name=" to " description="" x="-2147483648" y="-2147483648" width="55" height="34" states="sensitive,visible,enabled"/>
+                  <element role="combo box" name="Radians" description="" x="-2147483648" y="-2147483648" width="98" height="34" states="sensitive,visible,enabled">
+                    <element role="menu" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                      <element role="menu item" name="Degrees" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="menu item" name="Radians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="menu item" name="Gradians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    </element>
+                  </element>
+                  <element role="push button" name="⇆" description="Switch conversion units" x="-2147483648" y="-2147483648" width="50" height="34" states="sensitive,visible,enabled"/>
+                  <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="147" height="17" states="sensitive,visible,enabled">
+                    <element role="label" name="0 degrees" description="" x="-2147483648" y="-2147483648" width="64" height="17" states="sensitive,visible,enabled"/>
+                    <element role="label" name="=" description="" x="-2147483648" y="-2147483648" width="11" height="17" states="sensitive,visible,enabled"/>
+                    <element role="label" name="0 radians" description="" x="-2147483648" y="-2147483648" width="60" height="17" states="sensitive,visible,enabled"/>
+                  </element>
+                  <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                    <element role="label" name="0 degrees" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="label" name="=" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="label" name="0 radians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="toggle button" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  </element>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="176" height="180" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="146" height="150" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="126" height="130" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="126" height="130" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="126" height="130" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="126" height="130" states="sensitive,visible,enabled">
+                  <element role="radio button" name="Basic" description="" x="-2147483648" y="-2147483648" width="126" height="26" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Advanced" description="" x="-2147483648" y="-2147483648" width="126" height="26" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Financial" description="" x="-2147483648" y="-2147483648" width="126" height="26" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Programming" description="" x="-2147483648" y="-2147483648" width="126" height="26" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Keyboard" description="" x="-2147483648" y="-2147483648" width="126" height="26" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="New Window" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Number format" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="radio button" name="Automatic" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Fixed" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Scientific" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="radio button" name="Engineering" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+              <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="push button" name="Preferences" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Keyboard Shortcuts" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="Help" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="push button" name="About Calculator" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                </element>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="push button" name="1 place" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="2 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="3 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="4 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="5 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="6 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="7 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="8 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="9 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="10 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="11 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="12 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="13 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="14 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="15 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="push button" name="1 place" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="2 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="3 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="4 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="5 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="6 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="7 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="8 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="9 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="10 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="11 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="12 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="13 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="14 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="15 places" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="push button" name="64-bit" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="32-bit" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="16-bit" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="push button" name="8-bit" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+        <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+          <element role="scroll pane" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="viewport" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+              <element role="list box" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="list item" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                    <element role="label" name="rand" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  </element>
+                </element>
+              </element>
+            </element>
+            <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          </element>
+          <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+            <element role="text" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            <element role="push button" name="" description="Store value into existing or new variable" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+          </element>
+        </element>
+      </element>
+    </element>
+    <element role="window" name="" description="" x="23" y="200" width="126" height="124" states="sensitive,showing,visible,enabled">
+      <element role="menu" name="" description="" x="23" y="200" width="126" height="124" states="sensitive,showing,visible,enabled">
+        <element role="menu item" name="Binary" description="" x="23" y="204" width="126" height="29" states="sensitive,showing,visible,enabled"/>
+        <element role="menu item" name="Octal" description="" x="23" y="233" width="126" height="29" states="sensitive,showing,visible,enabled"/>
+        <element role="menu item" name="Decimal" description="" x="23" y="262" width="126" height="29" states="selected,focused,sensitive,showing,visible,enabled"/>
+        <element role="menu item" name="Hexadecimal" description="" x="23" y="291" width="126" height="29" states="sensitive,showing,visible,enabled"/>
+      </element>
+    </element>
+  </element>
+</accessibility-tree>

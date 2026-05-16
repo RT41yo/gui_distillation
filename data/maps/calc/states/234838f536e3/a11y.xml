@@ -1,16 +1,16 @@
-<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1778874841.299312">
+<accessibility-tree app_query="gnome-calculator" app_accessible_name="gnome-calculator" captured_at="1778936425.1811028">
   <element role="application" name="gnome-calculator" description="" x="0" y="0" width="0" height="0">
-    <element role="frame" name="Calculator" description="" x="300" y="116" width="690" height="682" states="sensitive,showing,visible,enabled">
+    <element role="frame" name="Calculator" description="" x="0" y="0" width="690" height="682" states="sensitive,showing,visible,enabled">
       <element role="unknown" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
-      <element role="panel" name="" description="" x="305" y="121" width="680" height="672" states="sensitive,showing,visible,enabled">
-        <element role="filler" name="" description="" x="305" y="121" width="680" height="672" states="sensitive,showing,visible,enabled">
-          <element role="panel" name="" description="" x="305" y="121" width="680" height="46" states="sensitive,showing,visible,enabled">
-            <element role="push button" name="Undo" description="Undo [Ctrl+Z]" x="310" y="120" width="68" height="46" states="sensitive,showing,visible,enabled"/>
-            <element role="toggle button" name="Mode selection" description="" x="585" y="120" width="120" height="46" states="sensitive,showing,visible,enabled"/>
-            <element role="toggle button" name="Primary menu" description="" x="817" y="120" width="36" height="46" states="sensitive,showing,visible,enabled"/>
+      <element role="panel" name="" description="" x="5" y="5" width="680" height="672" states="sensitive,showing,visible,enabled">
+        <element role="filler" name="" description="" x="5" y="5" width="680" height="672" states="sensitive,showing,visible,enabled">
+          <element role="panel" name="" description="" x="5" y="5" width="680" height="46" states="sensitive,showing,visible,enabled">
+            <element role="push button" name="Undo" description="Undo [Ctrl+Z]" x="10" y="4" width="68" height="46" states="sensitive,showing,visible,enabled"/>
+            <element role="toggle button" name="Mode selection" description="" x="285" y="4" width="120" height="46" states="sensitive,showing,visible,enabled"/>
+            <element role="toggle button" name="Primary menu" description="" x="517" y="4" width="36" height="46" states="sensitive,showing,visible,enabled"/>
           </element>
-          <element role="panel" name="" description="" x="305" y="167" width="680" height="626" states="sensitive,showing,visible,enabled">
-            <element role="panel" name="" description="" x="311" y="167" width="668" height="626" states="sensitive,showing,visible,enabled">
+          <element role="panel" name="" description="" x="5" y="51" width="680" height="626" states="sensitive,showing,visible,enabled">
+            <element role="panel" name="" description="" x="11" y="51" width="668" height="626" states="sensitive,showing,visible,enabled">
               <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="668" height="432" states="sensitive,enabled">
                 <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
                   <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
@@ -399,34 +399,34 @@
                   </element>
                 </element>
               </element>
-              <element role="filler" name="" description="" x="311" y="219" width="668" height="574" states="sensitive,showing,visible,enabled">
-                <element role="scroll pane" name="" description="" x="324" y="226" width="642" height="492" states="sensitive,showing,visible,enabled">
-                  <element role="viewport" name="" description="" x="324" y="226" width="642" height="491" states="sensitive,showing,visible,enabled">
-                    <element role="list box" name="" description="" x="324" y="717" width="642" height="1" states="sensitive,showing,visible,enabled"/>
+              <element role="filler" name="" description="" x="11" y="103" width="668" height="574" states="sensitive,showing,visible,enabled">
+                <element role="scroll pane" name="" description="" x="24" y="110" width="642" height="492" states="sensitive,showing,visible,enabled">
+                  <element role="viewport" name="" description="" x="24" y="110" width="642" height="491" states="sensitive,showing,visible,enabled">
+                    <element role="list box" name="" description="" x="24" y="601" width="642" height="1" states="sensitive,showing,visible,enabled"/>
                   </element>
                   <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 </element>
-                <element role="scroll pane" name="" description="" x="324" y="718" width="642" height="41" states="sensitive,showing,visible,enabled">
-                  <element role="editbar" name="" description="" x="324" y="718" width="642" height="41" states="sensitive,showing,visible,enabled"/>
+                <element role="scroll pane" name="" description="" x="24" y="602" width="642" height="41" states="sensitive,showing,visible,enabled">
+                  <element role="editbar" name="" description="" x="24" y="602" width="642" height="41" states="sensitive,showing,visible,enabled"/>
                   <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                 </element>
-                <element role="filler" name="" description="" x="324" y="759" width="642" height="21" states="sensitive,showing,visible,enabled">
-                  <element role="text" name="" description="" x="324" y="759" width="642" height="21" states="sensitive,showing,visible,enabled"/>
+                <element role="filler" name="" description="" x="24" y="643" width="642" height="21" states="sensitive,showing,visible,enabled">
+                  <element role="text" name="" description="" x="24" y="643" width="642" height="21" states="sensitive,showing,visible,enabled"/>
                   <element role="animation" name="Spinner" description="Provides visual indication of progress" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
                 </element>
               </element>
-              <element role="panel" name="" description="" x="311" y="167" width="668" height="52" states="sensitive,showing,visible,enabled">
-                <element role="filler" name="" description="" x="368" y="185" width="553" height="34" states="sensitive,showing,visible,enabled">
-                  <element role="combo box" name="Square Foot" description="" x="368" y="185" width="202" height="34" states="sensitive,showing,visible,enabled">
-                    <element role="menu" name="" description="" x="368" y="99" width="202" height="327" states="sensitive,showing,visible,enabled">
-                      <element role="menu" name="Angle" description="" x="368" y="103" width="202" height="29" states="sensitive,showing,visible,enabled">
-                        <element role="menu item" name="Degrees" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                        <element role="menu item" name="Radians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                        <element role="menu item" name="Gradians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+              <element role="panel" name="" description="" x="11" y="51" width="668" height="52" states="sensitive,showing,visible,enabled">
+                <element role="filler" name="" description="" x="68" y="69" width="554" height="34" states="sensitive,showing,visible,enabled">
+                  <element role="combo box" name="Degrees" description="" x="68" y="69" width="202" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="menu" name="" description="" x="68" y="70" width="202" height="327" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="Angle" description="" x="68" y="74" width="202" height="29" states="selected,focused,sensitive,showing,visible,enabled">
+                        <element role="menu item" name="Degrees" description="" x="268" y="74" width="74" height="29" states="sensitive,showing,visible,enabled"/>
+                        <element role="menu item" name="Radians" description="" x="268" y="103" width="74" height="29" states="sensitive,showing,visible,enabled"/>
+                        <element role="menu item" name="Gradians" description="" x="268" y="132" width="74" height="29" states="sensitive,showing,visible,enabled"/>
                       </element>
-                      <element role="menu" name="Length" description="" x="368" y="132" width="202" height="29" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="Length" description="" x="68" y="103" width="202" height="29" states="sensitive,showing,visible,enabled">
                         <element role="menu item" name="Parsecs" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Light Years" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Astronomical Units" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -446,22 +446,22 @@
                         <element role="menu item" name="Nanometers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Desktop Publishing Point" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       </element>
-                      <element role="menu" name="Speed" description="" x="368" y="161" width="202" height="29" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="Speed" description="" x="68" y="132" width="202" height="29" states="sensitive,showing,visible,enabled">
                         <element role="menu item" name="Kilometers per hour" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Miles per hour" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Meters per second" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Feet per second" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Knots" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       </element>
-                      <element role="menu" name="Area" description="" x="368" y="190" width="202" height="29" states="selected,focused,sensitive,showing,visible,enabled">
-                        <element role="menu item" name="Hectares" description="" x="568" y="190" width="145" height="29" states="sensitive,showing,visible,enabled"/>
-                        <element role="menu item" name="Acres" description="" x="568" y="219" width="145" height="29" states="sensitive,showing,visible,enabled"/>
-                        <element role="menu item" name="Square Foot" description="" x="568" y="248" width="145" height="29" states="sensitive,showing,visible,enabled"/>
-                        <element role="menu item" name="Square Meters" description="" x="568" y="277" width="145" height="29" states="sensitive,showing,visible,enabled"/>
-                        <element role="menu item" name="Square Centimeters" description="" x="568" y="306" width="145" height="29" states="sensitive,showing,visible,enabled"/>
-                        <element role="menu item" name="Square Millimeters" description="" x="568" y="335" width="145" height="29" states="sensitive,showing,visible,enabled"/>
+                      <element role="menu" name="Area" description="" x="68" y="161" width="202" height="29" states="sensitive,showing,visible,enabled">
+                        <element role="menu item" name="Hectares" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Acres" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Square Foot" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Square Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Square Centimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                        <element role="menu item" name="Square Millimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       </element>
-                      <element role="menu" name="Volume" description="" x="368" y="219" width="202" height="29" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="Volume" description="" x="68" y="190" width="202" height="29" states="sensitive,showing,visible,enabled">
                         <element role="menu item" name="Cubic Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="US Gallons" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Liters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -471,7 +471,7 @@
                         <element role="menu item" name="Milliliters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Microliters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       </element>
-                      <element role="menu" name="Mass" description="" x="368" y="248" width="202" height="29" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="Mass" description="" x="68" y="219" width="202" height="29" states="sensitive,showing,visible,enabled">
                         <element role="menu item" name="Tonnes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Kilograms" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Pounds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -479,7 +479,7 @@
                         <element role="menu item" name="Grams" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Stone" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       </element>
-                      <element role="menu" name="Duration" description="" x="368" y="277" width="202" height="29" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="Duration" description="" x="68" y="248" width="202" height="29" states="sensitive,showing,visible,enabled">
                         <element role="menu item" name="Centuries" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Decades" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Years" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -492,20 +492,20 @@
                         <element role="menu item" name="Milliseconds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Microseconds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       </element>
-                      <element role="menu" name="Frequency" description="" x="368" y="306" width="202" height="29" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="Frequency" description="" x="68" y="277" width="202" height="29" states="sensitive,showing,visible,enabled">
                         <element role="menu item" name="Hertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Kilohertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Megahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Gigahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Terahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       </element>
-                      <element role="menu" name="Temperature" description="" x="368" y="335" width="202" height="29" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="Temperature" description="" x="68" y="306" width="202" height="29" states="sensitive,showing,visible,enabled">
                         <element role="menu item" name="Celsius" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Fahrenheit" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Kelvin" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Rankine" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       </element>
-                      <element role="menu" name="Digital Storage" description="" x="368" y="364" width="202" height="29" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="Digital Storage" description="" x="68" y="335" width="202" height="29" states="sensitive,showing,visible,enabled">
                         <element role="menu item" name="Bits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Bytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Nibbles" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -542,7 +542,7 @@
                         <element role="menu item" name="Yobibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Yobibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                       </element>
-                      <element role="menu" name="Currency" description="" x="368" y="393" width="202" height="29" states="sensitive,showing,visible,enabled">
+                      <element role="menu" name="Currency" description="" x="68" y="364" width="202" height="29" states="sensitive,showing,visible,enabled">
                         <element role="menu item" name="Algerian Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Australian Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                         <element role="menu item" name="Bahraini Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -606,27 +606,24 @@
                       </element>
                     </element>
                   </element>
-                  <element role="push button" name=" to " description="" x="570" y="185" width="55" height="34" states="sensitive,showing,visible,enabled"/>
-                  <element role="combo box" name="Square Foot" description="" x="625" y="185" width="169" height="34" states="sensitive,showing,visible,enabled">
+                  <element role="push button" name=" to " description="" x="270" y="69" width="55" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="combo box" name="Radians" description="" x="325" y="69" width="98" height="34" states="sensitive,showing,visible,enabled">
                     <element role="menu" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
-                      <element role="menu item" name="Hectares" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="Acres" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="Square Foot" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="Square Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="Square Centimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="Square Millimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="menu item" name="Degrees" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="menu item" name="Radians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                      <element role="menu item" name="Gradians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     </element>
                   </element>
-                  <element role="push button" name="⇆" description="Switch conversion units" x="794" y="185" width="50" height="34" states="sensitive,showing,visible,enabled"/>
-                  <element role="filler" name="" description="" x="844" y="193" width="75" height="17" states="sensitive,showing,visible,enabled">
-                    <element role="label" name="0 ft²" description="" x="844" y="193" width="26" height="17" states="sensitive,showing,visible,enabled"/>
-                    <element role="label" name="=" description="" x="876" y="193" width="11" height="17" states="sensitive,showing,visible,enabled"/>
-                    <element role="label" name="0 ft²" description="" x="893" y="193" width="26" height="17" states="sensitive,showing,visible,enabled"/>
+                  <element role="push button" name="⇆" description="Switch conversion units" x="423" y="69" width="50" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="filler" name="" description="" x="473" y="77" width="147" height="17" states="sensitive,showing,visible,enabled">
+                    <element role="label" name="0 degrees" description="" x="473" y="77" width="64" height="17" states="sensitive,showing,visible,enabled"/>
+                    <element role="label" name="=" description="" x="543" y="77" width="11" height="17" states="sensitive,showing,visible,enabled"/>
+                    <element role="label" name="0 radians" description="" x="560" y="77" width="60" height="17" states="sensitive,showing,visible,enabled"/>
                   </element>
                   <element role="filler" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
-                    <element role="label" name="0 ft²" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="label" name="0 degrees" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="label" name="=" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="label" name="0 ft²" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="label" name="0 radians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="toggle button" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   </element>
                 </element>
@@ -764,14 +761,14 @@
         </element>
       </element>
     </element>
-    <element role="window" name="" description="" x="368" y="99" width="202" height="327" states="sensitive,showing,visible,enabled">
-      <element role="menu" name="" description="" x="368" y="99" width="202" height="327" states="sensitive,showing,visible,enabled">
-        <element role="menu" name="Angle" description="" x="368" y="103" width="202" height="29" states="sensitive,showing,visible,enabled">
-          <element role="menu item" name="Degrees" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-          <element role="menu item" name="Radians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-          <element role="menu item" name="Gradians" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+    <element role="window" name="" description="" x="68" y="70" width="202" height="327" states="sensitive,showing,visible,enabled">
+      <element role="menu" name="" description="" x="68" y="70" width="202" height="327" states="sensitive,showing,visible,enabled">
+        <element role="menu" name="Angle" description="" x="68" y="74" width="202" height="29" states="selected,focused,sensitive,showing,visible,enabled">
+          <element role="menu item" name="Degrees" description="" x="268" y="74" width="74" height="29" states="sensitive,showing,visible,enabled"/>
+          <element role="menu item" name="Radians" description="" x="268" y="103" width="74" height="29" states="sensitive,showing,visible,enabled"/>
+          <element role="menu item" name="Gradians" description="" x="268" y="132" width="74" height="29" states="sensitive,showing,visible,enabled"/>
         </element>
-        <element role="menu" name="Length" description="" x="368" y="132" width="202" height="29" states="sensitive,showing,visible,enabled">
+        <element role="menu" name="Length" description="" x="68" y="103" width="202" height="29" states="sensitive,showing,visible,enabled">
           <element role="menu item" name="Parsecs" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Light Years" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Astronomical Units" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -791,22 +788,22 @@
           <element role="menu item" name="Nanometers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Desktop Publishing Point" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
         </element>
-        <element role="menu" name="Speed" description="" x="368" y="161" width="202" height="29" states="sensitive,showing,visible,enabled">
+        <element role="menu" name="Speed" description="" x="68" y="132" width="202" height="29" states="sensitive,showing,visible,enabled">
           <element role="menu item" name="Kilometers per hour" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Miles per hour" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Meters per second" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Feet per second" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Knots" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
         </element>
-        <element role="menu" name="Area" description="" x="368" y="190" width="202" height="29" states="selected,focused,sensitive,showing,visible,enabled">
-          <element role="menu item" name="Hectares" description="" x="568" y="190" width="145" height="29" states="sensitive,showing,visible,enabled"/>
-          <element role="menu item" name="Acres" description="" x="568" y="219" width="145" height="29" states="sensitive,showing,visible,enabled"/>
-          <element role="menu item" name="Square Foot" description="" x="568" y="248" width="145" height="29" states="sensitive,showing,visible,enabled"/>
-          <element role="menu item" name="Square Meters" description="" x="568" y="277" width="145" height="29" states="sensitive,showing,visible,enabled"/>
-          <element role="menu item" name="Square Centimeters" description="" x="568" y="306" width="145" height="29" states="sensitive,showing,visible,enabled"/>
-          <element role="menu item" name="Square Millimeters" description="" x="568" y="335" width="145" height="29" states="sensitive,showing,visible,enabled"/>
+        <element role="menu" name="Area" description="" x="68" y="161" width="202" height="29" states="sensitive,showing,visible,enabled">
+          <element role="menu item" name="Hectares" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          <element role="menu item" name="Acres" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          <element role="menu item" name="Square Foot" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          <element role="menu item" name="Square Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          <element role="menu item" name="Square Centimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          <element role="menu item" name="Square Millimeters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
         </element>
-        <element role="menu" name="Volume" description="" x="368" y="219" width="202" height="29" states="sensitive,showing,visible,enabled">
+        <element role="menu" name="Volume" description="" x="68" y="190" width="202" height="29" states="sensitive,showing,visible,enabled">
           <element role="menu item" name="Cubic Meters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="US Gallons" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Liters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -816,7 +813,7 @@
           <element role="menu item" name="Milliliters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Microliters" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
         </element>
-        <element role="menu" name="Mass" description="" x="368" y="248" width="202" height="29" states="sensitive,showing,visible,enabled">
+        <element role="menu" name="Mass" description="" x="68" y="219" width="202" height="29" states="sensitive,showing,visible,enabled">
           <element role="menu item" name="Tonnes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Kilograms" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Pounds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -824,7 +821,7 @@
           <element role="menu item" name="Grams" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Stone" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
         </element>
-        <element role="menu" name="Duration" description="" x="368" y="277" width="202" height="29" states="sensitive,showing,visible,enabled">
+        <element role="menu" name="Duration" description="" x="68" y="248" width="202" height="29" states="sensitive,showing,visible,enabled">
           <element role="menu item" name="Centuries" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Decades" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Years" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -837,20 +834,20 @@
           <element role="menu item" name="Milliseconds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Microseconds" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
         </element>
-        <element role="menu" name="Frequency" description="" x="368" y="306" width="202" height="29" states="sensitive,showing,visible,enabled">
+        <element role="menu" name="Frequency" description="" x="68" y="277" width="202" height="29" states="sensitive,showing,visible,enabled">
           <element role="menu item" name="Hertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Kilohertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Megahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Gigahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Terahertz" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
         </element>
-        <element role="menu" name="Temperature" description="" x="368" y="335" width="202" height="29" states="sensitive,showing,visible,enabled">
+        <element role="menu" name="Temperature" description="" x="68" y="306" width="202" height="29" states="sensitive,showing,visible,enabled">
           <element role="menu item" name="Celsius" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Fahrenheit" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Kelvin" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Rankine" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
         </element>
-        <element role="menu" name="Digital Storage" description="" x="368" y="364" width="202" height="29" states="sensitive,showing,visible,enabled">
+        <element role="menu" name="Digital Storage" description="" x="68" y="335" width="202" height="29" states="sensitive,showing,visible,enabled">
           <element role="menu item" name="Bits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Bytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Nibbles" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -887,7 +884,7 @@
           <element role="menu item" name="Yobibits" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Yobibytes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
         </element>
-        <element role="menu" name="Currency" description="" x="368" y="393" width="202" height="29" states="sensitive,showing,visible,enabled">
+        <element role="menu" name="Currency" description="" x="68" y="364" width="202" height="29" states="sensitive,showing,visible,enabled">
           <element role="menu item" name="Algerian Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Australian Dollar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
           <element role="menu item" name="Bahraini Dinar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>

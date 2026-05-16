@@ -9,6 +9,9 @@ import sys
 import time
 from pathlib import Path
 
+import os
+import signal
+
 from ui_explorer.app.launcher import AppLauncher
 from ui_explorer.app.registry import AppRegistry
 from ui_explorer.core.diff import DiffClassifier
@@ -36,22 +39,48 @@ def _launcher_binary(launcher: list[str] | str) -> str:
 
 def _terminate_app(launcher: list[str] | str) -> None:
     """
-    Generic best-effort process termination by exact executable name.
+    Generic best-effort process termination by launcher command line.
 
-    Uses pkill -x instead of pkill -f so that:
-    - gnome-calculator is terminated as before;
-    - nautilus is terminated safely;
-    - the current command `python -m ... --app nautilus` is not killed.
+    We intentionally avoid plain `pkill -f <binary>` because for apps like
+    Nautilus the current command line contains `--app nautilus`, so it may kill
+    this step_edge process.
+
+    We also avoid only `pkill -x` because long process names such as
+    gnome-calculator may be truncated in Linux comm.
     """
+
     binary = _launcher_binary(launcher)
+    current_pid = os.getpid()
 
     try:
-        subprocess.run(
-            ["pkill", "-x", binary],
+        result = subprocess.run(
+            ["pgrep", "-f", binary],
             check=False,
-            stdout=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL,
+            text=True,
         )
+
+        for line in result.stdout.splitlines():
+            line = line.strip()
+            if not line:
+                continue
+
+            try:
+                pid = int(line)
+            except ValueError:
+                continue
+
+            if pid == current_pid:
+                continue
+
+            try:
+                os.kill(pid, signal.SIGTERM)
+            except ProcessLookupError:
+                pass
+            except Exception:
+                logging.exception("Failed to terminate pid=%s", pid)
+
     except Exception:
         logging.exception("App termination failed")
 
