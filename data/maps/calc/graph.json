@@ -15533,12 +15533,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "f7fcc6f359d2",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "f7fcc6f359d2",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 290
     },
     "02ecca42525b:7e5ea0ed078d644c": {
@@ -15569,12 +15575,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "b560e13fb543",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "b560e13fb543",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 291
     },
     "02ecca42525b:14c360d7f24811b3": {
@@ -15605,12 +15617,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "826408f32491",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "826408f32491",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 292
     },
     "02ecca42525b:9704e9aa545ee0bb": {
@@ -15641,12 +15659,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "2ba75e3a500b",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "2ba75e3a500b",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 293
     },
     "cad2903c8e04:2060059c1e8893b7": {
@@ -15677,12 +15701,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "f7fcc6f359d2",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "f7fcc6f359d2",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 294
     },
     "cad2903c8e04:d0082458ee82387c": {
@@ -15715,12 +15745,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "b560e13fb543",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "b560e13fb543",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 295
     },
     "cad2903c8e04:4d0ebe94cc99fb09": {
@@ -15751,12 +15787,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "826408f32491",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "826408f32491",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 296
     },
     "cad2903c8e04:3e3b47477b5408b8": {
@@ -15787,12 +15829,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "2ba75e3a500b",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "2ba75e3a500b",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 297
     },
     "2843c8a4c3b1:b8cb8bc53a69ec69": {
@@ -15823,12 +15871,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "f7fcc6f359d2",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "f7fcc6f359d2",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 298
     },
     "2843c8a4c3b1:1161e8d27f7d4ac4": {
@@ -15859,12 +15913,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "b560e13fb543",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "b560e13fb543",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 299
     },
     "2843c8a4c3b1:82e0bdb74b92c5d2": {
@@ -15895,12 +15955,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "826408f32491",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "826408f32491",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 300
     },
     "2843c8a4c3b1:d9cfab4b46ae4ed9": {
@@ -15933,12 +15999,18 @@
         ],
         "depth": 3
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "2ba75e3a500b",
       "priority": 15,
-      "attempts": 0,
-      "reason": "menu item may navigate, open a dialog, or change UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "2ba75e3a500b",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 301
     },
     "398de162f58a:5d005f2ff66323b9": {
@@ -15971,12 +16043,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "1cbae21a9462",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "1cbae21a9462",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 302
     },
     "398de162f58a:1766cb6adfee3b7c": {
@@ -16009,12 +16087,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "3b4bc848561d",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3b4bc848561d",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 303
     },
     "398de162f58a:94238a358b940224": {
@@ -16051,12 +16135,18 @@
         ],
         "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "02ecca42525b",
       "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "02ecca42525b",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 304
     },
     "398de162f58a:841613d1241d9302": {
@@ -16094,12 +16184,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "4a701cc0ad96",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "4a701cc0ad96",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 305
     },
     "398de162f58a:c3c2d21f99912054": {
@@ -16137,12 +16233,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "ce2496d822d6",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "ce2496d822d6",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 306
     },
     "398de162f58a:78769c6dadf44ace": {
@@ -16180,12 +16282,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "de52c438ef75",
       "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "de52c438ef75",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 307
     },
     "398de162f58a:5b298320b631a126": {
@@ -16223,12 +16331,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 308
     },
     "398de162f58a:0a6dba8ac0956471": {
@@ -16266,12 +16380,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 309
     },
     "398de162f58a:df5b900297593ccb": {
@@ -16310,12 +16430,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "f7fcc6f359d2",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "f7fcc6f359d2",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 310
     },
     "398de162f58a:a148f8e335770f5e": {
@@ -16353,12 +16479,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "e209c9aba7da",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "e209c9aba7da",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 311
     },
     "e209c9aba7da:5d005f2ff66323b9": {
@@ -16391,12 +16523,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "1cbae21a9462",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "1cbae21a9462",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 312
     },
     "e209c9aba7da:1766cb6adfee3b7c": {
@@ -16429,12 +16567,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "3b4bc848561d",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3b4bc848561d",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 313
     },
     "e209c9aba7da:94238a358b940224": {
@@ -16471,12 +16615,18 @@
         ],
         "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "02ecca42525b",
       "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "02ecca42525b",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 314
     },
     "e209c9aba7da:841613d1241d9302": {
@@ -16514,12 +16664,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "4a701cc0ad96",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "4a701cc0ad96",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 315
     },
     "e209c9aba7da:c3c2d21f99912054": {
@@ -16557,12 +16713,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "ce2496d822d6",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "ce2496d822d6",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 316
     },
     "e209c9aba7da:78769c6dadf44ace": {
@@ -16600,12 +16762,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "de52c438ef75",
       "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "de52c438ef75",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 317
     },
     "e209c9aba7da:5b298320b631a126": {
@@ -16643,12 +16811,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 318
     },
     "e209c9aba7da:0a6dba8ac0956471": {
@@ -16686,12 +16860,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 319
     },
     "e209c9aba7da:4cc10ff62834d14a": {
@@ -16729,12 +16909,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "398de162f58a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "398de162f58a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 320
     },
     "e209c9aba7da:9ea3d62f73a6d2e3": {
@@ -16773,12 +16959,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "f7fcc6f359d2",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "f7fcc6f359d2",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 321
     },
     "307e876b9733:5d005f2ff66323b9": {
@@ -16811,12 +17003,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "1cbae21a9462",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "1cbae21a9462",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 322
     },
     "307e876b9733:1766cb6adfee3b7c": {
@@ -16849,12 +17047,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "3b4bc848561d",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3b4bc848561d",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 323
     },
     "307e876b9733:bd312d625b395626": {
@@ -16891,12 +17095,18 @@
         ],
         "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "cad2903c8e04",
       "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "cad2903c8e04",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 324
     },
     "307e876b9733:841613d1241d9302": {
@@ -16934,12 +17144,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "4a701cc0ad96",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "4a701cc0ad96",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 325
     },
     "307e876b9733:c3c2d21f99912054": {
@@ -16977,12 +17193,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "ce2496d822d6",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "ce2496d822d6",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 326
     },
     "307e876b9733:78769c6dadf44ace": {
@@ -17020,12 +17242,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "de52c438ef75",
       "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "de52c438ef75",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 327
     },
     "307e876b9733:5b298320b631a126": {
@@ -17063,12 +17291,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 328
     },
     "307e876b9733:0a6dba8ac0956471": {
@@ -17106,12 +17340,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 329
     },
     "307e876b9733:df5b900297593ccb": {
@@ -17150,12 +17390,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "b560e13fb543",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "b560e13fb543",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 330
     },
     "307e876b9733:a148f8e335770f5e": {
@@ -17193,12 +17439,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "6f540d3b58d1",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "6f540d3b58d1",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 331
     },
     "6f540d3b58d1:5d005f2ff66323b9": {
@@ -17231,12 +17483,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "1cbae21a9462",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "1cbae21a9462",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 332
     },
     "6f540d3b58d1:1766cb6adfee3b7c": {
@@ -17269,12 +17527,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "3b4bc848561d",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3b4bc848561d",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 333
     },
     "6f540d3b58d1:bd312d625b395626": {
@@ -17311,12 +17575,18 @@
         ],
         "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "cad2903c8e04",
       "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "cad2903c8e04",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 334
     },
     "6f540d3b58d1:841613d1241d9302": {
@@ -17354,12 +17624,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "4a701cc0ad96",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "4a701cc0ad96",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 335
     },
     "6f540d3b58d1:c3c2d21f99912054": {
@@ -17397,12 +17673,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "ce2496d822d6",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "ce2496d822d6",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 336
     },
     "6f540d3b58d1:78769c6dadf44ace": {
@@ -17440,12 +17722,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "de52c438ef75",
       "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "de52c438ef75",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 337
     },
     "6f540d3b58d1:5b298320b631a126": {
@@ -17483,12 +17771,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 338
     },
     "6f540d3b58d1:0a6dba8ac0956471": {
@@ -17526,12 +17820,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 339
     },
     "6f540d3b58d1:4cc10ff62834d14a": {
@@ -17569,12 +17869,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "307e876b9733",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "307e876b9733",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 340
     },
     "6f540d3b58d1:9ea3d62f73a6d2e3": {
@@ -17613,12 +17919,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "b560e13fb543",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "b560e13fb543",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 341
     },
     "33b5b6d4a342:5d005f2ff66323b9": {
@@ -17651,12 +17963,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "1cbae21a9462",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "1cbae21a9462",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 342
     },
     "33b5b6d4a342:1766cb6adfee3b7c": {
@@ -17689,12 +18007,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "3b4bc848561d",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3b4bc848561d",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 343
     },
     "33b5b6d4a342:992777b7355d2a58": {
@@ -17731,12 +18055,18 @@
         ],
         "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "2843c8a4c3b1",
       "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "2843c8a4c3b1",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 344
     },
     "33b5b6d4a342:841613d1241d9302": {
@@ -17774,12 +18104,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "4a701cc0ad96",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "4a701cc0ad96",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 345
     },
     "33b5b6d4a342:c3c2d21f99912054": {
@@ -17817,12 +18153,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "ce2496d822d6",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "ce2496d822d6",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 346
     },
     "33b5b6d4a342:78769c6dadf44ace": {
@@ -17860,12 +18202,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "de52c438ef75",
       "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "de52c438ef75",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 347
     },
     "33b5b6d4a342:5b298320b631a126": {
@@ -17903,12 +18251,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 348
     },
     "33b5b6d4a342:0a6dba8ac0956471": {
@@ -17946,12 +18300,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 349
     },
     "33b5b6d4a342:df5b900297593ccb": {
@@ -17990,12 +18350,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "2ba75e3a500b",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "2ba75e3a500b",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 350
     },
     "33b5b6d4a342:a148f8e335770f5e": {
@@ -18033,12 +18399,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "e801a339ab7f",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "e801a339ab7f",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 351
     },
     "e801a339ab7f:5d005f2ff66323b9": {
@@ -18071,12 +18443,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "1cbae21a9462",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "1cbae21a9462",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 352
     },
     "e801a339ab7f:1766cb6adfee3b7c": {
@@ -18109,12 +18487,18 @@
         ],
         "depth": 5
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "3b4bc848561d",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3b4bc848561d",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 353
     },
     "e801a339ab7f:992777b7355d2a58": {
@@ -18151,12 +18535,18 @@
         ],
         "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "2843c8a4c3b1",
       "priority": 10,
-      "attempts": 0,
-      "reason": "combo box commonly opens or switches UI context",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "2843c8a4c3b1",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 354
     },
     "e801a339ab7f:841613d1241d9302": {
@@ -18194,12 +18584,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "4a701cc0ad96",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "4a701cc0ad96",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 355
     },
     "e801a339ab7f:c3c2d21f99912054": {
@@ -18237,12 +18633,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "ce2496d822d6",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "ce2496d822d6",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 356
     },
     "e801a339ab7f:78769c6dadf44ace": {
@@ -18280,12 +18682,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "de52c438ef75",
       "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "de52c438ef75",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 357
     },
     "e801a339ab7f:5b298320b631a126": {
@@ -18323,12 +18731,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 358
     },
     "e801a339ab7f:0a6dba8ac0956471": {
@@ -18366,12 +18780,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "65aaed04088a",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "65aaed04088a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 359
     },
     "e801a339ab7f:4cc10ff62834d14a": {
@@ -18409,12 +18829,18 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "33b5b6d4a342",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "33b5b6d4a342",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 360
     },
     "e801a339ab7f:9ea3d62f73a6d2e3": {
@@ -18453,18 +18879,24 @@
         ],
         "depth": 10
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "2ba75e3a500b",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "2ba75e3a500b",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 361
     }
   },
   "completion": {
-    "status": "partial",
-    "pending_edges": 72,
-    "reason": "pending_edges_exist"
+    "status": "complete",
+    "pending_edges": 0,
+    "reason": "no_pending_edges"
   }
 }
