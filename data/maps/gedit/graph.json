@@ -210,12 +210,18 @@
         ],
         "depth": 4
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "e3bf0e978ed8",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "e3bf0e978ed8",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 2
     },
     "251ffe64e49e:a22d80f91cd8bf06": {
@@ -248,18 +254,24 @@
         ],
         "depth": 4
       },
-      "status": "pending",
-      "to_state": null,
+      "status": "confirmed",
+      "to_state": "e3bf0e978ed8",
       "priority": 20,
-      "attempts": 0,
-      "reason": "toggle button may reveal, select, or switch UI structure",
-      "observed": null,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "e3bf0e978ed8",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 3
     }
   },
   "completion": {
-    "status": "partial",
-    "pending_edges": 2,
-    "reason": "pending_edges_exist"
+    "status": "complete",
+    "pending_edges": 0,
+    "reason": "no_pending_edges"
   }
 }
