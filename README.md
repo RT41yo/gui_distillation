@@ -561,7 +561,7 @@ pytest -q
 Ожидаемый текущий результат:
 
 ```text
-32 passed
+41 passed
 ```
 
 ---
@@ -774,36 +774,230 @@ graph_interactive.html полный интерактивный Cytoscape.js grap
 
 ---
 
-## 23. Использование graph.json как карты для Computer-use агента
+## 23. Agent-facing UI map
 
-`graph.json` рассматривается как статическая карта GUI-состояний приложения. Он строится один раз во время exploration, а затем может использоваться Computer-use агентом как внешняя навигационная память.
-
-Рекомендуемая архитектура:
+Для Computer-use агента сырой `graph.json` слишком подробный и содержит только проверенные переходы. Поэтому добавлен компактный файл:
 
 ```text
-graph.json
-  ↓
-Graph Memory / MCP-tool API
-  ↓
-Computer-use agent
+data/maps/<app>/agent_map.json
 ```
 
-Модель не должна читать весь `graph.json` как prompt. Вместо этого graph-tool должен отдавать компактные и точные ответы:
+Он строится из:
 
 ```text
-inspect_graph(app)
-identify_state(current_a11y_xml)
-get_state(state_id)
-get_actions(state_id)
-find_path(from_state, to_state)
-next_step(current_state, goal)
-get_frontier(depth)
+data/maps/<app>/graph.json
+data/maps/<app>/states/*/a11y.xml
 ```
 
-Для управления GUI важно выполнять не semantic search по всему JSON, а детерминированную навигацию по confirmed edges:
+Разделение такое:
 
 ```text
-current A11Y snapshot → state_id → confirmed path → live action lookup → click → verify expected state
+graph.json      — внутренний граф exploration / source of truth
+agent_map.json  — компактная карта для агента
 ```
 
-RAG может использоваться только как дополнительный semantic layer для поиска целей по человеческим описаниям, например `binary mode`, `hexadecimal`, `unit conversion`. После выбора цели путь должен строиться строго по графу.
+### Зачем нужен agent_map.json
+
+Текущий граф Calculator завершён в рамках A11Y macro-action policy:
+
+```text
+nodes: 61
+edges: 362
+confirmed: 347
+same_state: 15
+pending: 0
+failed_navigation: 0
+max_depth: 7
+```
+
+Но часть важных UI-элементов есть в A11Y-снимках, хотя не стала проверенными переходами графа. Например:
+
+```text
+Frequency
+Hertz
+Currency
+Australian Dollar
+Periodic Payment
+Periodic Interest Rate
+```
+
+`agent_map.json` сохраняет такие элементы как знания об интерфейсе, не выдавая агенту плохие координаты.
+
+### Структура
+
+В каждом состоянии есть два основных блока:
+
+```text
+verified_actions — проверенные действия с переходами
+observed_items   — найденные, но непроверенные UI-элементы
+```
+
+Пример `verified_actions`:
+
+```json
+{
+  "role": "combo box",
+  "name": "Decimal",
+  "status": "verified",
+  "method": "bbox_click",
+  "bbox": [23, 257, 126, 34],
+  "to_state": "..."
+}
+```
+
+Пример `observed_items`:
+
+```json
+{
+  "role": "menu item",
+  "name": "Hertz",
+  "status": "observed_unverified",
+  "states": ["enabled", "sensitive", "visible"],
+  "parent_path_tail": ["filler", "combo box", "menu", "menu/Frequency"]
+}
+```
+
+Важно: для `observed_items` поле `bbox` не записывается. Если элемент не был проверен как исполняемый переход, агент не получает ни `bbox: null`, ни невалидные координаты вида `[-2147483648, ...]`.
+
+### Команды
+
+Построить карту:
+
+```bash
+python -m ui_explorer.cli.build_agent_map --app calc
+```
+
+Ожидаемый результат:
+
+```json
+{
+  "ok": true,
+  "app_id": "calc",
+  "output": "data/maps/calc/agent_map.json",
+  "states": 61,
+  "edges": 362,
+  "item_index": 299
+}
+```
+
+Посмотреть summary:
+
+```bash
+python -m ui_explorer.cli.inspect_agent_map --app calc
+```
+
+Поиск по подстроке:
+
+```bash
+python -m ui_explorer.cli.inspect_agent_map --app calc --query Hertz
+```
+
+Точный поиск:
+
+```bash
+python -m ui_explorer.cli.inspect_agent_map --app calc --query Hertz --exact
+```
+
+Поиск с деталями:
+
+```bash
+python -m ui_explorer.cli.inspect_agent_map \
+  --app calc \
+  --query Hertz \
+  --exact \
+  --details \
+  --limit 5
+```
+
+Посмотреть конкретное состояние:
+
+```bash
+python -m ui_explorer.cli.inspect_agent_map \
+  --app calc \
+  --state e14ee107e46f
+```
+
+### Проверка формата
+
+Убедиться, что `observed_items` не содержат `bbox`:
+
+```bash
+python - <<'PY'
+import json
+from pathlib import Path
+
+m = json.loads(Path("data/maps/calc/agent_map.json").read_text())
+
+bad = []
+for sid, state in m["states"].items():
+    for item in state.get("observed_items", []):
+        if "bbox" in item:
+            bad.append((sid, item))
+
+print("observed_items_with_bbox:", len(bad))
+assert not bad
+PY
+```
+
+Проверить, что verified actions имеют bbox, если он подтверждён:
+
+```bash
+python - <<'PY'
+import json
+from pathlib import Path
+
+m = json.loads(Path("data/maps/calc/agent_map.json").read_text())
+
+with_bbox = 0
+without_bbox = 0
+
+for state in m["states"].values():
+    for item in state.get("verified_actions", []):
+        if "bbox" in item:
+            with_bbox += 1
+        else:
+            without_bbox += 1
+
+print("verified_with_bbox:", with_bbox)
+print("verified_without_bbox:", without_bbox)
+PY
+```
+
+### Интерпретация для агента
+
+Агент должен читать карту так:
+
+```text
+verified_actions — можно использовать для навигации по графу.
+observed_items   — знания о возможностях UI, но не готовые проверенные переходы.
+```
+
+Например `Hertz` как `observed_unverified` означает: элемент известен и относится к `Frequency`, но текущий граф не содержит проверенного bbox-click перехода для его выбора.
+
+### Ограничения
+
+`agent_map.json` улучшает семантическое покрытие, но пока не исполняет latent/invalid-bbox элементы.
+
+Оставшиеся задачи:
+
+```text
+- extended policy для видимых push buttons;
+- классификация push buttons на function/content/tool/window-control;
+- обработка content-only transitions без раздувания графа;
+- keyboard navigation для menu/list items с плохим bbox;
+- capability summaries поверх observed_items и verified_actions.
+```
+
+### Тесты
+
+Проверить новые тесты:
+
+```bash
+pytest tests/unit/test_build_agent_map.py tests/unit/test_inspect_agent_map.py -q
+```
+
+Проверить всё:
+
+```bash
+pytest -q
+```
