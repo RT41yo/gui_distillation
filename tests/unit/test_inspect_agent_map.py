@@ -9,8 +9,37 @@ from ui_explorer.cli.inspect_agent_map import (
 
 def _fake_agent_map():
     return {
+        "schema_version": "1.1",
         "app_id": "calc",
         "root_state_id": "root",
+        "items": {
+            "hertz_item": {
+                "item_id": "hertz_item",
+                "name": "Hertz",
+                "role": "menu item",
+                "description": "",
+                "status": "observed_unverified",
+                "states": ["enabled", "showing", "visible"],
+                "parent_path_tail": [
+                    "combo box",
+                    "menu",
+                    "menu/Frequency",
+                ],
+            },
+            "kilohertz_item": {
+                "item_id": "kilohertz_item",
+                "name": "Kilohertz",
+                "role": "menu item",
+                "description": "",
+                "status": "observed_unverified",
+                "states": ["enabled", "showing", "visible"],
+                "parent_path_tail": [
+                    "combo box",
+                    "menu",
+                    "menu/Frequency",
+                ],
+            },
+        },
         "item_index": {
             "hertz_id": {
                 "name": "Hertz",
@@ -64,30 +93,16 @@ def _fake_agent_map():
                 ],
                 "observed_items": [
                     {
-                        "item_id": "hertz_occurrence",
+                        "ref": "hertz_item",
                         "role": "menu item",
                         "name": "Hertz",
                         "description": "",
-                        "status": "observed_unverified",
-                        "states": ["enabled", "visible"],
-                        "parent_path_tail": [
-                            "combo box",
-                            "menu",
-                            "menu/Frequency",
-                        ],
                     },
                     {
-                        "item_id": "kilohertz_occurrence",
+                        "ref": "kilohertz_item",
                         "role": "menu item",
                         "name": "Kilohertz",
                         "description": "",
-                        "status": "observed_unverified",
-                        "states": ["enabled", "visible"],
-                        "parent_path_tail": [
-                            "combo box",
-                            "menu",
-                            "menu/Frequency",
-                        ],
                     },
                 ],
             },
@@ -103,16 +118,10 @@ def _fake_agent_map():
                 "verified_actions": [],
                 "observed_items": [
                     {
-                        "item_id": "hertz_occurrence_2",
+                        "ref": "hertz_item",
                         "role": "menu item",
                         "name": "Hertz",
                         "description": "",
-                        "status": "observed_unverified",
-                        "states": ["enabled", "visible"],
-                        "parent_path_tail": [
-                            "menu",
-                            "menu/Frequency",
-                        ],
                     }
                 ],
             },
@@ -180,11 +189,38 @@ def test_find_state_details_returns_matching_items():
 
     assert details[0]["state_id"] == "root"
     assert details[0]["section"] == "observed_items"
+    assert details[0]["item"]["item_id"] == "hertz_item"
     assert details[0]["item"]["name"] == "Hertz"
+    assert details[0]["item"]["status"] == "observed_unverified"
+    assert details[0]["item"]["parent_path_tail"] == [
+        "combo box",
+        "menu",
+        "menu/Frequency",
+    ]
 
     assert details[1]["state_id"] == "frequency_state"
     assert details[1]["section"] == "observed_items"
+    assert details[1]["item"]["item_id"] == "hertz_item"
     assert details[1]["item"]["name"] == "Hertz"
+
+
+def test_find_state_details_returns_verified_actions():
+    agent_map = _fake_agent_map()
+
+    details = _find_state_details(
+        agent_map,
+        "Decimal",
+        exact=True,
+        limit=10,
+    )
+
+    assert len(details) == 1
+
+    assert details[0]["state_id"] == "root"
+    assert details[0]["section"] == "verified_actions"
+    assert details[0]["item"]["edge_id"] == "root:decimal"
+    assert details[0]["item"]["name"] == "Decimal"
+    assert details[0]["item"]["status"] == "verified"
 
 
 def test_state_summary_for_existing_state():
@@ -200,6 +236,20 @@ def test_state_summary_for_existing_state():
     assert summary["verified_actions"][0]["name"] == "Decimal"
     assert summary["verified_actions"][0]["has_bbox"] is True
     assert summary["observed_items_total"] == 2
+
+    observed = summary["observed_items_preview"]
+
+    assert observed[0]["item_id"] == "hertz_item"
+    assert observed[0]["name"] == "Hertz"
+    assert observed[0]["status"] == "observed_unverified"
+    assert observed[0]["parent_path_tail"] == [
+        "combo box",
+        "menu",
+        "menu/Frequency",
+    ]
+
+    assert observed[1]["item_id"] == "kilohertz_item"
+    assert observed[1]["name"] == "Kilohertz"
 
 
 def test_state_summary_for_missing_state():
