@@ -1,0 +1,2172 @@
+{
+  "schema_version": "1.2",
+  "kind": "ui_explorer_agent_map",
+  "app_id": "gedit",
+  "root_state_id": "e3bf0e978ed8",
+  "usage_notes": {
+    "verified_actions": "Actions confirmed by exploration. Use these for graph-based navigation and verified transitions.",
+    "incoming_actions": "Verified actions from other states that lead into this state. Use these to understand how a state was opened or reached.",
+    "primary_incoming_action": "Preferred incoming action for understanding the main way this state is reached. Chosen generically by shallowest non-self incoming source, then created_order. Root state has no primary incoming action.",
+    "items": "Canonical observed item definitions keyed by item_id. These items are observed as showing in saved A11Y state snapshots. They are not confirmed execution paths.",
+    "states.observed_items": "Per-state short references to top-level items. This is the complete visible observed context for the state.",
+    "states.delta_observed_items": "Diagnostic hint: observed item refs that are new relative to the state's nearest incoming source state. This is not a complete description of the state.",
+    "states.scoped_observed_items": "Best-effort important/scoped observed refs. Without an exact active-root selector in graph.json, overlay/menu states use delta hints when available and are marked with confidence.",
+    "states.state_capabilities": "Agent-facing list combining verified actions and scoped observed items. If scoped_observed_confidence is low, observed fallback items are not included; only delta hints are added."
+  },
+  "summary": {
+    "states": 3,
+    "edges": 4,
+    "edge_status_counts": {
+      "confirmed": 4
+    },
+    "node_depth_counts": {
+      "0": 1,
+      "1": 2
+    },
+    "max_depth": 1,
+    "pending_edges": 0,
+    "completion": {
+      "status": "complete",
+      "pending_edges": 0,
+      "reason": "no_pending_edges"
+    },
+    "items": 26,
+    "observed_item_refs": 36,
+    "delta_observed_item_refs": 19,
+    "scoped_observed_item_refs": 29,
+    "state_capabilities": 33
+  },
+  "items": {
+    "c71ca7c67b1e2fce": {
+      "item_id": "c71ca7c67b1e2fce",
+      "role": "check box",
+      "name": "Fullscreen",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        786,
+        74,
+        72,
+        34
+      ]
+    },
+    "92e6267a3e7b68c1": {
+      "item_id": "92e6267a3e7b68c1",
+      "role": "push button",
+      "name": "About Text Editor",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        465,
+        215,
+        26
+      ]
+    },
+    "4fa64770b634d376": {
+      "item_id": "4fa64770b634d376",
+      "role": "push button",
+      "name": "Clear Highlight",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        262,
+        215,
+        26
+      ]
+    },
+    "e451d7705369327d": {
+      "item_id": "e451d7705369327d",
+      "role": "push button",
+      "name": "Close",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "frame/Untitled Document 1 - gedit",
+        "split pane",
+        "panel",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        861,
+        11,
+        34,
+        30
+      ]
+    },
+    "84ed34fc496aa27c": {
+      "item_id": "84ed34fc496aa27c",
+      "role": "push button",
+      "name": "Find and Replace…",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        236,
+        215,
+        26
+      ]
+    },
+    "afc15fc9c7d8e102": {
+      "item_id": "afc15fc9c7d8e102",
+      "role": "push button",
+      "name": "Find…",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        210,
+        215,
+        26
+      ]
+    },
+    "0b25fc1ef398d097": {
+      "item_id": "0b25fc1ef398d097",
+      "role": "push button",
+      "name": "Go to Line…",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        288,
+        215,
+        26
+      ]
+    },
+    "c3fd144835bb0d43": {
+      "item_id": "c3fd144835bb0d43",
+      "role": "push button",
+      "name": "Help",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        439,
+        215,
+        26
+      ]
+    },
+    "6dd7c2039c865176": {
+      "item_id": "6dd7c2039c865176",
+      "role": "push button",
+      "name": "Keyboard Shortcuts",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        413,
+        215,
+        26
+      ]
+    },
+    "ef7022352a3486c0": {
+      "item_id": "ef7022352a3486c0",
+      "role": "push button",
+      "name": "Maximize",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "frame/Untitled Document 1 - gedit",
+        "split pane",
+        "panel",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        821,
+        11,
+        34,
+        30
+      ]
+    },
+    "580be8d92aa24d3d": {
+      "item_id": "580be8d92aa24d3d",
+      "role": "push button",
+      "name": "Minimize",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "frame/Untitled Document 1 - gedit",
+        "split pane",
+        "panel",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        781,
+        11,
+        34,
+        30
+      ]
+    },
+    "8c64bf8aa787eeab": {
+      "item_id": "8c64bf8aa787eeab",
+      "role": "push button",
+      "name": "New",
+      "description": "Create a new document",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "application/gedit",
+        "frame/Untitled Document 1 - gedit",
+        "split pane",
+        "panel"
+      ],
+      "visible_bbox_hint": [
+        105,
+        3,
+        36,
+        46
+      ]
+    },
+    "81976804a5d70e7f": {
+      "item_id": "81976804a5d70e7f",
+      "role": "push button",
+      "name": "New Window",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        118,
+        215,
+        26
+      ]
+    },
+    "70a8bf65ae883b01": {
+      "item_id": "70a8bf65ae883b01",
+      "role": "push button",
+      "name": "Other Documents…",
+      "description": "Open another file",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "application/gedit",
+        "frame/Untitled Document 1 - gedit",
+        "panel",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        29,
+        412,
+        400,
+        34
+      ]
+    },
+    "b87882c20ad07a69": {
+      "item_id": "b87882c20ad07a69",
+      "role": "push button",
+      "name": "Preferences",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        380,
+        215,
+        26
+      ]
+    },
+    "0810702aa98ec4ff": {
+      "item_id": "0810702aa98ec4ff",
+      "role": "push button",
+      "name": "Print…",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "focused",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        715,
+        74,
+        71,
+        34
+      ]
+    },
+    "efd853cff69b6af9": {
+      "item_id": "efd853cff69b6af9",
+      "role": "push button",
+      "name": "Reload",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        74,
+        72,
+        34
+      ]
+    },
+    "0d12c46def749942": {
+      "item_id": "0d12c46def749942",
+      "role": "push button",
+      "name": "Save",
+      "description": "Save the current file",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "application/gedit",
+        "frame/Untitled Document 1 - gedit",
+        "split pane",
+        "panel"
+      ],
+      "visible_bbox_hint": [
+        660,
+        3,
+        66,
+        46
+      ]
+    },
+    "0e7a8b78e165b7c0": {
+      "item_id": "0e7a8b78e165b7c0",
+      "role": "push button",
+      "name": "Save All",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        177,
+        215,
+        26
+      ]
+    },
+    "310b9f48e9df659a": {
+      "item_id": "310b9f48e9df659a",
+      "role": "push button",
+      "name": "Save As…",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        151,
+        215,
+        26
+      ]
+    },
+    "082b35d59fa56761": {
+      "item_id": "082b35d59fa56761",
+      "role": "push button",
+      "name": "Tools",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        347,
+        215,
+        26
+      ]
+    },
+    "8e0b1bee3d68b4d9": {
+      "item_id": "8e0b1bee3d68b4d9",
+      "role": "push button",
+      "name": "View",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "filler",
+        "filler",
+        "filler"
+      ],
+      "visible_bbox_hint": [
+        643,
+        321,
+        215,
+        26
+      ]
+    },
+    "a6abfa4e7620c5b4": {
+      "item_id": "a6abfa4e7620c5b4",
+      "role": "table cell",
+      "name": "/home/gui_exploration/Desktop",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "scroll pane",
+        "table",
+        "table cell"
+      ]
+    },
+    "6a8a8ab907bf4ad9": {
+      "item_id": "6a8a8ab907bf4ad9",
+      "role": "table cell",
+      "name": "claude_start",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "filler",
+        "scroll pane",
+        "table",
+        "table cell"
+      ],
+      "visible_bbox_hint": [
+        32,
+        115,
+        398,
+        55
+      ]
+    },
+    "851448a555ea7134": {
+      "item_id": "851448a555ea7134",
+      "role": "toggle button",
+      "name": "Menu",
+      "description": "",
+      "status": "observed_unverified",
+      "states": [
+        "checked",
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "application/gedit",
+        "frame/Untitled Document 1 - gedit",
+        "split pane",
+        "panel"
+      ],
+      "visible_bbox_hint": [
+        732,
+        3,
+        36,
+        46
+      ]
+    },
+    "08c05abce0f47137": {
+      "item_id": "08c05abce0f47137",
+      "role": "toggle button",
+      "name": "Open",
+      "description": "Open a file",
+      "status": "observed_unverified",
+      "states": [
+        "enabled",
+        "sensitive",
+        "showing",
+        "visible"
+      ],
+      "parent_path_tail": [
+        "application/gedit",
+        "frame/Untitled Document 1 - gedit",
+        "split pane",
+        "panel"
+      ],
+      "visible_bbox_hint": [
+        15,
+        3,
+        84,
+        46
+      ]
+    }
+  },
+  "states": {
+    "e3bf0e978ed8": {
+      "state_id": "e3bf0e978ed8",
+      "label": "Untitled Document 1 - gedit",
+      "depth": 0,
+      "active_root": {
+        "kind": "main",
+        "role": "frame",
+        "name": "Untitled Document 1 - gedit"
+      },
+      "primary_incoming_action": null,
+      "incoming_actions": [
+        {
+          "from_state": "251ffe64e49e",
+          "from_depth": 1,
+          "edge_id": "251ffe64e49e:ed8afc773597e49c",
+          "action_key": "ed8afc773597e49c",
+          "role": "toggle button",
+          "name": "Menu",
+          "description": "",
+          "edge_status": "confirmed",
+          "method": "bbox_click",
+          "created_order": 2,
+          "bbox": [
+            732,
+            3,
+            36,
+            46
+          ]
+        },
+        {
+          "from_state": "251ffe64e49e",
+          "from_depth": 1,
+          "edge_id": "251ffe64e49e:a22d80f91cd8bf06",
+          "action_key": "a22d80f91cd8bf06",
+          "role": "toggle button",
+          "name": "Open",
+          "description": "Open a file",
+          "edge_status": "confirmed",
+          "method": "bbox_click",
+          "created_order": 3,
+          "bbox": [
+            15,
+            3,
+            84,
+            46
+          ]
+        }
+      ],
+      "verified_actions": [
+        {
+          "edge_id": "e3bf0e978ed8:ed8afc773597e49c",
+          "action_key": "ed8afc773597e49c",
+          "role": "toggle button",
+          "name": "Menu",
+          "description": "",
+          "status": "verified",
+          "method": "bbox_click",
+          "from_depth": 0,
+          "edge_status": "confirmed",
+          "to_state": "d0e0b61bd22c",
+          "bbox": [
+            732,
+            3,
+            36,
+            46
+          ]
+        },
+        {
+          "edge_id": "e3bf0e978ed8:da0116d96b96c04c",
+          "action_key": "da0116d96b96c04c",
+          "role": "toggle button",
+          "name": "Open",
+          "description": "Open a file",
+          "status": "verified",
+          "method": "bbox_click",
+          "from_depth": 0,
+          "edge_status": "confirmed",
+          "to_state": "251ffe64e49e",
+          "bbox": [
+            15,
+            3,
+            84,
+            46
+          ]
+        }
+      ],
+      "observed_items": [
+        {
+          "ref": "580be8d92aa24d3d",
+          "role": "push button",
+          "name": "Minimize",
+          "description": ""
+        },
+        {
+          "ref": "ef7022352a3486c0",
+          "role": "push button",
+          "name": "Maximize",
+          "description": ""
+        },
+        {
+          "ref": "e451d7705369327d",
+          "role": "push button",
+          "name": "Close",
+          "description": ""
+        },
+        {
+          "ref": "0d12c46def749942",
+          "role": "push button",
+          "name": "Save",
+          "description": "Save the current file"
+        },
+        {
+          "ref": "8c64bf8aa787eeab",
+          "role": "push button",
+          "name": "New",
+          "description": "Create a new document"
+        }
+      ],
+      "delta_base_state": null,
+      "delta_observed_items": [],
+      "scoped_observed_items": [
+        {
+          "ref": "580be8d92aa24d3d",
+          "role": "push button",
+          "name": "Minimize",
+          "description": ""
+        },
+        {
+          "ref": "ef7022352a3486c0",
+          "role": "push button",
+          "name": "Maximize",
+          "description": ""
+        },
+        {
+          "ref": "e451d7705369327d",
+          "role": "push button",
+          "name": "Close",
+          "description": ""
+        },
+        {
+          "ref": "0d12c46def749942",
+          "role": "push button",
+          "name": "Save",
+          "description": "Save the current file"
+        },
+        {
+          "ref": "8c64bf8aa787eeab",
+          "role": "push button",
+          "name": "New",
+          "description": "Create a new document"
+        }
+      ],
+      "scoped_observed_source": "observed_items_main_root",
+      "scoped_observed_confidence": "high",
+      "state_capabilities": [
+        {
+          "kind": "verified_action",
+          "edge_id": "e3bf0e978ed8:ed8afc773597e49c",
+          "role": "toggle button",
+          "name": "Menu",
+          "description": "",
+          "status": "verified",
+          "method": "bbox_click",
+          "edge_status": "confirmed",
+          "to_state": "d0e0b61bd22c",
+          "has_bbox": true,
+          "bbox": [
+            732,
+            3,
+            36,
+            46
+          ]
+        },
+        {
+          "kind": "verified_action",
+          "edge_id": "e3bf0e978ed8:da0116d96b96c04c",
+          "role": "toggle button",
+          "name": "Open",
+          "description": "Open a file",
+          "status": "verified",
+          "method": "bbox_click",
+          "edge_status": "confirmed",
+          "to_state": "251ffe64e49e",
+          "has_bbox": true,
+          "bbox": [
+            15,
+            3,
+            84,
+            46
+          ]
+        },
+        {
+          "kind": "observed_item",
+          "ref": "580be8d92aa24d3d",
+          "role": "push button",
+          "name": "Minimize",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "ef7022352a3486c0",
+          "role": "push button",
+          "name": "Maximize",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "e451d7705369327d",
+          "role": "push button",
+          "name": "Close",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "0d12c46def749942",
+          "role": "push button",
+          "name": "Save",
+          "description": "Save the current file",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "8c64bf8aa787eeab",
+          "role": "push button",
+          "name": "New",
+          "description": "Create a new document",
+          "status": "observed_unverified"
+        }
+      ],
+      "state_capabilities_source": "verified_actions_plus_scoped_observed_items",
+      "state_capabilities_scoped_source": "observed_items_main_root",
+      "state_capabilities_scoped_confidence": "high"
+    },
+    "251ffe64e49e": {
+      "state_id": "251ffe64e49e",
+      "label": "Untitled Document 1 - gedit",
+      "depth": 1,
+      "active_root": {
+        "kind": "main",
+        "role": "frame",
+        "name": "Untitled Document 1 - gedit"
+      },
+      "primary_incoming_action": {
+        "from_state": "e3bf0e978ed8",
+        "from_depth": 0,
+        "edge_id": "e3bf0e978ed8:da0116d96b96c04c",
+        "action_key": "da0116d96b96c04c",
+        "role": "toggle button",
+        "name": "Open",
+        "description": "Open a file",
+        "edge_status": "confirmed",
+        "method": "bbox_click",
+        "created_order": 1,
+        "bbox": [
+          15,
+          3,
+          84,
+          46
+        ]
+      },
+      "incoming_actions": [
+        {
+          "from_state": "e3bf0e978ed8",
+          "from_depth": 0,
+          "edge_id": "e3bf0e978ed8:da0116d96b96c04c",
+          "action_key": "da0116d96b96c04c",
+          "role": "toggle button",
+          "name": "Open",
+          "description": "Open a file",
+          "edge_status": "confirmed",
+          "method": "bbox_click",
+          "created_order": 1,
+          "bbox": [
+            15,
+            3,
+            84,
+            46
+          ]
+        }
+      ],
+      "verified_actions": [
+        {
+          "edge_id": "251ffe64e49e:ed8afc773597e49c",
+          "action_key": "ed8afc773597e49c",
+          "role": "toggle button",
+          "name": "Menu",
+          "description": "",
+          "status": "verified",
+          "method": "bbox_click",
+          "from_depth": 1,
+          "edge_status": "confirmed",
+          "to_state": "e3bf0e978ed8",
+          "bbox": [
+            732,
+            3,
+            36,
+            46
+          ]
+        },
+        {
+          "edge_id": "251ffe64e49e:a22d80f91cd8bf06",
+          "action_key": "a22d80f91cd8bf06",
+          "role": "toggle button",
+          "name": "Open",
+          "description": "Open a file",
+          "status": "verified",
+          "method": "bbox_click",
+          "from_depth": 1,
+          "edge_status": "confirmed",
+          "to_state": "e3bf0e978ed8",
+          "bbox": [
+            15,
+            3,
+            84,
+            46
+          ]
+        }
+      ],
+      "observed_items": [
+        {
+          "ref": "580be8d92aa24d3d",
+          "role": "push button",
+          "name": "Minimize",
+          "description": ""
+        },
+        {
+          "ref": "ef7022352a3486c0",
+          "role": "push button",
+          "name": "Maximize",
+          "description": ""
+        },
+        {
+          "ref": "e451d7705369327d",
+          "role": "push button",
+          "name": "Close",
+          "description": ""
+        },
+        {
+          "ref": "0d12c46def749942",
+          "role": "push button",
+          "name": "Save",
+          "description": "Save the current file"
+        },
+        {
+          "ref": "8c64bf8aa787eeab",
+          "role": "push button",
+          "name": "New",
+          "description": "Create a new document"
+        },
+        {
+          "ref": "6a8a8ab907bf4ad9",
+          "role": "table cell",
+          "name": "claude_start",
+          "description": ""
+        },
+        {
+          "ref": "a6abfa4e7620c5b4",
+          "role": "table cell",
+          "name": "/home/gui_exploration/Desktop",
+          "description": ""
+        },
+        {
+          "ref": "70a8bf65ae883b01",
+          "role": "push button",
+          "name": "Other Documents…",
+          "description": "Open another file"
+        }
+      ],
+      "delta_base_state": "e3bf0e978ed8",
+      "delta_observed_items": [
+        {
+          "ref": "6a8a8ab907bf4ad9",
+          "role": "table cell",
+          "name": "claude_start",
+          "description": ""
+        },
+        {
+          "ref": "a6abfa4e7620c5b4",
+          "role": "table cell",
+          "name": "/home/gui_exploration/Desktop",
+          "description": ""
+        },
+        {
+          "ref": "70a8bf65ae883b01",
+          "role": "push button",
+          "name": "Other Documents…",
+          "description": "Open another file"
+        }
+      ],
+      "scoped_observed_items": [
+        {
+          "ref": "580be8d92aa24d3d",
+          "role": "push button",
+          "name": "Minimize",
+          "description": ""
+        },
+        {
+          "ref": "ef7022352a3486c0",
+          "role": "push button",
+          "name": "Maximize",
+          "description": ""
+        },
+        {
+          "ref": "e451d7705369327d",
+          "role": "push button",
+          "name": "Close",
+          "description": ""
+        },
+        {
+          "ref": "0d12c46def749942",
+          "role": "push button",
+          "name": "Save",
+          "description": "Save the current file"
+        },
+        {
+          "ref": "8c64bf8aa787eeab",
+          "role": "push button",
+          "name": "New",
+          "description": "Create a new document"
+        },
+        {
+          "ref": "6a8a8ab907bf4ad9",
+          "role": "table cell",
+          "name": "claude_start",
+          "description": ""
+        },
+        {
+          "ref": "a6abfa4e7620c5b4",
+          "role": "table cell",
+          "name": "/home/gui_exploration/Desktop",
+          "description": ""
+        },
+        {
+          "ref": "70a8bf65ae883b01",
+          "role": "push button",
+          "name": "Other Documents…",
+          "description": "Open another file"
+        }
+      ],
+      "scoped_observed_source": "observed_items_main_root",
+      "scoped_observed_confidence": "high",
+      "state_capabilities": [
+        {
+          "kind": "verified_action",
+          "edge_id": "251ffe64e49e:ed8afc773597e49c",
+          "role": "toggle button",
+          "name": "Menu",
+          "description": "",
+          "status": "verified",
+          "method": "bbox_click",
+          "edge_status": "confirmed",
+          "to_state": "e3bf0e978ed8",
+          "has_bbox": true,
+          "bbox": [
+            732,
+            3,
+            36,
+            46
+          ]
+        },
+        {
+          "kind": "verified_action",
+          "edge_id": "251ffe64e49e:a22d80f91cd8bf06",
+          "role": "toggle button",
+          "name": "Open",
+          "description": "Open a file",
+          "status": "verified",
+          "method": "bbox_click",
+          "edge_status": "confirmed",
+          "to_state": "e3bf0e978ed8",
+          "has_bbox": true,
+          "bbox": [
+            15,
+            3,
+            84,
+            46
+          ]
+        },
+        {
+          "kind": "observed_item",
+          "ref": "580be8d92aa24d3d",
+          "role": "push button",
+          "name": "Minimize",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "ef7022352a3486c0",
+          "role": "push button",
+          "name": "Maximize",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "e451d7705369327d",
+          "role": "push button",
+          "name": "Close",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "0d12c46def749942",
+          "role": "push button",
+          "name": "Save",
+          "description": "Save the current file",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "8c64bf8aa787eeab",
+          "role": "push button",
+          "name": "New",
+          "description": "Create a new document",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "6a8a8ab907bf4ad9",
+          "role": "table cell",
+          "name": "claude_start",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "a6abfa4e7620c5b4",
+          "role": "table cell",
+          "name": "/home/gui_exploration/Desktop",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "70a8bf65ae883b01",
+          "role": "push button",
+          "name": "Other Documents…",
+          "description": "Open another file",
+          "status": "observed_unverified"
+        }
+      ],
+      "state_capabilities_source": "verified_actions_plus_scoped_observed_items",
+      "state_capabilities_scoped_source": "observed_items_main_root",
+      "state_capabilities_scoped_confidence": "high"
+    },
+    "d0e0b61bd22c": {
+      "state_id": "d0e0b61bd22c",
+      "label": "filler",
+      "depth": 1,
+      "active_root": {
+        "kind": "window_overlay",
+        "role": "filler",
+        "name": ""
+      },
+      "primary_incoming_action": {
+        "from_state": "e3bf0e978ed8",
+        "from_depth": 0,
+        "edge_id": "e3bf0e978ed8:ed8afc773597e49c",
+        "action_key": "ed8afc773597e49c",
+        "role": "toggle button",
+        "name": "Menu",
+        "description": "",
+        "edge_status": "confirmed",
+        "method": "bbox_click",
+        "created_order": 0,
+        "bbox": [
+          732,
+          3,
+          36,
+          46
+        ]
+      },
+      "incoming_actions": [
+        {
+          "from_state": "e3bf0e978ed8",
+          "from_depth": 0,
+          "edge_id": "e3bf0e978ed8:ed8afc773597e49c",
+          "action_key": "ed8afc773597e49c",
+          "role": "toggle button",
+          "name": "Menu",
+          "description": "",
+          "edge_status": "confirmed",
+          "method": "bbox_click",
+          "created_order": 0,
+          "bbox": [
+            732,
+            3,
+            36,
+            46
+          ]
+        }
+      ],
+      "verified_actions": [],
+      "observed_items": [
+        {
+          "ref": "580be8d92aa24d3d",
+          "role": "push button",
+          "name": "Minimize",
+          "description": ""
+        },
+        {
+          "ref": "ef7022352a3486c0",
+          "role": "push button",
+          "name": "Maximize",
+          "description": ""
+        },
+        {
+          "ref": "e451d7705369327d",
+          "role": "push button",
+          "name": "Close",
+          "description": ""
+        },
+        {
+          "ref": "0d12c46def749942",
+          "role": "push button",
+          "name": "Save",
+          "description": "Save the current file"
+        },
+        {
+          "ref": "851448a555ea7134",
+          "role": "toggle button",
+          "name": "Menu",
+          "description": ""
+        },
+        {
+          "ref": "8c64bf8aa787eeab",
+          "role": "push button",
+          "name": "New",
+          "description": "Create a new document"
+        },
+        {
+          "ref": "08c05abce0f47137",
+          "role": "toggle button",
+          "name": "Open",
+          "description": "Open a file"
+        },
+        {
+          "ref": "efd853cff69b6af9",
+          "role": "push button",
+          "name": "Reload",
+          "description": ""
+        },
+        {
+          "ref": "0810702aa98ec4ff",
+          "role": "push button",
+          "name": "Print…",
+          "description": ""
+        },
+        {
+          "ref": "c71ca7c67b1e2fce",
+          "role": "check box",
+          "name": "Fullscreen",
+          "description": ""
+        },
+        {
+          "ref": "81976804a5d70e7f",
+          "role": "push button",
+          "name": "New Window",
+          "description": ""
+        },
+        {
+          "ref": "310b9f48e9df659a",
+          "role": "push button",
+          "name": "Save As…",
+          "description": ""
+        },
+        {
+          "ref": "0e7a8b78e165b7c0",
+          "role": "push button",
+          "name": "Save All",
+          "description": ""
+        },
+        {
+          "ref": "afc15fc9c7d8e102",
+          "role": "push button",
+          "name": "Find…",
+          "description": ""
+        },
+        {
+          "ref": "84ed34fc496aa27c",
+          "role": "push button",
+          "name": "Find and Replace…",
+          "description": ""
+        },
+        {
+          "ref": "4fa64770b634d376",
+          "role": "push button",
+          "name": "Clear Highlight",
+          "description": ""
+        },
+        {
+          "ref": "0b25fc1ef398d097",
+          "role": "push button",
+          "name": "Go to Line…",
+          "description": ""
+        },
+        {
+          "ref": "8e0b1bee3d68b4d9",
+          "role": "push button",
+          "name": "View",
+          "description": ""
+        },
+        {
+          "ref": "082b35d59fa56761",
+          "role": "push button",
+          "name": "Tools",
+          "description": ""
+        },
+        {
+          "ref": "b87882c20ad07a69",
+          "role": "push button",
+          "name": "Preferences",
+          "description": ""
+        },
+        {
+          "ref": "6dd7c2039c865176",
+          "role": "push button",
+          "name": "Keyboard Shortcuts",
+          "description": ""
+        },
+        {
+          "ref": "c3fd144835bb0d43",
+          "role": "push button",
+          "name": "Help",
+          "description": ""
+        },
+        {
+          "ref": "92e6267a3e7b68c1",
+          "role": "push button",
+          "name": "About Text Editor",
+          "description": ""
+        }
+      ],
+      "delta_base_state": "e3bf0e978ed8",
+      "delta_observed_items": [
+        {
+          "ref": "efd853cff69b6af9",
+          "role": "push button",
+          "name": "Reload",
+          "description": ""
+        },
+        {
+          "ref": "0810702aa98ec4ff",
+          "role": "push button",
+          "name": "Print…",
+          "description": ""
+        },
+        {
+          "ref": "c71ca7c67b1e2fce",
+          "role": "check box",
+          "name": "Fullscreen",
+          "description": ""
+        },
+        {
+          "ref": "81976804a5d70e7f",
+          "role": "push button",
+          "name": "New Window",
+          "description": ""
+        },
+        {
+          "ref": "310b9f48e9df659a",
+          "role": "push button",
+          "name": "Save As…",
+          "description": ""
+        },
+        {
+          "ref": "0e7a8b78e165b7c0",
+          "role": "push button",
+          "name": "Save All",
+          "description": ""
+        },
+        {
+          "ref": "afc15fc9c7d8e102",
+          "role": "push button",
+          "name": "Find…",
+          "description": ""
+        },
+        {
+          "ref": "84ed34fc496aa27c",
+          "role": "push button",
+          "name": "Find and Replace…",
+          "description": ""
+        },
+        {
+          "ref": "4fa64770b634d376",
+          "role": "push button",
+          "name": "Clear Highlight",
+          "description": ""
+        },
+        {
+          "ref": "0b25fc1ef398d097",
+          "role": "push button",
+          "name": "Go to Line…",
+          "description": ""
+        },
+        {
+          "ref": "8e0b1bee3d68b4d9",
+          "role": "push button",
+          "name": "View",
+          "description": ""
+        },
+        {
+          "ref": "082b35d59fa56761",
+          "role": "push button",
+          "name": "Tools",
+          "description": ""
+        },
+        {
+          "ref": "b87882c20ad07a69",
+          "role": "push button",
+          "name": "Preferences",
+          "description": ""
+        },
+        {
+          "ref": "6dd7c2039c865176",
+          "role": "push button",
+          "name": "Keyboard Shortcuts",
+          "description": ""
+        },
+        {
+          "ref": "c3fd144835bb0d43",
+          "role": "push button",
+          "name": "Help",
+          "description": ""
+        },
+        {
+          "ref": "92e6267a3e7b68c1",
+          "role": "push button",
+          "name": "About Text Editor",
+          "description": ""
+        }
+      ],
+      "scoped_observed_items": [
+        {
+          "ref": "efd853cff69b6af9",
+          "role": "push button",
+          "name": "Reload",
+          "description": ""
+        },
+        {
+          "ref": "0810702aa98ec4ff",
+          "role": "push button",
+          "name": "Print…",
+          "description": ""
+        },
+        {
+          "ref": "c71ca7c67b1e2fce",
+          "role": "check box",
+          "name": "Fullscreen",
+          "description": ""
+        },
+        {
+          "ref": "81976804a5d70e7f",
+          "role": "push button",
+          "name": "New Window",
+          "description": ""
+        },
+        {
+          "ref": "310b9f48e9df659a",
+          "role": "push button",
+          "name": "Save As…",
+          "description": ""
+        },
+        {
+          "ref": "0e7a8b78e165b7c0",
+          "role": "push button",
+          "name": "Save All",
+          "description": ""
+        },
+        {
+          "ref": "afc15fc9c7d8e102",
+          "role": "push button",
+          "name": "Find…",
+          "description": ""
+        },
+        {
+          "ref": "84ed34fc496aa27c",
+          "role": "push button",
+          "name": "Find and Replace…",
+          "description": ""
+        },
+        {
+          "ref": "4fa64770b634d376",
+          "role": "push button",
+          "name": "Clear Highlight",
+          "description": ""
+        },
+        {
+          "ref": "0b25fc1ef398d097",
+          "role": "push button",
+          "name": "Go to Line…",
+          "description": ""
+        },
+        {
+          "ref": "8e0b1bee3d68b4d9",
+          "role": "push button",
+          "name": "View",
+          "description": ""
+        },
+        {
+          "ref": "082b35d59fa56761",
+          "role": "push button",
+          "name": "Tools",
+          "description": ""
+        },
+        {
+          "ref": "b87882c20ad07a69",
+          "role": "push button",
+          "name": "Preferences",
+          "description": ""
+        },
+        {
+          "ref": "6dd7c2039c865176",
+          "role": "push button",
+          "name": "Keyboard Shortcuts",
+          "description": ""
+        },
+        {
+          "ref": "c3fd144835bb0d43",
+          "role": "push button",
+          "name": "Help",
+          "description": ""
+        },
+        {
+          "ref": "92e6267a3e7b68c1",
+          "role": "push button",
+          "name": "About Text Editor",
+          "description": ""
+        }
+      ],
+      "scoped_observed_source": "delta_observed_items_overlay_hint",
+      "scoped_observed_confidence": "medium",
+      "state_capabilities": [
+        {
+          "kind": "observed_item",
+          "ref": "efd853cff69b6af9",
+          "role": "push button",
+          "name": "Reload",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "0810702aa98ec4ff",
+          "role": "push button",
+          "name": "Print…",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "c71ca7c67b1e2fce",
+          "role": "check box",
+          "name": "Fullscreen",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "81976804a5d70e7f",
+          "role": "push button",
+          "name": "New Window",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "310b9f48e9df659a",
+          "role": "push button",
+          "name": "Save As…",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "0e7a8b78e165b7c0",
+          "role": "push button",
+          "name": "Save All",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "afc15fc9c7d8e102",
+          "role": "push button",
+          "name": "Find…",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "84ed34fc496aa27c",
+          "role": "push button",
+          "name": "Find and Replace…",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "4fa64770b634d376",
+          "role": "push button",
+          "name": "Clear Highlight",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "0b25fc1ef398d097",
+          "role": "push button",
+          "name": "Go to Line…",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "8e0b1bee3d68b4d9",
+          "role": "push button",
+          "name": "View",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "082b35d59fa56761",
+          "role": "push button",
+          "name": "Tools",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "b87882c20ad07a69",
+          "role": "push button",
+          "name": "Preferences",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "6dd7c2039c865176",
+          "role": "push button",
+          "name": "Keyboard Shortcuts",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "c3fd144835bb0d43",
+          "role": "push button",
+          "name": "Help",
+          "description": "",
+          "status": "observed_unverified"
+        },
+        {
+          "kind": "observed_item",
+          "ref": "92e6267a3e7b68c1",
+          "role": "push button",
+          "name": "About Text Editor",
+          "description": "",
+          "status": "observed_unverified"
+        }
+      ],
+      "state_capabilities_source": "verified_actions_plus_scoped_observed_items",
+      "state_capabilities_scoped_source": "delta_observed_items_overlay_hint",
+      "state_capabilities_scoped_confidence": "medium"
+    }
+  },
+  "item_index": {
+    "432eaa48766a8ab0": {
+      "name": "/home/gui_exploration/Desktop",
+      "role": "table cell",
+      "states": [
+        "251ffe64e49e"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "2609359e21a74126": {
+      "name": "About Text Editor",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "83663a17cf9f0534": {
+      "name": "claude_start",
+      "role": "table cell",
+      "states": [
+        "251ffe64e49e"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "b8ce5bca83ca4a87": {
+      "name": "Clear Highlight",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "43229c548c5425f7": {
+      "name": "Close",
+      "role": "push button",
+      "states": [
+        "e3bf0e978ed8",
+        "251ffe64e49e",
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 3,
+      "verified_action_count": 0,
+      "observed_item_count": 3,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "c7155e2e4eb97bb9": {
+      "name": "Find and Replace…",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "30f11afabb19041b": {
+      "name": "Find…",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "f98a64eb22962de3": {
+      "name": "Fullscreen",
+      "role": "check box",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "8019e4f113fff790": {
+      "name": "Go to Line…",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "7a547e73fe83f3e3": {
+      "name": "Help",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "25913d96d8929560": {
+      "name": "Keyboard Shortcuts",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "2fc9698726837dbb": {
+      "name": "Maximize",
+      "role": "push button",
+      "states": [
+        "e3bf0e978ed8",
+        "251ffe64e49e",
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 3,
+      "verified_action_count": 0,
+      "observed_item_count": 3,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "d84a9d9375d61c4c": {
+      "name": "Menu",
+      "role": "toggle button",
+      "states": [
+        "e3bf0e978ed8",
+        "251ffe64e49e",
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 3,
+      "verified_action_count": 2,
+      "observed_item_count": 1,
+      "statuses": [
+        "verified",
+        "observed_unverified"
+      ]
+    },
+    "0aae063fd18b29f0": {
+      "name": "Minimize",
+      "role": "push button",
+      "states": [
+        "e3bf0e978ed8",
+        "251ffe64e49e",
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 3,
+      "verified_action_count": 0,
+      "observed_item_count": 3,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "bc5d01f72a468776": {
+      "name": "New",
+      "role": "push button",
+      "states": [
+        "e3bf0e978ed8",
+        "251ffe64e49e",
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 3,
+      "verified_action_count": 0,
+      "observed_item_count": 3,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "c6e225f9ac865ffe": {
+      "name": "New Window",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "9de59f2a50dc8f20": {
+      "name": "Open",
+      "role": "toggle button",
+      "states": [
+        "e3bf0e978ed8",
+        "251ffe64e49e",
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 3,
+      "verified_action_count": 2,
+      "observed_item_count": 1,
+      "statuses": [
+        "verified",
+        "observed_unverified"
+      ]
+    },
+    "979d10e03ada74b3": {
+      "name": "Other Documents…",
+      "role": "push button",
+      "states": [
+        "251ffe64e49e"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "779ed986d2a26367": {
+      "name": "Preferences",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "860365822b4487d3": {
+      "name": "Print…",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "17caefe2be978eff": {
+      "name": "Reload",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "da026b007fa97bb2": {
+      "name": "Save",
+      "role": "push button",
+      "states": [
+        "e3bf0e978ed8",
+        "251ffe64e49e",
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 3,
+      "verified_action_count": 0,
+      "observed_item_count": 3,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "46e938934c53706e": {
+      "name": "Save All",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "fc87ce919cfce420": {
+      "name": "Save As…",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "8eaa88f5fa691a18": {
+      "name": "Tools",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    },
+    "6b0621d8e75b8fcf": {
+      "name": "View",
+      "role": "push button",
+      "states": [
+        "d0e0b61bd22c"
+      ],
+      "occurrences": 1,
+      "verified_action_count": 0,
+      "observed_item_count": 1,
+      "statuses": [
+        "observed_unverified"
+      ]
+    }
+  },
+  "verified_action_index": {
+    "d84a9d9375d61c4c": {
+      "name": "Menu",
+      "role": "toggle button",
+      "occurrences": 2,
+      "states": [
+        "e3bf0e978ed8",
+        "251ffe64e49e"
+      ],
+      "actions": [
+        {
+          "state_id": "e3bf0e978ed8",
+          "state_depth": 0,
+          "edge_id": "e3bf0e978ed8:ed8afc773597e49c",
+          "edge_status": "confirmed",
+          "to_state": "d0e0b61bd22c",
+          "description": "",
+          "has_bbox": true
+        },
+        {
+          "state_id": "251ffe64e49e",
+          "state_depth": 1,
+          "edge_id": "251ffe64e49e:ed8afc773597e49c",
+          "edge_status": "confirmed",
+          "to_state": "e3bf0e978ed8",
+          "description": "",
+          "has_bbox": true
+        }
+      ]
+    },
+    "9de59f2a50dc8f20": {
+      "name": "Open",
+      "role": "toggle button",
+      "occurrences": 2,
+      "states": [
+        "e3bf0e978ed8",
+        "251ffe64e49e"
+      ],
+      "actions": [
+        {
+          "state_id": "e3bf0e978ed8",
+          "state_depth": 0,
+          "edge_id": "e3bf0e978ed8:da0116d96b96c04c",
+          "edge_status": "confirmed",
+          "to_state": "251ffe64e49e",
+          "description": "Open a file",
+          "has_bbox": true
+        },
+        {
+          "state_id": "251ffe64e49e",
+          "state_depth": 1,
+          "edge_id": "251ffe64e49e:a22d80f91cd8bf06",
+          "edge_status": "confirmed",
+          "to_state": "e3bf0e978ed8",
+          "description": "Open a file",
+          "has_bbox": true
+        }
+      ]
+    }
+  }
+}
