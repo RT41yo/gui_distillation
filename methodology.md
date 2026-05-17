@@ -1,182 +1,1200 @@
 # Методология A11Y-first UI Exploration
 
-## Общая идея подхода
+## 1. Цель подхода
 
-Цель проекта — автоматически строить карту состояний пользовательского интерфейса приложения. Под картой состояний мы понимаем граф, где вершины — это состояния UI, а рёбра — действия пользователя, которые переводят интерфейс из одного состояния в другое. Например: из основного окна калькулятора нажать `Decimal`, получить раскрытое меню выбора системы счисления; нажать `Mode selection`, получить popover выбора режима; нажать `Insert Character`, получить диалог ввода кода символа.
+Цель проекта — автоматически строить карту пользовательского интерфейса GUI-приложения на основе дерева доступности. Под картой понимается граф, где:
 
-Ключевая идея нашего подхода состоит в том, что источником истины для exploration является не скриншот и не заранее известная логика приложения, а A11Y Tree — дерево доступности, которое приложение отдаёт через accessibility-интерфейс операционной системы. В Linux/GTK-среде это AT-SPI. Такое дерево содержит структурированное описание UI: роли элементов, имена, состояния, координаты, вложенность. Например, вместо того чтобы по картинке угадывать, что в окне есть кнопка `Primary menu`, мы читаем A11Y Tree и видим элемент с ролью `toggle button`, именем `Primary menu`, координатами и путём в дереве.
+```text
+state = состояние интерфейса
+edge  = действие пользователя, переводящее UI из одного состояния в другое
+```
 
-В коде захват A11Y Tree реализован в `src/ui_explorer/core/a11y_capture.py`. Класс `A11YCapture` ищет приложение в AT-SPI registry и сохраняет текущее дерево доступности в XML. Далее этот XML разбирается модулем `src/ui_explorer/core/a11y_parser.py`, который превращает дерево в нормализованные Python-объекты: узлы с `role`, `name`, `description`, `states`, `bbox`, `parent_path`, `depth` и списком дочерних элементов.
+Например:
 
-Скриншоты в этой методологии не используются для принятия решений. Их можно сохранять для логирования, отладки и визуальной проверки человеком, но стратегия обхода, определение состояний, выбор действий и построение графа должны опираться только на A11Y. Это принципиально важно: мы хотим построить универсальный exploration-механизм для приложений, поддерживающих accessibility, а не систему, которая зависит от пиксельного вида конкретного окна.
+```text
+Calculator root
+→ нажать Mode selection
+→ получить popover выбора режима
 
-## Представление интерфейса как графа состояний
+Calculator root
+→ нажать Primary menu
+→ получить меню приложения
 
-После захвата A11Y Tree мы рассматриваем текущий интерфейс как состояние. Состояние — это не просто картинка на экране, а структурное описание доступной пользователю области взаимодействия. Например, основное окно калькулятора и раскрытое меню выбора системы счисления — это разные состояния, потому что в них разный набор активных действий.
+Programming mode
+→ нажать Binary combo box
+→ получить меню выбора системы счисления
+```
 
-Для каждого состояния вычисляется подпись. Эта логика находится в `src/ui_explorer/core/state.py`, в функции `compute_state_signature(root)`. В результате строится объект, содержащий несколько важных полей: `state_id`, `macro_hash`, `content_hash`, `active_root`, `macro_action_count`, `visible_node_count`.
+Ключевой принцип: **источник истины — A11Y Tree**, а не скриншот и не заранее известная логика приложения.
 
-`state_id` — это короткий идентификатор состояния. Сейчас он формируется как первые 12 символов от `macro_hash`. Например, root-состояние калькулятора имеет ID `8251e16b481b`. Этот ID используется в графе как имя вершины.
+В Linux/GTK-среде дерево доступности отдаётся через AT-SPI. Оно содержит структурированное описание UI:
 
-`macro_hash` — это полная хэш-подпись macro-состояния. Она строится из тех частей A11Y Tree, которые описывают структуру UI-контекста: активную область, видимые интерактивные элементы, macro actions, роли, имена, состояния, пути в дереве и координаты. Если `macro_hash` изменился после действия, значит для текущей версии системы UI-контекст считается изменившимся.
+```text
+role
+name
+description
+states
+bbox
+parent_path
+children
+```
 
-`content_hash` — это более чувствительная подпись видимого содержимого. Она нужна, чтобы отличать ситуацию, когда структура интерфейса осталась той же, но изменился текст, значение или содержимое. Например, при нажатии цифры в калькуляторе может не открыться новый UI-контекст, но изменится значение в поле результата. В такой ситуации `macro_hash` может остаться прежним, а `content_hash` измениться.
+Скриншоты могут использоваться для ручной проверки человеком, но exploration, построение графа, извлечение действий и формирование карты должны опираться на A11Y.
 
-Технически оба хэша считаются одинаково: мы берём нормализованный Python-словарь с нужными данными, сериализуем его в JSON со стабильным порядком ключей, затем считаем SHA-256 от полученной строки. Разница между `macro_hash` и `content_hash` не в алгоритме хэширования, а в том, какие данные входят в payload.
+---
 
-Интуитивно это можно описать так: `macro_hash` отвечает на вопрос “это тот же UI-контекст или другой?”, а `content_hash` отвечает на вопрос “изменилось ли видимое содержимое внутри текущего UI-контекста?”.
+## 2. Pipeline данных
 
-## Active root: активная область взаимодействия
+Текущий pipeline состоит из двух уровней:
 
-Одним из центральных понятий в методологии является `active_root`. A11Y Tree часто содержит больше элементов, чем реально важны для текущего действия. Например, когда открыто меню, в дереве могут одновременно присутствовать и элементы основного окна, и элементы раскрытого меню. Если брать действия из всего дерева, мы смешаем фоновые кнопки с действиями меню. Это приведёт к загрязнению графа: в состоянии “меню открыто” появятся рёбра по кнопкам основного окна, хотя методологически мы хотим исследовать именно активный временный слой.
+```text
+A11Y capture
+→ graph.json
+→ agent_map.json
+→ визуализация / инспекция / будущий agent runtime
+```
 
-Поэтому перед извлечением действий мы определяем активный корень взаимодействия — `active_root`. Эта логика реализована в `src/ui_explorer/core/active_root.py`, в функции `resolve_active_root(root)`.
+Где:
 
-Правило работает примерно так. Если в дереве есть видимый `dialog` или `alert`, активным корнем считается он. Если есть видимое `menu`, активным корнем считается меню. Если нет явного меню или диалога, но есть небольшой видимый контейнер с группой интерактивных элементов, например radio buttons или menu items, мы считаем его overlay-подобной активной областью и присваиваем ему внутренний тип `window_overlay`. Если ничего такого не найдено, активным корнем считается основное окно приложения, обычно `frame`.
+```text
+graph.json
+  внутренний source of truth exploration;
+  хранит состояния, confirmed/same_state edges, pending frontier, completion.
 
-Здесь важно различать `role` и `kind`. `role` — это роль, пришедшая из A11Y Tree: например, `frame`, `menu`, `dialog`, `filler`, `panel`, `toggle button`. `kind` — это наша внутренняя интерпретация активной области: `main`, `menu`, `dialog`, `alert`, `window_overlay`, `secondary_frame`.
+states/<state_id>/a11y.xml
+  сохранённый A11Y snapshot каждого состояния.
 
-Например, для обычного окна калькулятора мы получаем `kind = main`, `role = frame`, `name = Calculator`. Это означает, что A11Y-узел имеет роль `frame`, а наша система интерпретирует его как основное окно приложения.
+agent_map.json
+  agent-facing карта поверх graph.json и A11Y snapshots;
+  хранит проверенные переходы, видимые UI-элементы, capabilities и индексы поиска.
+```
 
-Для меню выбора системы счисления после нажатия `Decimal` мы получаем `kind = menu`, `role = menu`. Это хороший случай: A11Y Tree явно отдаёт меню как меню.
+`graph.json` нужен для воспроизводимого exploration.  
+`agent_map.json` нужен, чтобы агенту было проще понимать интерфейс и планировать действия.
 
-Для `Mode selection` ситуация сложнее. GTK может представить popover не как `menu` или `dialog`, а как технический контейнер `filler`, внутри которого лежат radio buttons `Basic`, `Advanced`, `Financial`, `Programming`, `Keyboard`. В таком случае `role = filler`, но по смыслу для exploration это активный overlay. Поэтому наша система присваивает `kind = window_overlay`. Это не стандартная A11Y-роль, а наша внутренняя классификация, введённая для практического построения карты UI.
+---
 
-Мы не “придумываем” новый стандарт A11Y. Мы добавляем слой интерпретации поверх сырых данных. Это нужно потому, что разные GUI toolkit-ы по-разному представляют временные UI-слои. Иногда popover имеет явную роль, иногда это просто набор `panel` и `filler`. Если полагаться только на стандартные роли, explorer будет либо пропускать такие overlay, либо смешивать их с фоновым окном. Поэтому `window_overlay` — это универсальная эвристика: маленький видимый контейнер с группой интерактивных элементов трактуется как активный временный слой.
+## 3. Захват и нормализация A11Y Tree
 
-## Извлечение действий
+Захват дерева доступности выполняет `A11YCapture`.
 
-После определения `active_root` система извлекает из него действия. Это реализовано в `src/ui_explorer/core/actions.py`, в функции `extract_actions(active_root)`.
+Он:
 
-Raw extraction ищет видимые интерактивные элементы с ролями вроде `push button`, `toggle button`, `radio button`, `check box`, `combo box`, `menu item`, `tab`, `tree item`, `link`, `spin button`, `entry`, `editbar`. Каждый такой элемент превращается в объект `UIAction`.
+```text
+1. ищет приложение в AT-SPI registry;
+2. получает текущее дерево доступности;
+3. сохраняет его в XML;
+4. дальше XML парсится в нормализованные Python-объекты.
+```
 
-Для каждого действия сохраняются роль, имя, описание, состояния, координаты, путь к родителю в A11Y Tree и глубина элемента внутри дерева. Например, действие `Decimal` в основном окне калькулятора имеет роль `combo box`, имя `Decimal`, координаты `[439, 360, 126, 34]` и свой `parent_path`.
+Каждый A11Y node содержит:
 
-Особое внимание уделяется идентичности действия. Мы не используем только имя элемента, потому что одинаковые имена могут встречаться в разных местах. Например, `Decimal` может быть combo box в основном окне и menu item внутри раскрытого меню. Поэтому для каждого действия строится `action_key`.
+```text
+role
+name
+description
+states
+bbox
+parent_path
+depth
+children
+```
 
-`action_key` создаётся в функции `make_action_key(node)`. В него входят locator-данные элемента: `role`, `name`, `description`, `states`, `bbox`, `parent_path`. Эти данные сериализуются в JSON со стабильным порядком ключей, затем хэшируются через SHA-256, после чего берутся первые 16 символов. Таким образом, `action_key` — это короткий стабильный идентификатор конкретного UI action. Интуитивно это не подпись на кнопке, а её адрес в A11Y Tree.
-
-Путь `parent_path` показывает, где элемент расположен внутри дерева. Например:
+Пример полезного элемента:
 
 ```json
-[
-  "application/gnome-calculator",
-  "frame/Calculator",
-  "panel",
-  "filler",
-  "panel"
+{
+  "role": "toggle button",
+  "name": "Primary menu",
+  "states": ["enabled", "sensitive", "showing", "visible"],
+  "bbox": [517, 4, 36, 46]
+}
+```
+
+A11Y позволяет отличать элементы не по картинке, а по структуре. Это важно для универсальности: один и тот же подход можно применять к Calculator, gedit и другим приложениям, если они отдают полноценное accessibility tree.
+
+---
+
+## 4. State signature
+
+Каждый A11Y snapshot превращается в подпись состояния.
+
+Состояние — это не картинка, а структурное описание текущего UI-контекста.
+
+Для состояния вычисляются:
+
+```text
+state_id
+macro_hash
+content_hash
+active_root
+macro_action_count
+visible_node_count
+```
+
+`state_id` — короткий идентификатор состояния.  
+`macro_hash` — подпись структуры UI-контекста.  
+`content_hash` — более чувствительная подпись видимого содержимого.  
+`active_root` — активная область взаимодействия.
+
+Интуитивно:
+
+```text
+macro_hash:
+  изменился ли UI-контекст?
+
+content_hash:
+  изменилось ли содержимое внутри похожего UI-контекста?
+```
+
+Например, открытие меню меняет `macro_hash`.  
+Ввод цифры в калькулятор может оставить `macro_hash` прежним, но изменить `content_hash`.
+
+---
+
+## 5. Active root
+
+A11Y Tree часто содержит больше элементов, чем реально относятся к текущему действию.
+
+Например, когда открыт popover, дерево может одновременно содержать:
+
+```text
+основное окно приложения
++
+элементы открытого popover/menu
+```
+
+Если извлекать действия из всего дерева, граф загрязнится: в состоянии “меню открыто” появятся фоновые действия основного окна.
+
+Поэтому сначала определяется `active_root`.
+
+`active_root` — это активная область взаимодействия, из которой извлекаются macro actions.
+
+Примеры:
+
+```json
+{
+  "kind": "main",
+  "role": "frame",
+  "name": "Calculator"
+}
+```
+
+```json
+{
+  "kind": "window_overlay",
+  "role": "filler",
+  "name": ""
+}
+```
+
+```json
+{
+  "kind": "menu",
+  "role": "menu",
+  "name": "Currency"
+}
+```
+
+Важно различать:
+
+```text
+role
+  сырая A11Y-роль элемента: frame, menu, filler, panel, push button.
+
+kind
+  наша внутренняя интерпретация: main, menu, dialog, alert, window_overlay.
+```
+
+`window_overlay` — не стандартная A11Y-роль. Это наша классификация для временных UI-слоёв, которые toolkit отдаёт как `filler` или `panel`, но по смыслу они являются popover/menu-like областью.
+
+---
+
+## 6. Извлечение действий
+
+После определения `active_root` система извлекает интерактивные элементы.
+
+Действиями считаются видимые элементы с ролями вроде:
+
+```text
+push button
+toggle button
+radio button
+check box
+combo box
+menu item
+tab
+tree item
+link
+spin button
+entry
+editbar
+```
+
+Каждое действие получает:
+
+```text
+role
+name
+description
+states
+bbox
+parent_path
+action_key
+```
+
+`action_key` — стабильный хэш locator-данных элемента:
+
+```text
+role
+name
+description
+states
+bbox
+parent_path
+```
+
+Он нужен, потому что имя само по себе не уникально. Например `Degrees` может быть combo box, menu item или пунктом вложенного меню.
+
+---
+
+## 7. Macro и micro actions
+
+Raw A11Y extraction может находить десятки или сотни интерактивных элементов. В Calculator это не только меню и переключатели, но и цифры, операторы, битовые ячейки, математические функции.
+
+Для построения графа UI-состояний используется rule-based policy:
+
+```text
+macro_candidate
+micro_candidate
+input_candidate
+ignored
+```
+
+`macro_candidate` — действие, которое может открыть новый UI-контекст или изменить структуру интерфейса.
+
+Примеры:
+
+```text
+Mode selection
+Primary menu
+Decimal
+Word Size
+Store
+Insert Character
+Superscript
+Subscript
+```
+
+`micro_candidate` — действие, которое скорее меняет значение или содержимое, но не структуру UI.
+
+Примеры:
+
+```text
+цифры
+арифметические операторы
+битовые ячейки
+```
+
+На текущем этапе exploration строит граф по macro actions. Micro actions при этом не исчезают полностью: многие из них позже попадают в `agent_map.json` как observed/capability элементы.
+
+---
+
+## 8. Graph model
+
+Граф хранится в:
+
+```text
+data/maps/<app>/graph.json
+```
+
+Он содержит:
+
+```text
+nodes
+edges
+root_state_id
+completion
+```
+
+State node хранит:
+
+```text
+state_id
+label
+depth
+active_root
+xml_path
+```
+
+Edge хранит:
+
+```text
+from_state
+action
+status
+to_state
+created_order
+reason
+```
+
+Статусы edge:
+
+```text
+pending
+confirmed
+same_state
+content_changed
+focus_changed
+selection_changed
+failed_click
+failed_navigation
+```
+
+Главные статусы для построения agent-facing карты:
+
+```text
+confirmed
+same_state
+content_changed
+focus_changed
+selection_changed
+```
+
+Они считаются execution-verified, потому действие реально выполнялось.
+
+---
+
+## 9. Один exploration step
+
+Один шаг exploration — это один контролируемый эксперимент:
+
+```text
+1. загрузить graph.json;
+2. выбрать следующий pending edge;
+3. восстановить from_state;
+4. выполнить ровно одно действие;
+5. снять новый A11Y snapshot;
+6. посчитать state signature;
+7. классифицировать результат;
+8. обновить graph.json.
+```
+
+Выполнение действия сейчас основано на bbox-click:
+
+```text
+bbox → центр элемента → клик
+```
+
+Перед кликом окно активируется, чтобы снизить риск клика в неправильное место.
+
+После клика система ждёт стабилизации A11Y Tree. Состояние считается стабильным, когда подпись перестаёт меняться.
+
+---
+
+## 10. Hard reset и replay confirmed path
+
+Текущая основная стратегия навигации — **hard reset + replay confirmed path**.
+
+Перед выполнением edge система не полагается на текущее случайное состояние приложения. Вместо этого:
+
+```text
+1. перезапускает приложение;
+2. проверяет root_state_id;
+3. воспроизводит confirmed path от root до edge.from_state;
+4. проверяет, что from_state достигнут;
+5. выполняет исследуемое действие.
+```
+
+Это делает exploration воспроизводимым.
+
+Причина: GUI-состояния бывают persistent. Escape не всегда возвращает приложение в root. Например, Calculator может оставаться в Binary/Keyboard/unit-conversion режиме. Поэтому soft reset через Escape недостаточно надёжен.
+
+Hard reset использует launcher из `config/apps.yaml`, поэтому стратегия не должна быть захардкожена под Calculator.
+
+Soft navigation может оставаться полезной для отладки, но основной режим — hard reset.
+
+---
+
+## 11. Strict BFS
+
+Scheduler использует strict BFS.
+
+Порядок выбора pending edges:
+
+```text
+from_state.depth ASC
+priority ASC
+attempts ASC
+created_order ASC
+```
+
+Это означает:
+
+```text
+сначала закрыть root frontier,
+потом depth 1,
+потом depth 2,
+и так далее.
+```
+
+Преимущество strict BFS: карта развивается равномерно и не уходит слишком глубоко в одну ветку интерфейса.
+
+---
+
+## 12. Текущий результат Calculator graph
+
+Для GNOME Calculator текущий граф завершён в рамках текущей macro-action policy.
+
+Актуальный checkpoint:
+
+```text
+nodes: 61
+edges: 362
+confirmed: 347
+same_state: 15
+pending: 0
+failed_navigation: 0
+max_depth: 7
+root_state_id: e14ee107e46f
+```
+
+Это означает:
+
+```text
+frontier закрыт;
+pending edges нет;
+все выбранные macro actions исследованы;
+navigation replay работает без failed_navigation.
+```
+
+Граф содержит разные типы состояний:
+
+```text
+main frame states
+window_overlay popovers
+menus
+dialogs
+same_state toggles
+mode states
+combo box menus
+```
+
+---
+
+## 13. Agent-facing UI map
+
+`graph.json` полезен как source of truth exploration, но он слишком технический для агента.
+
+Поэтому строится отдельный файл:
+
+```text
+data/maps/<app>/agent_map.json
+```
+
+Он строится из:
+
+```text
+graph.json
+states/*/a11y.xml
+```
+
+Цель `agent_map.json` — дать агенту компактное понимание:
+
+```text
+куда можно перейти;
+какие элементы видимы;
+как состояние было открыто;
+какие возможности есть в состоянии;
+какие элементы подтверждены exploration, а какие только observed.
+```
+
+---
+
+## 14. verified_actions
+
+`verified_actions` — проверенные действия из текущего состояния.
+
+Пример:
+
+```json
+{
+  "role": "toggle button",
+  "name": "Primary menu",
+  "status": "verified",
+  "method": "bbox_click",
+  "edge_status": "confirmed",
+  "to_state": "3b4bc848561d",
+  "bbox": [517, 4, 36, 46]
+}
+```
+
+Смысл:
+
+```text
+из этого состояния можно нажать Primary menu
+и перейти в state 3b4bc848561d
+```
+
+Это самый надёжный слой карты.
+
+---
+
+## 15. incoming_actions и primary_incoming_action
+
+`incoming_actions` — все проверенные действия из других состояний, которые ведут в текущее.
+
+`primary_incoming_action` — один выбранный основной вход в состояние.
+
+Пример:
+
+```text
+e14ee107e46f -- Primary menu → 3b4bc848561d confirmed
+```
+
+Читается так:
+
+```text
+из root state e14ee107e46f нажали Primary menu
+и открыли текущее состояние 3b4bc848561d
+```
+
+Важно: `primary_incoming_action` — это локальное объяснение входа в state, а не глобально лучший маршрут от root.
+
+Для реального агента маршрут должен вычисляться runtime-планировщиком от текущего live-state до цели по `verified_actions`.
+
+---
+
+## 16. items и observed_items refs
+
+В `agent_map.json` есть верхнеуровневый каталог:
+
+```text
+items
+```
+
+Это дедуплицированные observed UI-элементы.
+
+Внутри каждого state вместо полного копирования item используется ref:
+
+```json
+"observed_items": [
+  {
+    "ref": "a29449dcc97c1216",
+    "role": "menu",
+    "name": "Currency",
+    "description": ""
+  }
 ]
 ```
 
-Это означает, что элемент находится внутри приложения `gnome-calculator`, затем внутри окна `Calculator`, затем внутри нескольких layout-контейнеров `panel` и `filler`. Сам по себе такой путь может выглядеть технически, но он полезен: он отличает одинаковые по имени элементы в разных местах интерфейса.
+Полное описание лежит в:
 
-## Классификация действий
-
-Raw extraction может найти очень много интерактивных элементов. В калькуляторе их может быть больше сотни: цифры, операторы, битовые ячейки, кнопки, переключатели, поля ввода. Но для построения карты UI-состояний не нужно первым делом нажимать все цифры и операторы. Это скорее micro-действия, которые меняют содержимое, но не открывают новые UI-контексты.
-
-Поэтому после извлечения действий применяется rule-based policy. Она реализована в `src/ui_explorer/core/action_policy.py`. Функция `classify_action(action)` относит каждое действие к одной из категорий: `macro_candidate`, `micro_candidate`, `input_candidate`, `ignored`.
-
-`macro_candidate` — это действие, которое потенциально может открыть новый UI-контекст или изменить структуру интерфейса. Например, combo box, menu item, toggle button, radio button, check box или push button с именем, похожим на открытие диалога или меню.
-
-`micro_candidate` — это действие, которое скорее меняет значение или содержимое, но не структуру интерфейса. Например, цифры, арифметические операторы, небольшие битовые ячейки.
-
-`input_candidate` — это поле ввода или похожий элемент. С ним нужно работать отдельно, потому что ввод текста — это другой тип exploration.
-
-`ignored` — элементы, которые пока не используются в macro exploration.
-
-На текущем этапе для построения графа используются только `macro_candidate`. Это сознательное ограничение. Мы строим карту интерфейсных переходов, а не выполняем пользовательские задачи вроде “посчитать выражение”. Поэтому из 118 raw actions в root-состоянии калькулятора было выбрано 10 macro actions: `Mode selection`, `Primary menu`, `Decimal`, `Word Size`, `Store`, `Insert Character`, `Shift Right`, `Shift Left`, `Superscript`, `Subscript`.
-
-## Построение графа
-
-Граф хранится в `data/maps/<app_id>/graph.json`. Его модели описаны в `src/ui_explorer/graph/models.py`, а логика сохранения и обновления находится в `src/ui_explorer/graph/store.py`.
-
-В графе есть вершины и рёбра. Вершина — это состояние UI. Ребро — это действие из одного состояния. Например, root-состояние калькулятора `8251e16b481b` имеет ребро по действию `Decimal`, которое ведёт в состояние `c5cd52807589`.
-
-Инициализация графа выполняется командой:
-
-```bash
-python -m ui_explorer.cli.init_graph --app calc --xml data/maps/calc/_captures/a11y_tree.xml
+```json
+"items": {
+  "a29449dcc97c1216": {
+    "role": "menu",
+    "name": "Currency",
+    "status": "observed_unverified",
+    "states": ["enabled", "sensitive", "showing", "visible"],
+    "parent_path_tail": ["panel", "filler", "combo box/Degrees", "menu"]
+  }
+}
 ```
 
-На этом этапе создаётся root node и pending edges для всех macro actions, найденных в root-состоянии. Pending edge означает: мы знаем, что действие есть, но ещё не проверяли, куда оно ведёт. У такого ребра `status = pending`, `to_state = null`, `observed = null`.
+Такой формат уменьшает размер карты и позволяет строить индексы.
 
-После выполнения действия ребро получает терминальный статус. Если после клика изменился `macro_hash`, создаётся или находится target state, а ребро получает `status = confirmed`. Если структура не изменилась, но изменился `content_hash`, можно получить `content_changed`. Если ничего не изменилось — `same_state`. Если клик не удался — `failed_click`. Если не удалось восстановить исходное состояние — `failed_navigation`.
+---
 
-Таким образом, граф хранит не только успешные переходы, но и frontier — список ещё не исследованных рёбер. Это важно для самодостаточности результата. Если в графе есть `pending_edges`, карта ещё не завершена, но она является корректным checkpoint-ом.
+## 17. observed_items
 
-## Один шаг exploration
+`observed_items` — полный видимый A11Y-контекст конкретного состояния.
 
-Один шаг exploration выполняется командой:
+Для main state это часто полезно и соответствует основному экрану.
 
-```bash
-DISPLAY=:99 python -m ui_explorer.cli.step_edge --app calc --display :99 --verbose
-```
-
-Оркестрация этого шага находится в `src/ui_explorer/cli/step_edge.py`.
-
-На каждом шаге происходит один маленький эксперимент. Сначала граф загружается из `graph.json`. Затем scheduler выбирает следующий pending edge. Scheduler реализован в `src/ui_explorer/graph/scheduler.py`. После этого система переходит в состояние `from_state`, выполняет действие, ждёт стабилизации A11Y Tree, снимает новое состояние, сравнивает `before` и `after`, классифицирует результат и обновляет граф.
-
-Выполнение клика реализовано в `src/ui_explorer/execution/executor.py`. Сейчас используется bbox-click: система берёт координаты элемента, считает центр и кликает туда через pyautogui. Перед кликом target window активируется через `xdotool`, чтобы снизить риск клика “мимо”.
-
-Ожидание стабильного состояния реализовано в `src/ui_explorer/execution/wait.py`. После действия A11Y Tree снимается несколько раз, и состояние считается стабильным, когда подпись повторяется. Это лучше, чем просто фиксированный sleep, потому что UI может обновляться асинхронно.
-
-Сравнение `before` и `after` делает `DiffClassifier` в `src/ui_explorer/core/diff.py`. Он смотрит на `macro_hash`, `content_hash` и результат выполнения действия. На текущем этапе правило простое: если изменился `macro_hash`, это `new_macro_state`; если `macro_hash` тот же, но изменился `content_hash`, это `content_changed`; если ничего не изменилось, это `same_state`.
-
-## Почему используется reset и replay
-
-Explorer не должен просто кликать дальше из текущего состояния. Если после клика открылось меню, а следующий edge относится к root-состоянию, то без reset explorer кликнул бы следующее действие уже из состояния “меню открыто”, а не из root. Это был бы другой эксперимент и граф загрязнился бы ложными переходами.
-
-Поэтому принцип такой: для каждого edge нужно строго восстановить его `from_state`, выполнить ровно одно действие и записать результат. Для root-level edges сейчас это делается через `reset_to_root`, реализованный в `src/ui_explorer/execution/navigator.py`. Navigator нажимает Escape, снимает A11Y Tree и проверяет, что текущий `state_id` совпадает с root.
-
-Для глубины больше нуля следующий шаг методологии — replay path navigation. Он должен работать так: сначала reset к root, затем воспроизведение подтверждённого пути от root до нужного состояния, проверка, что нужное состояние действительно достигнуто, и только после этого выполнение целевого действия. Это позволит исследовать depth 1, depth 2 и дальше без накопления ошибок.
-
-Интуитивно каждый edge проверяется как отдельный лабораторный эксперимент. Мы не надеемся на текущее случайное состояние приложения. Мы сначала приводим систему в нужную исходную точку, затем выполняем одно действие и измеряем результат.
-
-## Strict BFS
-
-Обход графа выполняется по стратегии strict BFS. BFS расшифровывается как Breadth-First Search, то есть поиск в ширину. В UI exploration это означает: сначала исследуются все переходы из root-состояния, затем все переходы из состояний глубины 1, затем глубины 2 и так далее.
-
-Strict BFS означает, что глубина важнее приоритета. Edge из depth 1 не может быть выполнен раньше edge из depth 0, даже если у него выше приоритет. Внутри одной глубины применяется сортировка по priority, attempts и created_order.
-
-В коде scheduler сортирует pending edges по правилу: `from_state.depth`, затем `priority`, затем `attempts`, затем `created_order`. Благодаря этому root-level exploration сначала полностью закрывает первый слой карты. Это делает результат полезным даже на раннем этапе: мы получаем полный набор соседних состояний root, а не уходим глубоко в одно меню.
-
-## Полученный результат на root-level exploration
-
-На примере GNOME Calculator root-состояние имеет ID `8251e16b481b`. В нём было найдено 10 macro actions. Все 10 были выполнены и подтверждены как переходы в depth-1 состояния.
-
-Сводка root-level transitions:
+Для overlay/menu state `observed_items` может быть шумным, потому A11Y snapshot содержит:
 
 ```text
-Mode selection       -> confirmed -> 9b23b16931c9
-Primary menu         -> confirmed -> 23853b9028a4
-Decimal              -> confirmed -> c5cd52807589
-Word Size            -> confirmed -> 5bb1aebc2e55
-Store                -> confirmed -> 08fc8d736660
-Insert Character     -> confirmed -> de52c438ef75
-Shift Right          -> confirmed -> 5b7204416d87
-Shift Left           -> confirmed -> 8bc0cc3597e6
-Superscript          -> confirmed -> 9ace005e22ae
-Subscript            -> confirmed -> 67f6d130a995
+фон основного окна
++
+открытый overlay/menu
 ```
 
-В результате graph inspection показывает 11 nodes: один root и 10 состояний глубины 1. Все root-level edges имеют статус `confirmed`. При этом остаётся много `pending_edges` из состояний глубины 1 — это ожидаемо. Карта не завершена полностью, но первый слой построен.
+Пример для Word Size overlay:
 
-Некоторые состояния распознаны очень чисто. `Decimal` ведёт в состояние `kind = menu` с четырьмя macro actions. `Mode selection` и `Primary menu` ведут в `window_overlay`-состояния с пятью actions. `Insert Character` ведёт в `dialog` с двумя actions. Это подтверждает, что active-root detection работает для меню, popover и диалогов.
+```text
+observed_items:
+  Undo
+  Mode selection
+  Primary menu
+  Decimal
+  ...
+  64-bit
+  32-bit
+  16-bit
+  8-bit
+```
 
-Часть состояний имеет `kind = main`, `role = frame`, `label = Calculator`, `macro_actions = 10`. Это случаи `Word Size`, `Store`, `Shift Right`, `Shift Left`, `Superscript`, `Subscript`. Здесь возможны две интерпретации. Либо это настоящие main-frame mutations, например переключение режима без отдельного overlay. Либо overlay появился, но resolver пока не выделил его как отдельный active root. Это важное ограничение текущего MVP: система уже обнаруживает изменения A11Y, но ещё не всегда точно различает структурный новый UI-контекст и изменение состояния внутри основного окна.
+Поэтому `observed_items` не должен быть главным agent-facing слоем для overlay.
 
-## Ограничения текущего этапа
+---
 
-Текущий этап сознательно остановлен после root-level exploration. Replay path navigation для depth > 0 ещё не реализован. Это значит, что explorer уже построил полный первый слой графа, но пока не должен автоматически выполнять pending edges из depth 1.
+## 18. delta_observed_items
 
-Также нужно улучшить классификацию переходов. Сейчас `macro_hash changed` приводит к `new_macro_state`, но в некоторых случаях это может быть не новый UI-контекст, а изменение checked/selected/focused состояния внутри main frame. Следующий уровень точности — различать `new_macro_state`, `selection_changed`, `toggle_state_changed`, `focus_changed`, `content_changed`.
+`delta_observed_items` — диагностическая разница между текущим state и ближайшим base state.
 
-Ещё одно направление улучшения — active-root detection для некоторых main-frame states. Если действие визуально открывает небольшую панель, но resolver оставляет `active_root = main`, значит эвристики overlay detection надо расширить.
+Base обычно выбирается через `primary_incoming_action`.
 
-Наконец, нужны человекочитаемые labels для состояний. Сейчас некоторые состояния называются технически, например `filler` или `menu`. Для графа это нормально, потому что идентичность определяется хэшами, но для презентации и анализа полезно иметь semantic labels вроде `mode_selection_popover`, `decimal_base_menu`, `insert_character_dialog`.
+Пример Word Size:
 
-## Итоговая формулировка
+```text
+base: root
+current: root + Word Size overlay
+delta:
+  64-bit
+  32-bit
+  16-bit
+  8-bit
+```
 
-Методология A11Y-first UI Exploration строит карту интерфейса как граф состояний и переходов, используя дерево доступности как единственный источник истины. Система захватывает A11Y Tree, нормализует его, определяет активную область взаимодействия, извлекает действия, классифицирует их, выполняет по одному действию за шаг и подтверждает результат через A11Y-diff. Обход выполняется по strict BFS, чтобы сначала получить полный первый слой состояний и не уходить глубоко в один UI-branch.
+Пример Primary menu:
 
-На примере GNOME Calculator подход уже построил полный root-level слой: 10 macro actions из root были выполнены, все 10 переходов подтверждены, найдено 10 depth-1 состояний. Это показывает, что механизм работает как проверяемый exploration pipeline. Одновременно результат выявляет следующие инженерные задачи: replay path для глубин больше нуля, более тонкая классификация transition results и улучшение active-root detection для некоторых main-frame mutations.
+```text
+base: root
+delta:
+  New Window
+  Preferences
+  Keyboard Shortcuts
+  Help
+  About Calculator
+```
+
+Важно: delta — это hint, а не полное содержимое состояния.
+
+Для overlay/menu delta часто полезна.  
+Для полноценных режимов вроде Basic или Programming delta может быть неполной и не должна считаться “смыслом” состояния.
+
+---
+
+## 19. scoped_observed_items
+
+`scoped_observed_items` — best-effort слой важных observed elements для текущего состояния.
+
+Цель:
+
+```text
+показать не весь A11Y snapshot,
+а элементы, относящиеся к активной части состояния.
+```
+
+Логика текущей версии:
+
+```text
+main state:
+  scoped = observed_items
+  confidence = high
+
+overlay/menu state с delta:
+  scoped = delta_observed_items
+  confidence = medium
+
+если точное выделение невозможно:
+  scoped = fallback observed_items
+  confidence = low
+```
+
+Пример Word Size:
+
+```text
+scoped:
+  64-bit
+  32-bit
+  16-bit
+  8-bit
+```
+
+Пример Primary menu:
+
+```text
+scoped:
+  New Window
+  Preferences
+  Keyboard Shortcuts
+  Help
+  About Calculator
+```
+
+Пример low-confidence menu state:
+
+```text
+scoped_source = fallback_observed_items
+scoped_confidence = low
+```
+
+В таком случае scoped считается диагностическим и не должен автоматически попадать в capabilities.
+
+---
+
+## 20. state_capabilities
+
+`state_capabilities` — главный agent-facing слой состояния.
+
+Он объединяет:
+
+```text
+verified_actions
++
+trusted scoped_observed_items
+```
+
+Правило безопасности:
+
+```text
+если scoped_observed_confidence == low,
+fallback observed items не добавляются в state_capabilities
+```
+
+В таком случае в capabilities остаются verified actions и, если есть, delta hints.
+
+Это нужно, чтобы агент не путался в фоне.
+
+Пример Mode selection:
+
+```text
+capabilities:
+  Basic
+  Advanced
+  Financial
+  Programming
+  Keyboard
+```
+
+Хотя raw observed может содержать много фоновых элементов.
+
+Пример Word Size:
+
+```text
+capabilities:
+  64-bit
+  32-bit
+  16-bit
+  8-bit
+```
+
+Пример Programming/Binary main state:
+
+```text
+capabilities:
+  Mode selection
+  Primary menu
+  Binary combo box
+  Word Size
+  Store
+  Insert Character
+  Shift Left / Shift Right
+  Superscript / Subscript
+  AND / OR / XOR / NOT
+  A-F
+  bit grid 0-63
+  arithmetic controls
+```
+
+Для main states список capabilities может быть большим. Это нормально: агент должен искать нужные capability по имени/описанию, а не читать всё подряд.
+
+---
+
+## 21. Интерпретация verified vs observed
+
+Карта различает:
+
+```text
+verified_action
+  действие было выполнено exploration;
+  известен edge_status;
+  часто известен to_state;
+  bbox считается проверенным в контексте from_state.
+
+observed_item
+  элемент был видим в A11Y snapshot;
+  он полезен как знание об UI;
+  но exploration не подтверждал, куда приведёт клик.
+```
+
+Пример gedit menu:
+
+```text
+Menu → confirmed overlay state
+
+Внутри overlay observed-only:
+  Preferences
+  Find…
+  Save As…
+  Print…
+```
+
+Это значит:
+
+```text
+агент знает, что пункт Preferences виден;
+но карта заранее не знает, какой state получится после клика.
+```
+
+Для live-agent это всё равно полезно: он может открыть меню и кликнуть видимый пункт.
+
+---
+
+## 22. Визуализация agent map
+
+Интерактивная визуализация строится командой:
+
+```bash
+python -m ui_explorer.cli.visualize_agent_map --app calc
+```
+
+Результат:
+
+```text
+data/maps/<app>/agent_map.html
+```
+
+Верхние переключатели:
+
+```text
+verified actions
+  показывает проверенные state → state переходы.
+
+scoped items
+  показывает state → scoped observed item связи.
+
+all observed
+  показывает state → all observed item связи.
+  Это самый полный, но самый шумный слой.
+
+delta hints
+  показывает диагностическую разницу относительно base state.
+```
+
+Рекомендуемый режим чтения:
+
+```text
+verified actions: ON
+scoped items: ON
+all observed: OFF
+delta hints: OFF
+```
+
+Правая панель выбранного состояния показывает:
+
+```text
+Primary incoming action
+State capabilities
+Verified actions
+Scoped observed items
+All observed items
+Delta hints
+Incoming actions
+```
+
+Главный блок для агента:
+
+```text
+State capabilities
+```
+
+`All observed` и `Delta hints` нужны в основном для диагностики.
+
+---
+
+## 23. Пример: Word Size overlay
+
+State:
+
+```text
+4a701cc0ad96
+active_root: window_overlay / filler
+primary: root -- Word Size → this confirmed
+```
+
+Raw observed:
+
+```text
+123 elements
+```
+
+Но scoped/capabilities:
+
+```text
+64-bit
+32-bit
+16-bit
+8-bit
+```
+
+Интерпретация:
+
+```text
+это overlay выбора word size;
+открывается кнопкой Word Size;
+внутри доступны варианты 64-bit, 32-bit, 16-bit, 8-bit.
+```
+
+---
+
+## 24. Пример: Primary menu
+
+State:
+
+```text
+3b4bc848561d
+active_root: window_overlay / filler
+primary: root -- Primary menu → this confirmed
+```
+
+Verified actions:
+
+```text
+Number format
+Automatic
+Fixed
+Scientific
+Engineering
+```
+
+Scoped observed items:
+
+```text
+New Window
+Preferences
+Keyboard Shortcuts
+Help
+About Calculator
+```
+
+Capabilities:
+
+```text
+verified number-format actions
++
+observed menu items
+```
+
+Интерпретация:
+
+```text
+из root можно открыть Primary menu;
+внутри подтверждены переключатели формата числа;
+также видны дополнительные пункты меню.
+```
+
+---
+
+## 25. Пример: глубокое menu state
+
+State `ac0a3bafea3c`:
+
+```text
+active_root: menu
+primary: Gradians combo box → this
+verified actions:
+  Degrees
+  Radians
+  Gradians
+scoped_confidence: low
+state_capabilities:
+  Degrees
+  Radians
+  Gradians
+```
+
+Здесь scoped observed оказался low-confidence и содержит фоновые элементы, но capabilities остаются чистыми за счёт verified actions.
+
+Интерпретация:
+
+```text
+это открытое меню выбора angular unit;
+агенту надо использовать state_capabilities,
+а не low-confidence scoped observed.
+```
+
+---
+
+## 26. Пример: Programming/Binary main state
+
+State `f7fcc6f359d2`:
+
+```text
+active_root: main / frame / Calculator
+primary: Binary menu item → this
+scoped_confidence: high
+capabilities: 119
+```
+
+Это полноценный main state, поэтому scoped = observed.
+
+Capabilities большие, потому Programming/Binary interface действительно содержит много controls:
+
+```text
+bit grid 0-63
+A-F
+AND / OR / XOR / NOT
+ones / twos
+arithmetic operations
+number base combo box
+Word Size
+Shift Left / Shift Right
+```
+
+Важно: путь через `primary_incoming_action` не должен восприниматься как оптимальный маршрут от root. Для реального агента маршрут должен вычисляться от текущего live-state.
+
+---
+
+## 27. Проверка на gedit
+
+gedit показал, зачем нужен agent-facing слой.
+
+Graph для gedit маленький:
+
+```text
+nodes: 3
+edges: 4
+```
+
+Но agent_map извлёк:
+
+```text
+items: 26
+observed_item_refs: 36
+delta_observed_item_refs: 19
+scoped_observed_item_refs: 29
+state_capabilities: 33
+```
+
+Особенно полезен overlay меню:
+
+```text
+root -- Menu → menu overlay
+```
+
+Capabilities меню:
+
+```text
+Reload
+Print…
+Fullscreen
+New Window
+Save As…
+Save All
+Find…
+Find and Replace…
+Clear Highlight
+Go to Line…
+View
+Tools
+Preferences
+Keyboard Shortcuts
+Help
+About Text Editor
+```
+
+Это хороший результат: даже при скромном graph агент получает понимание возможностей интерфейса.
+
+---
+
+## 28. Известные ограничения
+
+### 28.1. Active root / label resolver
+
+Иногда graph metadata может назвать menu state неидеально.
+
+Пример Calculator:
+
+```text
+primary: Degrees combo box → menu
+active_root.name: Currency
+contents: Angle, Length, Speed, ..., Currency
+```
+
+По скриншотам видно, что это меню категорий единиц измерения, открытое из combo box `Degrees`, а `Currency` — пункт внутри меню, не название всего состояния.
+
+Это значит, что active_root resolver иногда выбирает не root открытого menu, а один из вложенных menu nodes.
+
+Будущее улучшение:
+
+```text
+сохранять точный active_root selector/path/bbox в graph.json;
+улучшить выбор root menu/submenu;
+не полагаться только на role/name.
+```
+
+### 28.2. Scoped observed is best-effort
+
+`scoped_observed_items` пока строится без точного active-root subtree selector. Поэтому confidence может быть:
+
+```text
+high
+medium
+low
+```
+
+Low-confidence scoped не должен использоваться как основной источник для агента.
+
+### 28.3. Observed-only не равен verified
+
+Если item observed-only, карта знает, что он виден, но не знает проверенный результат клика.
+
+Это нормально для agent-facing подсказки, но runtime-agent должен уметь действовать осторожно:
+
+```text
+открыть нужное состояние;
+найти observed item в live UI;
+кликнуть;
+снять новый A11Y snapshot;
+обновить своё понимание.
+```
+
+### 28.4. Runtime routing
+
+Карта не должна хранить один “лучший путь от root” для каждого состояния.
+
+Агент находится в текущем live-state, поэтому маршрут должен вычисляться динамически:
+
+```text
+current_state → target_state
+```
+
+по `verified_actions`.
+
+---
+
+## 29. Текущий статус методологии
+
+Текущая система уже умеет:
+
+```text
+- захватывать A11Y Tree;
+- строить state signatures;
+- определять active_root;
+- извлекать и классифицировать macro actions;
+- строить graph.json;
+- выполнять strict BFS exploration;
+- использовать hard reset + replay confirmed path;
+- завершать Calculator graph в рамках macro policy;
+- строить agent_map.json поверх graph + A11Y snapshots;
+- дедуплицировать observed items через items + refs;
+- строить incoming_actions и primary_incoming_action;
+- строить delta_observed_items;
+- строить scoped_observed_items с confidence;
+- строить state_capabilities;
+- инспектировать и визуализировать agent-facing карту;
+- показывать пользу подхода на gedit.
+```
+
+Главные следующие направления:
+
+```text
+1. улучшить active_root resolver и сохранять точный active_root selector в graph.json;
+2. развить runtime pathfinding от текущего live-state;
+3. научить agent runtime безопасно использовать observed-only capabilities;
+4. расширить exploration policy для отдельных классов push buttons;
+5. проверить подход на других приложениях с полноценным A11Y Tree.
+```
