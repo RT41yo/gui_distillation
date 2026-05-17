@@ -1001,3 +1001,323 @@ pytest tests/unit/test_build_agent_map.py tests/unit/test_inspect_agent_map.py -
 ```bash
 pytest -q
 ```
+
+## 24. Улучшения Agent-facing UI map
+
+Agent-facing карта была расширена, чтобы агенту было проще понимать не только проверенные переходы графа, но и видимое содержимое каждого состояния.
+
+Раньше основными блоками были:
+
+```text
+verified_actions — проверенные действия и переходы
+observed_items   — все найденные видимые A11Y-элементы состояния
+```
+
+Этого оказалось недостаточно для overlay/menu-состояний. Например, при открытии `Word Size` полный `observed_items` содержит не только пункты `64-bit / 32-bit / 16-bit / 8-bit`, но и фоновые элементы калькулятора. Поэтому добавлены новые agent-facing поля.
+
+### Новые поля состояния
+
+В каждом `states.<state_id>` теперь могут быть:
+
+```text
+primary_incoming_action
+incoming_actions
+scoped_observed_items
+scoped_observed_source
+scoped_observed_confidence
+delta_base_state
+delta_observed_items
+state_capabilities
+state_capabilities_source
+```
+
+Назначение:
+
+```text
+primary_incoming_action — основной локальный вход в состояние.
+incoming_actions        — все подтверждённые входы в состояние.
+observed_items          — полный видимый A11Y-контекст состояния.
+delta_observed_items    — диагностическая разница относительно ближайшего incoming/base state.
+scoped_observed_items   — best-effort важные видимые элементы активной части состояния.
+state_capabilities      — главный список для агента: verified actions + доверенные scoped items.
+```
+
+Главное правило чтения:
+
+```text
+Для агента сначала читать state_capabilities.
+Для навигации использовать verified_actions.
+observed_items и delta_observed_items считать диагностическими слоями.
+```
+
+### Почему появился scoped слой
+
+Для overlay/menu A11Y snapshot часто содержит фон основного окна. Например:
+
+```text
+Word Size overlay:
+  observed_items = root UI + Word Size popup
+  scoped_observed_items = 64-bit, 32-bit, 16-bit, 8-bit
+```
+
+Для `Primary menu`:
+
+```text
+verified_actions:
+  Number format
+  Automatic
+  Fixed
+  Scientific
+  Engineering
+
+scoped_observed_items:
+  New Window
+  Preferences
+  Keyboard Shortcuts
+  Help
+  About Calculator
+```
+
+То есть `scoped_observed_items` пытается показать именно важное содержимое состояния, а не весь сырой A11Y-контекст.
+
+### Confidence и source
+
+Так как текущий `graph.json` пока не хранит точный active-root selector/path для каждого состояния, scoped слой строится best-effort.
+
+Примеры источников:
+
+```text
+observed_items_main_root
+delta_observed_items_overlay_hint
+fallback_observed_items
+unresolved
+```
+
+Примеры confidence:
+
+```text
+high   — main/root state, scoped примерно равен видимому main UI.
+medium — overlay/menu, scoped получен из delta hints.
+low    — точного scoped выделения нет, используется fallback.
+```
+
+Если `scoped_observed_confidence = low`, такие элементы не добавляются напрямую в `state_capabilities`, чтобы не загрязнять agent-facing слой фоновым UI.
+
+### State capabilities
+
+`state_capabilities` — основной слой для агента.
+
+Он собирается так:
+
+```text
+state_capabilities =
+  verified_actions
+  + scoped_observed_items, если confidence не low
+  + delta_observed_items, если scoped confidence low
+```
+
+Пример для `Mode selection`:
+
+```text
+Basic
+Advanced
+Financial
+Programming
+Keyboard
+```
+
+Пример для `Word Size`:
+
+```text
+64-bit
+32-bit
+16-bit
+8-bit
+```
+
+Пример для `Programming/Binary` main state:
+
+```text
+Mode selection
+Primary menu
+Binary
+Word Size
+Store
+Insert Character
+Shift Left / Shift Right
+Superscript / Subscript
+AND / OR / XOR / NOT
+ones / twos
+A-F, 0-9, bit grid
+```
+
+### Items + refs
+
+Чтобы карта не раздувалась повторением одинаковых observed-элементов, используется структура `items + refs`.
+
+Верхний уровень:
+
+```json
+"items": {
+  "<item_id>": {
+    "role": "push button",
+    "name": "Preferences",
+    "status": "observed_unverified"
+  }
+}
+```
+
+В состоянии:
+
+```json
+"scoped_observed_items": [
+  {"ref": "<item_id>", "role": "push button", "name": "Preferences"}
+]
+```
+
+Это уменьшает размер карты и делает связи между состояниями и элементами явными.
+
+### Интерактивная визуализация agent map
+
+Построить HTML-визуализацию:
+
+```bash
+python -m ui_explorer.cli.visualize_agent_map --app calc
+```
+
+Ожидаемый файл:
+
+```text
+data/maps/calc/agent_map.html
+```
+
+Переключатели сверху:
+
+```text
+verified actions — проверенные переходы между состояниями.
+scoped items     — best-effort важные видимые элементы состояния.
+all observed     — полный сырой visible A11Y-контекст.
+delta hints      — диагностическая разница относительно base state.
+```
+
+Практический режим по умолчанию:
+
+```text
+verified actions: ON
+scoped items: ON
+all observed: OFF
+delta hints: OFF
+```
+
+Так граф остаётся читаемым и показывает agent-facing слой без лишнего шума.
+
+### Диагностика карты
+
+Пересобрать карту:
+
+```bash
+python -m ui_explorer.cli.build_agent_map --app calc
+```
+
+Посмотреть состояние:
+
+```bash
+python -m ui_explorer.cli.inspect_agent_map \
+  --app calc \
+  --state 3b4bc848561d \
+  --limit 50
+```
+
+Поиск элемента:
+
+```bash
+python -m ui_explorer.cli.inspect_agent_map \
+  --app calc \
+  --query Hertz \
+  --exact \
+  --details \
+  --limit 5
+```
+
+Проверить основные counters:
+
+```bash
+python - <<'PY'
+import json
+from pathlib import Path
+from collections import Counter
+
+m = json.loads(Path("data/maps/calc/agent_map.json").read_text())
+
+print("schema:", m.get("schema_version"))
+print("states:", len(m["states"]))
+print("items:", len(m["items"]))
+print("root:", m.get("root_state_id"))
+print("summary:", json.dumps(m.get("summary", {}), indent=2, ensure_ascii=False))
+
+print("scoped confidence:", Counter(
+    s.get("scoped_observed_confidence")
+    for s in m["states"].values()
+))
+print("scoped source:", Counter(
+    s.get("scoped_observed_source")
+    for s in m["states"].values()
+))
+PY
+```
+
+### Как читать состояние
+
+Рекомендуемый порядок:
+
+```text
+1. primary_incoming_action — как это состояние обычно открывается.
+2. state_capabilities      — что агенту полезно в этом состоянии.
+3. verified_actions        — куда из этого состояния есть подтверждённые переходы.
+4. scoped_observed_items   — важные видимые элементы активной области.
+5. all observed            — полный сырой контекст, только для отладки.
+6. delta hints             — диагностическая подсказка, особенно для overlay/menu.
+```
+
+Пример строки:
+
+```text
+e14ee107e46f -- Primary menu → this confirmed
+```
+
+означает:
+
+```text
+из состояния e14ee107e46f нажали Primary menu,
+и результатом стало текущее состояние;
+переход подтверждён exploration.
+```
+
+### Известные ограничения
+
+Текущий scoped слой — best-effort. Для некоторых menu/combo states возможны неоднозначности, если `active_root` в `graph.json` назван по внутреннему пункту меню, а не по настоящему root меню.
+
+Пример обнаруженной проблемы:
+
+```text
+combo box Degrees открывает меню категорий:
+Angle / Length / Speed / ... / Currency
+
+но graph metadata может назвать state как Currency,
+потому Currency является пунктом внутри меню.
+```
+
+Это указывает на будущую задачу: улучшить формирование `graph.json`, чтобы exploration сохранял более точный active-root selector/path/bbox для menu и overlay states.
+
+Пока безопасный agent-facing слой — это `state_capabilities`, а не raw `label` или полный `observed_items`.
+
+### Следующие шаги
+
+```text
+- улучшить active_root resolver в exploration;
+- сохранять точный selector/path/bbox active root в graph.json;
+- различать menu root и menu item/submenu при label state;
+- добавить runtime pathfinding current_state → target_state;
+- не хранить один глобальный shortest path from root как истину для агента;
+- расширить тесты для scoped/capabilities/menu-combo cases.
+```
