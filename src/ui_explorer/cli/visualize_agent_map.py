@@ -385,7 +385,6 @@ def _html_document(data: dict[str, Any]) -> str:
 <div class="layout">
   <div class="main">
     <div class="toolbar">
-      <input id="search" type="text" placeholder="Search state/action/item: AND, Financial, Mode selection...">
       <label><input id="showActions" type="checkbox" checked> verified actions</label>
       <label><input id="showScoped" type="checkbox" checked> scoped items</label>
       <label><input id="showItems" type="checkbox"> all observed</label>
@@ -441,7 +440,6 @@ const svg = document.getElementById("viz");
 const edgeLayer = document.getElementById("edges");
 const nodeLayer = document.getElementById("nodes");
 
-const searchInput = document.getElementById("search");
 const showActionsInput = document.getElementById("showActions");
 const showItemsInput = document.getElementById("showItems");
 const showScopedInput = document.getElementById("showScoped");
@@ -492,25 +490,7 @@ document.getElementById("stats").innerHTML = statsHtml();
 let allNodes = [...data.states, ...data.items];
 let nodeById = new Map(allNodes.map(n => [n.id, n]));
 
-function textMatches(obj, query) {
-  if (!query) return true;
-  const hay = [
-    obj.id,
-    obj.label,
-    obj.short_label,
-    obj.role,
-    obj.name,
-    obj.description,
-    obj.edge_status,
-    obj.method,
-    obj.scoped_observed_source,
-    obj.scoped_observed_confidence,
-  ].filter(Boolean).join(" ").toLowerCase();
-  return hay.includes(query.toLowerCase());
-}
-
 function filteredGraph() {
-  const query = searchInput.value.trim();
   const maxD = Number(depthInput.value);
 
   const visibleStates = data.states.filter(s => Number(s.depth || 0) <= maxD);
@@ -532,41 +512,23 @@ function filteredGraph() {
     ? data.delta_item_edges.filter(e => visibleStateIds.has(e.source))
     : [];
 
-  const visibleItemIds = new Set([...itemEdges, ...scopedEdges, ...deltaEdges].map(e => e.target));
+  const visibleItemIds = new Set(
+    [...itemEdges, ...scopedEdges, ...deltaEdges].map(e => e.target)
+  );
 
-  let nodes = [
+  const nodes = [
     ...visibleStates,
     ...data.items.filter(i => visibleItemIds.has(i.id)),
   ];
 
-  let edges = [...actionEdges, ...scopedEdges, ...itemEdges, ...deltaEdges];
+  const edges = [
+    ...actionEdges,
+    ...scopedEdges,
+    ...itemEdges,
+    ...deltaEdges,
+  ];
 
-  if (query) {
-    const matchingNodeIds = new Set();
-
-    for (const n of nodes) {
-      if (textMatches(n, query)) matchingNodeIds.add(n.id);
-    }
-
-    for (const e of edges) {
-      if (textMatches(e, query)) {
-        matchingNodeIds.add(e.source);
-        matchingNodeIds.add(e.target);
-      }
-    }
-
-    for (const e of edges) {
-      if (matchingNodeIds.has(e.source) || matchingNodeIds.has(e.target)) {
-        matchingNodeIds.add(e.source);
-        matchingNodeIds.add(e.target);
-      }
-    }
-
-    nodes = nodes.filter(n => matchingNodeIds.has(n.id));
-    edges = edges.filter(e => matchingNodeIds.has(e.source) && matchingNodeIds.has(e.target));
-  }
-
-  return { nodes, edges, query };
+  return { nodes, edges };
 }
 
 function layout(nodes) {
@@ -823,7 +785,6 @@ function highlight(...ids) {
 }
 
 function resetView() {
-  searchInput.value = "";
   showActionsInput.checked = true;
   showScopedInput.checked = true;
   showItemsInput.checked = false;
@@ -834,7 +795,7 @@ function resetView() {
   render();
 }
 
-for (const el of [searchInput, showActionsInput, showItemsInput, showScopedInput, showDeltaInput, depthInput]) {
+for (const el of [showActionsInput, showItemsInput, showScopedInput, showDeltaInput, depthInput]) {
   el.addEventListener("input", () => {
     depthValue.textContent = depthInput.value;
     render();
