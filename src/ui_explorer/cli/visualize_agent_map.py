@@ -258,7 +258,12 @@ def _html_document(data: dict[str, Any]) -> str:
     grid-template-columns: minmax(0, 1fr) minmax(460px, 36vw);
     height: calc(100vh - 62px);
   }
-  .main { position: relative; overflow: hidden; min-width: 0; }
+  .main {
+    position: relative;
+    overflow: auto;
+    min-width: 0;
+    min-height: 0;
+  }
   .toolbar {
     position: absolute;
     z-index: 5;
@@ -301,7 +306,13 @@ def _html_document(data: dict[str, Any]) -> str:
     cursor: pointer;
   }
   button:hover { background: #374151; }
-  svg { width: 100%; height: 100%; display: block; }
+  svg {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    display: block;
+  }
   .edge {
     stroke: var(--line);
     stroke-width: 1.4;
@@ -453,6 +464,16 @@ const maxDepth = Math.max(0, ...data.states.map(s => Number(s.depth || 0)));
 const previewLimit = 30;
 const incomingPreviewLimit = 20;
 
+const layoutMetrics = {
+  left: 120,
+  top: 110,
+  depthStep: 170,
+  minStateStep: 46,
+  minItemStep: 30,
+  bottomPadding: 140,
+  rightPadding: 260,
+};
+
 depthInput.max = String(maxDepth);
 depthInput.value = String(maxDepth);
 depthValue.textContent = String(maxDepth);
@@ -531,9 +552,43 @@ function filteredGraph() {
   return { nodes, edges };
 }
 
+function updateCanvasSize(nodes) {
+  const states = nodes.filter(n => n.type === "state");
+  const items = nodes.filter(n => n.type === "item");
+
+  const statesByDepth = new Map();
+  for (const s of states) {
+    const d = Number(s.depth || 0);
+    if (!statesByDepth.has(d)) statesByDepth.set(d, []);
+    statesByDepth.get(d).push(s);
+  }
+
+  const maxStatesInDepth = Math.max(1, ...Array.from(statesByDepth.values()).map(arr => arr.length));
+  const itemCount = Math.max(1, items.length);
+  const maxVisibleDepth = Math.max(0, ...states.map(s => Number(s.depth || 0)));
+
+  const requiredHeight = Math.max(
+    800,
+    layoutMetrics.top + layoutMetrics.bottomPadding +
+      Math.max(maxStatesInDepth * layoutMetrics.minStateStep, itemCount * layoutMetrics.minItemStep)
+  );
+
+  const requiredWidth = Math.max(
+    1200,
+    layoutMetrics.left + layoutMetrics.rightPadding + (maxVisibleDepth + 2) * layoutMetrics.depthStep
+  );
+
+  svg.style.width = `${requiredWidth}px`;
+  svg.style.height = `${requiredHeight}px`;
+  svg.setAttribute("width", String(requiredWidth));
+  svg.setAttribute("height", String(requiredHeight));
+  svg.setAttribute("viewBox", `0 0 ${requiredWidth} ${requiredHeight}`);
+
+  return { width: requiredWidth, height: requiredHeight };
+}
+
 function layout(nodes) {
-  const width = svg.clientWidth || 1200;
-  const height = svg.clientHeight || 800;
+  const { width, height } = updateCanvasSize(nodes);
 
   const states = nodes.filter(n => n.type === "state");
   const items = nodes.filter(n => n.type === "item");
@@ -547,20 +602,29 @@ function layout(nodes) {
 
   for (const [d, arr] of statesByDepth.entries()) {
     arr.sort((a, b) => String(a.id).localeCompare(String(b.id)));
-    const x = 120 + d * 170;
-    const step = Math.max(46, (height - 170) / Math.max(1, arr.length));
+    const x = layoutMetrics.left + d * layoutMetrics.depthStep;
+    const step = Math.max(
+      layoutMetrics.minStateStep,
+      (height - layoutMetrics.top - layoutMetrics.bottomPadding) / Math.max(1, arr.length)
+    );
     arr.forEach((s, idx) => {
       s.x = x;
-      s.y = 110 + idx * step;
+      s.y = layoutMetrics.top + idx * step;
     });
   }
 
-  const itemX = Math.min(width - 180, 120 + (maxDepth + 1) * 170);
+  const itemX = Math.min(
+    width - 180,
+    layoutMetrics.left + (maxDepth + 1) * layoutMetrics.depthStep
+  );
   items.sort((a, b) => String(a.label).localeCompare(String(b.label)));
-  const itemStep = Math.max(30, (height - 170) / Math.max(1, items.length));
+  const itemStep = Math.max(
+    layoutMetrics.minItemStep,
+    (height - layoutMetrics.top - layoutMetrics.bottomPadding) / Math.max(1, items.length)
+  );
   items.forEach((i, idx) => {
     i.x = itemX;
-    i.y = 110 + idx * itemStep;
+    i.y = layoutMetrics.top + idx * itemStep;
   });
 }
 
