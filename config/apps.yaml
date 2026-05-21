@@ -11,7 +11,7 @@ apps:
 
   - app_id: thunderbird
     display_name: Thunderbird
-    launcher: thunderbird
+    launcher: thunderbird --no-remote --profile /tmp/ui-explorer-thunderbird-profile
     a11y_name: thunderbird
 
   - app_id: gedit
@@ -23,3 +23,33 @@ apps:
     display_name: Files
     launcher: nautilus
     a11y_name: nautilus
+
+  - app_id: libreoffice_writer
+    display_name: LibreOffice Writer
+    launcher: libreoffice --writer
+    a11y_name: soffice
+
+  - app_id: libreoffice_calc
+    display_name: LibreOffice Calc
+    launcher: libreoffice --calc --norestore -env:UserInstallation=file:///tmp/lo-ui-explorer-profile
+    a11y_name: soffice
+
+  - app_id: libreoffice_impress
+    display_name: LibreOffice Impress
+    launcher: libreoffice --impress --norestore -env:UserInstallation=file:///tmp/lo-ui-explorer-impress-profile
+    a11y_name: soffice
+
+  - app_id: gimp
+    display_name: GIMP
+    launcher: gimp
+    a11y_name: gimp
+
+  - app_id: chrome
+    display_name: Google Chrome
+    launcher: google-chrome
+    a11y_name: chrome
+
+  - app_id: vscode
+    display_name: Visual Studio Code
+    launcher: code --no-sandbox --disable-gpu --user-data-dir=/tmp/ui-explorer-vscode-profile
+    a11y_name: code
