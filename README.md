@@ -1321,3 +1321,201 @@ Angle / Length / Speed / ... / Currency
 - не хранить один глобальный shortest path from root как истину для агента;
 - расширить тесты для scoped/capabilities/menu-combo cases.
 ```
+
+# 25. LibreOffice Writer: доработка exploration и воспроизводимый прогон
+
+Раздел фиксирует текущий успешный checkpoint для LibreOffice Writer. Цель — получить устойчивый A11Y-only graph верхнего меню Writer с минимальным шумом frontier.
+
+## Что было доработано
+
+- `active_root`: Writer root определяется как `main/frame`, а открытые верхние меню — как `menu/File`, `menu/Edit`, `menu/View` и т.д. Вложенные submenu больше не перехватывают active root у внешнего меню.
+- `state_signature`: `state_id` не зависит от абсолютных `bbox` и плавающих micro/action nodes. Root стабилен при смещении окна, а открытое меню отличается от root через `active_root.kind/role/name`.
+- `action_policy`: top-level menu bar items остаются `macro_candidate`; formatting/content actions понижены; опасные действия (`Save`, `Print`, `Exit LibreOffice`, `Open Remote`, `Send`) исключены из safe macro frontier.
+- `navigator`: hard reset закрывает LibreOffice recovery flow: `Document Recovery → Discard → Question → Yes`; увеличено ожидание появления `soffice` в AT-SPI.
+
+## Текущий checkpoint
+
+```text
+root_state_id: 21bc4f4c8f34
+nodes: 12
+edges: 77
+confirmed: 11
+pending: 66
+node_depth_counts:
+  0: 1
+  1: 11
+```
+
+Интерпретация:
+
+```text
+depth 0 — Writer root
+depth 1 — 11 подтверждённых top-level menu states:
+  File, Edit, View, Insert, Format, Styles, Table, Form, Tools, Window, Help
+```
+
+Это хороший первый уровень exploration. На этом этапе автоматический прогон лучше остановить и отдельно настраивать policy для depth-1 submenu/actions.
+
+## Команды запуска с нуля
+
+### 1. Подготовка окружения
+
+```bash
+source ~/gui-distill-venv/bin/activate
+cd /mnt/repo
+```
+
+```bash
+pgrep -a Xvfb || Xvfb :99 -screen 0 1280x1024x24 -ac &
+sleep 1
+DISPLAY=:99 xset q >/dev/null && echo "DISPLAY OK"
+```
+
+### 2. Очистить старый LibreOffice state
+
+```bash
+pkill -9 -f libreoffice || true
+pkill -9 -f soffice || true
+sleep 2
+
+rm -rf /tmp/lo-ui-explorer-writer-profile-clean
+rm -rf ~/.config/libreoffice/4/user/backup/*
+rm -f ~/.config/libreoffice/4/user/.lock 2>/dev/null || true
+```
+
+### 3. Запустить Writer вручную
+
+```bash
+SAL_USE_VCLPLUGIN=gtk3 DISPLAY=:99 libreoffice --writer --norestore --nofirststartwizard \
+  -env:UserInstallation=file:///tmp/lo-ui-explorer-writer-profile-clean \
+  >/tmp/libreoffice_writer.log 2>&1 &
+
+sleep 12
+DISPLAY=:99 python scripts/list_atspi_apps.py
+```
+
+Ожидаем:
+
+```text
+name='soffice' role='application' childCount=1
+  child[0] name='Untitled 1 - LibreOffice Writer' role='frame'
+```
+
+Если появился `Tip of the Day`:
+
+```bash
+DISPLAY=:99 xdotool key Escape
+sleep 1
+```
+
+### 4. Снять clean root capture
+
+```bash
+DISPLAY=:99 python -m ui_explorer.cli.capture \
+  --app libreoffice_writer \
+  --display :99 \
+  --timeout 15 \
+  --verbose
+
+python -m ui_explorer.cli.active_root \
+  data/maps/libreoffice_writer/_captures/a11y_tree.xml
+
+python -m ui_explorer.cli.state_signature \
+  data/maps/libreoffice_writer/_captures/a11y_tree.xml
+
+python -m ui_explorer.cli.list_actions \
+  data/maps/libreoffice_writer/_captures/a11y_tree.xml \
+  --kind macro_candidate \
+  --limit 80
+```
+
+Ожидаем:
+
+```text
+active_root.kind = main
+active_root.role = frame
+macro_action_count = 18
+```
+
+### 5. Пересоздать graph
+
+```bash
+rm -f data/maps/libreoffice_writer/graph.json
+rm -rf data/maps/libreoffice_writer/states
+rm -rf data/maps/libreoffice_writer/_tmp
+
+python -m ui_explorer.cli.init_graph \
+  --app libreoffice_writer \
+  --xml data/maps/libreoffice_writer/_captures/a11y_tree.xml
+
+python -m ui_explorer.cli.inspect_graph --app libreoffice_writer
+python -m ui_explorer.cli.next_edge --app libreoffice_writer
+```
+
+Ожидаем:
+
+```text
+nodes = 1
+edges = 18
+pending_edges = 18
+next_edge = File
+```
+
+### 6. Построить top-level menu skeleton
+
+Для полного верхнего меню нужно 11 успешных шагов.
+
+```bash
+for i in 1 2 3 4 5 6 7 8 9 10 11; do
+  echo "===== TOP MENU STEP $i ====="
+
+  DISPLAY=:99 python -m ui_explorer.cli.step_edge \
+    --app libreoffice_writer \
+    --display :99 \
+    --navigation hard \
+    --hard-reset-wait 15 \
+    --verbose || break
+
+  python -m ui_explorer.cli.inspect_graph --app libreoffice_writer
+  python -m ui_explorer.cli.next_edge --app libreoffice_writer
+done
+```
+
+Сохранить baseline:
+
+```bash
+cp data/maps/libreoffice_writer/graph.json \
+   data/maps/libreoffice_writer/graph_top_menu_baseline.json
+```
+
+### 7. Посмотреть pending frontier
+
+```bash
+python - <<'PY'
+import json
+from pathlib import Path
+
+g = json.loads(Path("data/maps/libreoffice_writer/graph.json").read_text())
+
+pending = [e for e in g["edges"].values() if e["status"] == "pending"]
+pending.sort(key=lambda e: (e["priority"], e["created_order"]))
+
+for e in pending:
+    a = e["action"]
+    print(
+        f'priority={e["priority"]:>2} '
+        f'depth={g["nodes"][e["from_state"]]["depth"]} '
+        f'from={g["nodes"][e["from_state"]]["label"]!r} '
+        f'role={a.get("role")!r} '
+        f'name={a.get("name")!r}'
+    )
+PY
+```
+
+## Важные правила
+
+- Не инициализировать graph из открытого меню. Перед `init_graph` обязательно проверить: `active_root.kind = main`, `role = frame`.
+- Если `init_graph` дал `edges = 8`, capture был сделан из `menu/File`, а не из Writer root.
+- Если `init_graph` дал `edges = 1`, capture сделан из dialog/alert.
+- Правильный стартовый graph Writer сейчас: `edges = 18`.
+- После top-level skeleton не запускать автоматически depth-1 exploration без новой policy.
