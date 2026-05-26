@@ -186,7 +186,11 @@ def main() -> int:
 
     tmp_dir.mkdir(parents=True, exist_ok=True)
 
-    waiter = A11YWaiter(a11y_name=app_cfg.a11y_name)
+    waiter = A11YWaiter(
+        a11y_name=app_cfg.a11y_name,
+        timeout_s=15.0,
+        interval_s=0.3,
+    )
 
     navigation_dir = tmp_dir / "navigation"
     navigation_dir.mkdir(parents=True, exist_ok=True)

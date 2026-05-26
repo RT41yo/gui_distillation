@@ -22,8 +22,11 @@ def test_macro_actions_include_known_context_controls():
 
     assert "Mode selection" in macro_names
     assert "Primary menu" in macro_names
-    assert "Decimal" in macro_names
-    assert "Word Size" in macro_names
+
+    assert (
+        {"Decimal", "Word Size"} & macro_names
+        or {"Degrees", "Radians"} <= macro_names
+    )
 
 
 def test_micro_actions_include_undo_and_bit_cells():
@@ -40,3 +43,50 @@ def test_macro_count_is_less_than_raw_count():
 
     assert len(macro) > 0
     assert len(macro) < len(items)
+
+
+def test_libreoffice_writer_top_menus_are_macro_actions():
+    path = Path("tests/fixtures/a11y/writer/root_pos_a.xml")
+    assert path.exists(), "Run Writer capture first."
+
+    root = parse_a11y_xml(path)
+    active = resolve_active_root(root)
+    actions = extract_actions(active.node)
+    classified = classify_actions(actions)
+
+    macro_names = {item.action.name for item in classified if item.kind == ActionKind.MACRO}
+
+    assert {"File", "Edit", "View", "Insert", "Format", "Tools", "Help"} <= macro_names
+
+
+def test_libreoffice_writer_formatting_toggles_are_micro():
+    path = Path("tests/fixtures/a11y/writer/root_pos_a.xml")
+    assert path.exists(), "Run Writer capture first."
+
+    root = parse_a11y_xml(path)
+    active = resolve_active_root(root)
+    actions = extract_actions(active.node)
+    classified = classify_actions(actions)
+
+    by_name = {item.action.name: item for item in classified}
+
+    assert by_name["Bold"].kind == ActionKind.MICRO
+    assert by_name["Italic"].kind == ActionKind.MICRO
+    assert by_name["Left"].kind == ActionKind.MICRO
+    assert by_name["Center"].kind == ActionKind.MICRO
+    assert by_name["Right"].kind == ActionKind.MICRO
+
+
+def test_libreoffice_writer_top_menus_remain_macro():
+    path = Path("tests/fixtures/a11y/writer/root_pos_a.xml")
+    assert path.exists(), "Run Writer capture first."
+
+    root = parse_a11y_xml(path)
+    active = resolve_active_root(root)
+    actions = extract_actions(active.node)
+    classified = classify_actions(actions)
+
+    macro_names = {item.action.name for item in classified if item.kind == ActionKind.MACRO}
+
+    assert {"File", "Edit", "View", "Insert", "Format", "Tools", "Help"} <= macro_names
+

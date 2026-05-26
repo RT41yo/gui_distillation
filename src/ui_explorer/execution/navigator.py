@@ -65,6 +65,8 @@ class Navigator:
         "close",
         "dismiss",
         "ok",
+        "discard",
+        "yes",
     })
 
     ROOT_OPENER_ROLES = frozenset({
@@ -93,7 +95,11 @@ class Navigator:
 
         os.environ["DISPLAY"] = display
 
-        self.waiter = A11YWaiter(a11y_name=a11y_name)
+        self.waiter = A11YWaiter(
+            a11y_name=a11y_name,
+            timeout_s=15.0,
+            interval_s=0.3,
+        )
         self.executor = ActionExecutor(
             display=display,
             window_name=self.window_name,
@@ -649,10 +655,11 @@ class Navigator:
         output_dir: Path,
     ) -> CapturedState | None:
         """
-        Generic modal/dialog dismissal.
+        Generic modal/dialog/alert dismissal.
 
-        This is not app-specific. It tries common safe dialog actions:
-        Cancel / Close / Dismiss / OK.
+        This is mostly app-agnostic. It tries common safe dialog actions:
+        Cancel / Close / Dismiss / OK, plus LibreOffice recovery flow:
+        Discard -> Question alert -> Yes.
         """
 
         output_dir.mkdir(parents=True, exist_ok=True)
@@ -682,18 +689,69 @@ class Navigator:
             candidates.append(action)
 
         if not candidates:
+            try:
+                import pyautogui
+            except Exception:
+                return None
+
+            self._activate_window()
+
+            # Fallback for startup dialogs such as LibreOffice Tip of the Day.
+            for index, key in enumerate(["escape", "escape"], start=1):
+                pyautogui.press(key)
+                time.sleep(0.35)
+
+                state = self.waiter.capture_stable(
+                    output_dir=output_dir,
+                    prefix=f"dismiss_dialog_key_{index:02d}",
+                )
+
+                active = state.signature.active_root
+                if active.get("kind") not in {"dialog", "alert"}:
+                    return state
+
             return None
 
-        # Prefer Cancel/Close before OK.
-        candidates.sort(
-            key=lambda action: (
-                0
-                if action.name.strip().lower() in {"cancel", "close", "dismiss"}
-                else 1,
-                action.depth,
-                action.name,
+        def _dismiss_priority(action: UIAction) -> tuple[int, int, str]:
+            name = action.name.strip().lower()
+
+            if name in {"cancel", "close", "dismiss"}:
+                return (0, action.depth, action.name)
+
+            if name == "discard":
+                return (1, action.depth, action.name)
+
+            if name in {"yes", "ok"}:
+                return (2, action.depth, action.name)
+
+            return (9, action.depth, action.name)
+
+        candidates.sort(key=_dismiss_priority)
+
+        for index, action in enumerate(candidates, start=1):
+            if not self._click_action_bbox(action):
+                continue
+
+            return self.waiter.capture_stable(
+                output_dir=output_dir,
+                prefix=f"dismiss_dialog_{index:02d}",
             )
-        )
+
+        return None
+
+    def _dismiss_priority(action: UIAction) -> tuple[int, int, str]:
+        name = action.name.strip().lower()
+
+        if name in {"cancel", "close", "dismiss"}:
+            return (0, action.depth, action.name)
+
+        if name == "discard":
+            return (1, action.depth, action.name)
+
+        if name in {"yes", "ok"}:
+            return (2, action.depth, action.name)
+
+        return (9, action.depth, action.name)
 
         for index, action in enumerate(candidates, start=1):
             if not self._click_action_bbox(action):
@@ -787,17 +845,21 @@ class Navigator:
             )
 
         if not reset_result.ok and current_state is not None:
-            dismissed_state = self._try_dismiss_dialog(
-                current_state=current_state,
-                output_dir=output_dir / "dismiss_dialog",
-            )
+            for dismiss_index in range(1, 4):
+                dismissed_state = self._try_dismiss_dialog(
+                    current_state=current_state,
+                    output_dir=output_dir / f"dismiss_dialog_{dismiss_index:02d}",
+                )
 
-            if dismissed_state is not None:
+                if dismissed_state is None:
+                    break
+
                 current_state = dismissed_state
                 current_id = current_state.signature.state_id
 
                 log.debug(
-                    "navigate_to_state after dialog dismiss: target=%s root=%s current=%s",
+                    "navigate_to_state after dialog dismiss %s: target=%s root=%s current=%s",
+                    dismiss_index,
                     target_state_id,
                     graph.root_state_id,
                     current_id,
@@ -809,7 +871,7 @@ class Navigator:
                             ok=True,
                             target_state=target_state_id,
                             actual_state=current_id,
-                            attempts=reset_result.attempts + 1,
+                            attempts=reset_result.attempts + dismiss_index,
                             reason=(
                                 "target state reached after generic dialog dismiss: "
                                 f"target={target_state_id}"
@@ -824,10 +886,14 @@ class Navigator:
                         ok=True,
                         target_state=graph.root_state_id,
                         actual_state=current_id,
-                        attempts=reset_result.attempts + 1,
+                        attempts=reset_result.attempts + dismiss_index,
                         reason="root reached after generic dialog dismiss",
                         xml_path=str(current_state.xml_path),
                     )
+                    break
+
+                if current_state.signature.active_root.get("kind") not in {"dialog", "alert"}:
+                    break
 
         if not reset_result.ok and current_state is not None:
             normalize_result, normalized_state = self._normalize_root_by_graph_options(

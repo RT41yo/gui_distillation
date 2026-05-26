@@ -24,6 +24,64 @@ def _first_visible_frame(root: A11YNode) -> Optional[A11YNode]:
     return None
 
 
+def _parent_path_text(node: A11YNode) -> str:
+    return " / ".join(node.parent_path).lower()
+
+
+def _is_direct_menu_bar_menu(node: A11YNode) -> bool:
+    if node.role != "menu":
+        return False
+
+    if not node.parent_path:
+        return False
+
+    return node.parent_path[-1].lower() == "menu bar"
+
+
+def _has_visible_menu_popup_content(node: A11YNode) -> bool:
+    for descendant in walk(node):
+        if descendant is node:
+            continue
+
+        if descendant.role not in {
+            "menu",
+            "menu item",
+            "check menu item",
+            "radio menu item",
+        }:
+            continue
+
+        if not descendant.is_visible:
+            continue
+
+        # Dropdown rows should be below the menu-bar item.
+        if descendant.bbox.y < node.bbox.y + max(1, node.bbox.height):
+            continue
+
+        return True
+
+    return False
+
+
+def _is_closed_menu_bar_menu(node: A11YNode) -> bool:
+    return (
+        _is_direct_menu_bar_menu(node)
+        and not _has_visible_menu_popup_content(node)
+    )
+
+
+def _menu_root_rank(node: A11YNode) -> tuple[int, int, int, str]:
+    parent_text = " / ".join(node.parent_path).lower()
+
+    if _is_direct_menu_bar_menu(node) and _has_visible_menu_popup_content(node):
+        return (0, node.depth, node.bbox.y, node.name)
+
+    if "menu bar" in parent_text:
+        return (1, node.depth, node.bbox.y, node.name)
+
+    return (2, node.depth, node.bbox.y, node.name)
+
+
 def _visible_secondary_roots(root: A11YNode) -> list[A11YNode]:
     """
     Return visible dialog/alert/secondary frames.
@@ -54,9 +112,21 @@ def _visible_menu_roots(root: A11YNode) -> list[A11YNode]:
     """
     Return visible menu-like roots.
 
-    We keep this conservative:
-    - role == menu
-    - role == window with menu/menu item descendants
+    Important LibreOffice/GIMP distinction:
+
+    1. Closed top-level menu bar item:
+       File/Edit/View/... is visible, but its dropdown is not open.
+       It must NOT become active_root.
+
+    2. Opened top-level menu bar item:
+       File is visible and has visible dropdown descendants:
+       New, Open..., Save, Exit LibreOffice, etc.
+       It SHOULD become active_root.
+
+    3. Nested menus inside opened File menu:
+       New, Recent Documents, Export As, Digital Signatures, ...
+       They are visible menu nodes, but they are not the outer active menu root.
+       The active root should remain File.
     """
     result: list[A11YNode] = []
 
@@ -65,14 +135,39 @@ def _visible_menu_roots(root: A11YNode) -> list[A11YNode]:
             continue
 
         if node.role == "menu":
+            if _is_closed_menu_bar_menu(node):
+                continue
+
             result.append(node)
             continue
 
         if node.role == "window":
             descendants = list(walk(node))
-            if any(d.role in {"menu", "menu item"} and d.is_visible for d in descendants):
+            if any(
+                d.role in {"menu", "menu item", "check menu item", "radio menu item"}
+                and d.is_visible
+                and not _is_closed_menu_bar_menu(d)
+                for d in descendants
+            ):
                 result.append(node)
 
+    # Critical rule:
+    # If a direct menu-bar item is opened, it is the active menu root.
+    # Do not let nested submenu entries such as "Digital Signatures" win.
+    opened_direct_menu_bar_menus = [
+        node
+        for node in result
+        if _is_direct_menu_bar_menu(node)
+        and _has_visible_menu_popup_content(node)
+    ]
+
+    if opened_direct_menu_bar_menus:
+        opened_direct_menu_bar_menus.sort(
+            key=lambda node: (node.bbox.y, node.bbox.x, node.depth, node.name)
+        )
+        return opened_direct_menu_bar_menus
+
+    result.sort(key=_menu_root_rank)
     return result
 
 

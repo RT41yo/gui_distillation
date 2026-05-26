@@ -88,6 +88,102 @@ WINDOW_CONTROL_NAMES = frozenset({
 })
 
 
+FORMAT_TOOLBAR_MICRO_TOGGLES = frozenset({
+    "bold",
+    "italic",
+    "underline",
+    "strikethrough",
+    "superscript",
+    "subscript",
+    "shadow",
+    "left",
+    "center",
+    "right",
+    "justified",
+    "align left",
+    "align center",
+    "align right",
+    "justify",
+    "formatting marks",
+})
+
+
+UNSAFE_MENU_ITEM_NAMES = frozenset({
+    # File-system / document mutation / external side effects.
+    "open...",
+    "open remote...",
+    "reload",
+    "versions...",
+    "save",
+    "save as...",
+    "save remote...",
+    "save a copy...",
+    "save all",
+    "export...",
+    "print...",
+    "printer settings...",
+    "preview in web browser",
+    "send",
+    "exit libreoffice",
+
+    # Editing/content-changing actions.
+    "undo",
+    "redo",
+    "repeat",
+    "cut",
+    "copy",
+    "paste",
+    "paste unformatted text",
+    "paste special...",
+    "select all",
+    "select text",
+
+    # Track changes/content operations.
+    "accept",
+    "accept all",
+    "reject",
+    "reject all",
+    "accept and move to next",
+    "reject and move to next",
+})
+
+
+SAFE_MENU_DIALOG_NAMES = frozenset({
+    # Relatively safe dialogs/inspectors/navigation panels.
+    "properties...",
+    "find...",
+    "find and replace...",
+    "go to page...",
+    "hyperlink...",
+    "bookmark...",
+    "options...",
+    "customize...",
+    "extensions...",
+    "about libreoffice",
+})
+
+
+def _is_inside_open_menu(action: UIAction) -> bool:
+    return any(part.lower().startswith("menu/") for part in action.parent_path)
+
+
+def _parent_path_text(action: UIAction) -> str:
+    return " / ".join(action.parent_path).lower()
+
+
+def _is_formatting_toolbar_action(action: UIAction) -> bool:
+    parent_text = _parent_path_text(action)
+    return "tool bar/formatting" in parent_text or "toolbar/formatting" in parent_text
+
+
+def _is_top_menu_bar_action(action: UIAction) -> bool:
+    return (
+        action.role == "menu"
+        and bool(action.parent_path)
+        and action.parent_path[-1].lower() == "menu bar"
+    )
+
+
 def _looks_like_bit_cell(action: UIAction) -> bool:
     # GNOME Calculator bit-grid-like cells appear as tiny push buttons,
     # often with name "0" and description as bit index.
@@ -116,6 +212,22 @@ def classify_action(action: UIAction) -> ClassifiedAction:
             reason="editable/input-like control",
         )
 
+    if role == "menu":
+        if _is_top_menu_bar_action(action):
+            return ClassifiedAction(
+                action=action,
+                kind=ActionKind.MACRO,
+                priority=12,
+                reason="top-level menu bar item opens a navigation menu",
+            )
+
+        return ClassifiedAction(
+            action=action,
+            kind=ActionKind.MACRO,
+            priority=15,
+            reason="visible menu may open or represent a navigation context",
+        )
+
     if role in {"combo box", "tab", "tree item"}:
         return ClassifiedAction(
             action=action,
@@ -124,7 +236,34 @@ def classify_action(action: UIAction) -> ClassifiedAction:
             reason=f"{role} commonly opens or switches UI context",
         )
 
+
     if role in {"menu item"}:
+        if _is_inside_open_menu(action):
+            if name_lower in UNSAFE_MENU_ITEM_NAMES:
+                return ClassifiedAction(
+                    action=action,
+                    kind=ActionKind.IGNORED,
+                    priority=100,
+                    reason="unsafe or content-changing menu item ignored for safe exploration",
+                )
+
+            if name_lower in SAFE_MENU_DIALOG_NAMES:
+                return ClassifiedAction(
+                    action=action,
+                    kind=ActionKind.MACRO,
+                    priority=25,
+                    reason="safe menu item likely opens an inspectable dialog/navigation context",
+                )
+
+            # Conservative default inside opened menus:
+            # do not expand arbitrary menu items unless explicitly allowed.
+            return ClassifiedAction(
+                action=action,
+                kind=ActionKind.MICRO,
+                priority=90,
+                reason="menu item inside opened menu is not selected for macro exploration by default",
+            )
+
         return ClassifiedAction(
             action=action,
             kind=ActionKind.MACRO,
@@ -133,6 +272,26 @@ def classify_action(action: UIAction) -> ClassifiedAction:
         )
 
     if role in {"toggle button", "radio button", "check box"}:
+        if role == "toggle button" and name_lower in FORMAT_TOOLBAR_MICRO_TOGGLES:
+            return ClassifiedAction(
+                action=action,
+                kind=ActionKind.MICRO,
+                priority=90,
+                reason="formatting/content toggle changes document view/style, not navigation state",
+            )
+
+        if (
+            role == "toggle button"
+            and _is_formatting_toolbar_action(action)
+            and name_lower in FORMAT_TOOLBAR_MICRO_TOGGLES
+        ):
+            return ClassifiedAction(
+                action=action,
+                kind=ActionKind.MICRO,
+                priority=90,
+                reason="formatting toolbar toggle changes document style/content, not navigation state",
+            )
+
         return ClassifiedAction(
             action=action,
             kind=ActionKind.MACRO,

@@ -14,6 +14,7 @@ ACTIONABLE_ROLES = frozenset({
     "radio button",
     "check box",
     "combo box",
+    "menu",
     "menu item",
     "tab",
     "tree item",
@@ -61,6 +62,45 @@ def make_action_key(node: A11YNode) -> str:
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:16]
 
 
+def _parent_path_text(node: A11YNode) -> str:
+    return " / ".join(node.parent_path).lower()
+
+
+def _is_top_menu_bar_action(node: A11YNode) -> bool:
+    return (
+        node.role == "menu"
+        and bool((node.name or "").strip())
+        and bool(node.parent_path)
+        and node.parent_path[-1].lower() == "menu bar"
+    )
+
+
+def make_semantic_action_key(node: A11YNode) -> tuple:
+    """
+    Semantic de-duplication key.
+
+    LibreOffice can expose the same top-level menu bar twice through different
+    A11Y subtrees, for example:
+      - scroll pane / viewport / menu bar
+      - root pane / menu bar
+
+    The regular action_key intentionally preserves parent_path/bbox for stable
+    execution. But for extraction we do not want duplicate frontier actions:
+    File/Edit/.../Help should appear once.
+    """
+    if _is_top_menu_bar_action(node):
+        return ("top_menu_bar", node.name.strip().lower())
+
+    return (
+        "raw",
+        node.role,
+        node.name.strip().lower(),
+        node.description.strip().lower(),
+        tuple(node.bbox.as_list()),
+        tuple(node.parent_path),
+    )
+
+
 def is_actionable(node: A11YNode) -> bool:
     if not node.is_visible:
         return False
@@ -75,16 +115,28 @@ def is_actionable(node: A11YNode) -> bool:
 
 def extract_actions(active_root: A11YNode) -> list[UIAction]:
     actions: list[UIAction] = []
-    seen: set[str] = set()
+    seen_action_keys: set[str] = set()
+    seen_semantic_keys: set[tuple] = set()
 
     for node in walk(active_root):
+        # If the active root is an opened menu, do not create an action
+        # for the menu root itself. Example: opened File menu should expose
+        # New/Open/Save..., but not File -> File.
+        if node is active_root and active_root.role == "menu":
+            continue
+
         if not is_actionable(node):
             continue
 
-        key = make_action_key(node)
-        if key in seen:
+        semantic_key = make_semantic_action_key(node)
+        if semantic_key in seen_semantic_keys:
             continue
-        seen.add(key)
+        seen_semantic_keys.add(semantic_key)
+
+        key = make_action_key(node)
+        if key in seen_action_keys:
+            continue
+        seen_action_keys.add(key)
 
         actions.append(
             UIAction(

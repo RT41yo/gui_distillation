@@ -56,6 +56,28 @@ def _node_identity(node: A11YNode) -> dict:
     }
 
 
+def _normalize_parent_path(parent_path: tuple[str, ...]) -> list[str]:
+    """
+    Normalize A11Y parent path for state identity.
+
+    Keep semantic container path but avoid absolute/geometry-dependent data.
+    """
+    return list(parent_path)
+
+
+def _action_identity_for_state(item) -> dict:
+    action = item.action
+    return {
+        "role": action.role,
+        "name": action.name,
+        "description": action.description,
+        "states": list(action.states),
+        "parent_path": _normalize_parent_path(action.parent_path),
+        "kind": item.kind.value,
+        "priority": item.priority,
+    }
+
+
 def compute_state_signature(root: A11YNode) -> StateSignature:
     active = resolve_active_root(root)
 
@@ -86,38 +108,11 @@ def compute_state_signature(root: A11YNode) -> StateSignature:
     macro_payload = {
         "active_root": active_root_payload,
         "visible_interactive_macro_actions": [
-            {
-                "action_key": item.action.action_key,
-                "role": item.action.role,
-                "name": item.action.name,
-                "description": item.action.description,
-                "states": list(item.action.states),
-                "bbox": list(item.action.bbox),
-                "parent_path": list(item.action.parent_path),
-                "kind": item.kind.value,
-                "priority": item.priority,
-            }
+            _action_identity_for_state(item)
             for item in macro_actions
         ],
         # Keep duplicate nodes: use list, not set.
-        "visible_interactive_nodes": [
-            _node_identity(node)
-            for node in active_visible_nodes
-            if node.role in {
-                "push button",
-                "toggle button",
-                "radio button",
-                "check box",
-                "combo box",
-                "menu item",
-                "tab",
-                "tree item",
-                "link",
-                "spin button",
-                "entry",
-                "editbar",
-            }
-        ],
+        "visible_interactive_nodes": [],
     }
 
     # Content payload is allowed to be more sensitive to labels/text/value.

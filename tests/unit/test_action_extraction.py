@@ -37,3 +37,47 @@ def test_known_calculator_actions_present():
 
     assert "Mode selection" in names
     assert "Primary menu" in names
+
+
+def test_libreoffice_writer_top_menu_actions_present():
+    path = Path("tests/fixtures/a11y/writer/root_pos_a.xml")
+    assert path.exists(), "Run Writer capture first."
+
+    root = parse_a11y_xml(path)
+    active = resolve_active_root(root)
+    actions = extract_actions(active.node)
+    names = {a.name for a in actions}
+
+    assert {"File", "Edit", "View", "Insert", "Format", "Tools", "Help"} <= names
+
+
+def test_libreoffice_writer_top_menu_actions_are_deduplicated():
+    path = Path("tests/fixtures/a11y/writer/root_pos_a.xml")
+    assert path.exists(), "Run Writer capture first."
+
+    root = parse_a11y_xml(path)
+    active = resolve_active_root(root)
+    actions = extract_actions(active.node)
+
+    top_menu_names = [
+        action.name
+        for action in actions
+        if action.role == "menu" and "menu bar" in " / ".join(action.parent_path).lower()
+    ]
+
+    assert top_menu_names.count("File") == 1
+    assert top_menu_names.count("Edit") == 1
+    assert top_menu_names.count("Help") == 1
+    assert {"File", "Edit", "View", "Insert", "Format", "Tools", "Help"} <= set(top_menu_names)
+
+def test_libreoffice_writer_open_file_menu_actions_present():
+    path = Path("tests/fixtures/a11y/writer/file_menu_open.xml")
+    assert path.exists()
+
+    root = parse_a11y_xml(path)
+    active = resolve_active_root(root)
+    actions = extract_actions(active.node)
+    names = {a.name for a in actions}
+
+    assert {"New", "Open...", "Save", "Save As...", "Export...", "Print...", "Exit LibreOffice"} <= names
+
