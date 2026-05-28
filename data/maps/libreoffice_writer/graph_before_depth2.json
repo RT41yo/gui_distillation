@@ -1,0 +1,3649 @@
+{
+  "schema_version": "1.0",
+  "app_id": "libreoffice_writer",
+  "root_state_id": "21bc4f4c8f34",
+  "nodes": {
+    "21bc4f4c8f34": {
+      "state_id": "21bc4f4c8f34",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/21bc4f4c8f34/a11y.xml",
+      "active_root": {
+        "kind": "main",
+        "reason": "no overlay found; using main frame",
+        "role": "frame",
+        "name": "Untitled 1 - LibreOffice Writer",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice"
+        ]
+      },
+      "macro_hash": "21bc4f4c8f34b62e0921d1da27887ea40b8a6abc3389b42bc2102957c4005ddb",
+      "content_hash": "fc1d14cc70df84a43e8b36763bc3b11a5728d4b7fa494ebfda9e1a09f2c2a16b",
+      "macro_action_count": 18,
+      "visible_node_count": 174,
+      "depth": 0,
+      "label": "Untitled 1 - LibreOffice Writer"
+    },
+    "370f60dd537f": {
+      "state_id": "370f60dd537f",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/370f60dd537f/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Insert",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "370f60dd537f9418156b94cb03db88bb53e8acacee0ba4b1182fa1b3e537e67e",
+      "content_hash": "f62d81de76a539f250e9bb9553660fb51814028a22606e910aa17a680165263c",
+      "macro_action_count": 11,
+      "visible_node_count": 28,
+      "depth": 1,
+      "label": "Insert"
+    },
+    "3dafc1919c07": {
+      "state_id": "3dafc1919c07",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/3dafc1919c07/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Format",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "3dafc1919c07ae2efbb73396b218684cca9b123a2cdce1eb2344b9fc9b36d401",
+      "content_hash": "91971951b5e4ff0de946845660507386559dd0f035d854ba99b2d26b5ca62263",
+      "macro_action_count": 12,
+      "visible_node_count": 26,
+      "depth": 1,
+      "label": "Format"
+    },
+    "483f96f801f2": {
+      "state_id": "483f96f801f2",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/483f96f801f2/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Tools",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "483f96f801f2b7c4e1689295a47048bf73433c95a28cd609309108dfa5067438",
+      "content_hash": "92b5560440b92e687a88ab81627a586de8ff46501c3087bf48176a9b6d6990b2",
+      "macro_action_count": 7,
+      "visible_node_count": 26,
+      "depth": 1,
+      "label": "Tools"
+    },
+    "6ae3ed74e450": {
+      "state_id": "6ae3ed74e450",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/6ae3ed74e450/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Table",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "6ae3ed74e450d2786d2ab84cbf0d820b0838133b15383d42525415fb0ec98cc5",
+      "content_hash": "4a866d47a3ae14dbe6b935cef880c8343451ccefbd99c3a0eb3ca89066d4781d",
+      "macro_action_count": 6,
+      "visible_node_count": 21,
+      "depth": 1,
+      "label": "Table"
+    },
+    "783935fe7007": {
+      "state_id": "783935fe7007",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/783935fe7007/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "File",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "783935fe7007291c84fccfc225a16f5bb13ff8bddd4070feee44ee0883e59dec",
+      "content_hash": "1a5295cffb51e32aba6fe3295814a1814ecc4411a25691b5737001eed46219a8",
+      "macro_action_count": 8,
+      "visible_node_count": 25,
+      "depth": 1,
+      "label": "File"
+    },
+    "95afa92308fd": {
+      "state_id": "95afa92308fd",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/95afa92308fd/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Edit",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "95afa92308fd96e327dea6499feb29a29ce43a4b7ce35f62b800046c0e8a8c6a",
+      "content_hash": "b09ea07116240b46bf705c0b8e8ad7461fbad5acba8ea578c98d482b0e9b5969",
+      "macro_action_count": 8,
+      "visible_node_count": 24,
+      "depth": 1,
+      "label": "Edit"
+    },
+    "979ebb535cc1": {
+      "state_id": "979ebb535cc1",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/979ebb535cc1/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Styles",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "979ebb535cc18376b6e6a9081b78ed5cf49f2dc5a0f74bdc5b934e1877c007e0",
+      "content_hash": "6cb365cc0d5671b72e35646ea67c603d4ec9ad0ccfe29eafc64a0aea36820430",
+      "macro_action_count": 0,
+      "visible_node_count": 26,
+      "depth": 1,
+      "label": "Styles"
+    },
+    "9d328737a32a": {
+      "state_id": "9d328737a32a",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/9d328737a32a/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Form",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "9d328737a32ac4ee503dc94ba1e26eab2f61620f5e0a41449bb3f84003d61a06",
+      "content_hash": "1da82580cb9690e54de03893f9847dea1841084aa0041235325940a738caf14a",
+      "macro_action_count": 1,
+      "visible_node_count": 21,
+      "depth": 1,
+      "label": "Form"
+    },
+    "bd25ba81ea6e": {
+      "state_id": "bd25ba81ea6e",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/bd25ba81ea6e/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Help",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "bd25ba81ea6ec66f7e89a7af336cfdca9b5bbf49ec58ddbe56456468f4addbe3",
+      "content_hash": "f304c0f8555c54532ef91fa634f9794c0ee11a7d3b94544bfde0c5fc72569cd1",
+      "macro_action_count": 1,
+      "visible_node_count": 13,
+      "depth": 1,
+      "label": "Help"
+    },
+    "bd6f423fe87f": {
+      "state_id": "bd6f423fe87f",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/bd6f423fe87f/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "View",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "bd6f423fe87f3918ef9a3edd36f1790dd7565a54d617d5cae94f0dc995e1fdf3",
+      "content_hash": "093c642d79399a01240b3394bedeb7073c1e9cc10647a5fbeaa59a4302255d28",
+      "macro_action_count": 5,
+      "visible_node_count": 26,
+      "depth": 1,
+      "label": "View"
+    },
+    "c8b0042c9b42": {
+      "state_id": "c8b0042c9b42",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/c8b0042c9b42/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Window",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "c8b0042c9b422f76440f69026fd52305f6ac4923b66922cb4fcdbfe80af096e1",
+      "content_hash": "86108c22756cb86c80e5c155943078b63425092a996c8d24c5a5494266f041cc",
+      "macro_action_count": 0,
+      "visible_node_count": 4,
+      "depth": 1,
+      "label": "Window"
+    }
+  },
+  "edges": {
+    "21bc4f4c8f34:68e5f3d8e3ba87ce": {
+      "edge_id": "21bc4f4c8f34:68e5f3d8e3ba87ce",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "68e5f3d8e3ba87ce",
+      "action": {
+        "action_key": "68e5f3d8e3ba87ce",
+        "role": "menu",
+        "name": "File",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          70,
+          64,
+          39,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "783935fe7007",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "783935fe7007",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 0
+    },
+    "21bc4f4c8f34:903ff8cd5c0f61ac": {
+      "edge_id": "21bc4f4c8f34:903ff8cd5c0f61ac",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "903ff8cd5c0f61ac",
+      "action": {
+        "action_key": "903ff8cd5c0f61ac",
+        "role": "menu",
+        "name": "Edit",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          109,
+          64,
+          41,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "95afa92308fd",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "95afa92308fd",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 1
+    },
+    "21bc4f4c8f34:a89b37de38ef72e7": {
+      "edge_id": "21bc4f4c8f34:a89b37de38ef72e7",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "a89b37de38ef72e7",
+      "action": {
+        "action_key": "a89b37de38ef72e7",
+        "role": "menu",
+        "name": "View",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          150,
+          64,
+          48,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "bd6f423fe87f",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "bd6f423fe87f",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 2
+    },
+    "21bc4f4c8f34:7cf13f5eade74c1f": {
+      "edge_id": "21bc4f4c8f34:7cf13f5eade74c1f",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "7cf13f5eade74c1f",
+      "action": {
+        "action_key": "7cf13f5eade74c1f",
+        "role": "menu",
+        "name": "Insert",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          64,
+          53,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "370f60dd537f",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "370f60dd537f",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 3
+    },
+    "21bc4f4c8f34:a3fa3994a363fe16": {
+      "edge_id": "21bc4f4c8f34:a3fa3994a363fe16",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "a3fa3994a363fe16",
+      "action": {
+        "action_key": "a3fa3994a363fe16",
+        "role": "menu",
+        "name": "Format",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          64,
+          62,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "3dafc1919c07",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "3dafc1919c07",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 4
+    },
+    "21bc4f4c8f34:89d46c8e5760975b": {
+      "edge_id": "21bc4f4c8f34:89d46c8e5760975b",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "89d46c8e5760975b",
+      "action": {
+        "action_key": "89d46c8e5760975b",
+        "role": "menu",
+        "name": "Styles",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          313,
+          64,
+          56,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "979ebb535cc1",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "979ebb535cc1",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 5
+    },
+    "21bc4f4c8f34:3d4f506e6b4d92ea": {
+      "edge_id": "21bc4f4c8f34:3d4f506e6b4d92ea",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "3d4f506e6b4d92ea",
+      "action": {
+        "action_key": "3d4f506e6b4d92ea",
+        "role": "menu",
+        "name": "Table",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          369,
+          64,
+          50,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "6ae3ed74e450",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "6ae3ed74e450",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 6
+    },
+    "21bc4f4c8f34:8d11ea0d8723149b": {
+      "edge_id": "21bc4f4c8f34:8d11ea0d8723149b",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "8d11ea0d8723149b",
+      "action": {
+        "action_key": "8d11ea0d8723149b",
+        "role": "menu",
+        "name": "Form",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          419,
+          64,
+          49,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "9d328737a32a",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "9d328737a32a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 7
+    },
+    "21bc4f4c8f34:98762d3bba6cf132": {
+      "edge_id": "21bc4f4c8f34:98762d3bba6cf132",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "98762d3bba6cf132",
+      "action": {
+        "action_key": "98762d3bba6cf132",
+        "role": "menu",
+        "name": "Tools",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          468,
+          64,
+          49,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "483f96f801f2",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "483f96f801f2",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 8
+    },
+    "21bc4f4c8f34:773fdf0849dccad7": {
+      "edge_id": "21bc4f4c8f34:773fdf0849dccad7",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "773fdf0849dccad7",
+      "action": {
+        "action_key": "773fdf0849dccad7",
+        "role": "menu",
+        "name": "Window",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          517,
+          64,
+          68,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "c8b0042c9b42",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "c8b0042c9b42",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 9
+    },
+    "21bc4f4c8f34:42bab10cac1d4bbf": {
+      "edge_id": "21bc4f4c8f34:42bab10cac1d4bbf",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "42bab10cac1d4bbf",
+      "action": {
+        "action_key": "42bab10cac1d4bbf",
+        "role": "menu",
+        "name": "Help",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          585,
+          64,
+          46,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ],
+        "depth": 7
+      },
+      "status": "confirmed",
+      "to_state": "bd25ba81ea6e",
+      "priority": 12,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "bd25ba81ea6e",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
+      "created_order": 10
+    },
+    "21bc4f4c8f34:95f3c1c603f9b65e": {
+      "edge_id": "21bc4f4c8f34:95f3c1c603f9b65e",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "95f3c1c603f9b65e",
+      "action": {
+        "action_key": "95f3c1c603f9b65e",
+        "role": "toggle button",
+        "name": "Menu",
+        "description": "Sidebar Settings",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          1191,
+          171,
+          36,
+          34
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "root pane/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "split pane",
+          "panel/Properties",
+          "panel",
+          "filler",
+          "panel",
+          "panel",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 15
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 11
+    },
+    "21bc4f4c8f34:45ec8d078a6617c4": {
+      "edge_id": "21bc4f4c8f34:45ec8d078a6617c4",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "45ec8d078a6617c4",
+      "action": {
+        "action_key": "45ec8d078a6617c4",
+        "role": "push button",
+        "name": "Open",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          118,
+          66,
+          44,
+          35
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "root pane/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "tool bar/Standard"
+        ],
+        "depth": 7
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 12
+    },
+    "21bc4f4c8f34:0d7df125535fbe27": {
+      "edge_id": "21bc4f4c8f34:0d7df125535fbe27",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "0d7df125535fbe27",
+      "action": {
+        "action_key": "0d7df125535fbe27",
+        "role": "toggle button",
+        "name": "Print Preview",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          280,
+          66,
+          33,
+          35
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "root pane/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "tool bar/Standard"
+        ],
+        "depth": 7
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 13
+    },
+    "21bc4f4c8f34:932e9450290b9173": {
+      "edge_id": "21bc4f4c8f34:932e9450290b9173",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "932e9450290b9173",
+      "action": {
+        "action_key": "932e9450290b9173",
+        "role": "toggle button",
+        "name": "Find and Replace",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          576,
+          66,
+          33,
+          35
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "root pane/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "tool bar/Standard"
+        ],
+        "depth": 7
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 14
+    },
+    "21bc4f4c8f34:c9d49102670ffa75": {
+      "edge_id": "21bc4f4c8f34:c9d49102670ffa75",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "c9d49102670ffa75",
+      "action": {
+        "action_key": "c9d49102670ffa75",
+        "role": "toggle button",
+        "name": "Hyperlink",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          963,
+          66,
+          33,
+          35
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "root pane/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "tool bar/Standard"
+        ],
+        "depth": 7
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 15
+    },
+    "21bc4f4c8f34:e7bf0931af76e281": {
+      "edge_id": "21bc4f4c8f34:e7bf0931af76e281",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "e7bf0931af76e281",
+      "action": {
+        "action_key": "e7bf0931af76e281",
+        "role": "push button",
+        "name": "Bookmark",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          1062,
+          66,
+          33,
+          35
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "root pane/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "tool bar/Standard"
+        ],
+        "depth": 7
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 16
+    },
+    "21bc4f4c8f34:fe6873be37e1fa0c": {
+      "edge_id": "21bc4f4c8f34:fe6873be37e1fa0c",
+      "from_state": "21bc4f4c8f34",
+      "action_key": "fe6873be37e1fa0c",
+      "action": {
+        "action_key": "fe6873be37e1fa0c",
+        "role": "toggle button",
+        "name": "Track Changes Functions",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          1169,
+          66,
+          33,
+          35
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "root pane/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "tool bar/Standard"
+        ],
+        "depth": 7
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "toggle button may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 17
+    },
+    "783935fe7007:c0966a26bc9ede1b": {
+      "edge_id": "783935fe7007:c0966a26bc9ede1b",
+      "from_state": "783935fe7007",
+      "action_key": "c0966a26bc9ede1b",
+      "action": {
+        "action_key": "c0966a26bc9ede1b",
+        "role": "menu",
+        "name": "New",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          70,
+          89,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/File"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 18
+    },
+    "783935fe7007:232465afaba9482e": {
+      "edge_id": "783935fe7007:232465afaba9482e",
+      "from_state": "783935fe7007",
+      "action_key": "232465afaba9482e",
+      "action": {
+        "action_key": "232465afaba9482e",
+        "role": "menu",
+        "name": "Recent Documents",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          70,
+          164,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/File"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 19
+    },
+    "783935fe7007:f00803888af53af5": {
+      "edge_id": "783935fe7007:f00803888af53af5",
+      "from_state": "783935fe7007",
+      "action_key": "f00803888af53af5",
+      "action": {
+        "action_key": "f00803888af53af5",
+        "role": "menu",
+        "name": "Wizards",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          70,
+          215,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/File"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 20
+    },
+    "783935fe7007:62cbc3c138266a3d": {
+      "edge_id": "783935fe7007:62cbc3c138266a3d",
+      "from_state": "783935fe7007",
+      "action_key": "62cbc3c138266a3d",
+      "action": {
+        "action_key": "62cbc3c138266a3d",
+        "role": "menu",
+        "name": "Templates",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          70,
+          240,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/File"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 21
+    },
+    "783935fe7007:2181895df62beae5": {
+      "edge_id": "783935fe7007:2181895df62beae5",
+      "from_state": "783935fe7007",
+      "action_key": "2181895df62beae5",
+      "action": {
+        "action_key": "2181895df62beae5",
+        "role": "menu",
+        "name": "Export As",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          70,
+          468,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/File"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 22
+    },
+    "783935fe7007:9c5543fbe693eb61": {
+      "edge_id": "783935fe7007:9c5543fbe693eb61",
+      "from_state": "783935fe7007",
+      "action_key": "9c5543fbe693eb61",
+      "action": {
+        "action_key": "9c5543fbe693eb61",
+        "role": "menu",
+        "name": "Send",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          70,
+          493,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/File"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 23
+    },
+    "783935fe7007:4cf8a6ed4bd38eda": {
+      "edge_id": "783935fe7007:4cf8a6ed4bd38eda",
+      "from_state": "783935fe7007",
+      "action_key": "4cf8a6ed4bd38eda",
+      "action": {
+        "action_key": "4cf8a6ed4bd38eda",
+        "role": "menu item",
+        "name": "Properties...",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          70,
+          620,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/File"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 25,
+      "attempts": 0,
+      "reason": "safe menu item likely opens an inspectable dialog/navigation context",
+      "observed": null,
+      "created_order": 24
+    },
+    "783935fe7007:57b3322e94337799": {
+      "edge_id": "783935fe7007:57b3322e94337799",
+      "from_state": "783935fe7007",
+      "action_key": "57b3322e94337799",
+      "action": {
+        "action_key": "57b3322e94337799",
+        "role": "menu",
+        "name": "Digital Signatures",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          70,
+          645,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/File"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 25
+    },
+    "95afa92308fd:8ca8ff74d0de11f9": {
+      "edge_id": "95afa92308fd:8ca8ff74d0de11f9",
+      "from_state": "95afa92308fd",
+      "action_key": "8ca8ff74d0de11f9",
+      "action": {
+        "action_key": "8ca8ff74d0de11f9",
+        "role": "menu",
+        "name": "Paste Special",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          109,
+          240,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Edit"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 26
+    },
+    "95afa92308fd:911be3093043dd2f": {
+      "edge_id": "95afa92308fd:911be3093043dd2f",
+      "from_state": "95afa92308fd",
+      "action_key": "911be3093043dd2f",
+      "action": {
+        "action_key": "911be3093043dd2f",
+        "role": "menu",
+        "name": "Selection Mode",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          109,
+          291,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Edit"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 27
+    },
+    "95afa92308fd:11d18d50cd6c875d": {
+      "edge_id": "95afa92308fd:11d18d50cd6c875d",
+      "from_state": "95afa92308fd",
+      "action_key": "11d18d50cd6c875d",
+      "action": {
+        "action_key": "11d18d50cd6c875d",
+        "role": "menu item",
+        "name": "Find...",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          109,
+          342,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Edit"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 25,
+      "attempts": 0,
+      "reason": "safe menu item likely opens an inspectable dialog/navigation context",
+      "observed": null,
+      "created_order": 28
+    },
+    "95afa92308fd:338a7128c80ae22f": {
+      "edge_id": "95afa92308fd:338a7128c80ae22f",
+      "from_state": "95afa92308fd",
+      "action_key": "338a7128c80ae22f",
+      "action": {
+        "action_key": "338a7128c80ae22f",
+        "role": "menu item",
+        "name": "Go to Page...",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          109,
+          392,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Edit"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 25,
+      "attempts": 0,
+      "reason": "safe menu item likely opens an inspectable dialog/navigation context",
+      "observed": null,
+      "created_order": 29
+    },
+    "95afa92308fd:c9e7d045de9b8e30": {
+      "edge_id": "95afa92308fd:c9e7d045de9b8e30",
+      "from_state": "95afa92308fd",
+      "action_key": "c9e7d045de9b8e30",
+      "action": {
+        "action_key": "c9e7d045de9b8e30",
+        "role": "menu",
+        "name": "Track Changes",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          109,
+          418,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Edit"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 30
+    },
+    "95afa92308fd:2a07b9f716e3256a": {
+      "edge_id": "95afa92308fd:2a07b9f716e3256a",
+      "from_state": "95afa92308fd",
+      "action_key": "2a07b9f716e3256a",
+      "action": {
+        "action_key": "2a07b9f716e3256a",
+        "role": "menu",
+        "name": "Comment",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          109,
+          443,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Edit"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 31
+    },
+    "95afa92308fd:457f4e2b6e061dd3": {
+      "edge_id": "95afa92308fd:457f4e2b6e061dd3",
+      "from_state": "95afa92308fd",
+      "action_key": "457f4e2b6e061dd3",
+      "action": {
+        "action_key": "457f4e2b6e061dd3",
+        "role": "menu",
+        "name": "Reference",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          109,
+          494,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Edit"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 32
+    },
+    "95afa92308fd:acf39bee0701ec18": {
+      "edge_id": "95afa92308fd:acf39bee0701ec18",
+      "from_state": "95afa92308fd",
+      "action_key": "acf39bee0701ec18",
+      "action": {
+        "action_key": "acf39bee0701ec18",
+        "role": "menu",
+        "name": "Object",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          109,
+          569,
+          302,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Edit"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 33
+    },
+    "bd6f423fe87f:458b1b1df7f0e270": {
+      "edge_id": "bd6f423fe87f:458b1b1df7f0e270",
+      "from_state": "bd6f423fe87f",
+      "action_key": "458b1b1df7f0e270",
+      "action": {
+        "action_key": "458b1b1df7f0e270",
+        "role": "menu",
+        "name": "Toolbars",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          150,
+          165,
+          296,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/View"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 34
+    },
+    "bd6f423fe87f:ab3458b9f12df2e4": {
+      "edge_id": "bd6f423fe87f:ab3458b9f12df2e4",
+      "from_state": "bd6f423fe87f",
+      "action_key": "ab3458b9f12df2e4",
+      "action": {
+        "action_key": "ab3458b9f12df2e4",
+        "role": "menu",
+        "name": "Rulers",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          150,
+          216,
+          296,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/View"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 35
+    },
+    "bd6f423fe87f:d52cbc1cb5772dd4": {
+      "edge_id": "bd6f423fe87f:d52cbc1cb5772dd4",
+      "from_state": "bd6f423fe87f",
+      "action_key": "d52cbc1cb5772dd4",
+      "action": {
+        "action_key": "d52cbc1cb5772dd4",
+        "role": "menu",
+        "name": "Scrollbars",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          150,
+          241,
+          296,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/View"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 36
+    },
+    "bd6f423fe87f:52f3e8017693ec9d": {
+      "edge_id": "bd6f423fe87f:52f3e8017693ec9d",
+      "from_state": "bd6f423fe87f",
+      "action_key": "52f3e8017693ec9d",
+      "action": {
+        "action_key": "52f3e8017693ec9d",
+        "role": "menu",
+        "name": "Grid and Helplines",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          150,
+          266,
+          296,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/View"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 37
+    },
+    "bd6f423fe87f:7b7fadf10db6bda5": {
+      "edge_id": "bd6f423fe87f:7b7fadf10db6bda5",
+      "from_state": "bd6f423fe87f",
+      "action_key": "7b7fadf10db6bda5",
+      "action": {
+        "action_key": "7b7fadf10db6bda5",
+        "role": "menu",
+        "name": "Zoom",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          150,
+          696,
+          296,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/View"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 38
+    },
+    "370f60dd537f:9fb8acd44eddde3c": {
+      "edge_id": "370f60dd537f:9fb8acd44eddde3c",
+      "from_state": "370f60dd537f",
+      "action_key": "9fb8acd44eddde3c",
+      "action": {
+        "action_key": "9fb8acd44eddde3c",
+        "role": "menu",
+        "name": "More Breaks",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          114,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 39
+    },
+    "370f60dd537f:fa7e066a23e74101": {
+      "edge_id": "370f60dd537f:fa7e066a23e74101",
+      "from_state": "370f60dd537f",
+      "action_key": "fa7e066a23e74101",
+      "action": {
+        "action_key": "fa7e066a23e74101",
+        "role": "menu",
+        "name": "Media",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          190,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 40
+    },
+    "370f60dd537f:9739eb92814a8129": {
+      "edge_id": "370f60dd537f:9739eb92814a8129",
+      "from_state": "370f60dd537f",
+      "action_key": "9739eb92814a8129",
+      "action": {
+        "action_key": "9739eb92814a8129",
+        "role": "menu",
+        "name": "Object",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          215,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 41
+    },
+    "370f60dd537f:a1cd3725a682de3b": {
+      "edge_id": "370f60dd537f:a1cd3725a682de3b",
+      "from_state": "370f60dd537f",
+      "action_key": "a1cd3725a682de3b",
+      "action": {
+        "action_key": "a1cd3725a682de3b",
+        "role": "menu",
+        "name": "Shape",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          240,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 42
+    },
+    "370f60dd537f:5e0be6801411f475": {
+      "edge_id": "370f60dd537f:5e0be6801411f475",
+      "from_state": "370f60dd537f",
+      "action_key": "5e0be6801411f475",
+      "action": {
+        "action_key": "5e0be6801411f475",
+        "role": "menu",
+        "name": "Frame",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          367,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 43
+    },
+    "370f60dd537f:c453940d7d1abe70": {
+      "edge_id": "370f60dd537f:c453940d7d1abe70",
+      "from_state": "370f60dd537f",
+      "action_key": "c453940d7d1abe70",
+      "action": {
+        "action_key": "c453940d7d1abe70",
+        "role": "menu item",
+        "name": "Bookmark...",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          468,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 25,
+      "attempts": 0,
+      "reason": "safe menu item likely opens an inspectable dialog/navigation context",
+      "observed": null,
+      "created_order": 44
+    },
+    "370f60dd537f:11cb5d1adb33c27e": {
+      "edge_id": "370f60dd537f:11cb5d1adb33c27e",
+      "from_state": "370f60dd537f",
+      "action_key": "11cb5d1adb33c27e",
+      "action": {
+        "action_key": "11cb5d1adb33c27e",
+        "role": "menu",
+        "name": "Formatting Mark",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          544,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 45
+    },
+    "370f60dd537f:30ed0f481aeb8ea3": {
+      "edge_id": "370f60dd537f:30ed0f481aeb8ea3",
+      "from_state": "370f60dd537f",
+      "action_key": "30ed0f481aeb8ea3",
+      "action": {
+        "action_key": "30ed0f481aeb8ea3",
+        "role": "menu",
+        "name": "Footnote and Endnote",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          595,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 46
+    },
+    "370f60dd537f:22be51789b2b4800": {
+      "edge_id": "370f60dd537f:22be51789b2b4800",
+      "from_state": "370f60dd537f",
+      "action_key": "22be51789b2b4800",
+      "action": {
+        "action_key": "22be51789b2b4800",
+        "role": "menu",
+        "name": "Table of Contents and Index",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          620,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 47
+    },
+    "370f60dd537f:2855f9bcc6d3d319": {
+      "edge_id": "370f60dd537f:2855f9bcc6d3d319",
+      "from_state": "370f60dd537f",
+      "action_key": "2855f9bcc6d3d319",
+      "action": {
+        "action_key": "2855f9bcc6d3d319",
+        "role": "menu",
+        "name": "Field",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          671,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 48
+    },
+    "370f60dd537f:ad19bae6f0d51c4a": {
+      "edge_id": "370f60dd537f:ad19bae6f0d51c4a",
+      "from_state": "370f60dd537f",
+      "action_key": "ad19bae6f0d51c4a",
+      "action": {
+        "action_key": "ad19bae6f0d51c4a",
+        "role": "menu",
+        "name": "Header and Footer",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          198,
+          696,
+          345,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Insert"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 49
+    },
+    "3dafc1919c07:24b14ba2cafa8e81": {
+      "edge_id": "3dafc1919c07:24b14ba2cafa8e81",
+      "from_state": "3dafc1919c07",
+      "action_key": "24b14ba2cafa8e81",
+      "action": {
+        "action_key": "24b14ba2cafa8e81",
+        "role": "menu",
+        "name": "Text",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          89,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 50
+    },
+    "3dafc1919c07:31509d70e0c7b7cb": {
+      "edge_id": "3dafc1919c07:31509d70e0c7b7cb",
+      "from_state": "3dafc1919c07",
+      "action_key": "31509d70e0c7b7cb",
+      "action": {
+        "action_key": "31509d70e0c7b7cb",
+        "role": "menu",
+        "name": "Spacing",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          114,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 51
+    },
+    "3dafc1919c07:8156ed831c95eb4d": {
+      "edge_id": "3dafc1919c07:8156ed831c95eb4d",
+      "from_state": "3dafc1919c07",
+      "action_key": "8156ed831c95eb4d",
+      "action": {
+        "action_key": "8156ed831c95eb4d",
+        "role": "menu",
+        "name": "Align Text",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          139,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 52
+    },
+    "3dafc1919c07:e86951651ebcdcd8": {
+      "edge_id": "3dafc1919c07:e86951651ebcdcd8",
+      "from_state": "3dafc1919c07",
+      "action_key": "e86951651ebcdcd8",
+      "action": {
+        "action_key": "e86951651ebcdcd8",
+        "role": "menu",
+        "name": "Lists",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          266,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 53
+    },
+    "3dafc1919c07:b8d1b68fdaac82f1": {
+      "edge_id": "3dafc1919c07:b8d1b68fdaac82f1",
+      "from_state": "3dafc1919c07",
+      "action_key": "b8d1b68fdaac82f1",
+      "action": {
+        "action_key": "b8d1b68fdaac82f1",
+        "role": "menu",
+        "name": "Image",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          468,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 54
+    },
+    "3dafc1919c07:0d8a1b8e8ea9942c": {
+      "edge_id": "3dafc1919c07:0d8a1b8e8ea9942c",
+      "from_state": "3dafc1919c07",
+      "action_key": "0d8a1b8e8ea9942c",
+      "action": {
+        "action_key": "0d8a1b8e8ea9942c",
+        "role": "menu",
+        "name": "Text Box and Shape",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          493,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 55
+    },
+    "3dafc1919c07:974245ac623b079f": {
+      "edge_id": "3dafc1919c07:974245ac623b079f",
+      "from_state": "3dafc1919c07",
+      "action_key": "974245ac623b079f",
+      "action": {
+        "action_key": "974245ac623b079f",
+        "role": "menu",
+        "name": "Frame and Object",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          518,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 56
+    },
+    "3dafc1919c07:4da7812d345f6711": {
+      "edge_id": "3dafc1919c07:4da7812d345f6711",
+      "from_state": "3dafc1919c07",
+      "action_key": "4da7812d345f6711",
+      "action": {
+        "action_key": "4da7812d345f6711",
+        "role": "menu",
+        "name": "Anchor",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          594,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 57
+    },
+    "3dafc1919c07:5b1ba78d146dfc53": {
+      "edge_id": "3dafc1919c07:5b1ba78d146dfc53",
+      "from_state": "3dafc1919c07",
+      "action_key": "5b1ba78d146dfc53",
+      "action": {
+        "action_key": "5b1ba78d146dfc53",
+        "role": "menu",
+        "name": "Wrap",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          619,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 58
+    },
+    "3dafc1919c07:e0126d45abd17cd8": {
+      "edge_id": "3dafc1919c07:e0126d45abd17cd8",
+      "from_state": "3dafc1919c07",
+      "action_key": "e0126d45abd17cd8",
+      "action": {
+        "action_key": "e0126d45abd17cd8",
+        "role": "menu",
+        "name": "Arrange",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          644,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 59
+    },
+    "3dafc1919c07:19ed476c5a5411c6": {
+      "edge_id": "3dafc1919c07:19ed476c5a5411c6",
+      "from_state": "3dafc1919c07",
+      "action_key": "19ed476c5a5411c6",
+      "action": {
+        "action_key": "19ed476c5a5411c6",
+        "role": "menu",
+        "name": "Rotate or Flip",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          669,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 60
+    },
+    "3dafc1919c07:ca8d051c2fc4e438": {
+      "edge_id": "3dafc1919c07:ca8d051c2fc4e438",
+      "from_state": "3dafc1919c07",
+      "action_key": "ca8d051c2fc4e438",
+      "action": {
+        "action_key": "ca8d051c2fc4e438",
+        "role": "menu",
+        "name": "Group",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          251,
+          694,
+          268,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Format"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 61
+    },
+    "6ae3ed74e450:0711ea23921b56b0": {
+      "edge_id": "6ae3ed74e450:0711ea23921b56b0",
+      "from_state": "6ae3ed74e450",
+      "action_key": "0711ea23921b56b0",
+      "action": {
+        "action_key": "0711ea23921b56b0",
+        "role": "menu",
+        "name": "Insert",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          369,
+          114,
+          344,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Table"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 62
+    },
+    "6ae3ed74e450:ea0043713fd07fbf": {
+      "edge_id": "6ae3ed74e450:ea0043713fd07fbf",
+      "from_state": "6ae3ed74e450",
+      "action_key": "ea0043713fd07fbf",
+      "action": {
+        "action_key": "ea0043713fd07fbf",
+        "role": "menu",
+        "name": "Delete",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          369,
+          139,
+          344,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Table"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 63
+    },
+    "6ae3ed74e450:c6e16b1b3837bdb4": {
+      "edge_id": "6ae3ed74e450:c6e16b1b3837bdb4",
+      "from_state": "6ae3ed74e450",
+      "action_key": "c6e16b1b3837bdb4",
+      "action": {
+        "action_key": "c6e16b1b3837bdb4",
+        "role": "menu",
+        "name": "Select",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          369,
+          164,
+          344,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Table"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 64
+    },
+    "6ae3ed74e450:df11f230a035ef24": {
+      "edge_id": "6ae3ed74e450:df11f230a035ef24",
+      "from_state": "6ae3ed74e450",
+      "action_key": "df11f230a035ef24",
+      "action": {
+        "action_key": "df11f230a035ef24",
+        "role": "menu",
+        "name": "Size",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          369,
+          189,
+          344,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Table"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 65
+    },
+    "6ae3ed74e450:52fc57b7eedf49b8": {
+      "edge_id": "6ae3ed74e450:52fc57b7eedf49b8",
+      "from_state": "6ae3ed74e450",
+      "action_key": "52fc57b7eedf49b8",
+      "action": {
+        "action_key": "52fc57b7eedf49b8",
+        "role": "menu",
+        "name": "Convert",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          369,
+          494,
+          344,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Table"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 66
+    },
+    "6ae3ed74e450:0b2a2d54b53bb170": {
+      "edge_id": "6ae3ed74e450:0b2a2d54b53bb170",
+      "from_state": "6ae3ed74e450",
+      "action_key": "0b2a2d54b53bb170",
+      "action": {
+        "action_key": "0b2a2d54b53bb170",
+        "role": "menu item",
+        "name": "Properties...",
+        "description": "",
+        "states": [
+          "showing",
+          "visible"
+        ],
+        "bbox": [
+          369,
+          570,
+          344,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Table"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 25,
+      "attempts": 0,
+      "reason": "safe menu item likely opens an inspectable dialog/navigation context",
+      "observed": null,
+      "created_order": 67
+    },
+    "9d328737a32a:12411cb0b1194b3a": {
+      "edge_id": "9d328737a32a:12411cb0b1194b3a",
+      "from_state": "9d328737a32a",
+      "action_key": "12411cb0b1194b3a",
+      "action": {
+        "action_key": "12411cb0b1194b3a",
+        "role": "menu",
+        "name": "More Fields",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          419,
+          342,
+          217,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Form"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 68
+    },
+    "483f96f801f2:601314092a764c43": {
+      "edge_id": "483f96f801f2:601314092a764c43",
+      "from_state": "483f96f801f2",
+      "action_key": "601314092a764c43",
+      "action": {
+        "action_key": "601314092a764c43",
+        "role": "menu",
+        "name": "Language",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          468,
+          164,
+          300,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 69
+    },
+    "483f96f801f2:40ce015befc82060": {
+      "edge_id": "483f96f801f2:40ce015befc82060",
+      "from_state": "483f96f801f2",
+      "action_key": "40ce015befc82060",
+      "action": {
+        "action_key": "40ce015befc82060",
+        "role": "menu",
+        "name": "AutoCorrect",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          468,
+          240,
+          300,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 70
+    },
+    "483f96f801f2:c1b3223ad95f8318": {
+      "edge_id": "483f96f801f2:c1b3223ad95f8318",
+      "from_state": "483f96f801f2",
+      "action_key": "c1b3223ad95f8318",
+      "action": {
+        "action_key": "c1b3223ad95f8318",
+        "role": "menu",
+        "name": "Update",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          468,
+          494,
+          300,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 71
+    },
+    "483f96f801f2:3eb0a7358d749fb5": {
+      "edge_id": "483f96f801f2:3eb0a7358d749fb5",
+      "from_state": "483f96f801f2",
+      "action_key": "3eb0a7358d749fb5",
+      "action": {
+        "action_key": "3eb0a7358d749fb5",
+        "role": "menu",
+        "name": "Protect Document",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          468,
+          519,
+          300,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 72
+    },
+    "483f96f801f2:579c76b90658b9f4": {
+      "edge_id": "483f96f801f2:579c76b90658b9f4",
+      "from_state": "483f96f801f2",
+      "action_key": "579c76b90658b9f4",
+      "action": {
+        "action_key": "579c76b90658b9f4",
+        "role": "menu",
+        "name": "Macros",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          468,
+          595,
+          300,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 15,
+      "attempts": 0,
+      "reason": "visible menu may open or represent a navigation context",
+      "observed": null,
+      "created_order": 73
+    },
+    "483f96f801f2:be57373594aa622a": {
+      "edge_id": "483f96f801f2:be57373594aa622a",
+      "from_state": "483f96f801f2",
+      "action_key": "be57373594aa622a",
+      "action": {
+        "action_key": "be57373594aa622a",
+        "role": "menu item",
+        "name": "Customize...",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          468,
+          671,
+          300,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 25,
+      "attempts": 0,
+      "reason": "safe menu item likely opens an inspectable dialog/navigation context",
+      "observed": null,
+      "created_order": 74
+    },
+    "483f96f801f2:7cc846a48d559239": {
+      "edge_id": "483f96f801f2:7cc846a48d559239",
+      "from_state": "483f96f801f2",
+      "action_key": "7cc846a48d559239",
+      "action": {
+        "action_key": "7cc846a48d559239",
+        "role": "menu item",
+        "name": "Options...",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          468,
+          696,
+          300,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 25,
+      "attempts": 0,
+      "reason": "safe menu item likely opens an inspectable dialog/navigation context",
+      "observed": null,
+      "created_order": 75
+    },
+    "bd25ba81ea6e:c432b064ee669dbc": {
+      "edge_id": "bd25ba81ea6e:c432b064ee669dbc",
+      "from_state": "bd25ba81ea6e",
+      "action_key": "c432b064ee669dbc",
+      "action": {
+        "action_key": "c432b064ee669dbc",
+        "role": "menu item",
+        "name": "About LibreOffice",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          585,
+          368,
+          299,
+          25
+        ],
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Help"
+        ],
+        "depth": 8
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 25,
+      "attempts": 0,
+      "reason": "safe menu item likely opens an inspectable dialog/navigation context",
+      "observed": null,
+      "created_order": 76
+    }
+  },
+  "completion": {
+    "status": "partial",
+    "pending_edges": 66,
+    "reason": "pending_edges_exist"
+  }
+}
