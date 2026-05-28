@@ -1519,3 +1519,193 @@ PY
 - Если `init_graph` дал `edges = 1`, capture сделан из dialog/alert.
 - Правильный стартовый graph Writer сейчас: `edges = 18`.
 - После top-level skeleton не запускать автоматически depth-1 exploration без новой policy.
+
+## 26. Завершение второго уровня exploration для LibreOffice Writer
+
+### Цель
+
+Завершить воспроизводимый `A11Y-first` exploration LibreOffice Writer до границы второго уровня: построить top-level menu skeleton, раскрыть выбранные безопасные submenu/dialog transitions из `depth=1`, но остановиться до переходов из `depth=2`.
+
+### Что было исправлено перед финальным прогоном
+
+1. **Nested submenu active root**
+   - `Edit → Paste Special` теперь определяется как отдельный `active_root = Paste Special`, а не как повторное состояние `Edit`.
+   - `Edit → Selection Mode` аналогично определяется как `active_root = Selection Mode`.
+   - Это устранило ошибку, когда depth-2 submenu-ноды наследовали title/actions родительского меню.
+
+2. **Live bbox execution**
+   - `step_edge` больше не кликает по сохранённому bbox из `graph.json`.
+   - Перед выполнением action заново ищется в текущем `before.xml` по `role/name/description`, после чего используется актуальный `live_bbox`.
+   - Это убрало `same_state` из-за смещения окна LibreOffice после relaunch.
+
+3. **Policy вместо ручных skip**
+   - Ручные `skipped_policy` решения перенесены в `action_policy.py`.
+   - Root toolbar/sidebar controls и потенциально опасные/content-changing menu items больше не попадают в macro frontier.
+   - Top-level skeleton стал значительно компактнее: после раскрытия 11 верхних меню осталось `39 edges / 28 pending` вместо прежних `77 edges / 66 pending`.
+
+### Итоговый clean-policy checkpoint
+
+Финальный прогон был остановлен на границе третьего уровня:
+
+```text
+nodes = 40
+edges = 57
+confirmed = 39
+pending = 18
+
+depth 0 = 1
+depth 1 = 11
+depth 2 = 28
+
+next_edge.from_depth = 2
+```
+
+Это означает, что второй уровень построен, а следующий pending edge уже относится к третьему уровню exploration. На этом шаге выполнение корректно остановлено.
+
+### Семантика результата
+
+- `depth=0` — root state Writer.
+- `depth=1` — раскрытые top-level меню: `File`, `Edit`, `View`, `Insert`, `Format`, `Styles`, `Table`, `Form`, `Tools`, `Window`, `Help`.
+- `depth=2` — выбранные безопасные submenu/dialog states из top-level меню.
+- `pending` на `from_depth=2` — это frontier следующего уровня, который пока не выполняется.
+
+Важно: `No outgoing edges` у submenu-ноды не означает, что состояние пустое. Это значит, что в рамках safe policy не выбраны дальнейшие macro transitions. Видимые элементы такого состояния остаются в A11Y snapshot и должны показываться в observation layer agent-facing карты.
+
+### Известный нюанс
+
+Обнаружено одно спорное состояние:
+
+```text
+Table → Properties...
+```
+
+Без выбранной таблицы оно не открыло ожидаемый dialog, а фактически вернуло состояние `Table` на `depth=2` с повторными pending actions. Для следующей правки policy стоит сделать `Properties...` context-aware:
+
+```text
+File → Properties...   разрешить
+Table → Properties...  отложить / ignore
+```
+
+### Команды запуска с нуля
+
+Очистить старый graph:
+
+```bash
+rm -f data/maps/libreoffice_writer/graph.json
+rm -rf data/maps/libreoffice_writer/states
+rm -rf data/maps/libreoffice_writer/_tmp
+```
+
+Запустить Writer:
+
+```bash
+pkill -9 -f libreoffice || true
+pkill -9 -f soffice || true
+sleep 2
+
+rm -rf /tmp/lo-ui-explorer-writer-profile-clean
+rm -rf ~/.config/libreoffice/4/user/backup/*
+rm -f ~/.config/libreoffice/4/user/.lock 2>/dev/null || true
+
+SAL_USE_VCLPLUGIN=gtk3 env DISPLAY=:99 libreoffice --writer --norestore --nofirststartwizard \
+  -env:UserInstallation=file:///tmp/lo-ui-explorer-writer-profile-clean \
+  >/tmp/libreoffice_writer.log 2>&1 &
+
+sleep 15
+env DISPLAY=:99 python scripts/list_atspi_apps.py
+```
+
+Capture и init graph:
+
+```bash
+env DISPLAY=:99 python -m ui_explorer.cli.capture \
+  --app libreoffice_writer \
+  --display :99 \
+  --timeout 30 \
+  --verbose
+
+python -m ui_explorer.cli.active_root \
+  data/maps/libreoffice_writer/_captures/a11y_tree.xml
+
+python -m ui_explorer.cli.state_signature \
+  data/maps/libreoffice_writer/_captures/a11y_tree.xml
+
+python -m ui_explorer.cli.init_graph \
+  --app libreoffice_writer \
+  --xml data/maps/libreoffice_writer/_captures/a11y_tree.xml
+
+python -m ui_explorer.cli.inspect_graph --app libreoffice_writer
+python -m ui_explorer.cli.next_edge --app libreoffice_writer
+```
+
+Guarded soft-прогон до границы `depth=2`:
+
+```bash
+for i in $(seq 1 80); do
+  echo "===== GUARDED STEP $i ====="
+
+  DEPTH=$(python - <<'PY'
+import json
+import subprocess
+
+raw = subprocess.check_output(
+    ["python", "-m", "ui_explorer.cli.next_edge", "--app", "libreoffice_writer"],
+    text=True,
+)
+data = json.loads(raw)
+edge = data.get("next_edge")
+if edge is None:
+    print("NONE")
+else:
+    print(edge.get("from_depth"))
+PY
+)
+
+  echo "next_edge.from_depth=$DEPTH"
+
+  if [ "$DEPTH" = "NONE" ]; then
+    echo "No pending edge. Stop."
+    break
+  fi
+
+  if [ "$DEPTH" -ge 2 ]; then
+    echo "Reached depth >= 2 frontier. Stop before entering next level."
+    break
+  fi
+
+  env DISPLAY=:99 python -m ui_explorer.cli.step_edge \
+    --app libreoffice_writer \
+    --display :99 \
+    --navigation soft \
+    --hard-reset-wait 30 \
+    --verbose || break
+
+  python -m ui_explorer.cli.inspect_graph --app libreoffice_writer
+  python -m ui_explorer.cli.next_edge --app libreoffice_writer
+done
+```
+
+Сохранить checkpoint и визуализацию:
+
+```bash
+mkdir -p data/maps/libreoffice_writer/checkpoints
+
+cp data/maps/libreoffice_writer/graph.json \
+   data/maps/libreoffice_writer/checkpoints/graph_depth2_clean_policy.json
+
+python -m ui_explorer.cli.visualize_graph_interactive \
+  --app libreoffice_writer \
+  --output data/maps/libreoffice_writer/graph_depth2_clean_policy.html
+
+python -m ui_explorer.cli.visualize_graph \
+  --app libreoffice_writer \
+  --output data/maps/libreoffice_writer/graph_depth2_clean_policy.pdf
+```
+
+### Следующий шаг
+
+Перед переходом к третьему уровню рекомендуется:
+
+1. сделать `Properties...` context-aware;
+2. решить policy для dialog controls (`OK`, `Cancel`, `Help`, checkboxes);
+3. добавить observation layer в agent-facing карту, чтобы leaf submenu states показывали видимые элементы без необходимости строить переходы по ним.
