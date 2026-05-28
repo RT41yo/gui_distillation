@@ -1,4 +1,4 @@
-<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1779829292.8231096">
+<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780002827.0925143">
   <element role="application" name="soffice" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Untitled 1 - LibreOffice Writer" description="" x="70" y="64" width="1167" height="926" states="sensitive,showing,visible,enabled">
       <element role="panel" name="" description="" x="70" y="64" width="1167" height="926" states="sensitive,showing,visible,enabled">

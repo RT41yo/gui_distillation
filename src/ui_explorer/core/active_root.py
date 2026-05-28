@@ -54,9 +54,19 @@ def _has_visible_menu_popup_content(node: A11YNode) -> bool:
         if not descendant.is_visible:
             continue
 
-        # Dropdown rows should be below the menu-bar item.
-        if descendant.bbox.y < node.bbox.y + max(1, node.bbox.height):
+        if (
+            not descendant.bbox
+            or descendant.bbox.width <= 1
+            or descendant.bbox.height <= 1
+        ):
             continue
+
+        # Top-level menu-bar dropdowns should appear below the menu-bar row.
+        # Nested submenus often open to the right and can start at the same y
+        # coordinate as the parent row, so do not apply this vertical check there.
+        if _is_direct_menu_bar_menu(node):
+            if descendant.bbox.y < node.bbox.y + max(1, node.bbox.height):
+                continue
 
         return True
 
@@ -70,16 +80,40 @@ def _is_closed_menu_bar_menu(node: A11YNode) -> bool:
     )
 
 
-def _menu_root_rank(node: A11YNode) -> tuple[int, int, int, str]:
+def _is_nested_open_menu(node: A11YNode) -> bool:
+    """
+    True for an opened submenu inside an already opened top-level menu.
+
+    Example:
+      menu/Edit
+        menu/Paste Special
+          menu item/Paste Unformatted Text
+
+    In this case active_root should be Paste Special, not Edit.
+    """
+    return (
+        node.role == "menu"
+        and not _is_direct_menu_bar_menu(node)
+        and any(part.lower().startswith("menu/") for part in node.parent_path)
+        and _has_visible_menu_popup_content(node)
+    )
+
+
+def _menu_root_rank(node: A11YNode) -> tuple[int, int, int, int, str]:
     parent_text = " / ".join(node.parent_path).lower()
 
+    # Best: deepest opened submenu.
+    if _is_nested_open_menu(node):
+        return (0, -node.depth, node.bbox.y, node.bbox.x, node.name)
+
+    # Then: opened top-level File/Edit/View menu.
     if _is_direct_menu_bar_menu(node) and _has_visible_menu_popup_content(node):
-        return (0, node.depth, node.bbox.y, node.name)
+        return (1, node.depth, node.bbox.y, node.bbox.x, node.name)
 
     if "menu bar" in parent_text:
-        return (1, node.depth, node.bbox.y, node.name)
+        return (2, node.depth, node.bbox.y, node.bbox.x, node.name)
 
-    return (2, node.depth, node.bbox.y, node.name)
+    return (3, node.depth, node.bbox.y, node.bbox.x, node.name)
 
 
 def _visible_secondary_roots(root: A11YNode) -> list[A11YNode]:
@@ -151,9 +185,24 @@ def _visible_menu_roots(root: A11YNode) -> list[A11YNode]:
             ):
                 result.append(node)
 
-    # Critical rule:
-    # If a direct menu-bar item is opened, it is the active menu root.
-    # Do not let nested submenu entries such as "Digital Signatures" win.
+    # If a nested submenu is actually opened, it should be the active root.
+    # Example:
+    #   Edit -> Paste Special
+    # should produce active_root = Paste Special, not Edit.
+    nested_open_menus = [
+        node
+        for node in result
+        if _is_nested_open_menu(node)
+    ]
+
+    if nested_open_menus:
+        nested_open_menus.sort(key=_menu_root_rank)
+        return nested_open_menus
+
+    # Otherwise, an opened direct menu-bar item is the active root.
+    # Example:
+    #   File
+    # should produce active_root = File.
     opened_direct_menu_bar_menus = [
         node
         for node in result
@@ -162,9 +211,7 @@ def _visible_menu_roots(root: A11YNode) -> list[A11YNode]:
     ]
 
     if opened_direct_menu_bar_menus:
-        opened_direct_menu_bar_menus.sort(
-            key=lambda node: (node.bbox.y, node.bbox.x, node.depth, node.name)
-        )
+        opened_direct_menu_bar_menus.sort(key=_menu_root_rank)
         return opened_direct_menu_bar_menus
 
     result.sort(key=_menu_root_rank)
@@ -526,7 +573,7 @@ def resolve_active_root(root: A11YNode) -> ActiveRoot:
 
     menus = _visible_menu_roots(root)
     if menus:
-        node = menus[-1]
+        node = menus[0]
         if node.role == "menu":
             return ActiveRoot(node=node, kind="menu", reason="visible menu is active overlay")
         return ActiveRoot(node=node, kind="window_overlay", reason="visible menu-like window is active overlay")

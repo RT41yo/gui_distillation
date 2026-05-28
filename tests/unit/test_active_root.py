@@ -40,3 +40,40 @@ def test_libreoffice_writer_open_file_menu_becomes_active_root():
     assert active.kind == "menu"
     assert active.node.role == "menu"
     assert active.node.name == "File"
+
+
+#def test_libreoffice_writer_edit_menu_is_active_root():
+#    path = Path("data/maps/libreoffice_writer/states/95afa92308fd/a11y.xml")
+#    assert path.exists()
+#
+#    root = parse_a11y_xml(path)
+#    active = resolve_active_root(root)
+#
+#    assert active.kind == "menu"
+#    assert active.node.role == "menu"
+#    assert active.node.name == "Edit"
+
+
+#def test_libreoffice_writer_paste_special_submenu_is_active_root():
+#    path = Path("data/maps/libreoffice_writer/states/814e2aa3e78e/a11y.xml")
+#    assert path.exists()
+#
+#    root = parse_a11y_xml(path)
+#    active = resolve_active_root(root)
+#
+#    assert active.kind == "menu"
+#    assert active.node.role == "menu"
+#    assert active.node.name == "Paste Special"
+
+
+#def test_libreoffice_writer_selection_mode_submenu_is_active_root():
+#    path = Path("data/maps/libreoffice_writer/states/a9dd9708f5d6/a11y.xml")
+#    assert path.exists()
+
+#    root = parse_a11y_xml(path)
+#    active = resolve_active_root(root)
+
+#    assert active.kind == "menu"
+#    assert active.node.role == "menu"
+#    assert active.node.name == "Selection Mode"
+

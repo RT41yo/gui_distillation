@@ -14,6 +14,9 @@ import signal
 
 from ui_explorer.app.launcher import AppLauncher
 from ui_explorer.app.registry import AppRegistry
+from ui_explorer.core.active_root import resolve_active_root
+from ui_explorer.core.actions import UIAction, extract_actions
+from ui_explorer.core.a11y_parser import parse_a11y_xml
 from ui_explorer.core.diff import DiffClassifier
 from ui_explorer.execution.executor import ActionExecutor
 from ui_explorer.execution.navigator import Navigator
@@ -114,6 +117,58 @@ def _make_navigator(
         graph_store=store,
         window_name=app_cfg.display_name,
     )
+
+
+def _find_live_action_for_edge(
+    actions: list[UIAction],
+    edge,
+) -> UIAction | None:
+    """
+    Find the current live A11Y action that corresponds to the stored graph edge.
+
+    Stored bboxes can become stale after hard relaunch because the LibreOffice
+    window/menu bar can shift by a few pixels. For execution we should match
+    by semantic identity and click the live bbox from before.xml.
+    """
+    edge_action = edge.action or {}
+
+    edge_role = (edge_action.get("role") or "").strip()
+    edge_name = (edge_action.get("name") or "").strip()
+    edge_description = (edge_action.get("description") or "").strip()
+
+    matches: list[UIAction] = []
+
+    for action in actions:
+        if action.role.strip() != edge_role:
+            continue
+
+        if action.name.strip() != edge_name:
+            continue
+
+        if edge_description and action.description.strip() != edge_description:
+            continue
+
+        matches.append(action)
+
+    if not matches:
+        return None
+
+    # Prefer the most stable visible match:
+    # 1. shallower action in the active root;
+    # 2. upper-left visual position.
+    matches.sort(
+        key=lambda action: (
+            action.depth,
+            action.bbox[1],
+            action.bbox[0],
+        )
+    )
+
+    return matches[0]
+
+
+def _bbox_to_list(bbox: tuple[int, int, int, int] | list[int]) -> list[int]:
+    return [int(v) for v in bbox]
 
 
 def main() -> int:
@@ -273,10 +328,63 @@ def main() -> int:
 
         return 2
 
+    before_root = parse_a11y_xml(before.xml_path)
+    before_active = resolve_active_root(before_root)
+    before_actions = extract_actions(before_active.node)
+
+    live_action = _find_live_action_for_edge(before_actions, edge)
+
+    if live_action is None:
+        edge.attempts += 1
+        edge.status = EdgeStatus.FAILED_NAVIGATION
+        edge.reason = "live action not found before execution"
+        edge.observed = {
+            "navigation_strategy": args.navigation,
+            "navigation": nav_result.to_dict(),
+            "before_state": before.signature.to_dict(),
+            "stored_action": edge.action,
+            "before_active_root": {
+                "kind": before_active.kind,
+                "role": before_active.node.role,
+                "name": before_active.node.name,
+                "reason": before_active.reason,
+            },
+        }
+
+        store.save(graph)
+
+        print(json.dumps(
+            {
+                "ok": False,
+                "error": "live action not found before execution",
+                "navigation_strategy": args.navigation,
+                "selected_edge": edge.edge_id,
+                "selected_from_state": edge.from_state,
+                "selected_action": {
+                    "role": edge.action.get("role"),
+                    "name": edge.action.get("name"),
+                    "action_key": edge.action_key,
+                    "stored_bbox": edge.action.get("bbox"),
+                },
+                "before_active_root": {
+                    "kind": before_active.kind,
+                    "role": before_active.node.role,
+                    "name": before_active.node.name,
+                    "reason": before_active.reason,
+                },
+                "navigation": nav_result.to_dict(),
+                "edge_status": edge.status.value,
+            },
+            indent=2,
+            ensure_ascii=False,
+        ))
+
+        return 2
+
     execution = ActionExecutor(
         display=args.display,
         window_name=app_cfg.display_name,
-    ).click_bbox(edge.action["bbox"])
+    ).click_bbox(live_action.bbox)
 
     after = waiter.capture_stable(tmp_dir, "after")
 
@@ -312,6 +420,8 @@ def main() -> int:
                 "role": edge.action.get("role"),
                 "name": edge.action.get("name"),
                 "action_key": edge.action_key,
+                "stored_bbox": edge.action.get("bbox"),
+                "live_bbox": _bbox_to_list(live_action.bbox),
             },
             "navigation": nav_result.to_dict(),
             "execution": execution.to_dict(),
