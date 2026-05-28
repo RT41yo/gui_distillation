@@ -1,4 +1,4 @@
-<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780002365.014818">
+<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780004709.2941852">
   <element role="application" name="soffice" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Untitled 1 - LibreOffice Writer" description="" x="70" y="64" width="1167" height="926" states="sensitive,showing,visible,enabled">
       <element role="panel" name="" description="" x="70" y="64" width="1167" height="926" states="sensitive,showing,visible,enabled">
@@ -164,12 +164,12 @@
                   <element role="check menu item" name="Direct Cursor Mode" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   <element role="menu item" name="Edit Mode" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                 </element>
-                <element role="menu" name="View" description="" x="150" y="64" width="48" height="25" states="sensitive,showing,visible,enabled">
-                  <element role="radio menu item" name="Normal" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                  <element role="radio menu item" name="Web" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="User Interface..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu" name="Toolbars" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                <element role="menu" name="View" description="" x="150" y="64" width="48" height="25" states="selected,focused,sensitive,showing,visible,enabled">
+                  <element role="radio menu item" name="Normal" description="" x="150" y="89" width="296" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="radio menu item" name="Web" description="" x="150" y="114" width="296" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="separator" name="" description="" x="150" y="139" width="296" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="User Interface..." description="" x="150" y="140" width="296" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu" name="Toolbars" description="" x="150" y="165" width="296" height="25" states="sensitive,showing,visible,enabled">
                     <element role="check menu item" name="3D-Settings" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="check menu item" name="Align Objects" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="check menu item" name="Bullets and Numbering" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -202,43 +202,43 @@
                     <element role="menu item" name="Reset" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     <element role="check menu item" name="Lock Toolbars" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
                   </element>
-                  <element role="check menu item" name="Status Bar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu" name="Rulers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="check menu item" name="Status Bar" description="" x="150" y="190" width="296" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="separator" name="" description="" x="150" y="215" width="296" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu" name="Rulers" description="" x="150" y="216" width="296" height="25" states="sensitive,showing,visible,enabled">
                     <element role="check menu item" name="Rulers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
                     <element role="check menu item" name="Vertical Ruler" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="menu" name="Scrollbars" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="menu" name="Scrollbars" description="" x="150" y="241" width="296" height="25" states="sensitive,showing,visible,enabled">
                     <element role="check menu item" name="Horizontal Scroll Bar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
                     <element role="check menu item" name="Vertical Scroll Bar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
                   </element>
-                  <element role="menu" name="Grid and Helplines" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="menu" name="Grid and Helplines" description="" x="150" y="266" width="296" height="25" states="sensitive,showing,visible,enabled">
                     <element role="check menu item" name="Display Grid" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="check menu item" name="Snap to Grid" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="check menu item" name="Helplines While Moving" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Formatting Marks" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Text Boundaries" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Table Boundaries" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Images and Charts" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Show Whitespace" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Show Tracked Changes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                  <element role="menu item" name="Comments" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                  <element role="menu item" name="Resolved Comments" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Field Shadings" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Field Names" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Field Hidden Paragraphs" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Sidebar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                  <element role="menu item" name="Styles" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Gallery" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                  <element role="menu item" name="Navigator" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Full Screen" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu" name="Zoom" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                  <element role="separator" name="" description="" x="150" y="291" width="296" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Formatting Marks" description="" x="150" y="292" width="296" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Text Boundaries" description="" x="150" y="317" width="296" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Table Boundaries" description="" x="150" y="342" width="296" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Images and Charts" description="" x="150" y="367" width="296" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Show Whitespace" description="" x="150" y="392" width="296" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="separator" name="" description="" x="150" y="417" width="296" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Show Tracked Changes" description="" x="150" y="418" width="296" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Comments" description="" x="150" y="443" width="296" height="25" states="showing,visible"/>
+                  <element role="menu item" name="Resolved Comments" description="" x="150" y="468" width="296" height="25" states="showing,visible"/>
+                  <element role="separator" name="" description="" x="150" y="493" width="296" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Field Shadings" description="" x="150" y="494" width="296" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Field Names" description="" x="150" y="519" width="296" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Field Hidden Paragraphs" description="" x="150" y="544" width="296" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="separator" name="" description="" x="150" y="569" width="296" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Sidebar" description="" x="150" y="570" width="296" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Styles" description="" x="150" y="595" width="296" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Gallery" description="" x="150" y="620" width="296" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Navigator" description="" x="150" y="645" width="296" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="separator" name="" description="" x="150" y="670" width="296" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Full Screen" description="" x="150" y="671" width="296" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu" name="Zoom" description="" x="150" y="696" width="296" height="25" states="sensitive,showing,visible,enabled">
                     <element role="menu item" name="Entire Page" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     <element role="menu item" name="Page Width" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     <element role="menu item" name="Optimal View" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
@@ -1145,9 +1145,9 @@
                 <element role="separator" name="" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                 <element role="menu item" name="Sidebar" description="" x="142" y="64" width="0" height="0" states="checked,sensitive,enabled"/>
                 <element role="menu item" name="Styles" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
-                <element role="menu item" name="Gallery" description="" x="142" y="64" width="0" height="0"/>
+                <element role="menu item" name="Gallery" description="" x="142" y="64" width="0" height="0" states="checked,sensitive,enabled"/>
                 <element role="menu item" name="Navigator" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
-                <element role="menu item" name="Data Sources" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
+                <element role="menu item" name="Data Sources" description="" x="142" y="64" width="0" height="0"/>
                 <element role="separator" name="" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                 <element role="check menu item" name="Full Screen" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                 <element role="menu" name="Zoom" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled">

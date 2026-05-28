@@ -1,4 +1,4 @@
-<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780005059.8517072">
+<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780004936.1814315">
   <element role="application" name="soffice" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Untitled 1 - LibreOffice Writer" description="" x="70" y="64" width="1167" height="926" states="sensitive,showing,visible,enabled">
       <element role="panel" name="" description="" x="70" y="64" width="1167" height="926" states="sensitive,showing,visible,enabled">
@@ -7,8 +7,8 @@
           <element role="scroll pane" name="" description="" x="70" y="64" width="1143" height="25" states="sensitive,showing,visible,enabled">
             <element role="viewport" name="" description="" x="70" y="64" width="1143" height="25" states="sensitive,showing,visible,enabled">
               <element role="menu bar" name="" description="" x="70" y="64" width="1143" height="25" states="sensitive,showing,visible,enabled">
-                <element role="menu" name="File" description="" x="70" y="64" width="39" height="25" states="sensitive,showing,visible,enabled">
-                  <element role="menu" name="New" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
+                <element role="menu" name="File" description="" x="70" y="64" width="39" height="25" states="selected,sensitive,showing,visible,enabled">
+                  <element role="menu" name="New" description="" x="70" y="89" width="302" height="25" states="sensitive,showing,visible,enabled">
                     <element role="menu item" name="Text Document" description="" x="-2147483648" y="-2147483648" width="285" height="25" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Spreadsheet" description="" x="-2147483648" y="-2147483648" width="285" height="25" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Presentation" description="" x="-2147483648" y="-2147483648" width="285" height="25" states="sensitive,visible,enabled"/>
@@ -24,44 +24,44 @@
                     <element role="menu item" name="Master Document" description="" x="-2147483648" y="-2147483648" width="285" height="25" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Templates..." description="" x="-2147483648" y="-2147483648" width="285" height="25" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="menu item" name="Open..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Open Remote..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="menu" name="Recent Documents" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
+                  <element role="menu item" name="Open..." description="" x="70" y="114" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Open Remote..." description="" x="70" y="139" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu" name="Recent Documents" description="" x="70" y="164" width="302" height="25" states="sensitive,showing,visible,enabled">
                     <element role="menu item" name="No Documents" description="" x="-2147483648" y="-2147483648" width="158" height="25" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="menu item" name="Close" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu" name="Wizards" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
+                  <element role="menu item" name="Close" description="" x="70" y="189" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="separator" name="" description="" x="70" y="214" width="302" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu" name="Wizards" description="" x="70" y="215" width="302" height="25" states="sensitive,showing,visible,enabled">
                     <element role="menu item" name="Letter..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Fax..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Agenda..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Document Converter..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="menu" name="Templates" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
-                    <element role="menu item" name="Edit Template..." description="" x="-2147483648" y="-2147483648" width="276" height="25" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Save as Template..." description="" x="-2147483648" y="-2147483648" width="276" height="25" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="276" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Manage Templates" description="" x="-2147483648" y="-2147483648" width="276" height="25" states="sensitive,visible,enabled"/>
+                  <element role="menu" name="Templates" description="" x="70" y="240" width="302" height="25" states="selected,focused,sensitive,showing,visible,enabled">
+                    <element role="menu item" name="Edit Template..." description="" x="370" y="240" width="276" height="25" states="sensitive,showing,visible,enabled"/>
+                    <element role="menu item" name="Save as Template..." description="" x="370" y="265" width="276" height="25" states="sensitive,showing,visible,enabled"/>
+                    <element role="separator" name="" description="" x="370" y="290" width="276" height="1" states="sensitive,showing,visible,enabled"/>
+                    <element role="menu item" name="Manage Templates" description="" x="370" y="291" width="276" height="25" states="sensitive,showing,visible,enabled"/>
                   </element>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Reload" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
-                  <element role="menu item" name="Versions..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Save" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Save As..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Save Remote..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Save a Copy..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Save All" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Export..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="menu" name="Export As" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
-                    <element role="menu item" name="Export as PDF..." description="" x="-2147483648" y="-2147483648" width="217" height="25" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Export Directly as PDF" description="" x="-2147483648" y="-2147483648" width="217" height="25" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Export as EPUB..." description="" x="-2147483648" y="-2147483648" width="217" height="25" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Export Directly as EPUB" description="" x="-2147483648" y="-2147483648" width="217" height="25" states="sensitive,visible,enabled"/>
+                  <element role="separator" name="" description="" x="70" y="265" width="302" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Reload" description="" x="70" y="266" width="302" height="25" states="showing,visible"/>
+                  <element role="menu item" name="Versions..." description="" x="70" y="291" width="302" height="25" states="showing,visible"/>
+                  <element role="separator" name="" description="" x="70" y="316" width="302" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Save" description="" x="70" y="317" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Save As..." description="" x="70" y="342" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Save Remote..." description="" x="70" y="367" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Save a Copy..." description="" x="70" y="392" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Save All" description="" x="70" y="417" width="302" height="25" states="showing,visible"/>
+                  <element role="separator" name="" description="" x="70" y="442" width="302" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Export..." description="" x="70" y="443" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu" name="Export As" description="" x="70" y="468" width="302" height="25" states="sensitive,showing,visible,enabled">
+                    <element role="menu item" name="Export as PDF..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Export Directly as PDF" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Export as EPUB..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Export Directly as EPUB" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="menu" name="Send" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
+                  <element role="menu" name="Send" description="" x="70" y="493" width="302" height="25" states="sensitive,showing,visible,enabled">
                     <element role="menu item" name="Email Document..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Email as OpenDocument Text..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Email as Microsoft Word..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -77,48 +77,48 @@
                     <element role="menu item" name="Create AutoAbstract..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     <element role="menu item" name="AutoAbstract to Presentation..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                   </element>
-                  <element role="menu item" name="Preview in Web Browser" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
-                  <element role="check menu item" name="Print Preview" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Print..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Printer Settings..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Properties..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
-                  <element role="menu" name="Digital Signatures" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
+                  <element role="menu item" name="Preview in Web Browser" description="" x="70" y="518" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="separator" name="" description="" x="70" y="543" width="302" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="check menu item" name="Print Preview" description="" x="70" y="544" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Print..." description="" x="70" y="569" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Printer Settings..." description="" x="70" y="594" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="separator" name="" description="" x="70" y="619" width="302" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Properties..." description="" x="70" y="620" width="302" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu" name="Digital Signatures" description="" x="70" y="645" width="302" height="25" states="sensitive,showing,visible,enabled">
                     <element role="menu item" name="Digital Signatures..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Sign Existing PDF..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
-                  <element role="menu item" name="Exit LibreOffice" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
+                  <element role="separator" name="" description="" x="70" y="670" width="302" height="1" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu item" name="Exit LibreOffice" description="" x="70" y="671" width="302" height="25" states="sensitive,showing,visible,enabled"/>
                 </element>
-                <element role="menu" name="Edit" description="" x="109" y="64" width="41" height="25" states="selected,sensitive,showing,visible,enabled">
-                  <element role="menu item" name="Undo" description="" x="109" y="89" width="302" height="25" states="showing,visible"/>
-                  <element role="menu item" name="Redo" description="" x="109" y="114" width="302" height="25" states="showing,visible"/>
-                  <element role="menu item" name="Repeat" description="" x="109" y="139" width="302" height="25" states="showing,visible"/>
-                  <element role="separator" name="" description="" x="109" y="164" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Cut" description="" x="109" y="165" width="302" height="25" states="showing,visible"/>
-                  <element role="menu item" name="Copy" description="" x="109" y="190" width="302" height="25" states="showing,visible"/>
-                  <element role="menu item" name="Paste" description="" x="109" y="215" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu" name="Paste Special" description="" x="109" y="240" width="302" height="25" states="sensitive,showing,visible,enabled">
-                    <element role="menu item" name="Paste Unformatted Text" description="" x="-2147483648" y="-2147483648" width="339" height="25" states="visible"/>
-                    <element role="menu item" name="Paste Special..." description="" x="-2147483648" y="-2147483648" width="339" height="25" states="visible"/>
-                    <element role="menu item" name="Paste as Nested Table" description="" x="-2147483648" y="-2147483648" width="339" height="25" states="visible"/>
-                    <element role="menu item" name="Paste as Rows Above" description="" x="-2147483648" y="-2147483648" width="339" height="25" states="visible"/>
-                    <element role="menu item" name="Paste as Columns Before" description="" x="-2147483648" y="-2147483648" width="339" height="25" states="visible"/>
+                <element role="menu" name="Edit" description="" x="109" y="64" width="41" height="25" states="sensitive,showing,visible,enabled">
+                  <element role="menu item" name="Undo" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="menu item" name="Redo" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="menu item" name="Repeat" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Cut" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="menu item" name="Copy" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="menu item" name="Paste" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu" name="Paste Special" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                    <element role="menu item" name="Paste Unformatted Text" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="menu item" name="Paste Special..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="menu item" name="Paste as Nested Table" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="menu item" name="Paste as Rows Above" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="menu item" name="Paste as Columns Before" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                   </element>
-                  <element role="separator" name="" description="" x="109" y="265" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Select All" description="" x="109" y="266" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu" name="Selection Mode" description="" x="109" y="291" width="302" height="25" states="selected,focused,sensitive,showing,visible,enabled">
-                    <element role="radio menu item" name="Standard" description="" x="409" y="291" width="216" height="25" states="checked,sensitive,showing,visible,enabled"/>
-                    <element role="radio menu item" name="Block Area" description="" x="409" y="316" width="216" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Select All" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu" name="Selection Mode" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
+                    <element role="radio menu item" name="Standard" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
+                    <element role="radio menu item" name="Block Area" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="menu item" name="Select Text" description="" x="109" y="316" width="302" height="25" states="showing,visible"/>
-                  <element role="separator" name="" description="" x="109" y="341" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Find..." description="" x="109" y="342" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="check menu item" name="Find and Replace..." description="" x="109" y="367" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Go to Page..." description="" x="109" y="392" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="separator" name="" description="" x="109" y="417" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu" name="Track Changes" description="" x="109" y="418" width="302" height="25" states="sensitive,showing,visible,enabled">
+                  <element role="menu item" name="Select Text" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Find..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Find and Replace..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="menu item" name="Go to Page..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu" name="Track Changes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
                     <element role="check menu item" name="Record" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="check menu item" name="Show" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
                     <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -138,7 +138,7 @@
                     <element role="menu item" name="Compare Document..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Merge Document..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="menu" name="Comment" description="" x="109" y="443" width="302" height="25" states="sensitive,showing,visible,enabled">
+                  <element role="menu" name="Comment" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
                     <element role="menu item" name="Reply Comment" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     <element role="menu item" name="Resolved" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Resolved Thread" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -147,22 +147,22 @@
                     <element role="menu item" name="Delete All Comments by This Author" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Delete All Comments" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="separator" name="" description="" x="109" y="468" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Hyperlink" description="" x="109" y="469" width="302" height="25" states="showing,visible"/>
-                  <element role="menu" name="Reference" description="" x="109" y="494" width="302" height="25" states="sensitive,showing,visible,enabled">
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Hyperlink" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="menu" name="Reference" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
                     <element role="menu item" name="Footnote or Endnote..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     <element role="menu item" name="Index Entry..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     <element role="menu item" name="Bibliography Entry..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                   </element>
-                  <element role="menu item" name="Fields..." description="" x="109" y="519" width="302" height="25" states="showing,visible"/>
-                  <element role="menu item" name="Links to External Files..." description="" x="109" y="544" width="302" height="25" states="showing,visible"/>
-                  <element role="menu" name="Object" description="" x="109" y="569" width="302" height="25" states="sensitive,showing,visible,enabled">
+                  <element role="menu item" name="Fields..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="menu item" name="Links to External Files..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                  <element role="menu" name="Object" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
                     <element role="menu item" name="[No selection possible]" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                   </element>
-                  <element role="menu item" name="Exchange Database..." description="" x="109" y="594" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="separator" name="" description="" x="109" y="619" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="check menu item" name="Direct Cursor Mode" description="" x="109" y="620" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Edit Mode" description="" x="109" y="645" width="302" height="25" states="showing,visible"/>
+                  <element role="menu item" name="Exchange Database..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="check menu item" name="Direct Cursor Mode" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Edit Mode" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                 </element>
                 <element role="menu" name="View" description="" x="150" y="64" width="48" height="25" states="sensitive,showing,visible,enabled">
                   <element role="radio menu item" name="Normal" description="" x="-2147483648" y="-2147483648" width="296" height="25" states="checked,sensitive,visible,enabled"/>

@@ -108,6 +108,104 @@ FORMAT_TOOLBAR_MICRO_TOGGLES = frozenset({
 })
 
 
+ROOT_DEFERRED_CONTROL_NAMES = frozenset({
+    # Root toolbar/sidebar controls deferred from safe Writer exploration.
+    "menu",
+    "print preview",
+    "hyperlink",
+    "open",
+    "bookmark",
+
+    # These can expose panels/toolbars, but we deferred them during safe depth-2 mapping.
+    "find and replace",
+    "track changes functions",
+})
+
+
+SAFE_SUBMENU_NAMES = frozenset({
+    # File
+    "new",
+    "recent documents",
+    "templates",
+    "export as",
+
+    # Edit
+    "paste special",
+    "selection mode",
+    "track changes",
+
+    # View
+    "toolbars",
+    "rulers",
+    "scrollbars",
+    "grid and helplines",
+    "zoom",
+
+    # Insert
+    "more breaks",
+
+    # Format
+    "text",
+    "spacing",
+    "align text",
+    "lists",
+
+    # Table
+    "insert",
+    "select",
+    "size",
+    "convert",
+
+    # Tools
+    "language",
+    "autocorrect",
+})
+
+
+DEFERRED_SUBMENU_NAMES = frozenset({
+    # File / external / security / wizard-like.
+    "send",
+    "digital signatures",
+    "wizards",
+
+    # Edit / content-object submenus.
+    "comment",
+    "reference",
+    "object",
+
+    # Insert / content or document-structure insertion.
+    "media",
+    "shape",
+    "frame",
+    "formatting mark",
+    "footnote and endnote",
+    "table of contents and index",
+    "field",
+    "header and footer",
+
+    # Format / object-layout submenus.
+    "image",
+    "text box and shape",
+    "frame and object",
+    "anchor",
+    "wrap",
+    "arrange",
+    "rotate or flip",
+    "group",
+
+    # Table / destructive or content-changing.
+    "delete",
+
+    # Form / fields.
+    "more fields",
+
+    # Tools / mutation, security, macro, or document update flows.
+    "update",
+    "protect document",
+    "macros",
+})
+
+
 UNSAFE_MENU_ITEM_NAMES = frozenset({
     # File-system / document mutation / external side effects.
     "open...",
@@ -135,45 +233,65 @@ UNSAFE_MENU_ITEM_NAMES = frozenset({
     "paste",
     "paste unformatted text",
     "paste special...",
+    "paste as nested table",
+    "paste as rows above",
+    "paste as columns before",
     "select all",
     "select text",
 
     # Track changes/content operations.
+    "record",
+    "show",
+    "manage...",
+    "previous",
+    "next",
     "accept",
+    "accept and move to next",
     "accept all",
     "reject",
-    "reject all",
-    "accept and move to next",
     "reject and move to next",
+    "reject all",
+    "comment...",
+    "protect...",
+
+    # Customization/profile mutation.
+    "customize...",
+
+    # Content/document-structure dialogs deferred manually.
+    "bookmark...",
 })
 
 
 SAFE_MENU_DIALOG_NAMES = frozenset({
-    # Relatively safe dialogs/inspectors/navigation panels.
+    # Read/inspect or contained navigation dialogs.
     "properties...",
-    "find...",
-    "find and replace...",
     "go to page...",
-    "hyperlink...",
-    "bookmark...",
     "options...",
-    "customize...",
-    "extensions...",
     "about libreoffice",
 })
-
-
-def _is_inside_open_menu(action: UIAction) -> bool:
-    return any(part.lower().startswith("menu/") for part in action.parent_path)
 
 
 def _parent_path_text(action: UIAction) -> str:
     return " / ".join(action.parent_path).lower()
 
 
+def _is_inside_open_menu(action: UIAction) -> bool:
+    return any(part.lower().startswith("menu/") for part in action.parent_path)
+
+
 def _is_formatting_toolbar_action(action: UIAction) -> bool:
     parent_text = _parent_path_text(action)
     return "tool bar/formatting" in parent_text or "toolbar/formatting" in parent_text
+
+
+def _is_root_toolbar_or_sidebar_action(action: UIAction) -> bool:
+    parent_text = _parent_path_text(action)
+    return (
+        "tool bar/" in parent_text
+        or "toolbar/" in parent_text
+        or "panel/properties" in parent_text
+        or "sidebar" in parent_text
+    )
 
 
 def _is_top_menu_bar_action(action: UIAction) -> bool:
@@ -221,6 +339,30 @@ def classify_action(action: UIAction) -> ClassifiedAction:
                 reason="top-level menu bar item opens a navigation menu",
             )
 
+        if _is_inside_open_menu(action):
+            if name_lower in DEFERRED_SUBMENU_NAMES:
+                return ClassifiedAction(
+                    action=action,
+                    kind=ActionKind.IGNORED,
+                    priority=100,
+                    reason="submenu deferred from safe exploration policy",
+                )
+
+            if name_lower in SAFE_SUBMENU_NAMES:
+                return ClassifiedAction(
+                    action=action,
+                    kind=ActionKind.MACRO,
+                    priority=15,
+                    reason="safe submenu inside opened menu may reveal navigation structure",
+                )
+
+            return ClassifiedAction(
+                action=action,
+                kind=ActionKind.MICRO,
+                priority=90,
+                reason="submenu inside opened menu is not selected for macro exploration by default",
+            )
+
         return ClassifiedAction(
             action=action,
             kind=ActionKind.MACRO,
@@ -236,15 +378,14 @@ def classify_action(action: UIAction) -> ClassifiedAction:
             reason=f"{role} commonly opens or switches UI context",
         )
 
-
-    if role in {"menu item"}:
+    if role == "menu item":
         if _is_inside_open_menu(action):
             if name_lower in UNSAFE_MENU_ITEM_NAMES:
                 return ClassifiedAction(
                     action=action,
                     kind=ActionKind.IGNORED,
                     priority=100,
-                    reason="unsafe or content-changing menu item ignored for safe exploration",
+                    reason="unsafe/content-changing menu item ignored for safe exploration",
                 )
 
             if name_lower in SAFE_MENU_DIALOG_NAMES:
@@ -255,8 +396,6 @@ def classify_action(action: UIAction) -> ClassifiedAction:
                     reason="safe menu item likely opens an inspectable dialog/navigation context",
                 )
 
-            # Conservative default inside opened menus:
-            # do not expand arbitrary menu items unless explicitly allowed.
             return ClassifiedAction(
                 action=action,
                 kind=ActionKind.MICRO,
@@ -266,12 +405,24 @@ def classify_action(action: UIAction) -> ClassifiedAction:
 
         return ClassifiedAction(
             action=action,
-            kind=ActionKind.MACRO,
-            priority=15,
-            reason="menu item may navigate, open a dialog, or change UI context",
+            kind=ActionKind.MICRO,
+            priority=90,
+            reason="menu item outside opened menu is not selected for macro exploration by default",
         )
 
     if role in {"toggle button", "radio button", "check box"}:
+        if (
+            role == "toggle button"
+            and _is_root_toolbar_or_sidebar_action(action)
+            and name_lower in ROOT_DEFERRED_CONTROL_NAMES
+        ):
+            return ClassifiedAction(
+                action=action,
+                kind=ActionKind.IGNORED,
+                priority=100,
+                reason="root toolbar/sidebar control deferred from safe exploration",
+            )
+
         if role == "toggle button" and name_lower in FORMAT_TOOLBAR_MICRO_TOGGLES:
             return ClassifiedAction(
                 action=action,
@@ -306,6 +457,17 @@ def classify_action(action: UIAction) -> ClassifiedAction:
                 kind=ActionKind.MICRO,
                 priority=90,
                 reason="tiny push button looks like grid/cell content control",
+            )
+
+        if (
+            _is_root_toolbar_or_sidebar_action(action)
+            and name_lower in ROOT_DEFERRED_CONTROL_NAMES
+        ):
+            return ClassifiedAction(
+                action=action,
+                kind=ActionKind.IGNORED,
+                priority=100,
+                reason="root toolbar control deferred from safe exploration",
             )
 
         if name in MICRO_PUSH_NAMES or len(name) == 1:

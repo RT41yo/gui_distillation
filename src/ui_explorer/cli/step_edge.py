@@ -243,7 +243,7 @@ def main() -> int:
 
     waiter = A11YWaiter(
         a11y_name=app_cfg.a11y_name,
-        timeout_s=15.0,
+        timeout_s=30.0,
         interval_s=0.3,
     )
 

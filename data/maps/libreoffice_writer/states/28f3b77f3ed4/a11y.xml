@@ -1,4 +1,4 @@
-<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780005059.8517072">
+<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780005196.2482219">
   <element role="application" name="soffice" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Untitled 1 - LibreOffice Writer" description="" x="70" y="64" width="1167" height="926" states="sensitive,showing,visible,enabled">
       <element role="panel" name="" description="" x="70" y="64" width="1167" height="926" states="sensitive,showing,visible,enabled">
@@ -91,54 +91,54 @@
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
                   <element role="menu item" name="Exit LibreOffice" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
                 </element>
-                <element role="menu" name="Edit" description="" x="109" y="64" width="41" height="25" states="selected,sensitive,showing,visible,enabled">
-                  <element role="menu item" name="Undo" description="" x="109" y="89" width="302" height="25" states="showing,visible"/>
-                  <element role="menu item" name="Redo" description="" x="109" y="114" width="302" height="25" states="showing,visible"/>
-                  <element role="menu item" name="Repeat" description="" x="109" y="139" width="302" height="25" states="showing,visible"/>
-                  <element role="separator" name="" description="" x="109" y="164" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Cut" description="" x="109" y="165" width="302" height="25" states="showing,visible"/>
-                  <element role="menu item" name="Copy" description="" x="109" y="190" width="302" height="25" states="showing,visible"/>
-                  <element role="menu item" name="Paste" description="" x="109" y="215" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu" name="Paste Special" description="" x="109" y="240" width="302" height="25" states="sensitive,showing,visible,enabled">
+                <element role="menu" name="Edit" description="" x="109" y="64" width="41" height="25" states="sensitive,showing,visible,enabled">
+                  <element role="menu item" name="Undo" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
+                  <element role="menu item" name="Redo" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
+                  <element role="menu item" name="Repeat" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Cut" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
+                  <element role="menu item" name="Copy" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
+                  <element role="menu item" name="Paste" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
+                  <element role="menu" name="Paste Special" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
                     <element role="menu item" name="Paste Unformatted Text" description="" x="-2147483648" y="-2147483648" width="339" height="25" states="visible"/>
                     <element role="menu item" name="Paste Special..." description="" x="-2147483648" y="-2147483648" width="339" height="25" states="visible"/>
                     <element role="menu item" name="Paste as Nested Table" description="" x="-2147483648" y="-2147483648" width="339" height="25" states="visible"/>
                     <element role="menu item" name="Paste as Rows Above" description="" x="-2147483648" y="-2147483648" width="339" height="25" states="visible"/>
                     <element role="menu item" name="Paste as Columns Before" description="" x="-2147483648" y="-2147483648" width="339" height="25" states="visible"/>
                   </element>
-                  <element role="separator" name="" description="" x="109" y="265" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Select All" description="" x="109" y="266" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu" name="Selection Mode" description="" x="109" y="291" width="302" height="25" states="selected,focused,sensitive,showing,visible,enabled">
-                    <element role="radio menu item" name="Standard" description="" x="409" y="291" width="216" height="25" states="checked,sensitive,showing,visible,enabled"/>
-                    <element role="radio menu item" name="Block Area" description="" x="409" y="316" width="216" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Select All" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
+                  <element role="menu" name="Selection Mode" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
+                    <element role="radio menu item" name="Standard" description="" x="-2147483648" y="-2147483648" width="216" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="radio menu item" name="Block Area" description="" x="-2147483648" y="-2147483648" width="216" height="25" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="menu item" name="Select Text" description="" x="109" y="316" width="302" height="25" states="showing,visible"/>
-                  <element role="separator" name="" description="" x="109" y="341" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Find..." description="" x="109" y="342" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="check menu item" name="Find and Replace..." description="" x="109" y="367" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Go to Page..." description="" x="109" y="392" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="separator" name="" description="" x="109" y="417" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu" name="Track Changes" description="" x="109" y="418" width="302" height="25" states="sensitive,showing,visible,enabled">
-                    <element role="check menu item" name="Record" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Show" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Manage..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Previous" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Next" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Accept" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Accept and Move to Next" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Accept All" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Reject" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Reject and Move to Next" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Reject All" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Comment..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="check menu item" name="Protect..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Compare Document..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Merge Document..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Select Text" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Find..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
+                  <element role="check menu item" name="Find and Replace..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Go to Page..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu" name="Track Changes" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
+                    <element role="check menu item" name="Record" description="" x="-2147483648" y="-2147483648" width="222" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Show" description="" x="-2147483648" y="-2147483648" width="222" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="222" height="1" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Manage..." description="" x="-2147483648" y="-2147483648" width="222" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Previous" description="" x="-2147483648" y="-2147483648" width="222" height="25" states="visible"/>
+                    <element role="menu item" name="Next" description="" x="-2147483648" y="-2147483648" width="222" height="25" states="visible"/>
+                    <element role="menu item" name="Accept" description="" x="-2147483648" y="-2147483648" width="222" height="25" states="visible"/>
+                    <element role="menu item" name="Accept and Move to Next" description="" x="-2147483648" y="-2147483648" width="222" height="25" states="visible"/>
+                    <element role="menu item" name="Accept All" description="" x="-2147483648" y="-2147483648" width="222" height="25" states="visible"/>
+                    <element role="menu item" name="Reject" description="" x="-2147483648" y="-2147483648" width="222" height="25" states="visible"/>
+                    <element role="menu item" name="Reject and Move to Next" description="" x="-2147483648" y="-2147483648" width="222" height="25" states="visible"/>
+                    <element role="menu item" name="Reject All" description="" x="-2147483648" y="-2147483648" width="222" height="25" states="visible"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="222" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Comment..." description="" x="-2147483648" y="-2147483648" width="222" height="25" states="visible"/>
+                    <element role="check menu item" name="Protect..." description="" x="-2147483648" y="-2147483648" width="222" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="222" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Compare Document..." description="" x="-2147483648" y="-2147483648" width="222" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Merge Document..." description="" x="-2147483648" y="-2147483648" width="222" height="25" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="menu" name="Comment" description="" x="109" y="443" width="302" height="25" states="sensitive,showing,visible,enabled">
+                  <element role="menu" name="Comment" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
                     <element role="menu item" name="Reply Comment" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     <element role="menu item" name="Resolved" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Resolved Thread" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
@@ -147,22 +147,22 @@
                     <element role="menu item" name="Delete All Comments by This Author" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                     <element role="menu item" name="Delete All Comments" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
                   </element>
-                  <element role="separator" name="" description="" x="109" y="468" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Hyperlink" description="" x="109" y="469" width="302" height="25" states="showing,visible"/>
-                  <element role="menu" name="Reference" description="" x="109" y="494" width="302" height="25" states="sensitive,showing,visible,enabled">
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Hyperlink" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
+                  <element role="menu" name="Reference" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
                     <element role="menu item" name="Footnote or Endnote..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     <element role="menu item" name="Index Entry..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     <element role="menu item" name="Bibliography Entry..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                   </element>
-                  <element role="menu item" name="Fields..." description="" x="109" y="519" width="302" height="25" states="showing,visible"/>
-                  <element role="menu item" name="Links to External Files..." description="" x="109" y="544" width="302" height="25" states="showing,visible"/>
-                  <element role="menu" name="Object" description="" x="109" y="569" width="302" height="25" states="sensitive,showing,visible,enabled">
+                  <element role="menu item" name="Fields..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
+                  <element role="menu item" name="Links to External Files..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
+                  <element role="menu" name="Object" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled">
                     <element role="menu item" name="[No selection possible]" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                   </element>
-                  <element role="menu item" name="Exchange Database..." description="" x="109" y="594" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="separator" name="" description="" x="109" y="619" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="check menu item" name="Direct Cursor Mode" description="" x="109" y="620" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu item" name="Edit Mode" description="" x="109" y="645" width="302" height="25" states="showing,visible"/>
+                  <element role="menu item" name="Exchange Database..." description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
+                  <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="302" height="1" states="sensitive,visible,enabled"/>
+                  <element role="check menu item" name="Direct Cursor Mode" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="sensitive,visible,enabled"/>
+                  <element role="menu item" name="Edit Mode" description="" x="-2147483648" y="-2147483648" width="302" height="25" states="visible"/>
                 </element>
                 <element role="menu" name="View" description="" x="150" y="64" width="48" height="25" states="sensitive,showing,visible,enabled">
                   <element role="radio menu item" name="Normal" description="" x="-2147483648" y="-2147483648" width="296" height="25" states="checked,sensitive,visible,enabled"/>
@@ -170,52 +170,52 @@
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="296" height="1" states="sensitive,visible,enabled"/>
                   <element role="menu item" name="User Interface..." description="" x="-2147483648" y="-2147483648" width="296" height="25" states="sensitive,visible,enabled"/>
                   <element role="menu" name="Toolbars" description="" x="-2147483648" y="-2147483648" width="296" height="25" states="sensitive,visible,enabled">
-                    <element role="check menu item" name="3D-Settings" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Align Objects" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Bullets and Numbering" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Drawing" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Drawing Object Properties" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Edit Points" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Find" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Fontwork" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Form Controls" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Form Design" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Form Navigation" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Formatting" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Formatting (Styles)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Frame" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Image" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Insert" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Mail Merge" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Media Playback" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Navigation" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="OLE-Object" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Standard" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Standard (Single Mode)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Table" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Text Object" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Tools" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Track Changes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="TSCP Classification" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Customize..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Reset" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="check menu item" name="Lock Toolbars" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
+                    <element role="check menu item" name="3D-Settings" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Align Objects" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Bullets and Numbering" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Drawing" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Drawing Object Properties" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Edit Points" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Find" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Fontwork" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Form Controls" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Form Design" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Form Navigation" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Formatting" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Formatting (Styles)" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Frame" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Image" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Insert" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Mail Merge" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Media Playback" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Navigation" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="OLE-Object" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Standard" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Standard (Single Mode)" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Table" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Text Object" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Tools" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Track Changes" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="TSCP Classification" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="228" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Customize..." description="" x="-2147483648" y="-2147483648" width="228" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Reset" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="visible"/>
+                    <element role="check menu item" name="Lock Toolbars" description="" x="-2147483648" y="-2147483648" width="228" height="25" states="checked,sensitive,visible,enabled"/>
                   </element>
                   <element role="check menu item" name="Status Bar" description="" x="-2147483648" y="-2147483648" width="296" height="25" states="checked,sensitive,visible,enabled"/>
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="296" height="1" states="sensitive,visible,enabled"/>
                   <element role="menu" name="Rulers" description="" x="-2147483648" y="-2147483648" width="296" height="25" states="sensitive,visible,enabled">
-                    <element role="check menu item" name="Rulers" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Vertical Ruler" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Rulers" description="" x="-2147483648" y="-2147483648" width="231" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Vertical Ruler" description="" x="-2147483648" y="-2147483648" width="231" height="25" states="sensitive,visible,enabled"/>
                   </element>
                   <element role="menu" name="Scrollbars" description="" x="-2147483648" y="-2147483648" width="296" height="25" states="sensitive,visible,enabled">
-                    <element role="check menu item" name="Horizontal Scroll Bar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Vertical Scroll Bar" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Horizontal Scroll Bar" description="" x="-2147483648" y="-2147483648" width="191" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Vertical Scroll Bar" description="" x="-2147483648" y="-2147483648" width="191" height="25" states="checked,sensitive,visible,enabled"/>
                   </element>
                   <element role="menu" name="Grid and Helplines" description="" x="-2147483648" y="-2147483648" width="296" height="25" states="sensitive,visible,enabled">
-                    <element role="check menu item" name="Display Grid" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Snap to Grid" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Helplines While Moving" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Display Grid" description="" x="-2147483648" y="-2147483648" width="212" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Snap to Grid" description="" x="-2147483648" y="-2147483648" width="212" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Helplines While Moving" description="" x="-2147483648" y="-2147483648" width="212" height="25" states="sensitive,visible,enabled"/>
                   </element>
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="296" height="1" states="sensitive,visible,enabled"/>
                   <element role="check menu item" name="Formatting Marks" description="" x="-2147483648" y="-2147483648" width="296" height="25" states="sensitive,visible,enabled"/>
@@ -239,26 +239,26 @@
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="296" height="1" states="sensitive,visible,enabled"/>
                   <element role="check menu item" name="Full Screen" description="" x="-2147483648" y="-2147483648" width="296" height="25" states="sensitive,visible,enabled"/>
                   <element role="menu" name="Zoom" description="" x="-2147483648" y="-2147483648" width="296" height="25" states="sensitive,visible,enabled">
-                    <element role="menu item" name="Entire Page" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Page Width" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Optimal View" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="50%" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="75%" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="100%" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="150%" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="200%" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Zoom..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Entire Page" description="" x="-2147483648" y="-2147483648" width="150" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Page Width" description="" x="-2147483648" y="-2147483648" width="150" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Optimal View" description="" x="-2147483648" y="-2147483648" width="150" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="150" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="50%" description="" x="-2147483648" y="-2147483648" width="150" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="75%" description="" x="-2147483648" y="-2147483648" width="150" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="100%" description="" x="-2147483648" y="-2147483648" width="150" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="150%" description="" x="-2147483648" y="-2147483648" width="150" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="200%" description="" x="-2147483648" y="-2147483648" width="150" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="150" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Zoom..." description="" x="-2147483648" y="-2147483648" width="150" height="25" states="sensitive,visible,enabled"/>
                   </element>
                 </element>
                 <element role="menu" name="Insert" description="" x="198" y="64" width="53" height="25" states="sensitive,showing,visible,enabled">
                   <element role="menu item" name="Page Break" description="" x="-2147483648" y="-2147483648" width="345" height="25" states="sensitive,visible,enabled"/>
                   <element role="menu" name="More Breaks" description="" x="-2147483648" y="-2147483648" width="345" height="25" states="sensitive,visible,enabled">
-                    <element role="menu item" name="Insert Manual Row Break" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Insert Column Break" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Manual Break..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Insert Manual Row Break" description="" x="-2147483648" y="-2147483648" width="345" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Insert Column Break" description="" x="-2147483648" y="-2147483648" width="345" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="345" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Manual Break..." description="" x="-2147483648" y="-2147483648" width="345" height="25" states="sensitive,visible,enabled"/>
                   </element>
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="345" height="1" states="sensitive,visible,enabled"/>
                   <element role="menu item" name="Image..." description="" x="-2147483648" y="-2147483648" width="345" height="25" states="sensitive,visible,enabled"/>
@@ -497,53 +497,53 @@
                 </element>
                 <element role="menu" name="Format" description="" x="251" y="64" width="62" height="25" states="sensitive,showing,visible,enabled">
                   <element role="menu" name="Text" description="" x="-2147483648" y="-2147483648" width="268" height="25" states="sensitive,visible,enabled">
-                    <element role="check menu item" name="Bold" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Italic" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Single Underline" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Double Underline" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Strikethrough" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Overline" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Superscript" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Subscript" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Shadow" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Outline Font Effect" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Increase Size" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Decrease Size" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="UPPERCASE" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="lowercase" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Cycle Case" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Sentence case" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Capitalize Every Word" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="tOGGLE cASE" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Small capitals" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Bold" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Italic" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Single Underline" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Double Underline" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Strikethrough" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Overline" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="287" height="1" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Superscript" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Subscript" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="287" height="1" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Shadow" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Outline Font Effect" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="287" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Increase Size" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Decrease Size" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="287" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="UPPERCASE" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="lowercase" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Cycle Case" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="287" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Sentence case" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Capitalize Every Word" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="tOGGLE cASE" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="287" height="1" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Small capitals" description="" x="-2147483648" y="-2147483648" width="287" height="25" states="sensitive,visible,enabled"/>
                   </element>
                   <element role="menu" name="Spacing" description="" x="-2147483648" y="-2147483648" width="268" height="25" states="sensitive,visible,enabled">
-                    <element role="check menu item" name="Line Spacing: 1" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Line Spacing: 1.15" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Line Spacing: 1.5" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Line Spacing: 2" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Increase Paragraph Spacing" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Decrease Paragraph Spacing" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Increase Indent" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Decrease Indent" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Line Spacing: 1" description="" x="-2147483648" y="-2147483648" width="243" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Line Spacing: 1.15" description="" x="-2147483648" y="-2147483648" width="243" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Line Spacing: 1.5" description="" x="-2147483648" y="-2147483648" width="243" height="25" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="Line Spacing: 2" description="" x="-2147483648" y="-2147483648" width="243" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="243" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Increase Paragraph Spacing" description="" x="-2147483648" y="-2147483648" width="243" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Decrease Paragraph Spacing" description="" x="-2147483648" y="-2147483648" width="243" height="25" states="visible"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="243" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Increase Indent" description="" x="-2147483648" y="-2147483648" width="243" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Decrease Indent" description="" x="-2147483648" y="-2147483648" width="243" height="25" states="sensitive,visible,enabled"/>
                   </element>
                   <element role="menu" name="Align Text" description="" x="-2147483648" y="-2147483648" width="268" height="25" states="sensitive,visible,enabled">
-                    <element role="radio menu item" name="Left" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                    <element role="radio menu item" name="Centered" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="radio menu item" name="Right" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="radio menu item" name="Justified" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="radio menu item" name="Top" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="radio menu item" name="Center" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="radio menu item" name="Bottom" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="radio menu item" name="Left" description="" x="-2147483648" y="-2147483648" width="163" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="radio menu item" name="Centered" description="" x="-2147483648" y="-2147483648" width="163" height="25" states="sensitive,visible,enabled"/>
+                    <element role="radio menu item" name="Right" description="" x="-2147483648" y="-2147483648" width="163" height="25" states="sensitive,visible,enabled"/>
+                    <element role="radio menu item" name="Justified" description="" x="-2147483648" y="-2147483648" width="163" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="163" height="1" states="sensitive,visible,enabled"/>
+                    <element role="radio menu item" name="Top" description="" x="-2147483648" y="-2147483648" width="163" height="25" states="visible"/>
+                    <element role="radio menu item" name="Center" description="" x="-2147483648" y="-2147483648" width="163" height="25" states="visible"/>
+                    <element role="radio menu item" name="Bottom" description="" x="-2147483648" y="-2147483648" width="163" height="25" states="visible"/>
                   </element>
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="268" height="1" states="sensitive,visible,enabled"/>
                   <element role="check menu item" name="Clone Formatting" description="" x="-2147483648" y="-2147483648" width="268" height="25" states="sensitive,visible,enabled"/>
@@ -552,26 +552,26 @@
                   <element role="menu item" name="Character..." description="" x="-2147483648" y="-2147483648" width="268" height="25" states="sensitive,visible,enabled"/>
                   <element role="menu item" name="Paragraph..." description="" x="-2147483648" y="-2147483648" width="268" height="25" states="sensitive,visible,enabled"/>
                   <element role="menu" name="Lists" description="" x="-2147483648" y="-2147483648" width="268" height="25" states="sensitive,visible,enabled">
-                    <element role="radio menu item" name="No List" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                    <element role="radio menu item" name="Unordered List" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="radio menu item" name="Ordered List" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Demote One Level" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Promote One Level" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Demote One Level With Subpoints" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Promote One Level With Subpoints" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Move Down" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Move Up" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Move Down with Subpoints" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Move Up with Subpoints" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Insert Unnumbered Entry" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Restart Numbering" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Add to List" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="To Next Paragraph in Level" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="To Previous Paragraph in Level" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="radio menu item" name="No List" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="radio menu item" name="Unordered List" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="sensitive,visible,enabled"/>
+                    <element role="radio menu item" name="Ordered List" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="387" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Demote One Level" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
+                    <element role="menu item" name="Promote One Level" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
+                    <element role="menu item" name="Demote One Level With Subpoints" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
+                    <element role="menu item" name="Promote One Level With Subpoints" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="387" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Move Down" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Move Up" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Move Down with Subpoints" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
+                    <element role="menu item" name="Move Up with Subpoints" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="387" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Insert Unnumbered Entry" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
+                    <element role="menu item" name="Restart Numbering" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
+                    <element role="menu item" name="Add to List" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="387" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="To Next Paragraph in Level" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
+                    <element role="menu item" name="To Previous Paragraph in Level" description="" x="-2147483648" y="-2147483648" width="387" height="25" states="visible"/>
                   </element>
                   <element role="menu item" name="Bullets and Numbering..." description="" x="-2147483648" y="-2147483648" width="268" height="25" states="sensitive,visible,enabled"/>
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="268" height="1" states="sensitive,visible,enabled"/>
@@ -704,13 +704,13 @@
                 <element role="menu" name="Table" description="" x="369" y="64" width="50" height="25" states="sensitive,showing,visible,enabled">
                   <element role="menu item" name="Insert Table..." description="" x="-2147483648" y="-2147483648" width="344" height="25" states="sensitive,visible,enabled"/>
                   <element role="menu" name="Insert" description="" x="-2147483648" y="-2147483648" width="344" height="25" states="sensitive,visible,enabled">
-                    <element role="menu item" name="Rows Above" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Rows Below" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Rows..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Columns Before" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Columns After" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Columns..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="menu item" name="Rows Above" description="" x="-2147483648" y="-2147483648" width="166" height="25" states="visible"/>
+                    <element role="menu item" name="Rows Below" description="" x="-2147483648" y="-2147483648" width="166" height="25" states="visible"/>
+                    <element role="menu item" name="Rows..." description="" x="-2147483648" y="-2147483648" width="166" height="25" states="visible"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="166" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Columns Before" description="" x="-2147483648" y="-2147483648" width="166" height="25" states="visible"/>
+                    <element role="menu item" name="Columns After" description="" x="-2147483648" y="-2147483648" width="166" height="25" states="visible"/>
+                    <element role="menu item" name="Columns..." description="" x="-2147483648" y="-2147483648" width="166" height="25" states="visible"/>
                   </element>
                   <element role="menu" name="Delete" description="" x="-2147483648" y="-2147483648" width="344" height="25" states="sensitive,visible,enabled">
                     <element role="menu item" name="Rows" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
@@ -718,21 +718,21 @@
                     <element role="menu item" name="Table" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                   </element>
                   <element role="menu" name="Select" description="" x="-2147483648" y="-2147483648" width="344" height="25" states="sensitive,visible,enabled">
-                    <element role="menu item" name="Cell" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Row" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Column" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Table" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="menu item" name="Cell" description="" x="-2147483648" y="-2147483648" width="112" height="25" states="visible"/>
+                    <element role="menu item" name="Row" description="" x="-2147483648" y="-2147483648" width="112" height="25" states="visible"/>
+                    <element role="menu item" name="Column" description="" x="-2147483648" y="-2147483648" width="112" height="25" states="visible"/>
+                    <element role="menu item" name="Table" description="" x="-2147483648" y="-2147483648" width="112" height="25" states="visible"/>
                   </element>
                   <element role="menu" name="Size" description="" x="-2147483648" y="-2147483648" width="344" height="25" states="sensitive,visible,enabled">
-                    <element role="menu item" name="Row Height..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Minimize Row Height" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Optimal Row Height" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Distribute Rows Evenly" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Column Width..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Minimize Column Width" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Optimal Column Width" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Distribute Columns Evenly" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="menu item" name="Row Height..." description="" x="-2147483648" y="-2147483648" width="235" height="25" states="visible"/>
+                    <element role="menu item" name="Minimize Row Height" description="" x="-2147483648" y="-2147483648" width="235" height="25" states="visible"/>
+                    <element role="menu item" name="Optimal Row Height" description="" x="-2147483648" y="-2147483648" width="235" height="25" states="visible"/>
+                    <element role="menu item" name="Distribute Rows Evenly" description="" x="-2147483648" y="-2147483648" width="235" height="25" states="visible"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="235" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Column Width..." description="" x="-2147483648" y="-2147483648" width="235" height="25" states="visible"/>
+                    <element role="menu item" name="Minimize Column Width" description="" x="-2147483648" y="-2147483648" width="235" height="25" states="visible"/>
+                    <element role="menu item" name="Optimal Column Width" description="" x="-2147483648" y="-2147483648" width="235" height="25" states="visible"/>
+                    <element role="menu item" name="Distribute Columns Evenly" description="" x="-2147483648" y="-2147483648" width="235" height="25" states="visible"/>
                   </element>
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="344" height="1" states="sensitive,visible,enabled"/>
                   <element role="menu item" name="Merge Cells" description="" x="-2147483648" y="-2147483648" width="344" height="25" states="visible"/>
@@ -751,8 +751,8 @@
                   <element role="menu item" name="Row to Break Across Pages" description="" x="-2147483648" y="-2147483648" width="344" height="25" states="visible"/>
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="344" height="1" states="sensitive,visible,enabled"/>
                   <element role="menu" name="Convert" description="" x="-2147483648" y="-2147483648" width="344" height="25" states="sensitive,visible,enabled">
-                    <element role="menu item" name="Text to Table..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Table to Text..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="menu item" name="Text to Table..." description="" x="-2147483648" y="-2147483648" width="156" height="25" states="visible"/>
+                    <element role="menu item" name="Table to Text..." description="" x="-2147483648" y="-2147483648" width="156" height="25" states="visible"/>
                   </element>
                   <element role="menu item" name="Edit Formula" description="" x="-2147483648" y="-2147483648" width="344" height="25" states="sensitive,visible,enabled"/>
                   <element role="menu item" name="Sort..." description="" x="-2147483648" y="-2147483648" width="344" height="25" states="visible"/>
@@ -800,38 +800,38 @@
                   <element role="check menu item" name="Automatic Spell Checking" description="" x="-2147483648" y="-2147483648" width="300" height="25" states="checked,sensitive,visible,enabled"/>
                   <element role="menu item" name="Thesaurus..." description="" x="-2147483648" y="-2147483648" width="300" height="25" states="sensitive,visible,enabled"/>
                   <element role="menu" name="Language" description="" x="-2147483648" y="-2147483648" width="300" height="25" states="sensitive,visible,enabled">
-                    <element role="menu" name="For Selection" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                      <element role="check menu item" name="English (USA)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                      <element role="menu item" name="None (Do not check spelling)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="Reset to Default Language" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="More..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu" name="For Selection" description="" x="-2147483648" y="-2147483648" width="235" height="25" states="sensitive,visible,enabled">
+                      <element role="check menu item" name="English (USA)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                      <element role="menu item" name="None (Do not check spelling)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                      <element role="menu item" name="Reset to Default Language" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                      <element role="menu item" name="More..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     </element>
-                    <element role="menu" name="For Paragraph" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                      <element role="menu item" name="English (USA)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="None (Do not check spelling)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="Reset to Default Language" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="More..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu" name="For Paragraph" description="" x="-2147483648" y="-2147483648" width="235" height="25" states="sensitive,visible,enabled">
+                      <element role="menu item" name="English (USA)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                      <element role="menu item" name="None (Do not check spelling)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                      <element role="menu item" name="Reset to Default Language" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                      <element role="menu item" name="More..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     </element>
-                    <element role="menu" name="For All Text" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled">
-                      <element role="menu item" name="English (USA)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="None (Do not check spelling)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="Reset to Default Language" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                      <element role="menu item" name="More..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu" name="For All Text" description="" x="-2147483648" y="-2147483648" width="235" height="25" states="sensitive,visible,enabled">
+                      <element role="menu item" name="English (USA)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                      <element role="menu item" name="None (Do not check spelling)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                      <element role="menu item" name="Reset to Default Language" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                      <element role="menu item" name="More..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
                     </element>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Hyphenation..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="More Dictionaries Online..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="235" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Hyphenation..." description="" x="-2147483648" y="-2147483648" width="235" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="235" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="More Dictionaries Online..." description="" x="-2147483648" y="-2147483648" width="235" height="25" states="sensitive,visible,enabled"/>
                   </element>
                   <element role="menu item" name="Word Count..." description="" x="-2147483648" y="-2147483648" width="300" height="25" states="sensitive,visible,enabled"/>
                   <element role="menu item" name="Accessibility Check..." description="" x="-2147483648" y="-2147483648" width="300" height="25" states="sensitive,visible,enabled"/>
                   <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="300" height="1" states="sensitive,visible,enabled"/>
                   <element role="menu" name="AutoCorrect" description="" x="-2147483648" y="-2147483648" width="300" height="25" states="sensitive,visible,enabled">
-                    <element role="check menu item" name="While Typing" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                    <element role="menu item" name="Apply" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Apply and Edit Changes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="AutoCorrect Options..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="While Typing" description="" x="-2147483648" y="-2147483648" width="212" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="menu item" name="Apply" description="" x="-2147483648" y="-2147483648" width="212" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Apply and Edit Changes" description="" x="-2147483648" y="-2147483648" width="212" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="212" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="AutoCorrect Options..." description="" x="-2147483648" y="-2147483648" width="212" height="25" states="sensitive,visible,enabled"/>
                   </element>
                   <element role="menu item" name="AutoText..." description="" x="-2147483648" y="-2147483648" width="300" height="25" states="sensitive,visible,enabled"/>
                   <element role="menu item" name="ImageMap" description="" x="-2147483648" y="-2147483648" width="300" height="25" states="visible"/>
@@ -1092,7 +1092,7 @@
                   <element role="check menu item" name="Form Controls" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                   <element role="check menu item" name="Form Design" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                   <element role="check menu item" name="Form Navigation" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
-                  <element role="check menu item" name="Formatting" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
+                  <element role="check menu item" name="Formatting" description="" x="142" y="64" width="0" height="0" states="checked,sensitive,enabled"/>
                   <element role="check menu item" name="Formatting (Styles)" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                   <element role="check menu item" name="Frame" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                   <element role="check menu item" name="Image" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
@@ -1101,7 +1101,7 @@
                   <element role="check menu item" name="Media Playback" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                   <element role="check menu item" name="Navigation" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                   <element role="check menu item" name="OLE-Object" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
-                  <element role="check menu item" name="Standard" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
+                  <element role="check menu item" name="Standard" description="" x="142" y="64" width="0" height="0" states="checked,sensitive,enabled"/>
                   <element role="check menu item" name="Standard (Single Mode)" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                   <element role="check menu item" name="Table" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
                   <element role="check menu item" name="Text Object" description="" x="142" y="64" width="0" height="0" states="sensitive,enabled"/>
@@ -1837,7 +1837,7 @@
             <element role="panel" name="" description="" x="70" y="142" width="1167" height="801" states="sensitive,showing,visible,enabled">
               <element role="scroll pane" name="" description="" x="70" y="142" width="1108" height="801" states="sensitive,showing,visible,enabled">
                 <element role="document text" name="Untitled 1 - LibreOffice Document" description="Document view" x="70" y="167" width="1096" height="776" states="showing,visible,enabled">
-                  <element role="paragraph" name="" description="" x="221" y="262" width="794" height="18" states="focused,showing,visible,enabled"/>
+                  <element role="paragraph" name="" description="" x="221" y="262" width="794" height="18" states="showing,visible,enabled"/>
                 </element>
                 <element role="scroll bar" name="Vertical scroll bar" description="" x="1166" y="142" width="12" height="801" states="sensitive,showing,visible,enabled"/>
                 <element role="ruler" name="Horizontal Ruler" description="" x="70" y="142" width="1096" height="25" states="showing,visible,enabled"/>
@@ -2140,6 +2140,142 @@
       <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
       <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
       <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+    </element>
+    <element role="dialog" name="Options - LibreOffice - User Data" description="" x="162" y="215" width="983" height="624" states="sensitive,showing,visible,enabled">
+      <element role="filler" name="" description="" x="170" y="223" width="967" height="608" states="sensitive,showing,visible,enabled">
+        <element role="filler" name="" description="" x="170" y="223" width="967" height="562" states="sensitive,showing,visible,enabled">
+          <element role="scroll pane" name="" description="" x="170" y="223" width="282" height="562" states="sensitive,showing,visible,enabled">
+            <element role="tree table" name="Options - LibreOffice - User Data" description="" x="171" y="224" width="280" height="560" states="focused,sensitive,showing,visible,enabled">
+              <element role="table column header" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+              <element role="table cell" name="LibreOffice" description="" x="211" y="225" width="238" height="21" states="sensitive,expanded,showing,visible,enabled"/>
+              <element role="table cell" name="User Data" description="" x="229" y="248" width="220" height="21" states="selected,sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="General" description="" x="229" y="271" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="View" description="" x="229" y="294" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Print" description="" x="229" y="317" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Paths" description="" x="229" y="340" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Fonts" description="" x="229" y="363" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Security" description="" x="229" y="386" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Personalization" description="" x="229" y="409" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Application Colors" description="" x="229" y="432" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Accessibility" description="" x="229" y="455" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Advanced" description="" x="229" y="478" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="OpenCL" description="" x="229" y="501" width="220" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Load/Save" description="" x="211" y="524" width="238" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Language Settings" description="" x="211" y="547" width="238" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="LibreOffice Writer" description="" x="211" y="570" width="238" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="LibreOffice Writer/Web" description="" x="211" y="593" width="238" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="LibreOffice Base" description="" x="211" y="616" width="238" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Charts" description="" x="211" y="639" width="238" height="21" states="sensitive,showing,visible,enabled"/>
+              <element role="table cell" name="Internet" description="" x="211" y="662" width="238" height="21" states="sensitive,showing,visible,enabled"/>
+            </element>
+            <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+            <element role="scroll bar" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+          </element>
+          <element role="filler" name="" description="" x="458" y="223" width="679" height="562" states="sensitive,showing,visible,enabled">
+            <element role="filler" name="" description="Use this tab page to enter or edit user data." x="464" y="229" width="667" height="502" states="sensitive,showing,visible,enabled">
+              <element role="panel" name="Address" description="" x="464" y="229" width="667" height="365" states="sensitive,showing,visible,enabled">
+                <element role="panel" name="" description="" x="476" y="252" width="655" height="342" states="sensitive,showing,visible,enabled">
+                  <element role="panel" name="" description="" x="645" y="252" width="486" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="text" name="" description="Type the name of your company in this field." x="645" y="252" width="486" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="panel" name="" description="" x="645" y="412" width="486" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="text" name="" description="Type your country and region" x="645" y="412" width="486" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="panel" name="" description="" x="645" y="332" width="486" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="text" name="" description="Type the name of your street in this field." x="645" y="332" width="486" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                    <element role="text" name="Zip code" description="Type your ZIP in this field." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    <element role="text" name="City" description="Type the city where you live." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                  </element>
+                  <element role="label" name="Zip/city:" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                  <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                    <element role="text" name="Apartment number" description="Type your apartment number" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    <element role="text" name="Street" description="Type the name of your street in this field." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                  </element>
+                  <element role="label" name="Street/apartment number:" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                  <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                    <element role="text" name="Initials" description="Type your initials." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    <element role="text" name="First name" description="Type your first name." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    <element role="text" name="Last name" description="Type your last name." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                  </element>
+                  <element role="label" name="Last/first name/initials:" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                  <element role="panel" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                    <element role="text" name="First name" description="Type your first name." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    <element role="text" name="Initials" description="Type your initials." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    <element role="text" name="Father's name" description="Type your father's name" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    <element role="text" name="Last name" description="Type your last name." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                  </element>
+                  <element role="label" name="Last/first/father’s name/initials:" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                  <element role="check box" name="Use data for document properties" description="Mark to use the data in document properties" x="476" y="572" width="655" height="22" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="panel" name="" description="" x="645" y="532" width="486" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="text" name="email address" description="Type your email address." x="891" y="532" width="240" height="34" states="sensitive,showing,visible,enabled"/>
+                    <element role="text" name="Fax number" description="Type your fax number in this field." x="645" y="532" width="240" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="panel" name="" description="" x="645" y="492" width="486" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="text" name="Work telephone number" description="Type your work number in this field." x="891" y="492" width="240" height="34" states="sensitive,showing,visible,enabled"/>
+                    <element role="text" name="Home telephone number" description="Type your private telephone number in this field." x="645" y="492" width="240" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="panel" name="" description="" x="645" y="452" width="486" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="text" name="Position" description="Type your position in the company in this field." x="891" y="452" width="240" height="34" states="sensitive,showing,visible,enabled"/>
+                    <element role="text" name="Title" description="Type your title in this field." x="645" y="452" width="240" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="panel" name="" description="" x="645" y="372" width="486" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="text" name="Zip code" description="Type your ZIP in this field." x="993" y="372" width="138" height="34" states="sensitive,showing,visible,enabled"/>
+                    <element role="text" name="State" description="Type your state." x="819" y="372" width="168" height="34" states="sensitive,showing,visible,enabled"/>
+                    <element role="text" name="City" description="Type the city where you live." x="645" y="372" width="168" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="panel" name="" description="" x="645" y="292" width="486" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="text" name="Initials" description="Type your initials." x="1057" y="292" width="74" height="34" states="sensitive,showing,visible,enabled"/>
+                    <element role="text" name="Last name" description="Type your last name." x="851" y="292" width="200" height="34" states="sensitive,showing,visible,enabled"/>
+                    <element role="text" name="First name" description="Type your first name." x="645" y="292" width="200" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="label" name="Fax/email:" description="" x="476" y="532" width="163" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Telephone (home/work):" description="Home telephone number" x="476" y="492" width="163" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Title/position:" description="" x="476" y="452" width="163" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Country/region:" description="" x="476" y="412" width="163" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="City/state/zip:" description="" x="476" y="372" width="163" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Street:" description="" x="476" y="332" width="163" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="First/last name/initials:" description="" x="476" y="292" width="163" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="Company:" description="" x="476" y="252" width="163" height="34" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="label" name="Address" description="" x="464" y="229" width="62" height="17" states="sensitive,showing,visible,enabled"/>
+              </element>
+              <element role="panel" name="Cryptography" description="" x="464" y="606" width="667" height="125" states="sensitive,showing,visible,enabled">
+                <element role="panel" name="" description="" x="476" y="629" width="655" height="102" states="sensitive,showing,visible,enabled">
+                  <element role="filler" name="" description="" x="645" y="669" width="486" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="text" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    <element role="combo box" name="" description="Select your OpenPGP key from the drop-down list for encrypting ODF documents." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                      <element role="menu" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    </element>
+                    <element role="toggle button" name="" description="" x="645" y="669" width="486" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="filler" name="" description="" x="645" y="629" width="486" height="34" states="sensitive,showing,visible,enabled">
+                    <element role="text" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    <element role="combo box" name="" description="Select your OpenPGP key from the drop-down list for signing ODF documents." x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled">
+                      <element role="menu" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>
+                    </element>
+                    <element role="toggle button" name="" description="" x="645" y="629" width="486" height="34" states="sensitive,showing,visible,enabled"/>
+                  </element>
+                  <element role="check box" name="When encrypting documents, always encrypt to self" description="Mark this checkbox to also encrypt the file with your public key, so you can open the document with your private key." x="476" y="709" width="655" height="22" states="checked,sensitive,showing,visible,enabled"/>
+                  <element role="label" name="OpenPGP encryption key:" description="" x="476" y="669" width="163" height="34" states="sensitive,showing,visible,enabled"/>
+                  <element role="label" name="OpenPGP signing key:" description="" x="476" y="629" width="163" height="34" states="sensitive,showing,visible,enabled"/>
+                </element>
+                <element role="label" name="Cryptography" description="" x="464" y="606" width="105" height="17" states="sensitive,showing,visible,enabled"/>
+              </element>
+            </element>
+          </element>
+        </element>
+        <element role="filler" name="" description="" x="170" y="797" width="967" height="34" states="sensitive,showing,visible,enabled">
+          <element role="filler" name="" description="" x="170" y="797" width="967" height="34" states="sensitive,showing,visible,enabled">
+            <element role="push button" name="Help" description="" x="170" y="797" width="86" height="34" states="sensitive,showing,visible,enabled"/>
+            <element role="push button" name="Reset" description="Resets changes made to the current tab to those applicable when this dialog was opened." x="781" y="797" width="86" height="34" states="sensitive,showing,visible,enabled"/>
+            <element role="push button" name="Apply" description="Save all modifications without closing dialog. Cannot be reverted with Reset." x="871" y="797" width="86" height="34" states="sensitive,showing,visible,enabled"/>
+            <element role="push button" name="Cancel" description="Closes dialog and discards all unsaved changes." x="961" y="797" width="86" height="34" states="sensitive,showing,visible,enabled"/>
+            <element role="push button" name="OK" description="Saves all changes and closes dialog." x="1051" y="797" width="86" height="34" states="sensitive,showing,visible,enabled"/>
+          </element>
+        </element>
+      </element>
     </element>
   </element>
 </accessibility-tree>

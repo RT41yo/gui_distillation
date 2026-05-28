@@ -97,7 +97,7 @@ class Navigator:
 
         self.waiter = A11YWaiter(
             a11y_name=a11y_name,
-            timeout_s=15.0,
+            timeout_s=30.0,
             interval_s=0.3,
         )
         self.executor = ActionExecutor(

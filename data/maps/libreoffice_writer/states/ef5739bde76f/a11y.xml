@@ -1,4 +1,4 @@
-<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780005059.8517072">
+<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780005066.194196">
   <element role="application" name="soffice" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Untitled 1 - LibreOffice Writer" description="" x="70" y="64" width="1167" height="926" states="sensitive,showing,visible,enabled">
       <element role="panel" name="" description="" x="70" y="64" width="1167" height="926" states="sensitive,showing,visible,enabled">
@@ -108,9 +108,9 @@
                   </element>
                   <element role="separator" name="" description="" x="109" y="265" width="302" height="1" states="sensitive,showing,visible,enabled"/>
                   <element role="menu item" name="Select All" description="" x="109" y="266" width="302" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu" name="Selection Mode" description="" x="109" y="291" width="302" height="25" states="selected,focused,sensitive,showing,visible,enabled">
-                    <element role="radio menu item" name="Standard" description="" x="409" y="291" width="216" height="25" states="checked,sensitive,showing,visible,enabled"/>
-                    <element role="radio menu item" name="Block Area" description="" x="409" y="316" width="216" height="25" states="sensitive,showing,visible,enabled"/>
+                  <element role="menu" name="Selection Mode" description="" x="109" y="291" width="302" height="25" states="sensitive,showing,visible,enabled">
+                    <element role="radio menu item" name="Standard" description="" x="-2147483648" y="-2147483648" width="216" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="radio menu item" name="Block Area" description="" x="-2147483648" y="-2147483648" width="216" height="25" states="sensitive,visible,enabled"/>
                   </element>
                   <element role="menu item" name="Select Text" description="" x="109" y="316" width="302" height="25" states="showing,visible"/>
                   <element role="separator" name="" description="" x="109" y="341" width="302" height="1" states="sensitive,showing,visible,enabled"/>
@@ -118,25 +118,25 @@
                   <element role="check menu item" name="Find and Replace..." description="" x="109" y="367" width="302" height="25" states="sensitive,showing,visible,enabled"/>
                   <element role="menu item" name="Go to Page..." description="" x="109" y="392" width="302" height="25" states="sensitive,showing,visible,enabled"/>
                   <element role="separator" name="" description="" x="109" y="417" width="302" height="1" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu" name="Track Changes" description="" x="109" y="418" width="302" height="25" states="sensitive,showing,visible,enabled">
-                    <element role="check menu item" name="Record" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="check menu item" name="Show" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Manage..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Previous" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Next" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Accept" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Accept and Move to Next" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Accept All" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Reject" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Reject and Move to Next" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="menu item" name="Reject All" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Comment..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                    <element role="check menu item" name="Protect..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Compare Document..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Merge Document..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                  <element role="menu" name="Track Changes" description="" x="109" y="418" width="302" height="25" states="selected,focused,sensitive,showing,visible,enabled">
+                    <element role="check menu item" name="Record" description="" x="409" y="418" width="222" height="25" states="sensitive,showing,visible,enabled"/>
+                    <element role="check menu item" name="Show" description="" x="409" y="443" width="222" height="25" states="checked,sensitive,showing,visible,enabled"/>
+                    <element role="separator" name="" description="" x="409" y="468" width="222" height="1" states="sensitive,showing,visible,enabled"/>
+                    <element role="check menu item" name="Manage..." description="" x="409" y="469" width="222" height="25" states="sensitive,showing,visible,enabled"/>
+                    <element role="menu item" name="Previous" description="" x="409" y="494" width="222" height="25" states="showing,visible"/>
+                    <element role="menu item" name="Next" description="" x="409" y="519" width="222" height="25" states="showing,visible"/>
+                    <element role="menu item" name="Accept" description="" x="409" y="544" width="222" height="25" states="showing,visible"/>
+                    <element role="menu item" name="Accept and Move to Next" description="" x="409" y="569" width="222" height="25" states="showing,visible"/>
+                    <element role="menu item" name="Accept All" description="" x="409" y="594" width="222" height="25" states="showing,visible"/>
+                    <element role="menu item" name="Reject" description="" x="409" y="619" width="222" height="25" states="showing,visible"/>
+                    <element role="menu item" name="Reject and Move to Next" description="" x="409" y="644" width="222" height="25" states="showing,visible"/>
+                    <element role="menu item" name="Reject All" description="" x="409" y="669" width="222" height="25" states="showing,visible"/>
+                    <element role="separator" name="" description="" x="409" y="694" width="222" height="1" states="sensitive,showing,visible,enabled"/>
+                    <element role="menu item" name="Comment..." description="" x="409" y="695" width="222" height="25" states="showing,visible"/>
+                    <element role="check menu item" name="Protect..." description="" x="409" y="720" width="222" height="25" states="sensitive,showing,visible,enabled"/>
+                    <element role="separator" name="" description="" x="409" y="745" width="222" height="1" states="sensitive,showing,visible,enabled"/>
+                    <element role="menu item" name="Compare Document..." description="" x="409" y="746" width="222" height="25" states="sensitive,showing,visible,enabled"/>
+                    <element role="menu item" name="Merge Document..." description="" x="409" y="771" width="222" height="25" states="sensitive,showing,visible,enabled"/>
                   </element>
                   <element role="menu" name="Comment" description="" x="109" y="443" width="302" height="25" states="sensitive,showing,visible,enabled">
                     <element role="menu item" name="Reply Comment" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
