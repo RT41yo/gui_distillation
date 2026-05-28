@@ -264,10 +264,17 @@ UNSAFE_MENU_ITEM_NAMES = frozenset({
 
 SAFE_MENU_DIALOG_NAMES = frozenset({
     # Read/inspect or contained navigation dialogs.
-    "properties...",
     "go to page...",
     "options...",
     "about libreoffice",
+})
+
+
+SAFE_CONTEXT_MENU_DIALOGS = frozenset({
+    ("file", "properties..."),
+    ("edit", "go to page..."),
+    ("tools", "options..."),
+    ("help", "about libreoffice"),
 })
 
 
@@ -282,6 +289,14 @@ def _is_inside_open_menu(action: UIAction) -> bool:
 def _is_formatting_toolbar_action(action: UIAction) -> bool:
     parent_text = _parent_path_text(action)
     return "tool bar/formatting" in parent_text or "toolbar/formatting" in parent_text
+
+
+def _menu_context(action: UIAction) -> str:
+    for part in reversed(action.parent_path):
+        lower = part.lower()
+        if lower.startswith("menu/"):
+            return lower.split("/", 1)[1].strip()
+    return ""
 
 
 def _is_root_toolbar_or_sidebar_action(action: UIAction) -> bool:
@@ -388,7 +403,7 @@ def classify_action(action: UIAction) -> ClassifiedAction:
                     reason="unsafe/content-changing menu item ignored for safe exploration",
                 )
 
-            if name_lower in SAFE_MENU_DIALOG_NAMES:
+            if (_menu_context(action), name_lower) in SAFE_CONTEXT_MENU_DIALOGS:
                 return ClassifiedAction(
                     action=action,
                     kind=ActionKind.MACRO,
