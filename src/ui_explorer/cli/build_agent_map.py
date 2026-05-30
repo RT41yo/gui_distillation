@@ -267,6 +267,19 @@ def _state_xml_path(node: StateNode, maps_dir: Path, app_id: str) -> Path:
     return maps_dir / app_id / "states" / node.state_id / "a11y.xml"
 
 
+def _state_screenshot_path(
+    node: StateNode,
+    maps_dir: Path,
+    app_id: str,
+) -> Path | None:
+    path = maps_dir / app_id / "states" / node.state_id / "screenshot.png"
+
+    if path.exists():
+        return path
+
+    return None
+
+
 def _verified_action_keys_by_state(
     edges: list[GraphEdge],
 ) -> dict[str, set[tuple[str, str, str]]]:
@@ -718,9 +731,11 @@ def build_agent_map(app: str, maps_dir: Path) -> dict[str, Any]:
                 incoming_actions=incoming_actions,
             )
 
+        xml_path = _state_xml_path(node, maps_dir, graph.app_id)
+        screenshot_path = _state_screenshot_path(node, maps_dir, graph.app_id)
+
         observed_items: list[dict[str, Any]] = []
 
-        xml_path = _state_xml_path(node, maps_dir, graph.app_id)
         if xml_path.exists():
             root = parse_a11y_xml(xml_path)
 
@@ -760,6 +775,10 @@ def build_agent_map(app: str, maps_dir: Path) -> dict[str, Any]:
                 "kind": node.active_root.get("kind"),
                 "role": node.active_root.get("role"),
                 "name": node.active_root.get("name"),
+            },
+            "artifacts": {
+                "a11y_xml": str(xml_path),
+                "screenshot": str(screenshot_path) if screenshot_path else None,
             },
             "primary_incoming_action": primary_incoming_action,
             "incoming_actions": incoming_actions,

@@ -49,6 +49,17 @@ def _state_label(state: dict[str, Any]) -> str:
     return f"{state_id}\\ndepth={depth}"
 
 
+def _local_screenshot_src(state_id: str, state: dict[str, Any]) -> str | None:
+    screenshot = (state.get("artifacts") or {}).get("screenshot")
+
+    if not screenshot:
+        return None
+
+    # HTML is written into data/maps/<app>/ by default, so this relative path
+    # resolves correctly next to agent_map.html / agent_map_*.html.
+    return f"states/{state_id}/screenshot.png"
+
+
 def _build_visual_data(
     agent_map: dict[str, Any],
     *,
@@ -109,6 +120,8 @@ def _build_visual_data(
             "short_label": state.get("label") or state_id,
             "depth": state.get("depth", 0),
             "active_root": state.get("active_root", {}),
+            "artifacts": state.get("artifacts", {}),
+            "screenshot": _local_screenshot_src(state_id, state),
 
             "verified_count": len(verified_actions),
             "incoming_count": len(incoming_actions),
@@ -726,6 +739,12 @@ function showNode(n) {
     const activeRoot = n.active_root || {};
     const activeRootText = [activeRoot.kind, activeRoot.role, activeRoot.name].filter(Boolean).join(" / ");
 
+    const screenshotHtml = n.screenshot
+      ? `<h2>Screenshot</h2>
+        <img src="${escapeHtml(n.screenshot)}"
+              style="max-width:100%; border:1px solid var(--line); border-radius:10px; margin-top:6px;">`
+      : `<h2>Screenshot</h2><p class="small">No screenshot saved for this state.</p>`;
+
     const incomingHtml = listWithMore(
       incoming,
       e => `<li>${escapeHtml(e.from_state)} -- ${escapeHtml(e.name || e.role || "action")} → this <span class="small">${escapeHtml(e.edge_status || "")}</span></li>`,
@@ -779,6 +798,8 @@ function showNode(n) {
         <div class="k">delta</div><div class="v">${n.delta_count}</div>
         <div class="k">delta base</div><div class="v">${escapeHtml(n.delta_base_state || "—")}</div>
       </div>
+
+      ${screenshotHtml}
 
       <h2>Primary incoming action</h2>
       <ul class="list">${actionLine(primaryIncoming)}</ul>

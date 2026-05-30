@@ -1909,3 +1909,509 @@ python -m ui_explorer.cli.visualize_graph \
    - `Table → Convert`;
 
 4. не идти автоматически по dialog controls и content-changing actions.
+
+# 26. LibreOffice Writer: построение agent-facing карты и визуализация observation layer
+
+Раздел фиксирует построение agent-facing карты поверх завершённого `depth=2` exploration LibreOffice Writer.
+
+Цель этапа — не расширять graph глубже, а наложить на существующий граф слой наблюдений:
+
+```text
+graph layer:
+  verified transitions между состояниями
+
+observation layer:
+  видимые элементы состояния из saved A11Y snapshot
+
+screenshot layer:
+  визуальная проверка состояния через screenshot.png
+```
+
+## 26.1. Исходный checkpoint
+
+Карта строится поверх clean graph Writer, остановленного на границе третьего уровня.
+
+Актуальные показатели graph:
+
+```text
+app_id = libreoffice_writer
+root_state_id = 36427b830db2
+
+nodes = 39
+edges = 51
+
+edge_status_counts:
+  confirmed = 38
+  pending = 13
+
+node_depth_counts:
+  0 = 1
+  1 = 11
+  2 = 27
+
+completion:
+  status = partial
+  pending_edges = 13
+  reason = pending_edges_exist
+```
+
+`pending` на `from_depth=2` — это frontier следующего уровня. Он не выполняется на этом этапе.
+
+Актуальные screenshots:
+
+```text
+states = 39
+screenshots = 39
+```
+
+То есть для каждого state сохранены:
+
+```text
+data/maps/libreoffice_writer/states/<state_id>/a11y.xml
+data/maps/libreoffice_writer/states/<state_id>/screenshot.png
+```
+
+## 26.2. Назначение agent map
+
+`agent_map.json` — это compact agent-facing представление UI-карты.
+
+Он объединяет:
+
+- confirmed graph states;
+- verified actions;
+- incoming actions;
+- observed UI items;
+- scoped observed items;
+- delta observed items;
+- state capabilities;
+- artifacts состояния, включая `a11y.xml` и `screenshot.png`.
+
+Основная семантика:
+
+```text
+verified_actions:
+  действия, реально выполненные exploration и подтверждённые graph transition
+
+observed_items:
+  полный видимый A11Y inventory состояния
+
+scoped_observed_items:
+  best-effort важные элементы активного состояния
+
+delta_observed_items:
+  диагностическая разница относительно ближайшего incoming/base state
+
+state_capabilities:
+  agent-facing список, объединяющий verified actions и scoped observed items
+```
+
+Важно: `observed_item` не равен verified transition. Например `Save`, `Print`, `Exit LibreOffice` могут быть видны в меню `File`, но не являются разрешёнными/проверенными переходами.
+
+## 26.3. Построить agent map
+
+```bash
+python -m ui_explorer.cli.build_agent_map \
+  --app libreoffice_writer \
+  --maps data/maps
+```
+
+Ожидаемый результат:
+
+```text
+ok = true
+output = data/maps/libreoffice_writer/agent_map.json
+
+states = 39
+edges = 51
+items = 381
+observed_item_refs = 3434
+delta_observed_item_refs = 284
+scoped_observed_item_refs = 754
+state_capabilities = 369
+item_index = 355
+verified_action_index = 37
+```
+
+## 26.4. Inspect agent map
+
+Общий inspect:
+
+```bash
+python -m ui_explorer.cli.inspect_agent_map \
+  --app libreoffice_writer \
+  --maps data/maps
+```
+
+Актуальный summary:
+
+```text
+schema_version = 1.2
+root_state_id = 36427b830db2
+
+summary:
+  states = 39
+  edges = 51
+  max_depth = 2
+  pending_edges = 13
+
+edge_status_counts:
+  confirmed = 38
+  pending = 13
+
+node_depth_counts:
+  0 = 1
+  1 = 11
+  2 = 27
+
+items = 381
+observed_item_refs = 3434
+delta_observed_item_refs = 284
+scoped_observed_item_refs = 754
+state_capabilities = 369
+
+item_index_size = 355
+verified_action_index_size = 37
+```
+
+## 26.5. Проверить screenshots в agent map
+
+После добавления `artifacts.screenshot` в `agent_map.json`:
+
+```bash
+python - <<'PY'
+import json
+from pathlib import Path
+
+m = json.loads(Path("data/maps/libreoffice_writer/agent_map.json").read_text())
+
+count = 0
+for state in m["states"].values():
+    screenshot = (state.get("artifacts") or {}).get("screenshot")
+    if screenshot:
+        count += 1
+
+print("states:", len(m["states"]))
+print("states_with_screenshot:", count)
+PY
+```
+
+Ожидаемый результат:
+
+```text
+states: 39
+states_with_screenshot: 39
+```
+
+## 26.6. Построить HTML-визуализацию agent map
+
+```bash
+python -m ui_explorer.cli.visualize_agent_map \
+  --app libreoffice_writer \
+  --maps data/maps \
+  --output data/maps/libreoffice_writer/agent_map_depth2_with_observation_and_screenshots.html \
+  --max-items-per-state 120
+```
+
+Открыть:
+
+```bash
+xdg-open data/maps/libreoffice_writer/agent_map_depth2_with_observation_and_screenshots.html
+```
+
+Если HTML лежит в `data/maps/libreoffice_writer/`, screenshot path в визуализации должен быть относительным:
+
+```text
+states/<state_id>/screenshot.png
+```
+
+Например:
+
+```html
+<img src="states/36427b830db2/screenshot.png">
+```
+
+Не использовать путь вида:
+
+```text
+data/maps/libreoffice_writer/states/<state_id>/screenshot.png
+```
+
+внутри HTML, лежащего рядом с папкой `states`, иначе браузер будет искать несуществующий вложенный путь:
+
+```text
+data/maps/libreoffice_writer/data/maps/libreoffice_writer/states/...
+```
+
+## 26.7. Проверить graph inspect
+
+```bash
+python -m ui_explorer.cli.inspect_graph --app libreoffice_writer
+```
+
+Актуальный результат:
+
+```text
+nodes = 39
+edges = 51
+
+completion:
+  status = partial
+  pending_edges = 13
+  reason = pending_edges_exist
+
+node_depth_counts:
+  0 = 1
+  1 = 11
+  2 = 27
+
+edge_status_counts:
+  confirmed = 38
+  pending = 13
+```
+
+Типичный next pending frontier:
+
+```text
+from_depth = 2
+
+Properties of “Untitled 1”:
+  Save preview image with this document
+  Apply user data
+  Help
+  Cancel
+  OK
+
+Go to Page:
+  Cancel
+  OK
+
+Options - LibreOffice - User Data:
+  Use data for document properties
+  When encrypting documents, always encrypt to self
+  Help
+  ...
+```
+
+Это нормально: dialog controls остаются frontier третьего уровня.
+
+## 26.8. Проверить screenshots на диске
+
+```bash
+echo "states:"
+find data/maps/libreoffice_writer/states -mindepth 1 -maxdepth 1 -type d | wc -l
+
+echo "screenshots:"
+find data/maps/libreoffice_writer/states -mindepth 2 -maxdepth 2 -name screenshot.png | wc -l
+```
+
+Ожидаемый результат:
+
+```text
+states:
+39
+
+screenshots:
+39
+```
+
+## 26.9. Пример интерпретации состояния: File
+
+Для состояния `File`:
+
+```text
+Incoming actions:
+  root -- File → this confirmed
+```
+
+Verified actions:
+
+```text
+New → 19a31745f3fe confirmed
+Recent Documents → 3e4dc1cffc8d confirmed
+Templates → 1c6d5d3a1094 confirmed
+Export As → abd09c05bb29 confirmed
+Properties... → bfbd29b4b754 confirmed
+```
+
+Scoped observed items могут включать:
+
+```text
+Open...
+Open Remote...
+Close
+Wizards
+Reload
+Versions...
+Save
+Save As...
+Save Remote...
+Save a Copy...
+Save All
+Export...
+Send
+Preview in Web Browser
+Print...
+Printer Settings...
+Digital Signatures
+Exit LibreOffice
+```
+
+Интерпретация:
+
+```text
+verified_action:
+  проверенный переход, его можно использовать как graph navigation edge
+
+observed_item:
+  элемент виден в UI, но не проверен как safe transition
+```
+
+То есть `Save` или `Print` могут присутствовать в observation, но не являются разрешёнными переходами текущей safe policy.
+
+## 26.10. Пример интерпретации состояния: Tools → Language
+
+Для состояния `Language`:
+
+```text
+Tools depth=1
+  └─ Language depth=2
+```
+
+Incoming action:
+
+```text
+Tools -- Language → this confirmed
+```
+
+Verified actions:
+
+```text
+none
+```
+
+Scoped observed items:
+
+```text
+For Selection
+For Paragraph
+For All Text
+Hyphenation...
+More Dictionaries Online...
+```
+
+Интерпретация:
+
+- `Language` был достигнут проверенным переходом из `Tools`;
+- элементы `For Selection`, `For Paragraph`, `For All Text`, `Hyphenation...`, `More Dictionaries Online...` видны в submenu;
+- они не являются verified transitions, потому exploration остановлен на `depth=2`.
+
+## 26.11. Что смотреть в визуализации
+
+В правой панели state details основные секции:
+
+```text
+Primary incoming action:
+  как состояние было достигнуто
+
+State capabilities:
+  agent-facing список verified actions + scoped observed items
+
+Verified actions:
+  подтверждённые переходы graph
+
+Scoped observed items:
+  важные видимые элементы активного состояния
+
+All observed items:
+  полный raw A11Y visible inventory, может быть шумным
+
+Delta hints:
+  диагностическая разница относительно base/incoming state
+
+Incoming actions:
+  все подтверждённые входящие переходы в это состояние
+
+Screenshot:
+  визуальная проверка состояния
+```
+
+Для практического анализа использовать в первую очередь:
+
+```text
+Screenshot
+State capabilities
+Verified actions
+Scoped observed items
+Primary incoming action
+```
+
+`All observed items` использовать как debug/raw слой.
+
+## 26.12. Сохранить checkpoint карты
+
+```bash
+mkdir -p data/maps/libreoffice_writer/checkpoints
+
+cp data/maps/libreoffice_writer/graph.json \
+   data/maps/libreoffice_writer/checkpoints/graph_depth2_with_screenshots.json
+
+cp data/maps/libreoffice_writer/agent_map.json \
+   data/maps/libreoffice_writer/checkpoints/agent_map_depth2_with_observation_and_screenshots.json
+
+cp data/maps/libreoffice_writer/agent_map_depth2_with_observation_and_screenshots.html \
+   data/maps/libreoffice_writer/checkpoints/agent_map_depth2_with_observation_and_screenshots.html
+```
+
+Проверить:
+
+```bash
+ls -lh data/maps/libreoffice_writer/checkpoints | grep -E \
+  'graph_depth2_with_screenshots|agent_map_depth2_with_observation'
+```
+
+## 26.13. Текущий статус
+
+Карта построена успешно.
+
+Итоговый статус:
+
+```text
+graph:
+  states = 39
+  edges = 51
+  confirmed = 38
+  pending = 13
+  max_depth = 2
+
+agent_map:
+  schema_version = 1.2
+  items = 381
+  observed_item_refs = 3434
+  delta_observed_item_refs = 284
+  scoped_observed_item_refs = 754
+  state_capabilities = 369
+  item_index_size = 355
+  verified_action_index_size = 37
+
+screenshots:
+  states = 39
+  screenshots = 39
+```
+
+Depth-2 exploration и agent-facing карта с observation layer зафиксированы.
+
+## 26.14. Следующий этап
+
+Перед переходом на `depth=3` рекомендуется:
+
+1. решить policy для dialog controls:
+   - `OK`;
+   - `Cancel`;
+   - `Help`;
+   - checkboxes;
+
+2. выбрать whitelist для depth-3 menu-only веток;
+
+3. не выполнять автоматически content-changing или file-system actions;
+
+4. использовать agent map для ручной проверки candidate branches перед расширением graph.
