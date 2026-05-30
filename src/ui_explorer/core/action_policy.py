@@ -262,14 +262,6 @@ UNSAFE_MENU_ITEM_NAMES = frozenset({
 })
 
 
-SAFE_MENU_DIALOG_NAMES = frozenset({
-    # Read/inspect or contained navigation dialogs.
-    "go to page...",
-    "options...",
-    "about libreoffice",
-})
-
-
 SAFE_CONTEXT_MENU_DIALOGS = frozenset({
     ("file", "properties..."),
     ("edit", "go to page..."),

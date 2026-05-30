@@ -179,41 +179,6 @@
       "depth": 2,
       "label": "New"
     },
-    "1ba90fc891bb": {
-      "state_id": "1ba90fc891bb",
-      "status": "confirmed",
-      "xml_path": "data/maps/libreoffice_writer/states/1ba90fc891bb/a11y.xml",
-      "active_root": {
-        "kind": "menu",
-        "reason": "visible menu is active overlay",
-        "role": "menu",
-        "name": "Table",
-        "description": "",
-        "states": [
-          "selected",
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/soffice",
-          "frame/Untitled 1 - LibreOffice Writer",
-          "panel",
-          "panel",
-          "scroll pane",
-          "viewport",
-          "menu bar"
-        ]
-      },
-      "macro_hash": "1ba90fc891bb35246b39714054e2fd4018a336ad6dd74e11b63e4ab64d955897",
-      "content_hash": "bb2029142b76418ea00844ff26a6fea6fe721433a67508ed979b0d34f5e3e536",
-      "macro_action_count": 5,
-      "visible_node_count": 21,
-      "depth": 2,
-      "label": "Table"
-    },
     "1c6d5d3a1094": {
       "state_id": "1c6d5d3a1094",
       "status": "confirmed",
@@ -637,6 +602,42 @@
       "depth": 2,
       "label": "Select"
     },
+    "53bf0935406d": {
+      "state_id": "53bf0935406d",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/53bf0935406d/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Table",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar"
+        ]
+      },
+      "macro_hash": "53bf0935406d040eb24d91b415db357475855e9c7df6a25be1feb739ffaccf0d",
+      "content_hash": "4a866d47a3ae14dbe6b935cef880c8343451ccefbd99c3a0eb3ca89066d4781d",
+      "macro_action_count": 4,
+      "visible_node_count": 21,
+      "depth": 1,
+      "label": "Table"
+    },
     "71c09f03fb03": {
       "state_id": "71c09f03fb03",
       "status": "confirmed",
@@ -673,42 +674,6 @@
       "visible_node_count": 6,
       "depth": 2,
       "label": "Language"
-    },
-    "71cb0cf206b9": {
-      "state_id": "71cb0cf206b9",
-      "status": "confirmed",
-      "xml_path": "data/maps/libreoffice_writer/states/71cb0cf206b9/a11y.xml",
-      "active_root": {
-        "kind": "menu",
-        "reason": "visible menu is active overlay",
-        "role": "menu",
-        "name": "Table",
-        "description": "",
-        "states": [
-          "selected",
-          "focused",
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/soffice",
-          "frame/Untitled 1 - LibreOffice Writer",
-          "panel",
-          "panel",
-          "scroll pane",
-          "viewport",
-          "menu bar"
-        ]
-      },
-      "macro_hash": "71cb0cf206b962fb487f83da39500edcc5338f4121a82640c327a0934625af5b",
-      "content_hash": "4a866d47a3ae14dbe6b935cef880c8343451ccefbd99c3a0eb3ca89066d4781d",
-      "macro_action_count": 5,
-      "visible_node_count": 21,
-      "depth": 1,
-      "label": "Table"
     },
     "91e846654ed2": {
       "state_id": "91e846654ed2",
@@ -988,7 +953,7 @@
         ]
       },
       "macro_hash": "bfbd29b4b75496c8bab8a4e08171c108e5cdf62ce8506bf266be75396d5845cf",
-      "content_hash": "c7858c35a1faf0b38dfdb4d1c91e13ea7c33412242f4558e6fd5f9f6633f7c89",
+      "content_hash": "638c7f3ea7cb50985a5e1b20ee12be126eca37e76f2cbba2b80451b2d11bb0dd",
       "macro_action_count": 5,
       "visible_node_count": 45,
       "depth": 2,
@@ -1736,13 +1701,13 @@
         "depth": 7
       },
       "status": "confirmed",
-      "to_state": "71cb0cf206b9",
+      "to_state": "53bf0935406d",
       "priority": 12,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "71cb0cf206b9",
+        "to_state": "53bf0935406d",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
@@ -1933,12 +1898,12 @@
       },
       "created_order": 10
     },
-    "e65903c8fc2b:c0966a26bc9ede1b": {
-      "edge_id": "e65903c8fc2b:c0966a26bc9ede1b",
+    "e65903c8fc2b:c939ccb4cb728bbc": {
+      "edge_id": "e65903c8fc2b:c939ccb4cb728bbc",
       "from_state": "e65903c8fc2b",
-      "action_key": "c0966a26bc9ede1b",
+      "action_key": "c939ccb4cb728bbc",
       "action": {
-        "action_key": "c0966a26bc9ede1b",
+        "action_key": "c939ccb4cb728bbc",
         "role": "menu",
         "name": "New",
         "description": "",
@@ -1949,8 +1914,8 @@
           "enabled"
         ],
         "bbox": [
-          70,
-          89,
+          57,
+          75,
           302,
           25
         ],
@@ -1980,12 +1945,12 @@
       },
       "created_order": 11
     },
-    "e65903c8fc2b:232465afaba9482e": {
-      "edge_id": "e65903c8fc2b:232465afaba9482e",
+    "e65903c8fc2b:648b6b97ee6da2c6": {
+      "edge_id": "e65903c8fc2b:648b6b97ee6da2c6",
       "from_state": "e65903c8fc2b",
-      "action_key": "232465afaba9482e",
+      "action_key": "648b6b97ee6da2c6",
       "action": {
-        "action_key": "232465afaba9482e",
+        "action_key": "648b6b97ee6da2c6",
         "role": "menu",
         "name": "Recent Documents",
         "description": "",
@@ -1996,8 +1961,8 @@
           "enabled"
         ],
         "bbox": [
-          70,
-          164,
+          57,
+          150,
           302,
           25
         ],
@@ -2027,12 +1992,12 @@
       },
       "created_order": 12
     },
-    "e65903c8fc2b:62cbc3c138266a3d": {
-      "edge_id": "e65903c8fc2b:62cbc3c138266a3d",
+    "e65903c8fc2b:b551cb0a4cd566ae": {
+      "edge_id": "e65903c8fc2b:b551cb0a4cd566ae",
       "from_state": "e65903c8fc2b",
-      "action_key": "62cbc3c138266a3d",
+      "action_key": "b551cb0a4cd566ae",
       "action": {
-        "action_key": "62cbc3c138266a3d",
+        "action_key": "b551cb0a4cd566ae",
         "role": "menu",
         "name": "Templates",
         "description": "",
@@ -2043,8 +2008,8 @@
           "enabled"
         ],
         "bbox": [
-          70,
-          240,
+          57,
+          226,
           302,
           25
         ],
@@ -2074,12 +2039,12 @@
       },
       "created_order": 13
     },
-    "e65903c8fc2b:2181895df62beae5": {
-      "edge_id": "e65903c8fc2b:2181895df62beae5",
+    "e65903c8fc2b:30309006bcf2999c": {
+      "edge_id": "e65903c8fc2b:30309006bcf2999c",
       "from_state": "e65903c8fc2b",
-      "action_key": "2181895df62beae5",
+      "action_key": "30309006bcf2999c",
       "action": {
-        "action_key": "2181895df62beae5",
+        "action_key": "30309006bcf2999c",
         "role": "menu",
         "name": "Export As",
         "description": "",
@@ -2090,8 +2055,8 @@
           "enabled"
         ],
         "bbox": [
-          70,
-          468,
+          57,
+          454,
           302,
           25
         ],
@@ -2121,12 +2086,12 @@
       },
       "created_order": 14
     },
-    "e65903c8fc2b:4cf8a6ed4bd38eda": {
-      "edge_id": "e65903c8fc2b:4cf8a6ed4bd38eda",
+    "e65903c8fc2b:e987f20d674ebecb": {
+      "edge_id": "e65903c8fc2b:e987f20d674ebecb",
       "from_state": "e65903c8fc2b",
-      "action_key": "4cf8a6ed4bd38eda",
+      "action_key": "e987f20d674ebecb",
       "action": {
-        "action_key": "4cf8a6ed4bd38eda",
+        "action_key": "e987f20d674ebecb",
         "role": "menu item",
         "name": "Properties...",
         "description": "",
@@ -2137,8 +2102,8 @@
           "enabled"
         ],
         "bbox": [
-          70,
-          620,
+          57,
+          606,
           302,
           25
         ],
@@ -2356,12 +2321,12 @@
       },
       "created_order": 19
     },
-    "bd6f423fe87f:458b1b1df7f0e270": {
-      "edge_id": "bd6f423fe87f:458b1b1df7f0e270",
+    "bd6f423fe87f:ef2ff235721120b5": {
+      "edge_id": "bd6f423fe87f:ef2ff235721120b5",
       "from_state": "bd6f423fe87f",
-      "action_key": "458b1b1df7f0e270",
+      "action_key": "ef2ff235721120b5",
       "action": {
-        "action_key": "458b1b1df7f0e270",
+        "action_key": "ef2ff235721120b5",
         "role": "menu",
         "name": "Toolbars",
         "description": "",
@@ -2372,8 +2337,8 @@
           "enabled"
         ],
         "bbox": [
-          150,
-          165,
+          137,
+          151,
           296,
           25
         ],
@@ -2403,12 +2368,12 @@
       },
       "created_order": 20
     },
-    "bd6f423fe87f:ab3458b9f12df2e4": {
-      "edge_id": "bd6f423fe87f:ab3458b9f12df2e4",
+    "bd6f423fe87f:240013f87737e487": {
+      "edge_id": "bd6f423fe87f:240013f87737e487",
       "from_state": "bd6f423fe87f",
-      "action_key": "ab3458b9f12df2e4",
+      "action_key": "240013f87737e487",
       "action": {
-        "action_key": "ab3458b9f12df2e4",
+        "action_key": "240013f87737e487",
         "role": "menu",
         "name": "Rulers",
         "description": "",
@@ -2419,8 +2384,8 @@
           "enabled"
         ],
         "bbox": [
-          150,
-          216,
+          137,
+          202,
           296,
           25
         ],
@@ -2450,12 +2415,12 @@
       },
       "created_order": 21
     },
-    "bd6f423fe87f:d52cbc1cb5772dd4": {
-      "edge_id": "bd6f423fe87f:d52cbc1cb5772dd4",
+    "bd6f423fe87f:9fe58e93b28369a7": {
+      "edge_id": "bd6f423fe87f:9fe58e93b28369a7",
       "from_state": "bd6f423fe87f",
-      "action_key": "d52cbc1cb5772dd4",
+      "action_key": "9fe58e93b28369a7",
       "action": {
-        "action_key": "d52cbc1cb5772dd4",
+        "action_key": "9fe58e93b28369a7",
         "role": "menu",
         "name": "Scrollbars",
         "description": "",
@@ -2466,8 +2431,8 @@
           "enabled"
         ],
         "bbox": [
-          150,
-          241,
+          137,
+          227,
           296,
           25
         ],
@@ -2497,12 +2462,12 @@
       },
       "created_order": 22
     },
-    "bd6f423fe87f:52f3e8017693ec9d": {
-      "edge_id": "bd6f423fe87f:52f3e8017693ec9d",
+    "bd6f423fe87f:791ab5b17dbf1901": {
+      "edge_id": "bd6f423fe87f:791ab5b17dbf1901",
       "from_state": "bd6f423fe87f",
-      "action_key": "52f3e8017693ec9d",
+      "action_key": "791ab5b17dbf1901",
       "action": {
-        "action_key": "52f3e8017693ec9d",
+        "action_key": "791ab5b17dbf1901",
         "role": "menu",
         "name": "Grid and Helplines",
         "description": "",
@@ -2513,8 +2478,8 @@
           "enabled"
         ],
         "bbox": [
-          150,
-          266,
+          137,
+          252,
           296,
           25
         ],
@@ -2544,12 +2509,12 @@
       },
       "created_order": 23
     },
-    "bd6f423fe87f:7b7fadf10db6bda5": {
-      "edge_id": "bd6f423fe87f:7b7fadf10db6bda5",
+    "bd6f423fe87f:6a7b3b0949b544ae": {
+      "edge_id": "bd6f423fe87f:6a7b3b0949b544ae",
       "from_state": "bd6f423fe87f",
-      "action_key": "7b7fadf10db6bda5",
+      "action_key": "6a7b3b0949b544ae",
       "action": {
-        "action_key": "7b7fadf10db6bda5",
+        "action_key": "6a7b3b0949b544ae",
         "role": "menu",
         "name": "Zoom",
         "description": "",
@@ -2560,8 +2525,8 @@
           "enabled"
         ],
         "bbox": [
-          150,
-          696,
+          137,
+          682,
           296,
           25
         ],
@@ -2591,12 +2556,12 @@
       },
       "created_order": 24
     },
-    "f7a7a6e1ff4f:9fb8acd44eddde3c": {
-      "edge_id": "f7a7a6e1ff4f:9fb8acd44eddde3c",
+    "f7a7a6e1ff4f:4798916a49a49356": {
+      "edge_id": "f7a7a6e1ff4f:4798916a49a49356",
       "from_state": "f7a7a6e1ff4f",
-      "action_key": "9fb8acd44eddde3c",
+      "action_key": "4798916a49a49356",
       "action": {
-        "action_key": "9fb8acd44eddde3c",
+        "action_key": "4798916a49a49356",
         "role": "menu",
         "name": "More Breaks",
         "description": "",
@@ -2607,8 +2572,8 @@
           "enabled"
         ],
         "bbox": [
-          198,
-          114,
+          185,
+          100,
           345,
           25
         ],
@@ -2638,12 +2603,12 @@
       },
       "created_order": 25
     },
-    "32f76b8b1d9d:24b14ba2cafa8e81": {
-      "edge_id": "32f76b8b1d9d:24b14ba2cafa8e81",
+    "32f76b8b1d9d:e98fd2ece44678c7": {
+      "edge_id": "32f76b8b1d9d:e98fd2ece44678c7",
       "from_state": "32f76b8b1d9d",
-      "action_key": "24b14ba2cafa8e81",
+      "action_key": "e98fd2ece44678c7",
       "action": {
-        "action_key": "24b14ba2cafa8e81",
+        "action_key": "e98fd2ece44678c7",
         "role": "menu",
         "name": "Text",
         "description": "",
@@ -2654,8 +2619,8 @@
           "enabled"
         ],
         "bbox": [
-          251,
-          89,
+          238,
+          75,
           268,
           25
         ],
@@ -2685,12 +2650,12 @@
       },
       "created_order": 26
     },
-    "32f76b8b1d9d:31509d70e0c7b7cb": {
-      "edge_id": "32f76b8b1d9d:31509d70e0c7b7cb",
+    "32f76b8b1d9d:6219b4a1a50f3c9c": {
+      "edge_id": "32f76b8b1d9d:6219b4a1a50f3c9c",
       "from_state": "32f76b8b1d9d",
-      "action_key": "31509d70e0c7b7cb",
+      "action_key": "6219b4a1a50f3c9c",
       "action": {
-        "action_key": "31509d70e0c7b7cb",
+        "action_key": "6219b4a1a50f3c9c",
         "role": "menu",
         "name": "Spacing",
         "description": "",
@@ -2701,8 +2666,8 @@
           "enabled"
         ],
         "bbox": [
-          251,
-          114,
+          238,
+          100,
           268,
           25
         ],
@@ -2732,12 +2697,12 @@
       },
       "created_order": 27
     },
-    "32f76b8b1d9d:8156ed831c95eb4d": {
-      "edge_id": "32f76b8b1d9d:8156ed831c95eb4d",
+    "32f76b8b1d9d:1984167b51ed52e2": {
+      "edge_id": "32f76b8b1d9d:1984167b51ed52e2",
       "from_state": "32f76b8b1d9d",
-      "action_key": "8156ed831c95eb4d",
+      "action_key": "1984167b51ed52e2",
       "action": {
-        "action_key": "8156ed831c95eb4d",
+        "action_key": "1984167b51ed52e2",
         "role": "menu",
         "name": "Align Text",
         "description": "",
@@ -2748,8 +2713,8 @@
           "enabled"
         ],
         "bbox": [
-          251,
-          139,
+          238,
+          125,
           268,
           25
         ],
@@ -2779,12 +2744,12 @@
       },
       "created_order": 28
     },
-    "32f76b8b1d9d:e86951651ebcdcd8": {
-      "edge_id": "32f76b8b1d9d:e86951651ebcdcd8",
+    "32f76b8b1d9d:57818d6dee972860": {
+      "edge_id": "32f76b8b1d9d:57818d6dee972860",
       "from_state": "32f76b8b1d9d",
-      "action_key": "e86951651ebcdcd8",
+      "action_key": "57818d6dee972860",
       "action": {
-        "action_key": "e86951651ebcdcd8",
+        "action_key": "57818d6dee972860",
         "role": "menu",
         "name": "Lists",
         "description": "",
@@ -2795,8 +2760,8 @@
           "enabled"
         ],
         "bbox": [
-          251,
-          266,
+          238,
+          252,
           268,
           25
         ],
@@ -2826,12 +2791,12 @@
       },
       "created_order": 29
     },
-    "71cb0cf206b9:0711ea23921b56b0": {
-      "edge_id": "71cb0cf206b9:0711ea23921b56b0",
-      "from_state": "71cb0cf206b9",
-      "action_key": "0711ea23921b56b0",
+    "53bf0935406d:86560dc965cecd7e": {
+      "edge_id": "53bf0935406d:86560dc965cecd7e",
+      "from_state": "53bf0935406d",
+      "action_key": "86560dc965cecd7e",
       "action": {
-        "action_key": "0711ea23921b56b0",
+        "action_key": "86560dc965cecd7e",
         "role": "menu",
         "name": "Insert",
         "description": "",
@@ -2842,8 +2807,8 @@
           "enabled"
         ],
         "bbox": [
-          369,
-          114,
+          356,
+          100,
           344,
           25
         ],
@@ -2873,12 +2838,12 @@
       },
       "created_order": 30
     },
-    "71cb0cf206b9:c6e16b1b3837bdb4": {
-      "edge_id": "71cb0cf206b9:c6e16b1b3837bdb4",
-      "from_state": "71cb0cf206b9",
-      "action_key": "c6e16b1b3837bdb4",
+    "53bf0935406d:8d6342325c218f26": {
+      "edge_id": "53bf0935406d:8d6342325c218f26",
+      "from_state": "53bf0935406d",
+      "action_key": "8d6342325c218f26",
       "action": {
-        "action_key": "c6e16b1b3837bdb4",
+        "action_key": "8d6342325c218f26",
         "role": "menu",
         "name": "Select",
         "description": "",
@@ -2889,8 +2854,8 @@
           "enabled"
         ],
         "bbox": [
-          369,
-          164,
+          356,
+          150,
           344,
           25
         ],
@@ -2920,12 +2885,12 @@
       },
       "created_order": 31
     },
-    "71cb0cf206b9:df11f230a035ef24": {
-      "edge_id": "71cb0cf206b9:df11f230a035ef24",
-      "from_state": "71cb0cf206b9",
-      "action_key": "df11f230a035ef24",
+    "53bf0935406d:a386b7abea6f7c26": {
+      "edge_id": "53bf0935406d:a386b7abea6f7c26",
+      "from_state": "53bf0935406d",
+      "action_key": "a386b7abea6f7c26",
       "action": {
-        "action_key": "df11f230a035ef24",
+        "action_key": "a386b7abea6f7c26",
         "role": "menu",
         "name": "Size",
         "description": "",
@@ -2936,8 +2901,8 @@
           "enabled"
         ],
         "bbox": [
-          369,
-          189,
+          356,
+          175,
           344,
           25
         ],
@@ -2967,12 +2932,12 @@
       },
       "created_order": 32
     },
-    "71cb0cf206b9:52fc57b7eedf49b8": {
-      "edge_id": "71cb0cf206b9:52fc57b7eedf49b8",
-      "from_state": "71cb0cf206b9",
-      "action_key": "52fc57b7eedf49b8",
+    "53bf0935406d:e9eb13333b7c8fd9": {
+      "edge_id": "53bf0935406d:e9eb13333b7c8fd9",
+      "from_state": "53bf0935406d",
+      "action_key": "e9eb13333b7c8fd9",
       "action": {
-        "action_key": "52fc57b7eedf49b8",
+        "action_key": "e9eb13333b7c8fd9",
         "role": "menu",
         "name": "Convert",
         "description": "",
@@ -2983,8 +2948,8 @@
           "enabled"
         ],
         "bbox": [
-          369,
-          494,
+          356,
+          480,
           344,
           25
         ],
@@ -3014,57 +2979,12 @@
       },
       "created_order": 33
     },
-    "71cb0cf206b9:0b2a2d54b53bb170": {
-      "edge_id": "71cb0cf206b9:0b2a2d54b53bb170",
-      "from_state": "71cb0cf206b9",
-      "action_key": "0b2a2d54b53bb170",
-      "action": {
-        "action_key": "0b2a2d54b53bb170",
-        "role": "menu item",
-        "name": "Properties...",
-        "description": "",
-        "states": [
-          "showing",
-          "visible"
-        ],
-        "bbox": [
-          369,
-          570,
-          344,
-          25
-        ],
-        "parent_path": [
-          "application/soffice",
-          "frame/Untitled 1 - LibreOffice Writer",
-          "panel",
-          "panel",
-          "scroll pane",
-          "viewport",
-          "menu bar",
-          "menu/Table"
-        ],
-        "depth": 8
-      },
-      "status": "confirmed",
-      "to_state": "1ba90fc891bb",
-      "priority": 25,
-      "attempts": 1,
-      "reason": "macro signature changed",
-      "observed": {
-        "kind": "new_macro_state",
-        "to_state": "1ba90fc891bb",
-        "macro_changed": true,
-        "content_changed": true,
-        "reason": "macro signature changed"
-      },
-      "created_order": 34
-    },
-    "e85ad249bd7d:601314092a764c43": {
-      "edge_id": "e85ad249bd7d:601314092a764c43",
+    "e85ad249bd7d:31fe5737156da5b8": {
+      "edge_id": "e85ad249bd7d:31fe5737156da5b8",
       "from_state": "e85ad249bd7d",
-      "action_key": "601314092a764c43",
+      "action_key": "31fe5737156da5b8",
       "action": {
-        "action_key": "601314092a764c43",
+        "action_key": "31fe5737156da5b8",
         "role": "menu",
         "name": "Language",
         "description": "",
@@ -3075,8 +2995,8 @@
           "enabled"
         ],
         "bbox": [
-          468,
-          164,
+          455,
+          150,
           300,
           25
         ],
@@ -3104,14 +3024,14 @@
         "content_changed": true,
         "reason": "macro signature changed"
       },
-      "created_order": 35
+      "created_order": 34
     },
-    "e85ad249bd7d:40ce015befc82060": {
-      "edge_id": "e85ad249bd7d:40ce015befc82060",
+    "e85ad249bd7d:2122d1e8d3997612": {
+      "edge_id": "e85ad249bd7d:2122d1e8d3997612",
       "from_state": "e85ad249bd7d",
-      "action_key": "40ce015befc82060",
+      "action_key": "2122d1e8d3997612",
       "action": {
-        "action_key": "40ce015befc82060",
+        "action_key": "2122d1e8d3997612",
         "role": "menu",
         "name": "AutoCorrect",
         "description": "",
@@ -3122,8 +3042,8 @@
           "enabled"
         ],
         "bbox": [
-          468,
-          240,
+          455,
+          226,
           300,
           25
         ],
@@ -3151,14 +3071,14 @@
         "content_changed": true,
         "reason": "macro signature changed"
       },
-      "created_order": 36
+      "created_order": 35
     },
-    "e85ad249bd7d:7cc846a48d559239": {
-      "edge_id": "e85ad249bd7d:7cc846a48d559239",
+    "e85ad249bd7d:7eb8a5ff1399791d": {
+      "edge_id": "e85ad249bd7d:7eb8a5ff1399791d",
       "from_state": "e85ad249bd7d",
-      "action_key": "7cc846a48d559239",
+      "action_key": "7eb8a5ff1399791d",
       "action": {
-        "action_key": "7cc846a48d559239",
+        "action_key": "7eb8a5ff1399791d",
         "role": "menu item",
         "name": "Options...",
         "description": "",
@@ -3169,8 +3089,8 @@
           "enabled"
         ],
         "bbox": [
-          468,
-          696,
+          455,
+          682,
           300,
           25
         ],
@@ -3198,14 +3118,14 @@
         "content_changed": true,
         "reason": "macro signature changed"
       },
-      "created_order": 37
+      "created_order": 36
     },
-    "bd25ba81ea6e:c432b064ee669dbc": {
-      "edge_id": "bd25ba81ea6e:c432b064ee669dbc",
+    "bd25ba81ea6e:236e4b69013287b6": {
+      "edge_id": "bd25ba81ea6e:236e4b69013287b6",
       "from_state": "bd25ba81ea6e",
-      "action_key": "c432b064ee669dbc",
+      "action_key": "236e4b69013287b6",
       "action": {
-        "action_key": "c432b064ee669dbc",
+        "action_key": "236e4b69013287b6",
         "role": "menu item",
         "name": "About LibreOffice",
         "description": "",
@@ -3216,8 +3136,8 @@
           "enabled"
         ],
         "bbox": [
-          585,
-          368,
+          572,
+          354,
           299,
           25
         ],
@@ -3245,14 +3165,14 @@
         "content_changed": true,
         "reason": "macro signature changed"
       },
-      "created_order": 38
+      "created_order": 37
     },
-    "bfbd29b4b754:79c5030947417628": {
-      "edge_id": "bfbd29b4b754:79c5030947417628",
+    "bfbd29b4b754:0e694e54e88ef388": {
+      "edge_id": "bfbd29b4b754:0e694e54e88ef388",
       "from_state": "bfbd29b4b754",
-      "action_key": "79c5030947417628",
+      "action_key": "0e694e54e88ef388",
       "action": {
-        "action_key": "79c5030947417628",
+        "action_key": "0e694e54e88ef388",
         "role": "check box",
         "name": "Save preview image with this document",
         "description": "",
@@ -3264,8 +3184,49 @@
           "enabled"
         ],
         "bbox": [
-          434,
-          636,
+          420,
+          621,
+          394,
+          22
+        ],
+        "parent_path": [
+          "application/soffice",
+          "dialog/Properties of “Untitled 1”",
+          "filler",
+          "page tab list",
+          "page tab/General",
+          "panel",
+          "panel"
+        ],
+        "depth": 7
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 20,
+      "attempts": 0,
+      "reason": "check box may reveal, select, or switch UI structure",
+      "observed": null,
+      "created_order": 38
+    },
+    "bfbd29b4b754:cd926eb253464f57": {
+      "edge_id": "bfbd29b4b754:cd926eb253464f57",
+      "from_state": "bfbd29b4b754",
+      "action_key": "cd926eb253464f57",
+      "action": {
+        "action_key": "cd926eb253464f57",
+        "role": "check box",
+        "name": "Apply user data",
+        "description": "Saves the user's full name with the file. You can edit the name by choosing Tools - Options - %PRODUCTNAME - User Data.",
+        "states": [
+          "checked",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          420,
+          593,
           394,
           22
         ],
@@ -3288,53 +3249,12 @@
       "observed": null,
       "created_order": 39
     },
-    "bfbd29b4b754:9857ffce569d29ec": {
-      "edge_id": "bfbd29b4b754:9857ffce569d29ec",
+    "bfbd29b4b754:f1a81f064fa7904d": {
+      "edge_id": "bfbd29b4b754:f1a81f064fa7904d",
       "from_state": "bfbd29b4b754",
-      "action_key": "9857ffce569d29ec",
+      "action_key": "f1a81f064fa7904d",
       "action": {
-        "action_key": "9857ffce569d29ec",
-        "role": "check box",
-        "name": "Apply user data",
-        "description": "Saves the user's full name with the file. You can edit the name by choosing Tools - Options - %PRODUCTNAME - User Data.",
-        "states": [
-          "checked",
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          434,
-          608,
-          394,
-          22
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Properties of “Untitled 1”",
-          "filler",
-          "page tab list",
-          "page tab/General",
-          "panel",
-          "panel"
-        ],
-        "depth": 7
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "check box may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 40
-    },
-    "bfbd29b4b754:f5325fd84e1c35c3": {
-      "edge_id": "bfbd29b4b754:f5325fd84e1c35c3",
-      "from_state": "bfbd29b4b754",
-      "action_key": "f5325fd84e1c35c3",
-      "action": {
-        "action_key": "f5325fd84e1c35c3",
+        "action_key": "f1a81f064fa7904d",
         "role": "push button",
         "name": "Help",
         "description": "",
@@ -3345,8 +3265,46 @@
           "enabled"
         ],
         "bbox": [
-          291,
-          738,
+          277,
+          723,
+          86,
+          34
+        ],
+        "parent_path": [
+          "application/soffice",
+          "dialog/Properties of “Untitled 1”",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "depth": 5
+      },
+      "status": "pending",
+      "to_state": null,
+      "priority": 30,
+      "attempts": 0,
+      "reason": "push button name suggests menu/dialog/navigation/context change",
+      "observed": null,
+      "created_order": 40
+    },
+    "bfbd29b4b754:d159b421e5c58cc3": {
+      "edge_id": "bfbd29b4b754:d159b421e5c58cc3",
+      "from_state": "bfbd29b4b754",
+      "action_key": "d159b421e5c58cc3",
+      "action": {
+        "action_key": "d159b421e5c58cc3",
+        "role": "push button",
+        "name": "Cancel",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox": [
+          825,
+          723,
           86,
           34
         ],
@@ -3367,14 +3325,14 @@
       "observed": null,
       "created_order": 41
     },
-    "bfbd29b4b754:49a892e8a4e190d9": {
-      "edge_id": "bfbd29b4b754:49a892e8a4e190d9",
+    "bfbd29b4b754:bb8d2868ed9531f5": {
+      "edge_id": "bfbd29b4b754:bb8d2868ed9531f5",
       "from_state": "bfbd29b4b754",
-      "action_key": "49a892e8a4e190d9",
+      "action_key": "bb8d2868ed9531f5",
       "action": {
-        "action_key": "49a892e8a4e190d9",
+        "action_key": "bb8d2868ed9531f5",
         "role": "push button",
-        "name": "Cancel",
+        "name": "OK",
         "description": "",
         "states": [
           "sensitive",
@@ -3383,8 +3341,8 @@
           "enabled"
         ],
         "bbox": [
-          839,
-          738,
+          915,
+          723,
           86,
           34
         ],
@@ -3405,14 +3363,14 @@
       "observed": null,
       "created_order": 42
     },
-    "bfbd29b4b754:ab1119f75eb939a9": {
-      "edge_id": "bfbd29b4b754:ab1119f75eb939a9",
-      "from_state": "bfbd29b4b754",
-      "action_key": "ab1119f75eb939a9",
+    "0e0e1244d9ee:f56071851880cf35": {
+      "edge_id": "0e0e1244d9ee:f56071851880cf35",
+      "from_state": "0e0e1244d9ee",
+      "action_key": "f56071851880cf35",
       "action": {
-        "action_key": "ab1119f75eb939a9",
+        "action_key": "f56071851880cf35",
         "role": "push button",
-        "name": "OK",
+        "name": "Cancel",
         "description": "",
         "states": [
           "sensitive",
@@ -3421,14 +3379,14 @@
           "enabled"
         ],
         "bbox": [
-          929,
-          738,
+          575,
+          524,
           86,
           34
         ],
         "parent_path": [
           "application/soffice",
-          "dialog/Properties of “Untitled 1”",
+          "dialog/Go to Page",
           "filler",
           "filler",
           "filler"
@@ -3443,14 +3401,14 @@
       "observed": null,
       "created_order": 43
     },
-    "0e0e1244d9ee:30fbf394be5fdc03": {
-      "edge_id": "0e0e1244d9ee:30fbf394be5fdc03",
+    "0e0e1244d9ee:a21a514d85da2dae": {
+      "edge_id": "0e0e1244d9ee:a21a514d85da2dae",
       "from_state": "0e0e1244d9ee",
-      "action_key": "30fbf394be5fdc03",
+      "action_key": "a21a514d85da2dae",
       "action": {
-        "action_key": "30fbf394be5fdc03",
+        "action_key": "a21a514d85da2dae",
         "role": "push button",
-        "name": "Cancel",
+        "name": "OK",
         "description": "",
         "states": [
           "sensitive",
@@ -3459,8 +3417,8 @@
           "enabled"
         ],
         "bbox": [
-          589,
-          539,
+          665,
+          524,
           86,
           34
         ],
@@ -3481,253 +3439,12 @@
       "observed": null,
       "created_order": 44
     },
-    "0e0e1244d9ee:95470e489436e8a4": {
-      "edge_id": "0e0e1244d9ee:95470e489436e8a4",
-      "from_state": "0e0e1244d9ee",
-      "action_key": "95470e489436e8a4",
-      "action": {
-        "action_key": "95470e489436e8a4",
-        "role": "push button",
-        "name": "OK",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          679,
-          539,
-          86,
-          34
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Go to Page",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 45
-    },
-    "1ba90fc891bb:0711ea23921b56b0": {
-      "edge_id": "1ba90fc891bb:0711ea23921b56b0",
-      "from_state": "1ba90fc891bb",
-      "action_key": "0711ea23921b56b0",
-      "action": {
-        "action_key": "0711ea23921b56b0",
-        "role": "menu",
-        "name": "Insert",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          369,
-          114,
-          344,
-          25
-        ],
-        "parent_path": [
-          "application/soffice",
-          "frame/Untitled 1 - LibreOffice Writer",
-          "panel",
-          "panel",
-          "scroll pane",
-          "viewport",
-          "menu bar",
-          "menu/Table"
-        ],
-        "depth": 8
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 15,
-      "attempts": 0,
-      "reason": "safe submenu inside opened menu may reveal navigation structure",
-      "observed": null,
-      "created_order": 46
-    },
-    "1ba90fc891bb:c6e16b1b3837bdb4": {
-      "edge_id": "1ba90fc891bb:c6e16b1b3837bdb4",
-      "from_state": "1ba90fc891bb",
-      "action_key": "c6e16b1b3837bdb4",
-      "action": {
-        "action_key": "c6e16b1b3837bdb4",
-        "role": "menu",
-        "name": "Select",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          369,
-          164,
-          344,
-          25
-        ],
-        "parent_path": [
-          "application/soffice",
-          "frame/Untitled 1 - LibreOffice Writer",
-          "panel",
-          "panel",
-          "scroll pane",
-          "viewport",
-          "menu bar",
-          "menu/Table"
-        ],
-        "depth": 8
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 15,
-      "attempts": 0,
-      "reason": "safe submenu inside opened menu may reveal navigation structure",
-      "observed": null,
-      "created_order": 47
-    },
-    "1ba90fc891bb:df11f230a035ef24": {
-      "edge_id": "1ba90fc891bb:df11f230a035ef24",
-      "from_state": "1ba90fc891bb",
-      "action_key": "df11f230a035ef24",
-      "action": {
-        "action_key": "df11f230a035ef24",
-        "role": "menu",
-        "name": "Size",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          369,
-          189,
-          344,
-          25
-        ],
-        "parent_path": [
-          "application/soffice",
-          "frame/Untitled 1 - LibreOffice Writer",
-          "panel",
-          "panel",
-          "scroll pane",
-          "viewport",
-          "menu bar",
-          "menu/Table"
-        ],
-        "depth": 8
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 15,
-      "attempts": 0,
-      "reason": "safe submenu inside opened menu may reveal navigation structure",
-      "observed": null,
-      "created_order": 48
-    },
-    "1ba90fc891bb:52fc57b7eedf49b8": {
-      "edge_id": "1ba90fc891bb:52fc57b7eedf49b8",
-      "from_state": "1ba90fc891bb",
-      "action_key": "52fc57b7eedf49b8",
-      "action": {
-        "action_key": "52fc57b7eedf49b8",
-        "role": "menu",
-        "name": "Convert",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          369,
-          494,
-          344,
-          25
-        ],
-        "parent_path": [
-          "application/soffice",
-          "frame/Untitled 1 - LibreOffice Writer",
-          "panel",
-          "panel",
-          "scroll pane",
-          "viewport",
-          "menu bar",
-          "menu/Table"
-        ],
-        "depth": 8
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 15,
-      "attempts": 0,
-      "reason": "safe submenu inside opened menu may reveal navigation structure",
-      "observed": null,
-      "created_order": 49
-    },
-    "1ba90fc891bb:0b2a2d54b53bb170": {
-      "edge_id": "1ba90fc891bb:0b2a2d54b53bb170",
-      "from_state": "1ba90fc891bb",
-      "action_key": "0b2a2d54b53bb170",
-      "action": {
-        "action_key": "0b2a2d54b53bb170",
-        "role": "menu item",
-        "name": "Properties...",
-        "description": "",
-        "states": [
-          "showing",
-          "visible"
-        ],
-        "bbox": [
-          369,
-          570,
-          344,
-          25
-        ],
-        "parent_path": [
-          "application/soffice",
-          "frame/Untitled 1 - LibreOffice Writer",
-          "panel",
-          "panel",
-          "scroll pane",
-          "viewport",
-          "menu bar",
-          "menu/Table"
-        ],
-        "depth": 8
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 25,
-      "attempts": 0,
-      "reason": "safe menu item likely opens an inspectable dialog/navigation context",
-      "observed": null,
-      "created_order": 50
-    },
-    "28f3b77f3ed4:e5a570202a3aa925": {
-      "edge_id": "28f3b77f3ed4:e5a570202a3aa925",
+    "28f3b77f3ed4:2e8f85672208f5fb": {
+      "edge_id": "28f3b77f3ed4:2e8f85672208f5fb",
       "from_state": "28f3b77f3ed4",
-      "action_key": "e5a570202a3aa925",
+      "action_key": "2e8f85672208f5fb",
       "action": {
-        "action_key": "e5a570202a3aa925",
+        "action_key": "2e8f85672208f5fb",
         "role": "check box",
         "name": "Use data for document properties",
         "description": "Mark to use the data in document properties",
@@ -3739,8 +3456,8 @@
           "enabled"
         ],
         "bbox": [
-          476,
-          572,
+          462,
+          557,
           655,
           22
         ],
@@ -3762,14 +3479,14 @@
       "attempts": 0,
       "reason": "check box may reveal, select, or switch UI structure",
       "observed": null,
-      "created_order": 51
+      "created_order": 45
     },
-    "28f3b77f3ed4:1518dfb2bc5e6569": {
-      "edge_id": "28f3b77f3ed4:1518dfb2bc5e6569",
+    "28f3b77f3ed4:54bc3d8ecc9a53d6": {
+      "edge_id": "28f3b77f3ed4:54bc3d8ecc9a53d6",
       "from_state": "28f3b77f3ed4",
-      "action_key": "1518dfb2bc5e6569",
+      "action_key": "54bc3d8ecc9a53d6",
       "action": {
-        "action_key": "1518dfb2bc5e6569",
+        "action_key": "54bc3d8ecc9a53d6",
         "role": "check box",
         "name": "When encrypting documents, always encrypt to self",
         "description": "Mark this checkbox to also encrypt the file with your public key, so you can open the document with your private key.",
@@ -3781,8 +3498,8 @@
           "enabled"
         ],
         "bbox": [
-          476,
-          709,
+          462,
+          694,
           655,
           22
         ],
@@ -3804,14 +3521,14 @@
       "attempts": 0,
       "reason": "check box may reveal, select, or switch UI structure",
       "observed": null,
-      "created_order": 52
+      "created_order": 46
     },
-    "28f3b77f3ed4:eef568505278b021": {
-      "edge_id": "28f3b77f3ed4:eef568505278b021",
+    "28f3b77f3ed4:0dd702332093210f": {
+      "edge_id": "28f3b77f3ed4:0dd702332093210f",
       "from_state": "28f3b77f3ed4",
-      "action_key": "eef568505278b021",
+      "action_key": "0dd702332093210f",
       "action": {
-        "action_key": "eef568505278b021",
+        "action_key": "0dd702332093210f",
         "role": "push button",
         "name": "Help",
         "description": "",
@@ -3822,8 +3539,8 @@
           "enabled"
         ],
         "bbox": [
-          170,
-          797,
+          156,
+          782,
           86,
           34
         ],
@@ -3842,14 +3559,14 @@
       "attempts": 0,
       "reason": "push button name suggests menu/dialog/navigation/context change",
       "observed": null,
-      "created_order": 53
+      "created_order": 47
     },
-    "28f3b77f3ed4:329613257ad8a30d": {
-      "edge_id": "28f3b77f3ed4:329613257ad8a30d",
+    "28f3b77f3ed4:ed6395ed18177264": {
+      "edge_id": "28f3b77f3ed4:ed6395ed18177264",
       "from_state": "28f3b77f3ed4",
-      "action_key": "329613257ad8a30d",
+      "action_key": "ed6395ed18177264",
       "action": {
-        "action_key": "329613257ad8a30d",
+        "action_key": "ed6395ed18177264",
         "role": "push button",
         "name": "Apply",
         "description": "Save all modifications without closing dialog. Cannot be reverted with Reset.",
@@ -3860,8 +3577,8 @@
           "enabled"
         ],
         "bbox": [
-          871,
-          797,
+          857,
+          782,
           86,
           34
         ],
@@ -3880,14 +3597,14 @@
       "attempts": 0,
       "reason": "push button name suggests menu/dialog/navigation/context change",
       "observed": null,
-      "created_order": 54
+      "created_order": 48
     },
-    "28f3b77f3ed4:ff26e4aff9a21101": {
-      "edge_id": "28f3b77f3ed4:ff26e4aff9a21101",
+    "28f3b77f3ed4:11661bd132da791f": {
+      "edge_id": "28f3b77f3ed4:11661bd132da791f",
       "from_state": "28f3b77f3ed4",
-      "action_key": "ff26e4aff9a21101",
+      "action_key": "11661bd132da791f",
       "action": {
-        "action_key": "ff26e4aff9a21101",
+        "action_key": "11661bd132da791f",
         "role": "push button",
         "name": "Cancel",
         "description": "Closes dialog and discards all unsaved changes.",
@@ -3898,8 +3615,8 @@
           "enabled"
         ],
         "bbox": [
-          961,
-          797,
+          947,
+          782,
           86,
           34
         ],
@@ -3918,14 +3635,14 @@
       "attempts": 0,
       "reason": "push button name suggests menu/dialog/navigation/context change",
       "observed": null,
-      "created_order": 55
+      "created_order": 49
     },
-    "28f3b77f3ed4:005f4ef3f7c05d1a": {
-      "edge_id": "28f3b77f3ed4:005f4ef3f7c05d1a",
+    "28f3b77f3ed4:f140b3b414130491": {
+      "edge_id": "28f3b77f3ed4:f140b3b414130491",
       "from_state": "28f3b77f3ed4",
-      "action_key": "005f4ef3f7c05d1a",
+      "action_key": "f140b3b414130491",
       "action": {
-        "action_key": "005f4ef3f7c05d1a",
+        "action_key": "f140b3b414130491",
         "role": "push button",
         "name": "OK",
         "description": "Saves all changes and closes dialog.",
@@ -3936,8 +3653,8 @@
           "enabled"
         ],
         "bbox": [
-          1051,
-          797,
+          1037,
+          782,
           86,
           34
         ],
@@ -3956,12 +3673,12 @@
       "attempts": 0,
       "reason": "push button name suggests menu/dialog/navigation/context change",
       "observed": null,
-      "created_order": 56
+      "created_order": 50
     }
   },
   "completion": {
     "status": "partial",
-    "pending_edges": 18,
+    "pending_edges": 13,
     "reason": "pending_edges_exist"
   }
 }
