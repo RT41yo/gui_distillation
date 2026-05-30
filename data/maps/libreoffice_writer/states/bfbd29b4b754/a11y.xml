@@ -1,4 +1,4 @@
-<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780144575.8591673">
+<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780147830.4892695">
   <element role="application" name="soffice" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Untitled 1 - LibreOffice Writer" description="" x="57" y="50" width="1165" height="924" states="sensitive,showing,visible,enabled">
       <element role="panel" name="" description="" x="57" y="50" width="1165" height="924" states="sensitive,showing,visible,enabled">
@@ -2209,7 +2209,7 @@
                 <element role="label" name="" description="" x="420" y="524" width="394" height="17" states="sensitive,showing,visible,enabled"/>
                 <element role="label" name="" description="" x="420" y="501" width="394" height="17" states="sensitive,showing,visible,enabled"/>
                 <element role="label" name="" description="" x="420" y="455" width="568" height="17" states="sensitive,showing,visible,enabled"/>
-                <element role="label" name="05/30/2026, 14:25:00" description="" x="420" y="432" width="568" height="17" states="sensitive,showing,visible,enabled"/>
+                <element role="label" name="05/30/2026, 15:24:29" description="" x="420" y="432" width="568" height="17" states="sensitive,showing,visible,enabled"/>
                 <element role="label" name="Revision number:" description="" x="294" y="570" width="114" height="17" states="sensitive,showing,visible,enabled"/>
                 <element role="label" name="Total editing time:" description="" x="290" y="547" width="118" height="17" states="sensitive,showing,visible,enabled"/>
                 <element role="label" name="Last printed:" description="" x="327" y="524" width="81" height="17" states="sensitive,showing,visible,enabled"/>

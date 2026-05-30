@@ -1,4 +1,4 @@
-<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780144596.0164442">
+<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780147850.8004622">
   <element role="application" name="soffice" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Untitled 1 - LibreOffice Writer" description="" x="57" y="50" width="1165" height="924" states="sensitive,showing,visible,enabled">
       <element role="panel" name="" description="" x="57" y="50" width="1165" height="924" states="sensitive,showing,visible,enabled">
@@ -2202,7 +2202,7 @@ LibreOffice was based on OpenOffice.org." description="" x="626" y="433" width="
             <element role="label" name="User Interface:" description="" x="632" y="621" width="96" height="17" states="sensitive,showing,visible,enabled"/>
             <element role="label" name="en-US (en_US.UTF-8); UI: en-US" description="" x="740" y="638" width="206" height="17" states="sensitive,showing,visible,enabled"/>
             <element role="label" name="Locale:" description="" x="632" y="638" width="96" height="17" states="sensitive,showing,visible,enabled"/>
-            <element role="label" name="Ubuntu package version: 1:7.3.7-0ubuntu0.22.04.10
+            <element role="label" name="Ubuntu package version: 1:7.3.7-0ubuntu0.22.04.11
 Calc: threaded" description="" x="740" y="655" width="206" height="51" states="sensitive,showing,visible,enabled"/>
             <element role="label" name="Misc:" description="" x="632" y="655" width="96" height="51" states="sensitive,showing,visible,enabled"/>
             <element role="push button" name="0815" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,enabled"/>

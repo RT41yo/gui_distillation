@@ -18,6 +18,7 @@ from ui_explorer.core.active_root import resolve_active_root
 from ui_explorer.core.actions import UIAction, extract_actions
 from ui_explorer.core.a11y_parser import parse_a11y_xml
 from ui_explorer.core.diff import DiffClassifier
+from ui_explorer.core.screenshot import save_screenshot
 from ui_explorer.execution.executor import ActionExecutor
 from ui_explorer.execution.navigator import Navigator
 from ui_explorer.execution.wait import A11YWaiter
@@ -169,6 +170,21 @@ def _find_live_action_for_edge(
 
 def _bbox_to_list(bbox: tuple[int, int, int, int] | list[int]) -> list[int]:
     return [int(v) for v in bbox]
+
+
+def _state_screenshot_path(
+    *,
+    maps_dir: str,
+    app_id: str,
+    state_id: str,
+) -> Path:
+    return (
+        Path(maps_dir)
+        / app_id
+        / "states"
+        / state_id
+        / "screenshot.png"
+    )
 
 
 def main() -> int:
@@ -401,6 +417,21 @@ def main() -> int:
         transition=transition,
     )
 
+    screenshot_state_id = edge.to_state or after.signature.state_id
+    after_screenshot_path = _state_screenshot_path(
+        maps_dir=args.maps,
+        app_id=args.app,
+        state_id=screenshot_state_id,
+    )
+
+    after_screenshot_saved = False
+    if screenshot_state_id in graph.nodes:
+        after_screenshot_saved = save_screenshot(
+            after_screenshot_path,
+            display=args.display,
+            overwrite=False,
+        )
+
     graph_path = store.save(graph)
 
     status_counts: dict[str, int] = {}
@@ -433,6 +464,11 @@ def main() -> int:
             "edge_status_counts": dict(sorted(status_counts.items())),
             "completion": graph.completion,
             "after_xml": str(after.xml_path),
+            "after_screenshot": {
+                "saved": after_screenshot_saved,
+                "path": str(after_screenshot_path),
+                "state_id": screenshot_state_id,
+            },
         },
         indent=2,
         ensure_ascii=False,

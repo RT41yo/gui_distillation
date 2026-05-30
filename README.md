@@ -1324,7 +1324,9 @@ Angle / Length / Speed / ... / Currency
 
 # 25. LibreOffice Writer: доработка exploration и воспроизводимый прогон для завершения второго уровня
 
-Этот раздел заменяет старые разделы про Writer top-level exploration и завершение второго уровня. Он фиксирует актуальное состояние после доработок `active_root`, `step_edge`, `action_policy.py` и clean rebuild до границы `from_depth = 2`.
+Этот раздел фиксирует актуальное состояние LibreOffice Writer exploration после доработок `active_root`, `step_edge`, `action_policy.py` и добавления screenshot capture для каждого состояния.
+
+Раздел заменяет предыдущие черновые разделы про top-level Writer exploration и отдельное завершение второго уровня.
 
 ## 25.1. Цель
 
@@ -1333,9 +1335,12 @@ Angle / Length / Speed / ... / Currency
 - подтвердить Writer root state;
 - раскрыть все top-level menu states;
 - раскрыть выбранные безопасные submenu/dialog states из `depth=1`;
-- остановиться до выполнения переходов из `depth=2`, чтобы не заходить на третий уровень без отдельной policy.
+- остановиться до выполнения переходов из `depth=2`;
+- сохранить для каждого состояния:
+  - `a11y.xml`;
+  - `screenshot.png`.
 
-Итоговая граница:
+Итоговая граница exploration:
 
 ```text
 depth 0 = Writer root
@@ -1350,14 +1355,14 @@ from_depth = 2 = frontier следующего уровня, не выполня
 
 Исправлена логика `active_root` для вложенных submenu.
 
-Теперь:
+Теперь вложенные submenu определяются как самостоятельные состояния:
 
 ```text
 Edit → Paste Special     active_root = Paste Special
 Edit → Selection Mode    active_root = Selection Mode
 ```
 
-Раньше такие состояния могли отображаться как повторное состояние `Edit`, из-за чего graph был семантически неверным: depth-2 submenu наследовали title/actions родительского меню.
+Раньше такие состояния могли отображаться как повторное состояние `Edit`, из-за чего depth-2 submenu наследовали title/actions родительского меню.
 
 ### Live bbox execution в `step_edge`
 
@@ -1371,7 +1376,9 @@ name
 description
 ```
 
-После этого используется актуальный `live_bbox`. Это исправило проблему, когда LibreOffice после relaunch смещался, сохранённые координаты устаревали, а top-level menu click давал `same_state`.
+После этого используется актуальный `live_bbox`.
+
+Это исправило проблему, когда LibreOffice после relaunch смещался, сохранённые координаты устаревали, а top-level menu click давал `same_state`.
 
 ### Policy вместо ручных skip
 
@@ -1395,51 +1402,46 @@ Table → Properties...     не разрешён
 
 Это убрало ложное состояние, где `Table → Properties...` без выбранной таблицы возвращало снова `Table`, а не открывало ожидаемый dialog.
 
+### Screenshot capture для состояний
+
+Добавлен best-effort screenshot capture.
+
+Теперь при построении graph для каждого подтверждённого состояния сохраняются:
+
+```text
+data/maps/libreoffice_writer/states/<state_id>/a11y.xml
+data/maps/libreoffice_writer/states/<state_id>/screenshot.png
+```
+
+Скриншоты сохраняются:
+
+- для root state во время `init_graph`;
+- для новых confirmed states во время `step_edge`;
+- рядом с `a11y.xml` в папке соответствующего state.
+
+Screenshot capture не должен ломать exploration: если скриншот не снялся, graph generation должен продолжаться.
+
 ## 25.3. Актуальный clean checkpoint
 
-После clean rebuild с новой policy и context-aware `Properties...`:
+После clean rebuild с новой policy, context-aware `Properties...` и screenshot capture:
 
 ```text
 app_id = libreoffice_writer
 root_state_id = 36427b830db2
 
-nodes = 39
-edges = 51
-confirmed = 38
-pending = 13
+states = 39
+screenshots = 39
 
-node_depth_counts:
-  0 = 1
-  1 = 11
-  2 = 27
-
-next_edge.from_depth = 2
+depth 0 = 1
+depth 1 = 11
+depth 2 = 27
 ```
 
-Интерпретация:
+Проверка screenshots:
 
 ```text
-depth 0:
-  Writer root
-
-depth 1:
-  File
-  Edit
-  View
-  Insert
-  Format
-  Styles
-  Table
-  Form
-  Tools
-  Window
-  Help
-
-depth 2:
-  выбранные безопасные submenu/dialog states
-
-pending:
-  frontier третьего уровня, не выполняется в этом checkpoint
+states:      39
+screenshots: 39
 ```
 
 Проверка `Properties...`:
@@ -1448,11 +1450,69 @@ pending:
 from = File
 from_depth = 1
 status = confirmed
+to = bfbd29b4b754
+reason = macro signature changed
 ```
 
-`Table → Properties...` в clean checkpoint больше не должен появляться как confirmed transition.
+`Table → Properties...` в clean checkpoint больше не появляется как confirmed transition.
 
-## 25.4. Семантика leaf states и observation layer
+## 25.4. Подтверждённые состояния
+
+### depth 0
+
+```text
+Untitled 1 - LibreOffice Writer
+```
+
+### depth 1
+
+```text
+File
+Edit
+View
+Insert
+Format
+Styles
+Table
+Form
+Tools
+Window
+Help
+```
+
+### depth 2
+
+```text
+About LibreOffice
+Align Text
+AutoCorrect
+Convert
+Export As
+Go to Page
+Grid and Helplines
+Insert
+Language
+Lists
+More Breaks
+New
+Options - LibreOffice - User Data
+Paste Special
+Properties of “Untitled 1”
+Recent Documents
+Rulers
+Scrollbars
+Select
+Selection Mode
+Size
+Spacing
+Templates
+Text
+Toolbars
+Track Changes
+Zoom
+```
+
+## 25.5. Семантика leaf states и observation layer
 
 `No outgoing edges` у submenu-ноды не означает, что состояние пустое.
 
@@ -1487,9 +1547,12 @@ graph / transitions:
 
 observation / UI inventory:
   видимые элементы active_root, даже если они не являются outgoing edges
+
+screenshot layer:
+  screenshot.png для визуальной проверки состояния
 ```
 
-## 25.5. Правила остановки
+## 25.6. Правила остановки
 
 Для завершения второго уровня используется guard:
 
@@ -1501,7 +1564,7 @@ from_depth = 2  остановиться
 
 Если `next_edge.from_depth = 2`, следующий шаг уже начнёт третий уровень exploration.
 
-## 25.6. Запуск с нуля
+## 25.7. Запуск с нуля
 
 ### 1. Подготовить окружение
 
@@ -1511,7 +1574,7 @@ cd /mnt/repo
 ```
 
 ```bash
-pgrep -a Xvfb || Xvfb :99 -screen 0 1280x1024x24 -ac &
+pgrep -a Xvfb || Xvfb :99 -screen 0 1280x1024x24 -ac >/tmp/xvfb99.log 2>&1 &
 sleep 1
 env DISPLAY=:99 xset q >/dev/null && echo "DISPLAY OK"
 ```
@@ -1572,7 +1635,11 @@ env DISPLAY=:99 python -m ui_explorer.cli.capture \
   --display :99 \
   --timeout 30 \
   --verbose
+```
 
+Проверить root:
+
+```bash
 python -m ui_explorer.cli.active_root \
   data/maps/libreoffice_writer/_captures/a11y_tree.xml
 
@@ -1594,27 +1661,35 @@ active_root.role = frame
 
 Не инициализировать graph из открытого меню, dialog или alert.
 
-### 5. Init graph
+### 5. Init graph + root screenshot
 
 ```bash
-python -m ui_explorer.cli.init_graph \
+env DISPLAY=:99 python -m ui_explorer.cli.init_graph \
   --app libreoffice_writer \
-  --xml data/maps/libreoffice_writer/_captures/a11y_tree.xml
+  --xml data/maps/libreoffice_writer/_captures/a11y_tree.xml \
+  --display :99
+```
 
+Проверить, что root screenshot появился:
+
+```bash
+find data/maps/libreoffice_writer/states -name screenshot.png | head
+
+echo "states:"
+find data/maps/libreoffice_writer/states -mindepth 1 -maxdepth 1 -type d | wc -l
+
+echo "screenshots:"
+find data/maps/libreoffice_writer/states -mindepth 2 -maxdepth 2 -name screenshot.png | wc -l
+```
+
+Проверить graph:
+
+```bash
 python -m ui_explorer.cli.inspect_graph --app libreoffice_writer
 python -m ui_explorer.cli.next_edge --app libreoffice_writer
 ```
 
-Ожидаем:
-
-```text
-nodes = 1
-next_edge = File
-```
-
-Количество initial edges зависит от текущей policy. После root toolbar deferral оно должно быть компактнее, чем ранний экспериментальный вариант.
-
-## 25.7. Guarded soft-прогон до границы второго уровня
+## 25.8. Guarded soft-прогон до границы второго уровня
 
 Для Writer предпочтительно использовать `--navigation soft`, потому hard relaunch LibreOffice иногда нестабилен и может не зарегистрироваться в AT-SPI даже за 30 секунд.
 
@@ -1663,7 +1738,7 @@ PY
 done
 ```
 
-## 25.8. Проверки после остановки
+## 25.9. Проверки после остановки
 
 ### Inspect graph
 
@@ -1676,6 +1751,25 @@ python -m ui_explorer.cli.next_edge --app libreoffice_writer
 
 ```text
 next_edge.from_depth = 2
+```
+
+### Проверить screenshots
+
+```bash
+echo "states:"
+find data/maps/libreoffice_writer/states -mindepth 1 -maxdepth 1 -type d | wc -l
+
+echo "screenshots:"
+find data/maps/libreoffice_writer/states -mindepth 2 -maxdepth 2 -name screenshot.png | wc -l
+
+find data/maps/libreoffice_writer/states -name screenshot.png | head
+```
+
+Ожидаем для актуального clean checkpoint:
+
+```text
+states:      39
+screenshots: 39
 ```
 
 ### Проверить `Properties...`
@@ -1747,26 +1841,26 @@ Selection Mode
 
 а не как повторный `Edit`.
 
-## 25.9. Сохранить checkpoint и визуализации
+## 25.10. Сохранить checkpoint и визуализации
 
 ```bash
 mkdir -p data/maps/libreoffice_writer/checkpoints
 
 cp data/maps/libreoffice_writer/graph.json \
-   data/maps/libreoffice_writer/checkpoints/graph_depth2_clean_policy_context_properties.json
+   data/maps/libreoffice_writer/checkpoints/graph_depth2_with_screenshots.json
 ```
 
 ```bash
 python -m ui_explorer.cli.visualize_graph_interactive \
   --app libreoffice_writer \
-  --output data/maps/libreoffice_writer/graph_depth2_clean_policy_context_properties.html
+  --output data/maps/libreoffice_writer/graph_depth2_with_screenshots.html
 
 python -m ui_explorer.cli.visualize_graph \
   --app libreoffice_writer \
-  --output data/maps/libreoffice_writer/graph_depth2_clean_policy_context_properties.pdf
+  --output data/maps/libreoffice_writer/graph_depth2_with_screenshots.pdf
 ```
 
-## 25.10. Текущие ограничения
+## 25.11. Текущие ограничения
 
 1. **Dialog controls пока остаются frontier третьего уровня.**
 
@@ -1789,22 +1883,29 @@ python -m ui_explorer.cli.visualize_graph \
 
    Для полного прогона Writer предпочтителен `--navigation soft`. Hard reset можно использовать точечно, но LibreOffice иногда долго не появляется в AT-SPI после relaunch.
 
-## 25.11. Следующий этап: depth 3
+4. **Screenshot capture best-effort.**
+
+   Скриншоты не должны влиять на `state_id`, transition classification или completion. Если screenshot capture не сработал, exploration должен продолжаться.
+
+## 25.12. Следующий этап: observation layer и depth 3
 
 Перед переходом на третий уровень рекомендуется:
 
-1. сделать dialog controls observation-only для safe map:
+1. наложить observation layer на текущий graph:
+   - читать `states/<state_id>/a11y.xml`;
+   - извлекать видимые элементы active_root;
+   - показывать их в agent-facing карте вместе с `screenshot.png`;
+
+2. сделать dialog controls observation-only для safe map:
    - `OK`;
    - `Cancel`;
    - `Help`;
    - checkboxes в dialog states;
 
-2. отдельно выбрать whitelist для depth-3 menu-only веток, например:
+3. отдельно выбрать whitelist для depth-3 menu-only веток, например:
    - `Table → Insert`;
    - `Table → Select`;
    - `Table → Size`;
    - `Table → Convert`;
 
-3. не идти автоматически по dialog controls и content-changing actions;
-
-4. добавить observation layer в agent-facing карту, чтобы leaf states показывали видимые элементы без необходимости строить переходы по ним.
+4. не идти автоматически по dialog controls и content-changing actions.
