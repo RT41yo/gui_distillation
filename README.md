@@ -2415,3 +2415,6 @@ Depth-2 exploration и agent-facing карта с observation layer зафикс
 3. не выполнять автоматически content-changing или file-system actions;
 
 4. использовать agent map для ручной проверки candidate branches перед расширением graph.
+
+
+# 27. LibreOffice Writer: exploration на depth 3
