@@ -2416,5 +2416,242 @@ Depth-2 exploration и agent-facing карта с observation layer зафикс
 
 4. использовать agent map для ручной проверки candidate branches перед расширением graph.
 
+# 27. LibreOffice Writer: контролируемое расширение exploration до глубины 3
 
-# 27. LibreOffice Writer: exploration на depth 3
+Этот раздел фиксирует отдельный checkpoint после перехода от завершённого `depth=2` exploration к точечному `depth=3` exploration для LibreOffice Writer.
+
+Главная идея этапа: не раскрывать весь третий уровень автоматически, а проверить безопасный сценарий расширения через context-aware whitelist.
+
+## 27.1. Что изменилось относительно depth 2
+
+После завершения второго уровня graph имел закрытый safe frontier по текущей политике. Для перехода на третий уровень была сделана дополнительная настройка policy:
+
+```text
+dialog controls:
+  OK
+  Cancel
+  Help
+  checkboxes
+  radio buttons
+  toggle buttons внутри dialog
+```
+
+были переведены в skipped/ignored для safe exploration.
+
+Это нужно, чтобы третий уровень не начался с нажатия кнопок в диалогах и checkbox-ов, которые могут менять документ, настройки или закрывать окно.
+
+После этого был добавлен небольшой context-aware whitelist для ветки:
+
+```text
+Tools → Language
+```
+
+Разрешённые depth-3 submenu:
+
+```text
+Language → For Selection
+Language → For Paragraph
+Language → For All Text
+```
+
+Важно: это не общий whitelist по имени. Политика была сделана context-aware: пункты разрешены именно внутри контекста `Language`.
+
+## 27.2. Почему потребовался clean rebuild
+
+После изменения policy старый state id для `Language` стал неактуален.
+
+Причина: state signature зависит от macro-action состава состояния. Когда пункты:
+
+```text
+For Selection
+For Paragraph
+For All Text
+```
+
+перешли из `micro/observed` в `macro_candidate`, macro signature состояния `Language` изменилась.
+
+Старое состояние:
+
+```text
+Language = 71c09f03fb03
+```
+
+после policy-изменения стало другим состоянием:
+
+```text
+Language = d32e00db2ce8
+```
+
+Поэтому продолжать старый graph через reseed оказалось некорректно: replay ожидал старый state id, а live UI давал новый. Был выполнен clean rebuild с уже финальной depth-3 policy.
+
+## 27.3. Итоговый depth-3 checkpoint
+
+После clean rebuild и controlled run до третьего уровня graph завершён полностью в рамках текущей safe policy.
+
+Итоговые показатели:
+
+```text
+app_id = libreoffice_writer
+root_state_id = 36427b830db2
+
+nodes = 42
+edges = 41
+
+edge_status_counts:
+  confirmed = 41
+
+completion:
+  status = complete
+  pending_edges = 0
+  reason = no_pending_edges
+```
+
+Распределение по глубине:
+
+```text
+depth 0 = 1
+depth 1 = 11
+depth 2 = 27
+depth 3 = 3
+```
+
+Текущий frontier:
+
+```text
+next_edge = null
+```
+
+Это означает, что по текущей safe macro-policy не осталось ни одного pending edge.
+
+## 27.4. Новые состояния depth 3
+
+На третьем уровне появились ровно три новых состояния:
+
+```text
+Tools → Language → For Selection
+Tools → Language → For Paragraph
+Tools → Language → For All Text
+```
+
+Последний подтверждённый пример перехода:
+
+```text
+from_state = d32e00db2ce8
+from_label = Language
+action = For All Text
+to_state = 014013af658a
+transition = new_macro_state
+reason = macro signature changed
+```
+
+Переход был выполнен успешно:
+
+```text
+navigation_strategy = soft
+navigation.ok = true
+execution.ok = true
+after_screenshot.saved = true
+```
+
+## 27.5. Что означает completion = complete
+
+`completion = complete` в этом checkpoint означает:
+
+```text
+весь интерфейс, разрешённый текущей safe macro-policy, пройден
+```
+
+Это не означает, что исследован весь LibreOffice Writer вообще.
+
+Сознательно не раскрывались:
+
+```text
+Save / Print / Exit / Send / Digital Signatures
+OK / Cancel / Help
+checkboxes в диалогах
+content-changing actions
+не-whitelisted submenu ветки
+большинство observed-only menu items
+```
+
+Правильная интерпретация:
+
+```text
+Writer полностью пройден в рамках текущей safe exploration policy:
+top-level menu states,
+выбранные безопасные depth-2 submenu/dialog states,
+и whitelisted depth-3 ветка Tools → Language.
+```
+
+Всё, что не вошло в verified graph, остаётся видимым через observation layer в `agent_map.json`, но не считается разрешённым navigation edge.
+
+## 27.6. Значение результата
+
+Этот checkpoint показал, что depth expansion можно делать контролируемо:
+
+```text
+1. выбрать безопасную ветку;
+2. добавить context-aware policy;
+3. выполнить clean rebuild;
+4. пройти frontier до нужной глубины;
+5. остановиться без ухода в unsafe actions.
+```
+
+Это важный шаблон для дальнейшего расширения Writer:
+
+```text
+не идти в глубину автоматически,
+а расширять graph небольшими whitelist-пакетами
+и каждый раз фиксировать clean checkpoint.
+```
+
+## 27.7. Связь с agent map
+
+После depth-3 checkpoint необходимо пересобрать agent-facing карту.
+
+Ожидаемая роль карты остаётся прежней:
+
+```text
+graph.json:
+  verified navigation skeleton
+
+agent_map.json:
+  semantic UI inventory + state capabilities
+
+states/<state_id>/a11y.xml:
+  A11Y snapshot состояния
+
+states/<state_id>/screenshot.png:
+  визуальная проверка состояния
+```
+
+Новые depth-3 состояния должны попасть в `agent_map.json` как обычные states, а их видимые элементы — в `observed_items`, `scoped_observed_items` и `state_capabilities`.
+
+## 27.8. Текущий статус
+
+Статус после завершения depth 3:
+
+```text
+depth-3 controlled exploration = complete
+
+graph:
+  states = 42
+  edges = 41
+  confirmed = 41
+  pending = 0
+
+depth:
+  0 = 1
+  1 = 11
+  2 = 27
+  3 = 3
+
+policy:
+  dialog controls deferred
+  Language submenus enabled via context-aware whitelist
+
+next_edge:
+  null
+```
+
+Итог: третий уровень успешно проверен на ограниченной безопасной ветке `Tools → Language`, а весь разрешённый текущей политикой frontier закрыт.

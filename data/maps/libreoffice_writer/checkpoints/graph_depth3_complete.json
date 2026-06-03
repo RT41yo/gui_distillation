@@ -3,6 +3,44 @@
   "app_id": "libreoffice_writer",
   "root_state_id": "36427b830db2",
   "nodes": {
+    "014013af658a": {
+      "state_id": "014013af658a",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/014013af658a/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "For All Text",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools",
+          "menu/Language"
+        ]
+      },
+      "macro_hash": "014013af658a130928ae3a788c13b5d7b9e69a4e55a0eca94f6eebb294cb798b",
+      "content_hash": "630d5b5cf007040c6c03e28e7b76e7934261ec8ee16af5af95e01b36eebd06a5",
+      "macro_action_count": 0,
+      "visible_node_count": 5,
+      "depth": 3,
+      "label": "For All Text"
+    },
     "07e46a8883b5": {
       "state_id": "07e46a8883b5",
       "status": "confirmed",
@@ -40,10 +78,10 @@
       "depth": 2,
       "label": "Lists"
     },
-    "0e0e1244d9ee": {
-      "state_id": "0e0e1244d9ee",
+    "11c83faf856f": {
+      "state_id": "11c83faf856f",
       "status": "confirmed",
-      "xml_path": "data/maps/libreoffice_writer/states/0e0e1244d9ee/a11y.xml",
+      "xml_path": "data/maps/libreoffice_writer/states/11c83faf856f/a11y.xml",
       "active_root": {
         "kind": "dialog",
         "reason": "visible dialog is topmost",
@@ -61,9 +99,9 @@
           "application/soffice"
         ]
       },
-      "macro_hash": "0e0e1244d9ee36618db58643a2261865e52353760fcbee17d2822a725f3057ef",
+      "macro_hash": "11c83faf856fb524894c749580f2482a657368b4a4e04a680730522915b5b035",
       "content_hash": "ceffd806ad3efe400bfbe6f416078e754429895af0eac7324c08fc3f5c8f3ca8",
-      "macro_action_count": 2,
+      "macro_action_count": 0,
       "visible_node_count": 10,
       "depth": 2,
       "label": "Go to Page"
@@ -252,34 +290,6 @@
       "visible_node_count": 7,
       "depth": 2,
       "label": "Insert"
-    },
-    "28f3b77f3ed4": {
-      "state_id": "28f3b77f3ed4",
-      "status": "confirmed",
-      "xml_path": "data/maps/libreoffice_writer/states/28f3b77f3ed4/a11y.xml",
-      "active_root": {
-        "kind": "dialog",
-        "reason": "visible dialog is topmost",
-        "role": "dialog",
-        "name": "Options - LibreOffice - User Data",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/soffice"
-        ]
-      },
-      "macro_hash": "28f3b77f3ed4db265587ed72bddb41a13f7873543b07427c6c78f140a5f7578a",
-      "content_hash": "809535276d863760a630ac760308514942fe011d691c086eda8721288396288c",
-      "macro_action_count": 6,
-      "visible_node_count": 79,
-      "depth": 2,
-      "label": "Options - LibreOffice - User Data"
     },
     "2e0335a47afa": {
       "state_id": "2e0335a47afa",
@@ -528,6 +538,44 @@
       "depth": 1,
       "label": "Form"
     },
+    "4f020fe86495": {
+      "state_id": "4f020fe86495",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/4f020fe86495/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "For Paragraph",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools",
+          "menu/Language"
+        ]
+      },
+      "macro_hash": "4f020fe8649594ad600f72a84b227370916f90b13c4d8fcf5ccebc44b10ff0f9",
+      "content_hash": "3ccd89b1e1943150396d3a2d8f49d738ddb0e6ca8d7c956c9ec79d11205e6633",
+      "macro_action_count": 0,
+      "visible_node_count": 5,
+      "depth": 3,
+      "label": "For Paragraph"
+    },
     "518b99af456c": {
       "state_id": "518b99af456c",
       "status": "confirmed",
@@ -638,19 +686,17 @@
       "depth": 1,
       "label": "Table"
     },
-    "71c09f03fb03": {
-      "state_id": "71c09f03fb03",
+    "8ae0e75d5d09": {
+      "state_id": "8ae0e75d5d09",
       "status": "confirmed",
-      "xml_path": "data/maps/libreoffice_writer/states/71c09f03fb03/a11y.xml",
+      "xml_path": "data/maps/libreoffice_writer/states/8ae0e75d5d09/a11y.xml",
       "active_root": {
-        "kind": "menu",
-        "reason": "visible menu is active overlay",
-        "role": "menu",
-        "name": "Language",
+        "kind": "dialog",
+        "reason": "visible dialog is topmost",
+        "role": "dialog",
+        "name": "Properties of “Untitled 1”",
         "description": "",
         "states": [
-          "selected",
-          "focused",
           "sensitive",
           "showing",
           "visible",
@@ -658,22 +704,15 @@
         ],
         "bbox_visible": true,
         "parent_path": [
-          "application/soffice",
-          "frame/Untitled 1 - LibreOffice Writer",
-          "panel",
-          "panel",
-          "scroll pane",
-          "viewport",
-          "menu bar",
-          "menu/Tools"
+          "application/soffice"
         ]
       },
-      "macro_hash": "71c09f03fb03363cce1481d6c3d41a88c945695bb6a9196b8c2ca531540d4011",
-      "content_hash": "03f7887852ada27b446073f7b4edbb685514b7880fdf73dceb41f211ea5af0fc",
+      "macro_hash": "8ae0e75d5d093d78bad36d5fd47ed8d9422ab6a4575958cc3b0414af3677fce1",
+      "content_hash": "a0f3c1beeabdedc33b272fa124e36d9da22c4b01fa0027873bafa991f9429afe",
       "macro_action_count": 0,
-      "visible_node_count": 6,
+      "visible_node_count": 45,
       "depth": 2,
-      "label": "Language"
+      "label": "Properties of “Untitled 1”"
     },
     "91e846654ed2": {
       "state_id": "91e846654ed2",
@@ -822,6 +861,44 @@
       "depth": 2,
       "label": "Export As"
     },
+    "aeca9cf0c90b": {
+      "state_id": "aeca9cf0c90b",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/aeca9cf0c90b/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "For Selection",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools",
+          "menu/Language"
+        ]
+      },
+      "macro_hash": "aeca9cf0c90b48da78cd92af9d9824e2fb8a7e4140804c1459a5a5c19b69d946",
+      "content_hash": "c83efbd85573e511355cffd24e657029da85a4e650dbbccef474eb37ea4ccd10",
+      "macro_action_count": 0,
+      "visible_node_count": 5,
+      "depth": 3,
+      "label": "For Selection"
+    },
     "bd25ba81ea6e": {
       "state_id": "bd25ba81ea6e",
       "status": "confirmed",
@@ -930,34 +1007,6 @@
       "visible_node_count": 10,
       "depth": 2,
       "label": "Zoom"
-    },
-    "bfbd29b4b754": {
-      "state_id": "bfbd29b4b754",
-      "status": "confirmed",
-      "xml_path": "data/maps/libreoffice_writer/states/bfbd29b4b754/a11y.xml",
-      "active_root": {
-        "kind": "dialog",
-        "reason": "visible dialog is topmost",
-        "role": "dialog",
-        "name": "Properties of “Untitled 1”",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox_visible": true,
-        "parent_path": [
-          "application/soffice"
-        ]
-      },
-      "macro_hash": "bfbd29b4b75496c8bab8a4e08171c108e5cdf62ce8506bf266be75396d5845cf",
-      "content_hash": "41649431a7492e646b6f1f60cf78156b4947b00d7717c4648caafba0975bc216",
-      "macro_action_count": 5,
-      "visible_node_count": 45,
-      "depth": 2,
-      "label": "Properties of “Untitled 1”"
     },
     "c43cf836e8b3": {
       "state_id": "c43cf836e8b3",
@@ -1134,6 +1183,43 @@
       "depth": 2,
       "label": "Paste Special"
     },
+    "d32e00db2ce8": {
+      "state_id": "d32e00db2ce8",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/d32e00db2ce8/a11y.xml",
+      "active_root": {
+        "kind": "menu",
+        "reason": "visible menu is active overlay",
+        "role": "menu",
+        "name": "Language",
+        "description": "",
+        "states": [
+          "selected",
+          "focused",
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice",
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools"
+        ]
+      },
+      "macro_hash": "d32e00db2ce80cd2786b0c1f7040b9cef418b52ab1b5ea8a780eb3a2d913bbbd",
+      "content_hash": "03f7887852ada27b446073f7b4edbb685514b7880fdf73dceb41f211ea5af0fc",
+      "macro_action_count": 3,
+      "visible_node_count": 6,
+      "depth": 2,
+      "label": "Language"
+    },
     "d967cc28908e": {
       "state_id": "d967cc28908e",
       "status": "confirmed",
@@ -1170,6 +1256,34 @@
       "visible_node_count": 9,
       "depth": 2,
       "label": "Spacing"
+    },
+    "e58c8569541a": {
+      "state_id": "e58c8569541a",
+      "status": "confirmed",
+      "xml_path": "data/maps/libreoffice_writer/states/e58c8569541a/a11y.xml",
+      "active_root": {
+        "kind": "dialog",
+        "reason": "visible dialog is topmost",
+        "role": "dialog",
+        "name": "Options - LibreOffice - User Data",
+        "description": "",
+        "states": [
+          "sensitive",
+          "showing",
+          "visible",
+          "enabled"
+        ],
+        "bbox_visible": true,
+        "parent_path": [
+          "application/soffice"
+        ]
+      },
+      "macro_hash": "e58c8569541a11c079f22927b8a92cc79e7dad96bce8e1639f4b49e57a9b3a2a",
+      "content_hash": "809535276d863760a630ac760308514942fe011d691c086eda8721288396288c",
+      "macro_action_count": 0,
+      "visible_node_count": 79,
+      "depth": 2,
+      "label": "Options - LibreOffice - User Data"
     },
     "e65903c8fc2b": {
       "state_id": "e65903c8fc2b",
@@ -2120,13 +2234,13 @@
         "depth": 8
       },
       "status": "confirmed",
-      "to_state": "bfbd29b4b754",
+      "to_state": "8ae0e75d5d09",
       "priority": 25,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "bfbd29b4b754",
+        "to_state": "8ae0e75d5d09",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
@@ -2261,13 +2375,13 @@
         "depth": 8
       },
       "status": "confirmed",
-      "to_state": "0e0e1244d9ee",
+      "to_state": "11c83faf856f",
       "priority": 25,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "0e0e1244d9ee",
+        "to_state": "11c83faf856f",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
@@ -3013,13 +3127,13 @@
         "depth": 8
       },
       "status": "confirmed",
-      "to_state": "71c09f03fb03",
+      "to_state": "d32e00db2ce8",
       "priority": 15,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "71c09f03fb03",
+        "to_state": "d32e00db2ce8",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
@@ -3107,13 +3221,13 @@
         "depth": 8
       },
       "status": "confirmed",
-      "to_state": "28f3b77f3ed4",
+      "to_state": "e58c8569541a",
       "priority": 25,
       "attempts": 1,
       "reason": "macro signature changed",
       "observed": {
         "kind": "new_macro_state",
-        "to_state": "28f3b77f3ed4",
+        "to_state": "e58c8569541a",
         "macro_changed": true,
         "content_changed": true,
         "reason": "macro signature changed"
@@ -3167,96 +3281,110 @@
       },
       "created_order": 37
     },
-    "bfbd29b4b754:0e694e54e88ef388": {
-      "edge_id": "bfbd29b4b754:0e694e54e88ef388",
-      "from_state": "bfbd29b4b754",
-      "action_key": "0e694e54e88ef388",
+    "d32e00db2ce8:7b06e70c6ca04a98": {
+      "edge_id": "d32e00db2ce8:7b06e70c6ca04a98",
+      "from_state": "d32e00db2ce8",
+      "action_key": "7b06e70c6ca04a98",
       "action": {
-        "action_key": "0e694e54e88ef388",
-        "role": "check box",
-        "name": "Save preview image with this document",
+        "action_key": "7b06e70c6ca04a98",
+        "role": "menu",
+        "name": "For Selection",
         "description": "",
         "states": [
-          "checked",
           "sensitive",
           "showing",
           "visible",
           "enabled"
         ],
         "bbox": [
-          420,
-          621,
-          394,
-          22
+          753,
+          150,
+          235,
+          25
         ],
         "parent_path": [
           "application/soffice",
-          "dialog/Properties of “Untitled 1”",
-          "filler",
-          "page tab list",
-          "page tab/General",
+          "frame/Untitled 1 - LibreOffice Writer",
           "panel",
-          "panel"
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools",
+          "menu/Language"
         ],
-        "depth": 7
+        "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "check box may reveal, select, or switch UI structure",
-      "observed": null,
+      "status": "confirmed",
+      "to_state": "aeca9cf0c90b",
+      "priority": 15,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "aeca9cf0c90b",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 38
     },
-    "bfbd29b4b754:cd926eb253464f57": {
-      "edge_id": "bfbd29b4b754:cd926eb253464f57",
-      "from_state": "bfbd29b4b754",
-      "action_key": "cd926eb253464f57",
+    "d32e00db2ce8:442eb81ddd5b9a9b": {
+      "edge_id": "d32e00db2ce8:442eb81ddd5b9a9b",
+      "from_state": "d32e00db2ce8",
+      "action_key": "442eb81ddd5b9a9b",
       "action": {
-        "action_key": "cd926eb253464f57",
-        "role": "check box",
-        "name": "Apply user data",
-        "description": "Saves the user's full name with the file. You can edit the name by choosing Tools - Options - %PRODUCTNAME - User Data.",
+        "action_key": "442eb81ddd5b9a9b",
+        "role": "menu",
+        "name": "For Paragraph",
+        "description": "",
         "states": [
-          "checked",
           "sensitive",
           "showing",
           "visible",
           "enabled"
         ],
         "bbox": [
-          420,
-          593,
-          394,
-          22
+          753,
+          175,
+          235,
+          25
         ],
         "parent_path": [
           "application/soffice",
-          "dialog/Properties of “Untitled 1”",
-          "filler",
-          "page tab list",
-          "page tab/General",
+          "frame/Untitled 1 - LibreOffice Writer",
           "panel",
-          "panel"
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools",
+          "menu/Language"
         ],
-        "depth": 7
+        "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "check box may reveal, select, or switch UI structure",
-      "observed": null,
+      "status": "confirmed",
+      "to_state": "4f020fe86495",
+      "priority": 15,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "4f020fe86495",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 39
     },
-    "bfbd29b4b754:f1a81f064fa7904d": {
-      "edge_id": "bfbd29b4b754:f1a81f064fa7904d",
-      "from_state": "bfbd29b4b754",
-      "action_key": "f1a81f064fa7904d",
+    "d32e00db2ce8:770aaa16ad692e4f": {
+      "edge_id": "d32e00db2ce8:770aaa16ad692e4f",
+      "from_state": "d32e00db2ce8",
+      "action_key": "770aaa16ad692e4f",
       "action": {
-        "action_key": "f1a81f064fa7904d",
-        "role": "push button",
-        "name": "Help",
+        "action_key": "770aaa16ad692e4f",
+        "role": "menu",
+        "name": "For All Text",
         "description": "",
         "states": [
           "sensitive",
@@ -3265,420 +3393,42 @@
           "enabled"
         ],
         "bbox": [
-          277,
-          723,
-          86,
-          34
+          753,
+          200,
+          235,
+          25
         ],
         "parent_path": [
           "application/soffice",
-          "dialog/Properties of “Untitled 1”",
-          "filler",
-          "filler",
-          "filler"
+          "frame/Untitled 1 - LibreOffice Writer",
+          "panel",
+          "panel",
+          "scroll pane",
+          "viewport",
+          "menu bar",
+          "menu/Tools",
+          "menu/Language"
         ],
-        "depth": 5
+        "depth": 9
       },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
+      "status": "confirmed",
+      "to_state": "014013af658a",
+      "priority": 15,
+      "attempts": 1,
+      "reason": "macro signature changed",
+      "observed": {
+        "kind": "new_macro_state",
+        "to_state": "014013af658a",
+        "macro_changed": true,
+        "content_changed": true,
+        "reason": "macro signature changed"
+      },
       "created_order": 40
-    },
-    "bfbd29b4b754:d159b421e5c58cc3": {
-      "edge_id": "bfbd29b4b754:d159b421e5c58cc3",
-      "from_state": "bfbd29b4b754",
-      "action_key": "d159b421e5c58cc3",
-      "action": {
-        "action_key": "d159b421e5c58cc3",
-        "role": "push button",
-        "name": "Cancel",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          825,
-          723,
-          86,
-          34
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Properties of “Untitled 1”",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 41
-    },
-    "bfbd29b4b754:bb8d2868ed9531f5": {
-      "edge_id": "bfbd29b4b754:bb8d2868ed9531f5",
-      "from_state": "bfbd29b4b754",
-      "action_key": "bb8d2868ed9531f5",
-      "action": {
-        "action_key": "bb8d2868ed9531f5",
-        "role": "push button",
-        "name": "OK",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          915,
-          723,
-          86,
-          34
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Properties of “Untitled 1”",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 42
-    },
-    "0e0e1244d9ee:f56071851880cf35": {
-      "edge_id": "0e0e1244d9ee:f56071851880cf35",
-      "from_state": "0e0e1244d9ee",
-      "action_key": "f56071851880cf35",
-      "action": {
-        "action_key": "f56071851880cf35",
-        "role": "push button",
-        "name": "Cancel",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          575,
-          524,
-          86,
-          34
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Go to Page",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 43
-    },
-    "0e0e1244d9ee:a21a514d85da2dae": {
-      "edge_id": "0e0e1244d9ee:a21a514d85da2dae",
-      "from_state": "0e0e1244d9ee",
-      "action_key": "a21a514d85da2dae",
-      "action": {
-        "action_key": "a21a514d85da2dae",
-        "role": "push button",
-        "name": "OK",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          665,
-          524,
-          86,
-          34
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Go to Page",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 44
-    },
-    "28f3b77f3ed4:2e8f85672208f5fb": {
-      "edge_id": "28f3b77f3ed4:2e8f85672208f5fb",
-      "from_state": "28f3b77f3ed4",
-      "action_key": "2e8f85672208f5fb",
-      "action": {
-        "action_key": "2e8f85672208f5fb",
-        "role": "check box",
-        "name": "Use data for document properties",
-        "description": "Mark to use the data in document properties",
-        "states": [
-          "checked",
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          462,
-          557,
-          655,
-          22
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Options - LibreOffice - User Data",
-          "filler",
-          "filler",
-          "filler",
-          "filler",
-          "panel/Address",
-          "panel"
-        ],
-        "depth": 8
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "check box may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 45
-    },
-    "28f3b77f3ed4:54bc3d8ecc9a53d6": {
-      "edge_id": "28f3b77f3ed4:54bc3d8ecc9a53d6",
-      "from_state": "28f3b77f3ed4",
-      "action_key": "54bc3d8ecc9a53d6",
-      "action": {
-        "action_key": "54bc3d8ecc9a53d6",
-        "role": "check box",
-        "name": "When encrypting documents, always encrypt to self",
-        "description": "Mark this checkbox to also encrypt the file with your public key, so you can open the document with your private key.",
-        "states": [
-          "checked",
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          462,
-          694,
-          655,
-          22
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Options - LibreOffice - User Data",
-          "filler",
-          "filler",
-          "filler",
-          "filler",
-          "panel/Cryptography",
-          "panel"
-        ],
-        "depth": 8
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 20,
-      "attempts": 0,
-      "reason": "check box may reveal, select, or switch UI structure",
-      "observed": null,
-      "created_order": 46
-    },
-    "28f3b77f3ed4:0dd702332093210f": {
-      "edge_id": "28f3b77f3ed4:0dd702332093210f",
-      "from_state": "28f3b77f3ed4",
-      "action_key": "0dd702332093210f",
-      "action": {
-        "action_key": "0dd702332093210f",
-        "role": "push button",
-        "name": "Help",
-        "description": "",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          156,
-          782,
-          86,
-          34
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Options - LibreOffice - User Data",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 47
-    },
-    "28f3b77f3ed4:ed6395ed18177264": {
-      "edge_id": "28f3b77f3ed4:ed6395ed18177264",
-      "from_state": "28f3b77f3ed4",
-      "action_key": "ed6395ed18177264",
-      "action": {
-        "action_key": "ed6395ed18177264",
-        "role": "push button",
-        "name": "Apply",
-        "description": "Save all modifications without closing dialog. Cannot be reverted with Reset.",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          857,
-          782,
-          86,
-          34
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Options - LibreOffice - User Data",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 48
-    },
-    "28f3b77f3ed4:11661bd132da791f": {
-      "edge_id": "28f3b77f3ed4:11661bd132da791f",
-      "from_state": "28f3b77f3ed4",
-      "action_key": "11661bd132da791f",
-      "action": {
-        "action_key": "11661bd132da791f",
-        "role": "push button",
-        "name": "Cancel",
-        "description": "Closes dialog and discards all unsaved changes.",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          947,
-          782,
-          86,
-          34
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Options - LibreOffice - User Data",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 49
-    },
-    "28f3b77f3ed4:f140b3b414130491": {
-      "edge_id": "28f3b77f3ed4:f140b3b414130491",
-      "from_state": "28f3b77f3ed4",
-      "action_key": "f140b3b414130491",
-      "action": {
-        "action_key": "f140b3b414130491",
-        "role": "push button",
-        "name": "OK",
-        "description": "Saves all changes and closes dialog.",
-        "states": [
-          "sensitive",
-          "showing",
-          "visible",
-          "enabled"
-        ],
-        "bbox": [
-          1037,
-          782,
-          86,
-          34
-        ],
-        "parent_path": [
-          "application/soffice",
-          "dialog/Options - LibreOffice - User Data",
-          "filler",
-          "filler",
-          "filler"
-        ],
-        "depth": 5
-      },
-      "status": "pending",
-      "to_state": null,
-      "priority": 30,
-      "attempts": 0,
-      "reason": "push button name suggests menu/dialog/navigation/context change",
-      "observed": null,
-      "created_order": 50
     }
   },
   "completion": {
-    "status": "partial",
-    "pending_edges": 13,
-    "reason": "pending_edges_exist"
+    "status": "complete",
+    "pending_edges": 0,
+    "reason": "no_pending_edges"
   }
 }
