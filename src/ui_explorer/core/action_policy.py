@@ -270,12 +270,35 @@ SAFE_CONTEXT_MENU_DIALOGS = frozenset({
 })
 
 
+SAFE_CONTEXT_SUBMENUS = frozenset({
+    ("language", "for selection"),
+    ("language", "for paragraph"),
+    ("language", "for all text"),
+})
+
+
+DIALOG_DEFERRED_BUTTON_NAMES = frozenset({
+    "ok",
+    "cancel",
+    "help",
+    "close",
+    "apply",
+})
+
+
 def _parent_path_text(action: UIAction) -> str:
     return " / ".join(action.parent_path).lower()
 
 
 def _is_inside_open_menu(action: UIAction) -> bool:
     return any(part.lower().startswith("menu/") for part in action.parent_path)
+
+
+def _is_inside_dialog_or_alert(action: UIAction) -> bool:
+    return any(
+        part.lower().startswith(("dialog", "alert"))
+        for part in action.parent_path
+    )
 
 
 def _is_formatting_toolbar_action(action: UIAction) -> bool:
@@ -355,6 +378,14 @@ def classify_action(action: UIAction) -> ClassifiedAction:
                     reason="submenu deferred from safe exploration policy",
                 )
 
+            if (_menu_context(action), name_lower) in SAFE_CONTEXT_SUBMENUS:
+                return ClassifiedAction(
+                    action=action,
+                    kind=ActionKind.MACRO,
+                    priority=15,
+                    reason="safe context submenu inside opened menu may reveal navigation structure",
+                )
+
             if name_lower in SAFE_SUBMENU_NAMES:
                 return ClassifiedAction(
                     action=action,
@@ -418,6 +449,14 @@ def classify_action(action: UIAction) -> ClassifiedAction:
         )
 
     if role in {"toggle button", "radio button", "check box"}:
+        if _is_inside_dialog_or_alert(action):
+            return ClassifiedAction(
+                action=action,
+                kind=ActionKind.IGNORED,
+                priority=100,
+                reason="dialog control deferred from safe depth-3 exploration",
+            )
+
         if (
             role == "toggle button"
             and _is_root_toolbar_or_sidebar_action(action)
@@ -464,6 +503,17 @@ def classify_action(action: UIAction) -> ClassifiedAction:
                 kind=ActionKind.MICRO,
                 priority=90,
                 reason="tiny push button looks like grid/cell content control",
+            )
+
+        if (
+            _is_inside_dialog_or_alert(action)
+            and name_lower in DIALOG_DEFERRED_BUTTON_NAMES
+        ):
+            return ClassifiedAction(
+                action=action,
+                kind=ActionKind.IGNORED,
+                priority=100,
+                reason="dialog push button deferred from safe depth-3 exploration",
             )
 
         if (

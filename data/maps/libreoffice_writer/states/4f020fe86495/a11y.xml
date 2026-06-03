@@ -1,4 +1,4 @@
-<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780147817.1124947">
+<accessibility-tree app_query="soffice" app_accessible_name="soffice" captured_at="1780524118.88513">
   <element role="application" name="soffice" description="" x="0" y="0" width="0" height="0">
     <element role="frame" name="Untitled 1 - LibreOffice Writer" description="" x="57" y="50" width="1165" height="924" states="sensitive,showing,visible,enabled">
       <element role="panel" name="" description="" x="57" y="50" width="1165" height="924" states="sensitive,showing,visible,enabled">
@@ -799,18 +799,18 @@
                   <element role="menu item" name="Spelling..." description="" x="455" y="75" width="300" height="25" states="sensitive,showing,visible,enabled"/>
                   <element role="check menu item" name="Automatic Spell Checking" description="" x="455" y="100" width="300" height="25" states="checked,sensitive,showing,visible,enabled"/>
                   <element role="menu item" name="Thesaurus..." description="" x="455" y="125" width="300" height="25" states="sensitive,showing,visible,enabled"/>
-                  <element role="menu" name="Language" description="" x="455" y="150" width="300" height="25" states="selected,focused,sensitive,showing,visible,enabled">
+                  <element role="menu" name="Language" description="" x="455" y="150" width="300" height="25" states="selected,sensitive,showing,visible,enabled">
                     <element role="menu" name="For Selection" description="" x="753" y="150" width="235" height="25" states="sensitive,showing,visible,enabled">
-                      <element role="check menu item" name="English (USA)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                      <element role="menu item" name="None (Do not check spelling)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                      <element role="menu item" name="Reset to Default Language" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                      <element role="menu item" name="More..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                      <element role="check menu item" name="English (USA)" description="" x="-2147483648" y="-2147483648" width="246" height="25" states="visible"/>
+                      <element role="menu item" name="None (Do not check spelling)" description="" x="-2147483648" y="-2147483648" width="246" height="25" states="visible"/>
+                      <element role="menu item" name="Reset to Default Language" description="" x="-2147483648" y="-2147483648" width="246" height="25" states="visible"/>
+                      <element role="menu item" name="More..." description="" x="-2147483648" y="-2147483648" width="246" height="25" states="visible"/>
                     </element>
-                    <element role="menu" name="For Paragraph" description="" x="753" y="175" width="235" height="25" states="sensitive,showing,visible,enabled">
-                      <element role="menu item" name="English (USA)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                      <element role="menu item" name="None (Do not check spelling)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                      <element role="menu item" name="Reset to Default Language" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
-                      <element role="menu item" name="More..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
+                    <element role="menu" name="For Paragraph" description="" x="753" y="175" width="235" height="25" states="selected,focused,sensitive,showing,visible,enabled">
+                      <element role="menu item" name="English (USA)" description="" x="986" y="175" width="250" height="25" states="sensitive,showing,visible,enabled"/>
+                      <element role="menu item" name="None (Do not check spelling)" description="" x="986" y="200" width="250" height="25" states="sensitive,showing,visible,enabled"/>
+                      <element role="menu item" name="Reset to Default Language" description="" x="986" y="225" width="250" height="25" states="sensitive,showing,visible,enabled"/>
+                      <element role="menu item" name="More..." description="" x="986" y="250" width="250" height="25" states="sensitive,showing,visible,enabled"/>
                     </element>
                     <element role="menu" name="For All Text" description="" x="753" y="200" width="235" height="25" states="sensitive,showing,visible,enabled">
                       <element role="menu item" name="English (USA)" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="visible"/>
@@ -827,11 +827,11 @@
                   <element role="menu item" name="Accessibility Check..." description="" x="455" y="200" width="300" height="25" states="sensitive,showing,visible,enabled"/>
                   <element role="separator" name="" description="" x="455" y="225" width="300" height="1" states="sensitive,showing,visible,enabled"/>
                   <element role="menu" name="AutoCorrect" description="" x="455" y="226" width="300" height="25" states="sensitive,showing,visible,enabled">
-                    <element role="check menu item" name="While Typing" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="checked,sensitive,visible,enabled"/>
-                    <element role="menu item" name="Apply" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="Apply and Edit Changes" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
-                    <element role="menu item" name="AutoCorrect Options..." description="" x="-2147483648" y="-2147483648" width="1" height="1" states="sensitive,visible,enabled"/>
+                    <element role="check menu item" name="While Typing" description="" x="-2147483648" y="-2147483648" width="212" height="25" states="checked,sensitive,visible,enabled"/>
+                    <element role="menu item" name="Apply" description="" x="-2147483648" y="-2147483648" width="212" height="25" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="Apply and Edit Changes" description="" x="-2147483648" y="-2147483648" width="212" height="25" states="sensitive,visible,enabled"/>
+                    <element role="separator" name="" description="" x="-2147483648" y="-2147483648" width="212" height="1" states="sensitive,visible,enabled"/>
+                    <element role="menu item" name="AutoCorrect Options..." description="" x="-2147483648" y="-2147483648" width="212" height="25" states="sensitive,visible,enabled"/>
                   </element>
                   <element role="menu item" name="AutoText..." description="" x="455" y="251" width="300" height="25" states="sensitive,showing,visible,enabled"/>
                   <element role="menu item" name="ImageMap" description="" x="455" y="276" width="300" height="25" states="showing,visible"/>
