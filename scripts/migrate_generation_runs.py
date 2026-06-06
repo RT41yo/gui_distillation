@@ -18,7 +18,9 @@ from ui_explorer.synthetic.generation_output import (
     is_generation_run_dir,
     is_in_flight_generation_run_dir,
     is_legacy_flat_classification_state_dir,
+    is_legacy_flat_generation_run,
     migrate_generation_run_layout,
+    migrate_run_raw_layout,
     rewrite_generation_run_paths,
 )
 from ui_explorer.synthetic.paths import (
@@ -157,6 +159,36 @@ def remove_empty_legacy_generations_dirs(workspace_root: Path) -> list[str]:
     return removed
 
 
+def discover_generation_run_dirs(workspace_root: Path) -> list[Path]:
+    runs: list[Path] = []
+    tasks_root = workspace_root / TASK_GENERATION_DIRNAME
+    if not tasks_root.exists():
+        return runs
+    for model_dir in sorted(tasks_root.iterdir()):
+        if not model_dir.is_dir():
+            continue
+        for state_dir in sorted(model_dir.iterdir()):
+            if not state_dir.is_dir():
+                continue
+            for run_dir in sorted(state_dir.iterdir()):
+                if not run_dir.is_dir() or not RUN_TIMESTAMP_PATTERN.match(run_dir.name):
+                    continue
+                if is_generation_run_dir(run_dir) or is_in_flight_generation_run_dir(run_dir):
+                    runs.append(run_dir)
+    return runs
+
+
+def migrate_flat_generation_runs(workspace_root: Path) -> list[dict[str, object]]:
+    moves: list[dict[str, object]] = []
+    for run_dir in discover_generation_run_dirs(workspace_root):
+        if not is_legacy_flat_generation_run(run_dir):
+            continue
+        result = migrate_run_raw_layout(run_dir)
+        if result is not None:
+            moves.append(result)
+    return moves
+
+
 def rewrite_cost_log_paths(workspace_root: Path, moves: list[dict[str, str]]) -> int:
     path_map = {item["from"]: item["to"] for item in moves}
     if not path_map:
@@ -220,6 +252,11 @@ def main() -> int:
                 if is_legacy_task_model_dir(path, workspace_root=workspace_root)
             ],
             "legacy_generation_runs": [str(path) for path in discover_legacy_generation_runs(workspace_root)],
+            "flat_generation_runs": [
+                str(path)
+                for path in discover_generation_run_dirs(workspace_root)
+                if is_legacy_flat_generation_run(path)
+            ],
         }, indent=2))
         return 0
 
@@ -229,6 +266,7 @@ def main() -> int:
     )
     task_moves = migrate_top_level_task_models(workspace_root)
     generation_moves = migrate_legacy_generation_runs(workspace_root)
+    raw_layout_moves = migrate_flat_generation_runs(workspace_root)
     removed_empty = remove_empty_legacy_generations_dirs(workspace_root)
     moves = classification_moves + task_moves + generation_moves
     cost_updates = rewrite_cost_log_paths(workspace_root, moves)
@@ -237,6 +275,7 @@ def main() -> int:
         "classification_moves": classification_moves,
         "task_moves": task_moves,
         "generation_moves": generation_moves,
+        "raw_layout_moves": raw_layout_moves,
         "removed_empty_generations_dirs": removed_empty,
         "cost_log_updates": cost_updates,
     }, indent=2))

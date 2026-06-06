@@ -24,6 +24,7 @@ from ui_explorer.synthetic.generation_output import (
     classification_path,
     commit_generation_checkpoint,
     generation_run_dir,
+    raw_batch_path,
     resolve_classification_model,
     is_in_progress_generation_run,
     load_generation_run_state,
@@ -348,7 +349,7 @@ def generate_tasks_batch(
             completion_params=completion_params,
         )
 
-    raw_response_path = run_dir / f"raw_response_batch_{batch_index:03d}.json"
+    raw_response_path = raw_batch_path(run_dir, batch_index)
     raw_response_path.parent.mkdir(parents=True, exist_ok=True)
     raw_response_path.write_text(
         json.dumps(completion.content, indent=2, ensure_ascii=False) + "\n",
@@ -694,7 +695,7 @@ def generate_tasks_for_macro_state(
             raw_response_path = (
                 str(exc.raw_response_path)
                 if isinstance(exc, BatchGenerationError) and exc.raw_response_path is not None
-                else str(run_dir / f"raw_response_batch_{batch_number:03d}.json")
+                else str(raw_batch_path(run_dir, batch_number))
             )
             batch_record.update({
                 "status": "failed",

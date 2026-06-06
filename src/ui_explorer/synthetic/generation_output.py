@@ -10,10 +10,13 @@ from ui_explorer.synthetic.paths import CLASSIFICATION_DIRNAME, TASK_GENERATION_
 from ui_explorer.synthetic.schemas import YIELD_BUCKETS
 
 LEGACY_GENERATIONS_DIRNAME = "generations"
+RAW_SUBDIR = "raw"
+OSWORLD_SUBDIR = "osworld"
 SETTINGS_FILENAME = "settings.json"
 METADATA_FILENAME = "metadata.json"
 CLASSIFICATION_FILENAME = "yield_classification.json"
 RAW_RESPONSE_BATCH_PATTERN = re.compile(r"^raw_response_batch_(\d+)\.json$")
+MICROACTION_OUTPUT_PATTERN = re.compile(r"^[0-9a-f]{16}\.json$")
 RUN_TIMESTAMP_PATTERN = re.compile(r"^\d{8}T\d{6}Z$")
 
 GENERATION_STATUS_IN_PROGRESS = "in_progress"
@@ -74,6 +77,59 @@ def generation_run_dir(
     return macro_state_tasks_dir(workspace_root, state_id, model=model) / run_id
 
 
+def raw_generation_dir(run_dir: Path) -> Path:
+    return run_dir / RAW_SUBDIR
+
+
+def osworld_generation_dir(run_dir: Path) -> Path:
+    return run_dir / OSWORLD_SUBDIR
+
+
+def _generation_payload_dir(run_dir: Path) -> Path:
+    """Directory containing settings/metadata/microaction outputs."""
+    raw_dir = raw_generation_dir(run_dir)
+    if (raw_dir / METADATA_FILENAME).exists() or (raw_dir / SETTINGS_FILENAME).exists():
+        return raw_dir
+    if (run_dir / METADATA_FILENAME).exists() or (run_dir / SETTINGS_FILENAME).exists():
+        return run_dir
+    return raw_dir
+
+
+def settings_path(run_dir: Path) -> Path:
+    return _generation_payload_dir(run_dir) / SETTINGS_FILENAME
+
+
+def metadata_path(run_dir: Path) -> Path:
+    return _generation_payload_dir(run_dir) / METADATA_FILENAME
+
+
+def raw_batch_path(run_dir: Path, batch_index: int) -> Path:
+    return raw_generation_dir(run_dir) / f"raw_response_batch_{batch_index:03d}.json"
+
+
+def microaction_output_path(run_dir: Path, action_id: str) -> Path:
+    return _generation_payload_dir(run_dir) / f"{action_id}.json"
+
+
+def iter_raw_batch_files(run_dir: Path) -> list[Path]:
+    files: list[Path] = []
+    raw_dir = raw_generation_dir(run_dir)
+    if raw_dir.exists():
+        files.extend(
+            child
+            for child in raw_dir.iterdir()
+            if child.is_file() and RAW_RESPONSE_BATCH_PATTERN.match(child.name)
+        )
+    files.extend(
+        child
+        for child in run_dir.iterdir()
+        if child.is_file()
+        and RAW_RESPONSE_BATCH_PATTERN.match(child.name)
+        and child not in files
+    )
+    return sorted(files, key=lambda path: path.name)
+
+
 def is_classification_macro_state_dir(path: Path) -> bool:
     return path.is_dir() and (path / CLASSIFICATION_FILENAME).exists()
 
@@ -132,16 +188,16 @@ def legacy_macro_state_dir(workspace_root: Path, state_id: str) -> Path:
 
 
 def model_from_generation_run(run_dir: Path) -> str:
-    settings_path = run_dir / SETTINGS_FILENAME
-    if settings_path.exists():
-        settings = load_json(settings_path)
+    settings_file = settings_path(run_dir)
+    if settings_file.exists():
+        settings = load_json(settings_file)
         model = settings.get("model")
         if isinstance(model, str) and model.strip():
             return model.strip()
 
-    metadata_path = run_dir / METADATA_FILENAME
-    if metadata_path.exists():
-        metadata = load_json(metadata_path)
+    metadata_file = metadata_path(run_dir)
+    if metadata_file.exists():
+        metadata = load_json(metadata_file)
         model = metadata.get("model")
         if isinstance(model, str) and model.strip():
             return model.strip()
@@ -154,14 +210,14 @@ def legacy_generations_dir(workspace_root: Path, state_id: str) -> Path:
 
 
 def is_generation_run_dir(path: Path) -> bool:
-    return path.is_dir() and (path / METADATA_FILENAME).exists()
+    return path.is_dir() and metadata_path(path).exists()
 
 
 def generation_run_status(run_dir: Path) -> str | None:
-    metadata_path = run_dir / METADATA_FILENAME
-    if not metadata_path.exists():
+    metadata_file = metadata_path(run_dir)
+    if not metadata_file.exists():
         return None
-    metadata = load_json(metadata_path)
+    metadata = load_json(metadata_file)
     status = metadata.get("status")
     return status if isinstance(status, str) else None
 
@@ -192,11 +248,11 @@ def find_resumable_generation_run(
 
 
 def load_generation_run_outputs(run_dir: Path) -> dict[str, dict[str, Any]]:
-    metadata_path = run_dir / METADATA_FILENAME
-    if not metadata_path.exists():
+    metadata_file = metadata_path(run_dir)
+    if not metadata_file.exists():
         return {}
 
-    metadata = load_json(metadata_path)
+    metadata = load_json(metadata_file)
     success_ids = metadata.get("successful_micro_action_ids")
     if not isinstance(success_ids, list):
         return {}
@@ -205,10 +261,10 @@ def load_generation_run_outputs(run_dir: Path) -> dict[str, dict[str, Any]]:
     for action_id in success_ids:
         if not isinstance(action_id, str):
             continue
-        output_path = run_dir / f"{action_id}.json"
-        if not output_path.exists():
+        output_file = microaction_output_path(run_dir, action_id)
+        if not output_file.exists():
             continue
-        payload = load_json(output_path)
+        payload = load_json(output_file)
         outputs[action_id] = {
             "micro_action_id": action_id,
             "task_type": payload["task_type"],
@@ -218,13 +274,13 @@ def load_generation_run_outputs(run_dir: Path) -> dict[str, dict[str, Any]]:
 
 
 def load_generation_run_state(run_dir: Path) -> dict[str, Any]:
-    metadata_path = run_dir / METADATA_FILENAME
-    if not metadata_path.exists():
-        raise FileNotFoundError(f"missing generation metadata: {metadata_path}")
+    metadata_file = metadata_path(run_dir)
+    if not metadata_file.exists():
+        raise FileNotFoundError(f"missing generation metadata: {metadata_file}")
 
-    metadata = load_json(metadata_path)
-    settings_path = run_dir / SETTINGS_FILENAME
-    settings = load_json(settings_path) if settings_path.exists() else {}
+    metadata = load_json(metadata_file)
+    settings_file = settings_path(run_dir)
+    settings = load_json(settings_file) if settings_file.exists() else {}
     return {
         "metadata": metadata,
         "settings": settings,
@@ -234,11 +290,7 @@ def load_generation_run_state(run_dir: Path) -> dict[str, Any]:
 
 
 def count_raw_response_batches(run_dir: Path) -> int:
-    return sum(
-        1
-        for child in run_dir.iterdir()
-        if child.is_file() and RAW_RESPONSE_BATCH_PATTERN.match(child.name)
-    )
+    return len(iter_raw_batch_files(run_dir))
 
 
 def estimate_total_batches(*, requested_count: int, batch_size: int | str | None) -> int:
@@ -273,22 +325,14 @@ def is_in_flight_generation_run_dir(path: Path) -> bool:
         return False
     if is_in_progress_generation_run(path):
         return True
-    if (path / METADATA_FILENAME).exists():
+    if metadata_path(path).exists():
         return False
-    return any(
-        RAW_RESPONSE_BATCH_PATTERN.match(child.name)
-        for child in path.iterdir()
-        if child.is_file()
-    )
+    return bool(iter_raw_batch_files(path))
 
 
 def in_flight_microaction_ids_from_run(run_dir: Path) -> set[str]:
     ids: set[str] = set()
-    for path in sorted(run_dir.iterdir()):
-        if not path.is_file():
-            continue
-        if RAW_RESPONSE_BATCH_PATTERN.match(path.name) is None:
-            continue
+    for path in iter_raw_batch_files(run_dir):
         try:
             payload = load_json(path)
         except (OSError, ValueError, TypeError):
@@ -314,7 +358,7 @@ def in_flight_generation_progress(
     """Summarize the newest unfinished generation run."""
     resumable = find_resumable_generation_run(workspace_root, state_id, model=model)
     if resumable is not None:
-        metadata = load_json(resumable / METADATA_FILENAME)
+        metadata = load_json(metadata_path(resumable))
         batches = metadata.get("batches", [])
         batches_committed = len(batches) if isinstance(batches, list) else 0
         raw_batches = count_raw_response_batches(resumable)
@@ -349,11 +393,7 @@ def in_flight_generation_progress(
         return None
 
     def run_activity_key(run_dir: Path) -> tuple[int, float, str]:
-        batch_files = [
-            child
-            for child in run_dir.iterdir()
-            if child.is_file() and RAW_RESPONSE_BATCH_PATTERN.match(child.name)
-        ]
+        batch_files = iter_raw_batch_files(run_dir)
         latest_batch_index = 0
         latest_mtime = run_dir.stat().st_mtime
         if batch_files:
@@ -365,11 +405,7 @@ def in_flight_generation_progress(
         return latest_batch_index, latest_mtime, run_dir.name
 
     run_dir = max(candidates, key=run_activity_key)
-    batch_files = sorted(
-        child
-        for child in run_dir.iterdir()
-        if child.is_file() and RAW_RESPONSE_BATCH_PATTERN.match(child.name)
-    )
+    batch_files = iter_raw_batch_files(run_dir)
     latest_batch_index = 0
     if batch_files:
         latest_batch_index = max(
@@ -426,11 +462,11 @@ def list_generation_runs(
 
 
 def successful_action_ids_from_generation_run(run_dir: Path) -> set[str]:
-    metadata_path = run_dir / METADATA_FILENAME
-    if not metadata_path.exists():
-        raise FileNotFoundError(f"missing generation metadata: {metadata_path}")
+    metadata_file = metadata_path(run_dir)
+    if not metadata_file.exists():
+        raise FileNotFoundError(f"missing generation metadata: {metadata_file}")
 
-    metadata = load_json(metadata_path)
+    metadata = load_json(metadata_file)
     success_ids = metadata.get("successful_micro_action_ids")
     if isinstance(success_ids, list):
         return {item for item in success_ids if isinstance(item, str)}
@@ -525,11 +561,13 @@ def write_microaction_outputs(
     *,
     only_action_ids: set[str] | None = None,
 ) -> None:
+    payload_dir = raw_generation_dir(run_dir)
+    payload_dir.mkdir(parents=True, exist_ok=True)
     for action_id, output in sorted(outputs.items()):
         if only_action_ids is not None and action_id not in only_action_ids:
             continue
         save_json(
-            run_dir / f"{action_id}.json",
+            payload_dir / f"{action_id}.json",
             {
                 "micro_action_id": action_id,
                 "task_type": output["task_type"],
@@ -545,9 +583,10 @@ def commit_generation_checkpoint(
     metadata: dict[str, Any],
     new_outputs: dict[str, dict[str, Any]] | None = None,
 ) -> None:
-    run_dir.mkdir(parents=True, exist_ok=True)
-    save_json(run_dir / SETTINGS_FILENAME, settings)
-    save_json(run_dir / METADATA_FILENAME, metadata)
+    payload_dir = raw_generation_dir(run_dir)
+    payload_dir.mkdir(parents=True, exist_ok=True)
+    save_json(payload_dir / SETTINGS_FILENAME, settings)
+    save_json(payload_dir / METADATA_FILENAME, metadata)
     if new_outputs:
         write_microaction_outputs(run_dir, new_outputs)
 
@@ -569,8 +608,7 @@ def write_generation_run(
 
 def rewrite_generation_run_paths(run_dir: Path) -> None:
     """Rewrite embedded absolute paths after a generation run directory move."""
-    for filename in (SETTINGS_FILENAME, METADATA_FILENAME):
-        path = run_dir / filename
+    for path in (settings_path(run_dir), metadata_path(run_dir)):
         if not path.exists():
             continue
         payload = load_json(path)
@@ -583,8 +621,66 @@ def rewrite_generation_run_paths(run_dir: Path) -> None:
                     continue
                 raw_path = batch.get("raw_response_path")
                 if isinstance(raw_path, str) and raw_path:
-                    batch["raw_response_path"] = str(run_dir / Path(raw_path).name)
+                    batch["raw_response_path"] = str(
+                        raw_generation_dir(run_dir) / Path(raw_path).name
+                    )
         save_json(path, payload)
+
+
+def is_legacy_flat_generation_run(run_dir: Path) -> bool:
+    return (
+        run_dir.is_dir()
+        and (run_dir / METADATA_FILENAME).exists()
+        and not (raw_generation_dir(run_dir) / METADATA_FILENAME).exists()
+    )
+
+
+def migrate_run_raw_layout(run_dir: Path) -> dict[str, object] | None:
+    """Move generator artifacts from run root into raw/ for one timestamp run."""
+    if not run_dir.is_dir() or not RUN_TIMESTAMP_PATTERN.match(run_dir.name):
+        return None
+
+    raw_dir = raw_generation_dir(run_dir)
+    if (raw_dir / METADATA_FILENAME).exists():
+        rewrite_generation_run_paths(run_dir)
+        return {"run_dir": str(run_dir), "moved": [], "already_migrated": True}
+
+    has_flat_metadata = (run_dir / METADATA_FILENAME).exists()
+    has_flat_settings = (run_dir / SETTINGS_FILENAME).exists()
+    has_flat_batches = any(
+        RAW_RESPONSE_BATCH_PATTERN.match(child.name)
+        for child in run_dir.iterdir()
+        if child.is_file()
+    )
+    has_flat_microactions = any(
+        MICROACTION_OUTPUT_PATTERN.match(child.name)
+        for child in run_dir.iterdir()
+        if child.is_file()
+    )
+    if not any((has_flat_metadata, has_flat_settings, has_flat_batches, has_flat_microactions)):
+        return None
+
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    moved: list[str] = []
+    for child in sorted(run_dir.iterdir()):
+        if not child.is_file():
+            continue
+        if child.name in {SETTINGS_FILENAME, METADATA_FILENAME}:
+            target = raw_dir / child.name
+            if target.exists():
+                raise FileExistsError(f"cannot migrate {child} because {target} exists")
+            child.rename(target)
+            moved.append(child.name)
+            continue
+        if RAW_RESPONSE_BATCH_PATTERN.match(child.name) or MICROACTION_OUTPUT_PATTERN.match(child.name):
+            target = raw_dir / child.name
+            if target.exists():
+                raise FileExistsError(f"cannot migrate {child} because {target} exists")
+            child.rename(target)
+            moved.append(child.name)
+
+    rewrite_generation_run_paths(run_dir)
+    return {"run_dir": str(run_dir), "moved": moved, "already_migrated": False}
 
 
 def migrate_generation_run_layout(
@@ -602,9 +698,9 @@ def migrate_generation_run_layout(
         model = default_model
 
     state_id: str | None = None
-    metadata_path = run_dir / METADATA_FILENAME
-    if metadata_path.exists():
-        metadata = load_json(metadata_path)
+    metadata_file = metadata_path(run_dir)
+    if metadata_file.exists():
+        metadata = load_json(metadata_file)
         macro_state_id = metadata.get("macro_state_id")
         if isinstance(macro_state_id, str) and macro_state_id.strip():
             state_id = macro_state_id.strip()

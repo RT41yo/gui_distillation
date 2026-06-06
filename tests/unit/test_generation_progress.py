@@ -5,9 +5,11 @@ from pathlib import Path
 
 from ui_explorer.synthetic.generation_output import (
     GENERATION_STATUS_IN_PROGRESS,
+    RAW_SUBDIR,
     commit_generation_checkpoint,
     in_flight_generation_progress,
     in_flight_microaction_ids_from_run,
+    raw_batch_path,
 )
 from ui_explorer.synthetic.generation_progress import (
     format_in_flight_detail,
@@ -37,7 +39,9 @@ def _write_raw_batch(run_dir: Path, batch_index: int, action_ids: list[str]) -> 
             for action_id in action_ids
         ]
     }
-    (run_dir / f"raw_response_batch_{batch_index:03d}.json").write_text(
+    batch_path = raw_batch_path(run_dir, batch_index)
+    batch_path.parent.mkdir(parents=True, exist_ok=True)
+    batch_path.write_text(
         json.dumps(payload) + "\n",
         encoding="utf-8",
     )

@@ -6,6 +6,7 @@ from pathlib import Path
 from ui_explorer.synthetic.generation_output import (
     GENERATION_STATUS_GENERATED,
     GENERATION_STATUS_IN_PROGRESS,
+    RAW_SUBDIR,
     commit_generation_checkpoint,
     find_resumable_generation_run,
     generation_coverage,
@@ -90,6 +91,8 @@ def test_commit_checkpoint_updates_coverage_incrementally(tmp_path: Path) -> Non
     )
     assert coverage["successful_count"] == 1
     assert successful_action_ids_from_generation_run(run_dir) == {"a1"}
+    assert (run_dir / RAW_SUBDIR / "metadata.json").exists()
+    assert (run_dir / RAW_SUBDIR / "a1.json").exists()
 
 
 def test_find_resumable_generation_run_prefers_in_progress(tmp_path: Path) -> None:
