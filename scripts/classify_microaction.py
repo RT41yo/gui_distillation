@@ -13,6 +13,7 @@ from typing import Any
 from ui_explorer.synthetic.cost_log import log_classification_cost
 from ui_explorer.synthetic.env import load_env_file, resolve_openai_config
 from ui_explorer.synthetic.io import load_json, save_json
+from ui_explorer.synthetic.llm_args import CompletionParams, add_completion_args, completion_params_from_args
 from ui_explorer.synthetic.openai_client import build_openai_messages, openai_structured_completion
 from ui_explorer.synthetic.paths import DEFAULT_OUTPUT_ROOT, repo_root, resolve_repo_path
 from ui_explorer.synthetic.schemas import (
@@ -30,6 +31,7 @@ def classify_state(
     scope_state: dict[str, Any],
     openai_config: dict[str, str],
     output_root: Path,
+    completion_params: CompletionParams,
     dry_run: bool,
 ) -> dict[str, Any]:
     expected_keys = index.expected_action_keys(scope_state)
@@ -65,6 +67,7 @@ def classify_state(
         model=openai_config["model"],
         messages=messages,
         json_schema=YIELD_CLASSIFICATION_SCHEMA,
+        completion_params=completion_params,
     )
     validate_yield_classification(completion.content, expected_keys)
     log_classification_cost(output_root, state_id, completion.model, completion.usage_cost)
@@ -98,6 +101,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--model", default=None)
+    add_completion_args(parser)
     parser.add_argument("--env-file", type=Path, default=None)
     return parser.parse_args()
 
@@ -131,6 +135,7 @@ def main() -> int:
         return 1
 
     load_env_file(env_path)
+    completion_params = completion_params_from_args(args)
     if args.dry_run:
         openai_config = {
             "api_key": "",
@@ -163,6 +168,7 @@ def main() -> int:
                 scope_state=scope_state,
                 openai_config=openai_config,
                 output_root=output_root,
+                completion_params=completion_params,
                 dry_run=args.dry_run,
             )
             if not args.dry_run:
@@ -184,6 +190,7 @@ def main() -> int:
         "skipped": skipped,
         "failed": [{"state_id": item["state_id"], "error": item["error"]} for item in failed],
         "model": openai_config.get("model"),
+        "completion_params": completion_params.as_dict(),
     }, indent=2))
 
     return 1 if failed else 0

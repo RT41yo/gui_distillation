@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import sys
 import traceback
 from collections import defaultdict
@@ -14,6 +15,8 @@ from typing import Any
 from ui_explorer.synthetic.cost_log import log_task_generation_batch_cost
 from ui_explorer.synthetic.env import load_env_file, resolve_openai_config
 from ui_explorer.synthetic.io import load_json, save_json
+from ui_explorer.synthetic.llm_args import CompletionParams, add_completion_args, completion_params_from_args
+from ui_explorer.synthetic.logging_config import configure_logging
 from ui_explorer.synthetic.openai_client import build_openai_messages, openai_structured_completion
 from ui_explorer.synthetic.paths import DEFAULT_OUTPUT_ROOT, repo_root, resolve_repo_path
 from ui_explorer.synthetic.schemas import (
@@ -24,6 +27,8 @@ from ui_explorer.synthetic.schemas import (
     validate_macrostate_tasks_batch,
 )
 from ui_explorer.synthetic.scope_index import ScopeIndex, load_prompt_template, render_prompt
+
+log = logging.getLogger(__name__)
 
 
 def load_classification(classification_root: Path, state_id: str) -> dict[str, Any]:
@@ -89,6 +94,7 @@ def generate_tasks_for_macro_state(
     classification: dict[str, Any],
     openai_config: dict[str, str],
     output_root: Path,
+    completion_params: CompletionParams,
     dry_run: bool,
 ) -> dict[str, Any]:
     macro_context = index.build_macro_context(state_id)
@@ -112,7 +118,29 @@ def generate_tasks_for_macro_state(
         },
     )
 
+    yield_counts: dict[str, int] = defaultdict(int)
+    for target in target_microactions:
+        yield_counts[str(target["yield"])] += 1
+    yield_summary = ", ".join(f"{count} {tier}" for tier, count in sorted(yield_counts.items()))
+    log.info(
+        "Macro state %s: prepared batch for %d microaction(s) (%s); prompt_chars=%d screenshot=%s",
+        state_id,
+        len(action_keys),
+        yield_summary,
+        len(prompt_text),
+        screenshot_path,
+    )
+    for target in target_microactions:
+        log.info(
+            "  microaction %s yield=%s guidance=%s name=%r",
+            target["micro_action_id"],
+            target["yield"],
+            target["task_count_guidance"],
+            target.get("name"),
+        )
+
     if dry_run:
+        log.info("Macro state %s: dry run, skipping API call", state_id)
         return {
             "state_id": state_id,
             "status": "dry_run",
@@ -123,23 +151,49 @@ def generate_tasks_for_macro_state(
         }
 
     messages = build_openai_messages(prompt_text, screenshot_path)
+    log.info(
+        "Macro state %s: calling model %s for %d microaction(s)",
+        state_id,
+        openai_config["model"],
+        len(action_keys),
+    )
     completion = openai_structured_completion(
         api_key=openai_config["api_key"],
         base_url=openai_config["base_url"],
         model=openai_config["model"],
         messages=messages,
         json_schema=MACROSTATE_TASKS_BATCH_SCHEMA,
+        completion_params=completion_params,
     )
 
     outputs = validate_macrostate_tasks_batch(completion.content, action_keys)
+    total_tasks = sum(len(payload["task"]) for payload in outputs.values())
+    log.info(
+        "Macro state %s: validated %d microaction(s), %d task(s) total",
+        state_id,
+        len(outputs),
+        total_tasks,
+    )
+    for action_id, payload in sorted(outputs.items()):
+        log.info(
+            "  microaction %s task_type=%s tasks=%d",
+            action_id,
+            payload["task_type"],
+            len(payload["task"]),
+        )
+
     log_task_generation_batch_cost(output_root, state_id, completion.model, completion.usage_cost)
 
     return {
         "state_id": state_id,
         "status": "generated",
         "outputs": {
-            action_id: {"micro_action_id": action_id, "task": tasks}
-            for action_id, tasks in outputs.items()
+            action_id: {
+                "micro_action_id": action_id,
+                "task_type": payload["task_type"],
+                "task": payload["task"],
+            }
+            for action_id, payload in outputs.items()
         },
         "usage": {
             "num_tokens": completion.usage_cost.num_tokens,
@@ -191,13 +245,17 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--verbose", "-v", action="store_true", help="Enable debug logging.")
     parser.add_argument("--model", default=None)
+    add_completion_args(parser)
     parser.add_argument("--env-file", type=Path, default=None)
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    configure_logging(verbose=args.verbose)
+
     if not args.micro_action_id and not args.macro_state_id:
         print(json.dumps({
             "ok": False,
@@ -212,6 +270,18 @@ def main() -> int:
     index = ScopeIndex.load(repo_root=root)
 
     load_env_file(env_path)
+    completion_params = completion_params_from_args(args)
+    log.info(
+        "Starting task generation classification_root=%s dry_run=%s overwrite=%s",
+        classification_root,
+        args.dry_run,
+        args.overwrite,
+    )
+    if completion_params.as_dict():
+        log.info("Completion params: %s", completion_params.as_dict())
+    elif args.creative:
+        log.info("Using --creative preset with no explicit overrides")
+
     if args.dry_run:
         openai_config = {
             "api_key": "",
@@ -224,6 +294,7 @@ def main() -> int:
         except RuntimeError as exc:
             print(json.dumps({"ok": False, "error": str(exc)}, indent=2), file=sys.stderr)
             return 2
+        log.info("Using model=%s base_url=%s", openai_config["model"], openai_config["base_url"])
 
     try:
         requested_by_state = resolve_requested_actions(
@@ -236,6 +307,13 @@ def main() -> int:
         print(json.dumps({"ok": False, "error": str(exc)}, indent=2), file=sys.stderr)
         return 1
 
+    total_microactions = sum(len(keys) for keys in requested_by_state.values())
+    log.info(
+        "Resolved %d macro state(s) covering %d microaction(s)",
+        len(requested_by_state),
+        total_microactions,
+    )
+
     processed: list[str] = []
     skipped: list[str] = []
     failed: list[dict[str, str]] = []
@@ -243,6 +321,7 @@ def main() -> int:
 
     for state_id in sorted(requested_by_state):
         action_keys = requested_by_state[state_id]
+        log.info("Macro state %s: evaluating %d requested microaction(s)", state_id, len(action_keys))
         try:
             scope_state = index.get_scope_state(state_id)
             classification = load_classification(classification_root, state_id)
@@ -251,9 +330,15 @@ def main() -> int:
             for action_key in sorted(action_keys):
                 out_path = classification_root / state_id / f"{action_key}.json"
                 if out_path.exists() and not args.overwrite:
+                    log.info("Skipping existing output for microaction %s (%s)", action_key, out_path)
                     skipped.append(action_key)
                     continue
                 if find_yield_bucket(classification, action_key) is None:
+                    log.error(
+                        "Microaction %s missing from yield_classification.json for state %s",
+                        action_key,
+                        state_id,
+                    )
                     failed.append({
                         "micro_action_id": action_key,
                         "error": f"not found in yield_classification.json for state {state_id}",
@@ -262,7 +347,20 @@ def main() -> int:
                 pending.add(action_key)
 
             if not pending:
+                log.info(
+                    "Macro state %s: nothing to do (%d skipped, %d failed pre-check)",
+                    state_id,
+                    len([k for k in action_keys if k in skipped]),
+                    len([item for item in failed if item["micro_action_id"] in action_keys]),
+                )
                 continue
+
+            log.info(
+                "Macro state %s: generating for %d microaction(s): %s",
+                state_id,
+                len(pending),
+                ", ".join(sorted(pending)),
+            )
 
             result = generate_tasks_for_macro_state(
                 index=index,
@@ -272,23 +370,47 @@ def main() -> int:
                 classification=classification,
                 openai_config=openai_config,
                 output_root=classification_root,
+                completion_params=completion_params,
                 dry_run=args.dry_run,
             )
             batch_results.append(result)
 
             if not args.dry_run:
                 for action_key, output in result["outputs"].items():
-                    save_json(classification_root / state_id / f"{action_key}.json", output)
+                    out_path = classification_root / state_id / f"{action_key}.json"
+                    save_json(
+                        out_path,
+                        {
+                            "micro_action_id": action_key,
+                            "task_type": output["task_type"],
+                            "task": output["task"],
+                        },
+                    )
+                    log.info(
+                        "Wrote %s (%d task(s), task_type=%s)",
+                        out_path,
+                        len(output["task"]),
+                        output["task_type"],
+                    )
                     processed.append(action_key)
             else:
                 processed.extend(sorted(pending))
+                log.info("Macro state %s: dry run complete for %d microaction(s)", state_id, len(pending))
         except Exception as exc:
+            log.exception("Macro state %s failed: %s", state_id, exc)
             for action_key in action_keys:
                 failed.append({
                     "micro_action_id": action_key,
                     "error": str(exc),
                     "traceback": traceback.format_exc(),
                 })
+
+    log.info(
+        "Finished: processed=%d skipped=%d failed=%d",
+        len(processed),
+        len(skipped),
+        len(failed),
+    )
 
     print(json.dumps({
         "ok": len(failed) == 0,
@@ -299,6 +421,7 @@ def main() -> int:
         "failed": [{"micro_action_id": item["micro_action_id"], "error": item["error"]} for item in failed],
         "batches": batch_results,
         "model": openai_config.get("model"),
+        "completion_params": completion_params.as_dict(),
     }, indent=2))
 
     return 1 if failed else 0

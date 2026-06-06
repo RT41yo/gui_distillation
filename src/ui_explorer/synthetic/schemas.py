@@ -25,6 +25,24 @@ TASK_COUNT_GUIDANCE: dict[str, str] = {
     "low": "2-4",
 }
 
+TASK_TYPES: tuple[str, ...] = (
+    "selection_transform",
+    "cursor_format_toggle",
+    "paragraph_layout",
+    "insert_at_cursor",
+    "dialog_open",
+    "document_analysis",
+    "list_manipulation",
+    "table_structure",
+    "table_content",
+    "language_spelling_setting",
+    "view_or_zoom",
+    "style_management",
+    "review_commenting",
+    "availability_check",
+    "unsafe_or_external_observation",
+)
+
 YIELD_CLASSIFICATION_SCHEMA: dict[str, Any] = {
     "name": "yield_classification",
     "strict": True,
@@ -78,12 +96,44 @@ MACROSTATE_TASKS_BATCH_SCHEMA: dict[str, Any] = {
                     "type": "object",
                     "properties": {
                         "micro_action_id": {"type": "string"},
+                        "task_type": {
+                            "type": "string",
+                            "enum": list(TASK_TYPES),
+                        },
                         "task": {
                             "type": "array",
-                            "items": {"type": "string"},
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "instruction": {"type": "string"},
+                                    "expected_outcome": {"type": "string"},
+                                    "preconditions": {
+                                        "type": "object",
+                                        "properties": {
+                                            "description": {"type": "string"},
+                                            "extras": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "key": {"type": "string"},
+                                                        "value": {"type": "string"},
+                                                    },
+                                                    "required": ["key", "value"],
+                                                    "additionalProperties": False,
+                                                },
+                                            },
+                                        },
+                                        "required": ["description", "extras"],
+                                        "additionalProperties": False,
+                                    },
+                                },
+                                "required": ["instruction", "expected_outcome", "preconditions"],
+                                "additionalProperties": False,
+                            },
                         },
                     },
-                    "required": ["micro_action_id", "task"],
+                    "required": ["micro_action_id", "task_type", "task"],
                     "additionalProperties": False,
                 },
             },
@@ -137,29 +187,74 @@ def find_yield_bucket(classification: dict[str, Any], micro_action_id: str) -> s
 def validate_macrostate_tasks_batch(
     result: dict[str, Any],
     expected_action_keys: set[str],
-) -> dict[str, list[str]]:
+) -> dict[str, dict[str, Any]]:
     entries = result.get("microactions")
     if not isinstance(entries, list):
         raise ValueError("microactions must be an array")
 
-    outputs: dict[str, list[str]] = {}
+    outputs: dict[str, list[dict[str, Any]]] = {}
     seen: set[str] = set()
 
     for entry in entries:
         if not isinstance(entry, dict):
             raise ValueError("each microactions entry must be an object")
         action_id = entry.get("micro_action_id")
+        task_type = entry.get("task_type")
         tasks = entry.get("task")
         if not isinstance(action_id, str):
             raise ValueError("micro_action_id must be a string")
         if action_id in seen:
             raise ValueError(f"duplicate micro_action_id in batch output: {action_id}")
         seen.add(action_id)
+        if not isinstance(task_type, str) or task_type not in TASK_TYPES:
+            raise ValueError(
+                f"task_type for {action_id} must be one of: {', '.join(TASK_TYPES)}"
+            )
         if not isinstance(tasks, list) or not tasks:
             raise ValueError(f"task list for {action_id} must be a non-empty array")
-        if not all(isinstance(task, str) and task.strip() for task in tasks):
-            raise ValueError(f"task list for {action_id} must contain non-empty strings")
-        outputs[action_id] = tasks
+        for index, task in enumerate(tasks):
+            if not isinstance(task, dict):
+                raise ValueError(f"task {index} for {action_id} must be an object")
+            instruction = task.get("instruction")
+            expected_outcome = task.get("expected_outcome")
+            preconditions = task.get("preconditions")
+            if not isinstance(instruction, str) or not instruction.strip():
+                raise ValueError(f"task {index} for {action_id} must include instruction")
+            if not isinstance(expected_outcome, str) or not expected_outcome.strip():
+                raise ValueError(
+                    f"task {index} for {action_id} must include expected_outcome"
+                )
+            if not isinstance(preconditions, dict):
+                raise ValueError(f"task {index} for {action_id} must include preconditions")
+            description = preconditions.get("description")
+            extras = preconditions.get("extras")
+            if not isinstance(description, str) or not description.strip():
+                raise ValueError(
+                    f"task {index} for {action_id} must include preconditions.description"
+                )
+            if not isinstance(extras, list):
+                raise ValueError(
+                    f"task {index} for {action_id} must include preconditions.extras"
+                )
+            for extra in extras:
+                if not isinstance(extra, dict):
+                    raise ValueError(
+                        f"preconditions.extras for task {index} of {action_id} "
+                        "must contain objects"
+                    )
+                key = extra.get("key")
+                value = extra.get("value")
+                if not isinstance(key, str) or not key.strip():
+                    raise ValueError(
+                        f"preconditions.extras key for task {index} of {action_id} "
+                        "must be a non-empty string"
+                    )
+                if not isinstance(value, str):
+                    raise ValueError(
+                        f"preconditions.extras value for task {index} of {action_id} "
+                        "must be a string"
+                    )
+        outputs[action_id] = {"task_type": task_type, "task": tasks}
 
     if seen != expected_action_keys:
         missing = expected_action_keys - seen
