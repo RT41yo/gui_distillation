@@ -32,6 +32,7 @@ ENV/
 # Runtime temp artifacts
 data/maps/*/_tmp/
 data/maps/*/_captures/
+data/synthetic/
 results/
 
 # Logs/temp
