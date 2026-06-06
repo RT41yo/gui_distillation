@@ -23,7 +23,7 @@ from ui_explorer.synthetic.writer_fixtures import (
 )
 from ui_explorer.synthetic.writer_macrostate_setup import build_writer_macrostate_preflight
 
-OSWORLD_DUMMY_EVALUATOR_FUNC = "always_zero"
+OSWORLD_DUMMY_EVALUATOR_FUNC = "always_dummy"
 LIBREOFFICE_WRITER_SNAPSHOT = "libreoffice_writer"
 SYNTHETIC_TASK_NAMESPACE = uuid.UUID("f47ac10b-58cc-4372-a567-0e02b2c3d479")
 
