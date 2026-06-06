@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 
 from ui_explorer.synthetic.generation_output import (
+    GENERATION_STATUS_IN_PROGRESS,
+    commit_generation_checkpoint,
     in_flight_generation_progress,
     in_flight_microaction_ids_from_run,
 )
@@ -92,4 +94,46 @@ def test_snapshot_macro_state_includes_in_flight_detail(tmp_path: Path) -> None:
     assert row.in_flight_count == 2
     assert row.in_flight_batches_done == 1
     assert row.in_flight_batches_total == 1
-    assert format_in_flight_detail(row) == "+2 in-flight batch 1/1"
+    assert format_in_flight_detail(row) == "+2 uncommitted batch 1/1"
+
+
+def test_in_flight_progress_uses_metadata_for_committed_runs(tmp_path: Path) -> None:
+    state_id = "state123"
+    model = "gpt-test"
+    _write_classification(tmp_path, state_id, ["a1", "a2", "a3", "a4"])
+
+    run_dir = tmp_path / state_id / "generations" / model / "20260606T130000Z"
+    commit_generation_checkpoint(
+        run_dir=run_dir,
+        settings={"timestamp": "20260606T130000Z", "status": GENERATION_STATUS_IN_PROGRESS},
+        metadata={
+            "status": GENERATION_STATUS_IN_PROGRESS,
+            "requested_micro_action_ids": ["a1", "a2", "a3", "a4"],
+            "successful_micro_action_ids": ["a1", "a2"],
+            "failed_micro_action_ids": [],
+            "successful_microactions": [],
+            "failed_microactions": [],
+            "batches": [{"batch_index": 1, "status": "generated"}],
+            "batch_size": 2,
+        },
+    )
+
+    progress = in_flight_generation_progress(
+        classification_root=tmp_path,
+        state_id=state_id,
+        model=model,
+    )
+    assert progress is not None
+    assert progress["source"] == "metadata"
+    assert progress["microaction_count"] == 0
+    assert progress["batches_done"] == 1
+    assert progress["batches_total"] == 2
+
+    row = snapshot_macro_state(
+        classification_root=tmp_path,
+        state_id=state_id,
+        model=model,
+        status="running",
+    )
+    assert row.successful == 2
+    assert format_in_flight_detail(row) == "batch 1/2"

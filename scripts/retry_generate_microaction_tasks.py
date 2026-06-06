@@ -17,6 +17,7 @@ from typing import TextIO
 from ui_explorer.synthetic.env import resolve_openai_config
 from ui_explorer.synthetic.generation_output import (
     classification_path,
+    find_resumable_generation_run,
     generation_coverage,
     list_generation_runs,
     model_dir_name,
@@ -156,6 +157,7 @@ def build_generation_command(
     classification_root: Path,
     state_id: str,
     previous_runs: list[Path],
+    resume_run: Path | None,
     batch_size: int,
     prompt_profile: str,
     model: str,
@@ -180,6 +182,8 @@ def build_generation_command(
         cmd.extend(["--env-file", str(env_file)])
     for run_dir in previous_runs:
         cmd.extend(["--previous-generation-run", str(run_dir)])
+    if resume_run is not None:
+        cmd.extend(["--resume-generation-run", str(resume_run)])
     cmd.extend(extra_args)
     return cmd
 
@@ -197,6 +201,7 @@ def run_generation_attempt(
     classification_root: Path,
     state_id: str,
     previous_runs: list[Path],
+    resume_run: Path | None,
     batch_size: int,
     prompt_profile: str,
     model: str,
@@ -209,6 +214,7 @@ def run_generation_attempt(
         classification_root=classification_root,
         state_id=state_id,
         previous_runs=previous_runs,
+        resume_run=resume_run,
         batch_size=batch_size,
         prompt_profile=prompt_profile,
         model=model,
@@ -289,10 +295,20 @@ def retry_macro_state(
             state_id,
             model=model,
         )
+        resume_run = find_resumable_generation_run(
+            classification_root,
+            state_id,
+            model=model,
+        )
+        previous_for_attempt = [
+            run_dir for run_dir in previous_runs
+            if resume_run is None or run_dir != resume_run
+        ]
         batch_size = batch_size_for_attempt(batch_sizes, attempt)
         attempt_label = (
             f"attempt {attempt}/{max_attempts}  missing={len(coverage['missing_ids'])}  "
             f"batch={batch_size}  runs={len(previous_runs)}"
+            + ("  resume" if resume_run is not None else "")
         )
         log.info(
             "Macro state %s %s",
@@ -303,7 +319,8 @@ def retry_macro_state(
         result = run_generation_attempt(
             classification_root=classification_root,
             state_id=state_id,
-            previous_runs=previous_runs,
+            previous_runs=previous_for_attempt,
+            resume_run=resume_run,
             batch_size=batch_size,
             prompt_profile=prompt_profile,
             model=model,

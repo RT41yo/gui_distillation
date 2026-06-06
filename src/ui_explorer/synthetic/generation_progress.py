@@ -77,8 +77,14 @@ def snapshot_macro_state(
     in_flight_batches_done = 0
     batches_total = parse_attempt_batch_total(attempt_label) if status == "running" else None
     if in_flight is not None:
-        in_flight_count = int(in_flight["microaction_count"])
         in_flight_batches_done = int(in_flight["batches_done"])
+        if in_flight.get("source") == "metadata":
+            in_flight_count = 0
+            metadata_batches_total = in_flight.get("batches_total")
+            if isinstance(metadata_batches_total, int) and metadata_batches_total > 0:
+                batches_total = metadata_batches_total
+        else:
+            in_flight_count = int(in_flight["microaction_count"])
 
     return MacroStateProgressSnapshot(
         state_id=state_id,
@@ -94,12 +100,19 @@ def snapshot_macro_state(
 
 
 def format_in_flight_detail(row: MacroStateProgressSnapshot) -> str:
-    if row.in_flight_count <= 0:
+    if row.in_flight_batches_done <= 0 and row.in_flight_count <= 0:
+        return ""
+    if row.in_flight_count > 0:
+        batch_label = str(row.in_flight_batches_done)
+        if row.in_flight_batches_total is not None:
+            batch_label = f"{row.in_flight_batches_done}/{row.in_flight_batches_total}"
+        return f"+{row.in_flight_count} uncommitted batch {batch_label}"
+    if row.in_flight_batches_done <= 0:
         return ""
     batch_label = str(row.in_flight_batches_done)
     if row.in_flight_batches_total is not None:
         batch_label = f"{row.in_flight_batches_done}/{row.in_flight_batches_total}"
-    return f"+{row.in_flight_count} in-flight batch {batch_label}"
+    return f"batch {batch_label}"
 
 
 def format_progress_lines(
@@ -120,7 +133,7 @@ def format_progress_lines(
 
     microaction_summary = f"microactions={total_successful}/{total_expected}"
     if total_in_flight:
-        microaction_summary += f" ({total_in_flight} in-flight)"
+        microaction_summary += f" ({total_in_flight} uncommitted)"
 
     lines = [
         (

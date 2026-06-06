@@ -16,12 +16,18 @@ from typing import Any
 from ui_explorer.synthetic.cost_log import log_task_generation_batch_cost
 from ui_explorer.synthetic.env import load_env_file, resolve_openai_config
 from ui_explorer.synthetic.generation_output import (
+    GENERATION_STATUS_FAILED,
+    GENERATION_STATUS_GENERATED,
+    GENERATION_STATUS_IN_PROGRESS,
+    GENERATION_STATUS_PARTIAL,
     build_settings_payload,
     classification_path,
+    commit_generation_checkpoint,
     generation_run_dir,
+    is_in_progress_generation_run,
+    load_generation_run_state,
     successful_action_ids_from_generation_run,
     utc_run_timestamp,
-    write_generation_run,
 )
 from ui_explorer.synthetic.io import load_json
 from ui_explorer.synthetic.llm_args import CompletionParams, add_completion_args, completion_params_from_args
@@ -410,6 +416,123 @@ def generate_tasks_batch(
     }
 
 
+def empty_usage_totals() -> dict[str, Any]:
+    return {
+        "num_tokens": 0,
+        "cost": 0.0,
+        "cost_source": "mixed",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "api_calls": 0,
+    }
+
+
+def merge_usage_totals(total_usage: dict[str, Any], usage: dict[str, Any]) -> None:
+    total_usage["num_tokens"] += usage["num_tokens"]
+    total_usage["cost"] += usage["cost"]
+    total_usage["prompt_tokens"] += usage["prompt_tokens"]
+    total_usage["completion_tokens"] += usage["completion_tokens"]
+    total_usage["api_calls"] += usage["api_calls"]
+
+
+def build_run_settings_and_metadata(
+    *,
+    state_id: str,
+    requested_action_keys: set[str],
+    run_timestamp: str,
+    openai_config: dict[str, str],
+    creative: bool,
+    completion_params: CompletionParams,
+    all_outputs: dict[str, dict[str, Any]],
+    failed_microactions: list[dict[str, str]],
+    batch_results: list[dict[str, Any]],
+    total_usage: dict[str, Any],
+    timings: dict[str, float],
+    run_dir: Path,
+    batch_size: int | None,
+    prompt_profile: str,
+    status: str,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    metadata = generation_metadata(
+        requested_action_keys=requested_action_keys,
+        outputs=all_outputs,
+        failed_microactions=failed_microactions,
+        batches=batch_results,
+        status=status,
+    )
+    metadata["timings_seconds"] = timings
+    metadata["usage"] = total_usage
+    metadata["api_calls"] = total_usage["api_calls"]
+    metadata["macro_state_id"] = state_id
+    metadata["model"] = openai_config["model"]
+    metadata["generation_run"] = str(run_dir)
+    metadata["batch_size"] = "all" if batch_size is None else batch_size
+    metadata["prompt_profile"] = prompt_profile
+
+    settings = build_settings_payload(
+        timestamp=run_timestamp,
+        macro_state_id=state_id,
+        micro_action_ids=sorted(requested_action_keys),
+        openai_config=openai_config,
+        creative=creative,
+        completion_params=completion_params.as_dict(),
+        usage=total_usage,
+        status=status,
+    )
+    settings["api_calls"] = total_usage["api_calls"]
+    settings["timings_seconds"] = timings
+    settings["batch_size"] = "all" if batch_size is None else batch_size
+    settings["prompt_profile"] = prompt_profile
+    return settings, metadata
+
+
+def commit_run_checkpoint(
+    *,
+    state_id: str,
+    requested_action_keys: set[str],
+    run_timestamp: str,
+    openai_config: dict[str, str],
+    creative: bool,
+    completion_params: CompletionParams,
+    all_outputs: dict[str, dict[str, Any]],
+    failed_microactions: list[dict[str, str]],
+    batch_results: list[dict[str, Any]],
+    total_usage: dict[str, Any],
+    timings: dict[str, float],
+    run_dir: Path,
+    batch_size: int | None,
+    prompt_profile: str,
+    status: str,
+    dry_run: bool,
+    new_outputs: dict[str, dict[str, Any]] | None = None,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    settings, metadata = build_run_settings_and_metadata(
+        state_id=state_id,
+        requested_action_keys=requested_action_keys,
+        run_timestamp=run_timestamp,
+        openai_config=openai_config,
+        creative=creative,
+        completion_params=completion_params,
+        all_outputs=all_outputs,
+        failed_microactions=failed_microactions,
+        batch_results=batch_results,
+        total_usage=total_usage,
+        timings=timings,
+        run_dir=run_dir,
+        batch_size=batch_size,
+        prompt_profile=prompt_profile,
+        status=status,
+    )
+    if not dry_run:
+        commit_generation_checkpoint(
+            run_dir=run_dir,
+            settings=settings,
+            metadata=metadata,
+            new_outputs=new_outputs,
+        )
+    return settings, metadata
+
+
 def generate_tasks_for_macro_state(
     *,
     index: ScopeIndex,
@@ -426,39 +549,83 @@ def generate_tasks_for_macro_state(
     dry_run: bool,
     batch_size: int | None,
     prompt_profile: str,
+    resume: bool = False,
 ) -> dict[str, Any]:
     run_started = time.monotonic()
+    if resume:
+        run_state = load_generation_run_state(run_dir)
+        all_outputs = dict(run_state["outputs"])
+        failed_microactions = list(run_state["metadata"].get("failed_microactions", []))
+        batch_results = list(run_state["batch_results"])
+        total_usage = dict(run_state["metadata"].get("usage", empty_usage_totals()))
+        run_timestamp = str(run_state["settings"].get("timestamp", run_timestamp))
+        requested_action_keys = {
+            item
+            for item in run_state["metadata"].get("requested_micro_action_ids", [])
+            if isinstance(item, str)
+        }
+        if not requested_action_keys:
+            requested_action_keys = set(action_keys) | set(all_outputs)
+        log.info(
+            "Macro state %s: resuming generation run %s successes=%d batches=%d remaining=%d",
+            state_id,
+            run_dir,
+            len(all_outputs),
+            len(batch_results),
+            len(action_keys),
+        )
+    else:
+        all_outputs = {}
+        failed_microactions = []
+        batch_results = []
+        total_usage = empty_usage_totals()
+        requested_action_keys = set(action_keys)
+
     batches = chunk_action_keys(action_keys, batch_size)
-    all_outputs: dict[str, dict[str, Any]] = {}
-    failed_microactions: list[dict[str, str]] = []
-    batch_results: list[dict[str, Any]] = []
-    total_usage = {
-        "num_tokens": 0,
-        "cost": 0.0,
-        "cost_source": "mixed",
-        "prompt_tokens": 0,
-        "completion_tokens": 0,
-        "api_calls": 0,
-    }
     timings: dict[str, float] = {}
+    batch_index_offset = len(batch_results)
 
     log.info(
-        "Macro state %s: output_dir=%s microactions=%d batches=%d batch_size=%s prompt_profile=%s",
+        "Macro state %s: output_dir=%s microactions=%d batches=%d batch_size=%s prompt_profile=%s resume=%s",
         state_id,
         run_dir,
         len(action_keys),
         len(batches),
         "all" if batch_size is None else batch_size,
         prompt_profile,
+        resume,
     )
 
+    if not dry_run and not resume:
+        timings["total"] = time.monotonic() - run_started
+        commit_run_checkpoint(
+            state_id=state_id,
+            requested_action_keys=requested_action_keys,
+            run_timestamp=run_timestamp,
+            openai_config=openai_config,
+            creative=creative,
+            completion_params=completion_params,
+            all_outputs=all_outputs,
+            failed_microactions=failed_microactions,
+            batch_results=batch_results,
+            total_usage=total_usage,
+            timings=timings,
+            run_dir=run_dir,
+            batch_size=batch_size,
+            prompt_profile=prompt_profile,
+            status=GENERATION_STATUS_IN_PROGRESS,
+            dry_run=dry_run,
+        )
+
     for batch_index, batch_action_keys in enumerate(batches, start=1):
+        batch_number = batch_index_offset + batch_index
         batch_record: dict[str, Any] = {
-            "batch_index": batch_index,
+            "batch_index": batch_number,
             "micro_action_ids": sorted(batch_action_keys),
             "status": "pending",
         }
         batch_started = time.monotonic()
+        batch_new_outputs: dict[str, dict[str, Any]] = {}
         try:
             batch_result = generate_tasks_batch(
                 index=index,
@@ -470,24 +637,28 @@ def generate_tasks_for_macro_state(
                 run_dir=run_dir,
                 completion_params=completion_params,
                 dry_run=dry_run,
-                batch_index=batch_index,
+                batch_index=batch_number,
                 prompt_profile=prompt_profile,
             )
+            batch_new_outputs = dict(batch_result.get("outputs", {}))
             batch_record.update({
                 "status": batch_result["status"],
-                "outputs": sorted(batch_result.get("outputs", {})),
+                "outputs": sorted(batch_new_outputs),
                 "raw_response_path": batch_result.get("raw_response_path"),
                 "usage": batch_result.get("usage"),
                 "timings_seconds": batch_result.get("timings"),
             })
-            all_outputs.update(batch_result.get("outputs", {}))
+            all_outputs.update(batch_new_outputs)
+            if batch_new_outputs:
+                succeeded_ids = set(batch_new_outputs)
+                failed_microactions = [
+                    item
+                    for item in failed_microactions
+                    if item.get("micro_action_id") not in succeeded_ids
+                ]
             if not dry_run:
                 usage = batch_result["usage"]
-                total_usage["num_tokens"] += usage["num_tokens"]
-                total_usage["cost"] += usage["cost"]
-                total_usage["prompt_tokens"] += usage["prompt_tokens"]
-                total_usage["completion_tokens"] += usage["completion_tokens"]
-                total_usage["api_calls"] += usage["api_calls"]
+                merge_usage_totals(total_usage, usage)
                 log_task_generation_batch_cost(
                     classification_root,
                     state_id,
@@ -506,14 +677,14 @@ def generate_tasks_for_macro_state(
             log.exception(
                 "Macro state %s batch=%d failed after %.2fs: %s",
                 state_id,
-                batch_index,
+                batch_number,
                 time.monotonic() - batch_started,
                 exc,
             )
             raw_response_path = (
                 str(exc.raw_response_path)
                 if isinstance(exc, BatchGenerationError) and exc.raw_response_path is not None
-                else str(run_dir / f"raw_response_batch_{batch_index:03d}.json")
+                else str(run_dir / f"raw_response_batch_{batch_number:03d}.json")
             )
             batch_record.update({
                 "status": "failed",
@@ -524,12 +695,8 @@ def generate_tasks_for_macro_state(
                 if exc.usage is not None:
                     batch_record["usage"] = exc.usage
                     usage = exc.usage
-                    total_usage["num_tokens"] += usage["num_tokens"]
-                    total_usage["cost"] += usage["cost"]
-                    total_usage["prompt_tokens"] += usage["prompt_tokens"]
-                    total_usage["completion_tokens"] += usage["completion_tokens"]
-                    total_usage["api_calls"] += usage["api_calls"]
                     if not dry_run:
+                        merge_usage_totals(total_usage, usage)
                         log_task_generation_batch_cost(
                             classification_root,
                             state_id,
@@ -549,53 +716,57 @@ def generate_tasks_for_macro_state(
         finally:
             batch_record["elapsed_seconds"] = time.monotonic() - batch_started
             batch_results.append(batch_record)
+            timings["total"] = time.monotonic() - run_started
+            if not dry_run:
+                commit_run_checkpoint(
+                    state_id=state_id,
+                    requested_action_keys=requested_action_keys,
+                    run_timestamp=run_timestamp,
+                    openai_config=openai_config,
+                    creative=creative,
+                    completion_params=completion_params,
+                    all_outputs=all_outputs,
+                    failed_microactions=failed_microactions,
+                    batch_results=batch_results,
+                    total_usage=total_usage,
+                    timings=timings,
+                    run_dir=run_dir,
+                    batch_size=batch_size,
+                    prompt_profile=prompt_profile,
+                    status=GENERATION_STATUS_IN_PROGRESS,
+                    dry_run=dry_run,
+                    new_outputs=batch_new_outputs or None,
+                )
 
     if dry_run:
         status = "dry_run"
         total_usage["cost_source"] = "none"
+    elif not failed_microactions:
+        status = GENERATION_STATUS_GENERATED
+    elif all_outputs:
+        status = GENERATION_STATUS_PARTIAL
     else:
-        status = "generated" if not failed_microactions else "partial" if all_outputs else "failed"
+        status = GENERATION_STATUS_FAILED
 
     timings["total"] = time.monotonic() - run_started
-    metadata = generation_metadata(
-        requested_action_keys=action_keys,
-        outputs=all_outputs if not dry_run else {},
-        failed_microactions=failed_microactions,
-        batches=batch_results,
-        status=status,
-    )
-    metadata["timings_seconds"] = timings
-    metadata["usage"] = total_usage
-    metadata["api_calls"] = total_usage["api_calls"]
-    metadata["macro_state_id"] = state_id
-    metadata["model"] = openai_config["model"]
-    metadata["generation_run"] = str(run_dir)
-    metadata["batch_size"] = "all" if batch_size is None else batch_size
-    metadata["prompt_profile"] = prompt_profile
-
-    settings = build_settings_payload(
-        timestamp=run_timestamp,
-        macro_state_id=state_id,
-        micro_action_ids=sorted(action_keys),
+    _, metadata = commit_run_checkpoint(
+        state_id=state_id,
+        requested_action_keys=requested_action_keys,
+        run_timestamp=run_timestamp,
         openai_config=openai_config,
         creative=creative,
-        completion_params=completion_params.as_dict(),
-        usage=total_usage,
+        completion_params=completion_params,
+        all_outputs=all_outputs,
+        failed_microactions=failed_microactions,
+        batch_results=batch_results,
+        total_usage=total_usage,
+        timings=timings,
+        run_dir=run_dir,
+        batch_size=batch_size,
+        prompt_profile=prompt_profile,
         status=status,
+        dry_run=dry_run,
     )
-    settings["api_calls"] = total_usage["api_calls"]
-    settings["timings_seconds"] = timings
-    settings["batch_size"] = "all" if batch_size is None else batch_size
-    settings["prompt_profile"] = prompt_profile
-
-    if not dry_run:
-        with StageTimer(log).stage("write_output", macro_state_id=state_id, files=len(all_outputs)):
-            write_generation_run(
-                run_dir=run_dir,
-                settings=settings,
-                metadata=metadata,
-                outputs=all_outputs,
-            )
 
     if dry_run:
         log.info(
@@ -705,6 +876,15 @@ def parse_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--resume-generation-run",
+        type=Path,
+        default=None,
+        help=(
+            "Resume an in_progress generation run folder. "
+            "Validated batches already committed in that run are preserved."
+        ),
+    )
+    parser.add_argument(
         "--batch-size",
         type=parse_batch_size,
         default=DEFAULT_BATCH_SIZE,
@@ -792,10 +972,21 @@ def main() -> int:
         return 1
 
     previous_runs = [resolve_repo_path(path) for path in args.previous_generation_run]
+    resume_run = resolve_repo_path(args.resume_generation_run) if args.resume_generation_run else None
+    if resume_run is not None and not resume_run.exists():
+        print(json.dumps({
+            "ok": False,
+            "error": f"resume generation run not found: {resume_run}",
+        }, indent=2), file=sys.stderr)
+        return 1
+
+    skip_runs = list(previous_runs)
+    if resume_run is not None:
+        skip_runs.append(resume_run)
     try:
         requested_by_state, skipped_successful = filter_previously_successful_actions(
             requested_by_state=requested_by_state,
-            previous_generation_runs=previous_runs,
+            previous_generation_runs=skip_runs,
         )
     except FileNotFoundError as exc:
         print(json.dumps({"ok": False, "error": str(exc)}, indent=2), file=sys.stderr)
@@ -845,19 +1036,37 @@ def main() -> int:
             if not pending:
                 continue
 
+            resume = False
             run_timestamp = utc_run_timestamp()
-            run_dir = generation_run_dir(
-                classification_root,
-                state_id,
-                model=openai_config["model"],
-                timestamp=run_timestamp,
-            )
-            log.info(
-                "Macro state %s: output_dir=%s microactions=%d",
-                state_id,
-                run_dir,
-                len(pending),
-            )
+            if (
+                resume_run is not None
+                and resume_run.parent.parent.parent.name == state_id
+            ):
+                if not is_in_progress_generation_run(resume_run):
+                    raise RuntimeError(
+                        f"cannot resume finalized generation run: {resume_run}"
+                    )
+                run_dir = resume_run
+                resume = True
+                log.info(
+                    "Macro state %s: resuming output_dir=%s microactions=%d",
+                    state_id,
+                    run_dir,
+                    len(pending),
+                )
+            else:
+                run_dir = generation_run_dir(
+                    classification_root,
+                    state_id,
+                    model=openai_config["model"],
+                    timestamp=run_timestamp,
+                )
+                log.info(
+                    "Macro state %s: output_dir=%s microactions=%d",
+                    state_id,
+                    run_dir,
+                    len(pending),
+                )
 
             result = generate_tasks_for_macro_state(
                 index=index,
@@ -874,6 +1083,7 @@ def main() -> int:
                 dry_run=args.dry_run,
                 batch_size=args.batch_size,
                 prompt_profile=args.prompt_profile,
+                resume=resume,
             )
             batch_results.append(result)
 
