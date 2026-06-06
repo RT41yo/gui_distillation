@@ -14,13 +14,14 @@ from ui_explorer.synthetic.generation_progress import (
     parse_attempt_batch_total,
     snapshot_macro_state,
 )
+from ui_explorer.synthetic.paths import CLASSIFICATION_DIRNAME, TASK_GENERATION_DIRNAME
 from ui_explorer.synthetic.schemas import YIELD_BUCKETS
 
 
-def _write_classification(root: Path, state_id: str, action_ids: list[str]) -> None:
+def _write_classification(root: Path, state_id: str, action_ids: list[str], *, model: str = "gpt-test") -> None:
     payload = {bucket: [] for bucket in YIELD_BUCKETS}
     payload["high"] = action_ids
-    state_dir = root / state_id
+    state_dir = root / CLASSIFICATION_DIRNAME / model / state_id
     state_dir.mkdir(parents=True, exist_ok=True)
     (state_dir / "yield_classification.json").write_text(
         json.dumps(payload) + "\n",
@@ -47,15 +48,15 @@ def test_in_flight_progress_counts_latest_unfinished_run(tmp_path: Path) -> None
     model = "gpt-test"
     _write_classification(tmp_path, state_id, ["a1", "a2", "a3", "a4"])
 
-    older = tmp_path / state_id / "generations" / model / "20260606T100000Z"
+    older = tmp_path / TASK_GENERATION_DIRNAME / model / state_id / "20260606T100000Z"
     _write_raw_batch(older, 1, ["a1"])
 
-    newer = tmp_path / state_id / "generations" / model / "20260606T110000Z"
+    newer = tmp_path / TASK_GENERATION_DIRNAME / model / state_id / "20260606T110000Z"
     _write_raw_batch(newer, 1, ["a1", "a2"])
     _write_raw_batch(newer, 2, ["a3"])
 
     progress = in_flight_generation_progress(
-        classification_root=tmp_path,
+        workspace_root=tmp_path,
         state_id=state_id,
         model=model,
     )
@@ -81,13 +82,14 @@ def test_snapshot_macro_state_includes_in_flight_detail(tmp_path: Path) -> None:
     state_id = "state123"
     model = "gpt-test"
     _write_classification(tmp_path, state_id, ["a1", "a2"])
-    run_dir = tmp_path / state_id / "generations" / model / "20260606T120000Z"
+    run_dir = tmp_path / TASK_GENERATION_DIRNAME / model / state_id / "20260606T120000Z"
     _write_raw_batch(run_dir, 1, ["a1", "a2"])
 
     row = snapshot_macro_state(
-        classification_root=tmp_path,
+        workspace_root=tmp_path,
         state_id=state_id,
         model=model,
+        classification_model=model,
         status="running",
         attempt_label="missing=2 batch=2 runs=0",
     )
@@ -102,7 +104,7 @@ def test_in_flight_progress_uses_metadata_for_committed_runs(tmp_path: Path) -> 
     model = "gpt-test"
     _write_classification(tmp_path, state_id, ["a1", "a2", "a3", "a4"])
 
-    run_dir = tmp_path / state_id / "generations" / model / "20260606T130000Z"
+    run_dir = tmp_path / TASK_GENERATION_DIRNAME / model / state_id / "20260606T130000Z"
     commit_generation_checkpoint(
         run_dir=run_dir,
         settings={"timestamp": "20260606T130000Z", "status": GENERATION_STATUS_IN_PROGRESS},
@@ -119,7 +121,7 @@ def test_in_flight_progress_uses_metadata_for_committed_runs(tmp_path: Path) -> 
     )
 
     progress = in_flight_generation_progress(
-        classification_root=tmp_path,
+        workspace_root=tmp_path,
         state_id=state_id,
         model=model,
     )
@@ -130,9 +132,10 @@ def test_in_flight_progress_uses_metadata_for_committed_runs(tmp_path: Path) -> 
     assert progress["batches_total"] == 2
 
     row = snapshot_macro_state(
-        classification_root=tmp_path,
+        workspace_root=tmp_path,
         state_id=state_id,
         model=model,
+        classification_model=model,
         status="running",
     )
     assert row.successful == 2

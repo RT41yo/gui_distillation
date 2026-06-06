@@ -12,13 +12,14 @@ from ui_explorer.synthetic.generation_output import (
     load_generation_run_state,
     successful_action_ids_from_generation_run,
 )
+from ui_explorer.synthetic.paths import CLASSIFICATION_DIRNAME, TASK_GENERATION_DIRNAME
 from ui_explorer.synthetic.schemas import YIELD_BUCKETS
 
 
-def _write_classification(root: Path, state_id: str, action_ids: list[str]) -> None:
+def _write_classification(root: Path, state_id: str, action_ids: list[str], *, model: str = "gpt-test") -> None:
     payload = {bucket: [] for bucket in YIELD_BUCKETS}
     payload["high"] = action_ids
-    state_dir = root / state_id
+    state_dir = root / CLASSIFICATION_DIRNAME / model / state_id
     state_dir.mkdir(parents=True, exist_ok=True)
     (state_dir / "yield_classification.json").write_text(
         json.dumps(payload) + "\n",
@@ -60,7 +61,7 @@ def test_commit_checkpoint_updates_coverage_incrementally(tmp_path: Path) -> Non
     model = "gpt-test"
     _write_classification(tmp_path, state_id, ["a1", "a2", "a3"])
 
-    run_dir = tmp_path / state_id / "generations" / model / "20260606T120000Z"
+    run_dir = tmp_path / TASK_GENERATION_DIRNAME / model / state_id / "20260606T120000Z"
     settings = {
         "timestamp": "20260606T120000Z",
         "status": GENERATION_STATUS_IN_PROGRESS,
@@ -82,9 +83,10 @@ def test_commit_checkpoint_updates_coverage_incrementally(tmp_path: Path) -> Non
     )
 
     coverage = generation_coverage(
-        classification_root=tmp_path,
+        workspace_root=tmp_path,
         state_id=state_id,
         model=model,
+        classification_model=model,
     )
     assert coverage["successful_count"] == 1
     assert successful_action_ids_from_generation_run(run_dir) == {"a1"}
@@ -95,7 +97,7 @@ def test_find_resumable_generation_run_prefers_in_progress(tmp_path: Path) -> No
     model = "gpt-test"
     _write_classification(tmp_path, state_id, ["a1"])
 
-    finalized = tmp_path / state_id / "generations" / model / "20260606T100000Z"
+    finalized = tmp_path / TASK_GENERATION_DIRNAME / model / state_id / "20260606T100000Z"
     commit_generation_checkpoint(
         run_dir=finalized,
         settings={"timestamp": "20260606T100000Z", "status": GENERATION_STATUS_GENERATED},
@@ -106,7 +108,7 @@ def test_find_resumable_generation_run_prefers_in_progress(tmp_path: Path) -> No
         ),
     )
 
-    in_progress = tmp_path / state_id / "generations" / model / "20260606T110000Z"
+    in_progress = tmp_path / TASK_GENERATION_DIRNAME / model / state_id / "20260606T110000Z"
     commit_generation_checkpoint(
         run_dir=in_progress,
         settings={"timestamp": "20260606T110000Z", "status": GENERATION_STATUS_IN_PROGRESS},
@@ -117,7 +119,7 @@ def test_find_resumable_generation_run_prefers_in_progress(tmp_path: Path) -> No
 
 
 def test_load_generation_run_state_reads_committed_outputs(tmp_path: Path) -> None:
-    run_dir = tmp_path / "state123" / "generations" / "gpt-test" / "20260606T120000Z"
+    run_dir = tmp_path / TASK_GENERATION_DIRNAME / "gpt-test" / "state123" / "20260606T120000Z"
     commit_generation_checkpoint(
         run_dir=run_dir,
         settings={"timestamp": "20260606T120000Z"},

@@ -6,11 +6,13 @@ from pathlib import Path
 from typing import Any
 
 from ui_explorer.synthetic.io import load_json, save_json
+from ui_explorer.synthetic.paths import CLASSIFICATION_DIRNAME, TASK_GENERATION_DIRNAME
 from ui_explorer.synthetic.schemas import YIELD_BUCKETS
 
-GENERATIONS_DIRNAME = "generations"
+LEGACY_GENERATIONS_DIRNAME = "generations"
 SETTINGS_FILENAME = "settings.json"
 METADATA_FILENAME = "metadata.json"
+CLASSIFICATION_FILENAME = "yield_classification.json"
 RAW_RESPONSE_BATCH_PATTERN = re.compile(r"^raw_response_batch_(\d+)\.json$")
 RUN_TIMESTAMP_PATTERN = re.compile(r"^\d{8}T\d{6}Z$")
 
@@ -35,25 +37,98 @@ def model_dir_name(model: str) -> str:
     return slug.replace("/", "_").replace("\\", "_")
 
 
-def classification_path(classification_root: Path, state_id: str) -> Path:
-    return classification_root / state_id / "yield_classification.json"
+def classification_model_dir(workspace_root: Path, *, classification_model: str) -> Path:
+    return workspace_root / CLASSIFICATION_DIRNAME / model_dir_name(classification_model)
+
+
+def classification_path(
+    workspace_root: Path,
+    state_id: str,
+    *,
+    classification_model: str,
+) -> Path:
+    return classification_model_dir(workspace_root, classification_model=classification_model) / state_id / CLASSIFICATION_FILENAME
+
+
+def tasks_model_dir(workspace_root: Path, *, model: str) -> Path:
+    return workspace_root / TASK_GENERATION_DIRNAME / model_dir_name(model)
+
+
+def macro_state_tasks_dir(
+    workspace_root: Path,
+    state_id: str,
+    *,
+    model: str,
+) -> Path:
+    return tasks_model_dir(workspace_root, model=model) / state_id
 
 
 def generation_run_dir(
-    classification_root: Path,
+    workspace_root: Path,
     state_id: str,
     *,
     model: str,
     timestamp: str | None = None,
 ) -> Path:
     run_id = timestamp or utc_run_timestamp()
-    return (
-        classification_root
-        / state_id
-        / GENERATIONS_DIRNAME
-        / model_dir_name(model)
-        / run_id
+    return macro_state_tasks_dir(workspace_root, state_id, model=model) / run_id
+
+
+def is_classification_macro_state_dir(path: Path) -> bool:
+    return path.is_dir() and (path / CLASSIFICATION_FILENAME).exists()
+
+
+def is_legacy_flat_classification_state_dir(path: Path, *, workspace_root: Path) -> bool:
+    return path.parent == workspace_root and is_classification_macro_state_dir(path)
+
+
+def list_classification_models(workspace_root: Path) -> list[str]:
+    classification_root = workspace_root / CLASSIFICATION_DIRNAME
+    if not classification_root.exists():
+        return []
+    return sorted(
+        child.name
+        for child in classification_root.iterdir()
+        if child.is_dir()
     )
+
+
+def resolve_classification_model(
+    workspace_root: Path,
+    override: str | None = None,
+) -> str:
+    if override:
+        return model_dir_name(override)
+    models = list_classification_models(workspace_root)
+    if len(models) == 1:
+        return models[0]
+    if not models:
+        raise FileNotFoundError(
+            f"no classification model directories under {workspace_root / CLASSIFICATION_DIRNAME}"
+        )
+    raise ValueError(
+        "multiple classification models found "
+        f"({', '.join(models)}); pass --classification-model"
+    )
+
+
+def list_classified_state_ids(
+    workspace_root: Path,
+    *,
+    classification_model: str,
+) -> list[str]:
+    model_dir = classification_model_dir(workspace_root, classification_model=classification_model)
+    if not model_dir.exists():
+        return []
+    return sorted(
+        child.name
+        for child in model_dir.iterdir()
+        if is_classification_macro_state_dir(child)
+    )
+
+
+def legacy_macro_state_dir(workspace_root: Path, state_id: str) -> Path:
+    return workspace_root / state_id
 
 
 def model_from_generation_run(run_dir: Path) -> str:
@@ -74,8 +149,8 @@ def model_from_generation_run(run_dir: Path) -> str:
     return "unknown"
 
 
-def generations_dir(classification_root: Path, state_id: str) -> Path:
-    return classification_root / state_id / GENERATIONS_DIRNAME
+def legacy_generations_dir(workspace_root: Path, state_id: str) -> Path:
+    return legacy_macro_state_dir(workspace_root, state_id) / LEGACY_GENERATIONS_DIRNAME
 
 
 def is_generation_run_dir(path: Path) -> bool:
@@ -101,14 +176,14 @@ def is_finalized_generation_run(run_dir: Path) -> bool:
 
 
 def find_resumable_generation_run(
-    classification_root: Path,
+    workspace_root: Path,
     state_id: str,
     *,
     model: str,
 ) -> Path | None:
     candidates = [
         run_dir
-        for run_dir in list_model_run_dirs(classification_root, state_id, model=model)
+        for run_dir in list_model_run_dirs(workspace_root, state_id, model=model)
         if is_generation_run_dir(run_dir) and is_in_progress_generation_run(run_dir)
     ]
     if not candidates:
@@ -177,27 +252,18 @@ def estimate_total_batches(*, requested_count: int, batch_size: int | str | None
     return (requested_count + size - 1) // size
 
 
-def model_generations_dir(
-    classification_root: Path,
-    state_id: str,
-    *,
-    model: str,
-) -> Path:
-    return generations_dir(classification_root, state_id) / model_dir_name(model)
-
-
 def list_model_run_dirs(
-    classification_root: Path,
+    workspace_root: Path,
     state_id: str,
     *,
     model: str,
 ) -> list[Path]:
-    model_dir = model_generations_dir(classification_root, state_id, model=model)
-    if not model_dir.exists():
+    state_model_dir = macro_state_tasks_dir(workspace_root, state_id, model=model)
+    if not state_model_dir.exists():
         return []
     return sorted(
         child
-        for child in model_dir.iterdir()
+        for child in state_model_dir.iterdir()
         if child.is_dir() and RUN_TIMESTAMP_PATTERN.match(child.name)
     )
 
@@ -241,12 +307,12 @@ def in_flight_microaction_ids_from_run(run_dir: Path) -> set[str]:
 
 def in_flight_generation_progress(
     *,
-    classification_root: Path,
+    workspace_root: Path,
     state_id: str,
     model: str,
 ) -> dict[str, object] | None:
     """Summarize the newest unfinished generation run."""
-    resumable = find_resumable_generation_run(classification_root, state_id, model=model)
+    resumable = find_resumable_generation_run(workspace_root, state_id, model=model)
     if resumable is not None:
         metadata = load_json(resumable / METADATA_FILENAME)
         batches = metadata.get("batches", [])
@@ -276,7 +342,7 @@ def in_flight_generation_progress(
 
     candidates = [
         run_dir
-        for run_dir in list_model_run_dirs(classification_root, state_id, model=model)
+        for run_dir in list_model_run_dirs(workspace_root, state_id, model=model)
         if is_in_flight_generation_run_dir(run_dir)
     ]
     if not candidates:
@@ -324,32 +390,39 @@ def in_flight_generation_progress(
     }
 
 
+def _collect_timestamp_run_dirs(parent: Path) -> list[Path]:
+    if not parent.exists():
+        return []
+    return sorted(
+        child
+        for child in parent.iterdir()
+        if child.is_dir()
+        and RUN_TIMESTAMP_PATTERN.match(child.name)
+        and is_generation_run_dir(child)
+    )
+
+
 def list_generation_runs(
-    classification_root: Path,
+    workspace_root: Path,
     state_id: str,
     *,
     model: str | None = None,
 ) -> list[Path]:
-    runs_dir = generations_dir(classification_root, state_id)
-    if not runs_dir.exists():
-        return []
-
     runs: list[Path] = []
-    for child in runs_dir.iterdir():
-        if not child.is_dir():
-            continue
-        if is_generation_run_dir(child):
-            runs.append(child)
-            continue
-        for run_dir in child.iterdir():
-            if is_generation_run_dir(run_dir):
-                runs.append(run_dir)
+    tasks_root = workspace_root / TASK_GENERATION_DIRNAME
+    if model is not None:
+        runs.extend(
+            _collect_timestamp_run_dirs(
+                macro_state_tasks_dir(workspace_root, state_id, model=model),
+            )
+        )
+    elif tasks_root.exists():
+        for model_dir in tasks_root.iterdir():
+            if not model_dir.is_dir():
+                continue
+            runs.extend(_collect_timestamp_run_dirs(model_dir / state_id))
 
-    runs = sorted(runs, key=lambda path: (path.parent.name, path.name))
-    if model is None:
-        return runs
-    model_name = model_dir_name(model)
-    return [run_dir for run_dir in runs if run_dir.parent.name == model_name]
+    return sorted(runs, key=lambda path: (path.parent.parent.name, path.name))
 
 
 def successful_action_ids_from_generation_run(run_dir: Path) -> set[str]:
@@ -390,17 +463,22 @@ def classified_action_keys(classification: dict[str, object]) -> set[str]:
 
 def generation_coverage(
     *,
-    classification_root: Path,
+    workspace_root: Path,
     state_id: str,
     model: str | None = None,
+    classification_model: str,
 ) -> dict[str, object]:
-    classification_file = classification_path(classification_root, state_id)
+    classification_file = classification_path(
+        workspace_root,
+        state_id,
+        classification_model=classification_model,
+    )
     if not classification_file.exists():
         raise FileNotFoundError(f"missing classification file: {classification_file}")
 
     classification = load_json(classification_file)
     expected = classified_action_keys(classification)
-    runs = list_generation_runs(classification_root, state_id, model=model)
+    runs = list_generation_runs(workspace_root, state_id, model=model)
     successful = successful_action_ids_from_runs(runs)
     missing = expected - successful
     return {
@@ -411,6 +489,7 @@ def generation_coverage(
         "complete": not missing,
         "generation_runs": [str(path) for path in runs],
         "model": model,
+        "classification_model": classification_model,
     }
 
 
@@ -488,34 +567,109 @@ def write_generation_run(
     )
 
 
-def migrate_legacy_generation_run(run_dir: Path, *, default_model: str = "unknown") -> Path | None:
-    """Move a flat generations/{timestamp} run to generations/{model}/{timestamp}."""
-    if not is_generation_run_dir(run_dir):
+def rewrite_generation_run_paths(run_dir: Path) -> None:
+    """Rewrite embedded absolute paths after a generation run directory move."""
+    for filename in (SETTINGS_FILENAME, METADATA_FILENAME):
+        path = run_dir / filename
+        if not path.exists():
+            continue
+        payload = load_json(path)
+        if payload.get("generation_run"):
+            payload["generation_run"] = str(run_dir)
+        batches = payload.get("batches")
+        if isinstance(batches, list):
+            for batch in batches:
+                if not isinstance(batch, dict):
+                    continue
+                raw_path = batch.get("raw_response_path")
+                if isinstance(raw_path, str) and raw_path:
+                    batch["raw_response_path"] = str(run_dir / Path(raw_path).name)
+        save_json(path, payload)
+
+
+def migrate_generation_run_layout(
+    run_dir: Path,
+    *,
+    workspace_root: Path,
+    default_model: str = "unknown",
+) -> Path | None:
+    """Move a run to {workspace_root}/task_generation/{model}/{macro_state_id}/{timestamp}/."""
+    if not is_generation_run_dir(run_dir) and not is_in_flight_generation_run_dir(run_dir):
         return None
-    if run_dir.parent.name != GENERATIONS_DIRNAME:
-        return run_dir
 
     model = model_from_generation_run(run_dir)
     if model == "unknown":
         model = default_model
 
-    target = run_dir.parent / model_dir_name(model) / run_dir.name
+    state_id: str | None = None
+    metadata_path = run_dir / METADATA_FILENAME
+    if metadata_path.exists():
+        metadata = load_json(metadata_path)
+        macro_state_id = metadata.get("macro_state_id")
+        if isinstance(macro_state_id, str) and macro_state_id.strip():
+            state_id = macro_state_id.strip()
+
+    if state_id is None:
+        ancestors = list(run_dir.parents)
+        if run_dir.parent.name == LEGACY_GENERATIONS_DIRNAME:
+            state_id = run_dir.parent.parent.name
+        elif (
+            len(ancestors) >= 3
+            and ancestors[1].name == LEGACY_GENERATIONS_DIRNAME
+            and ancestors[2].parent == workspace_root
+        ):
+            state_id = ancestors[2].name
+        elif len(ancestors) >= 2 and ancestors[1].parent.name in {
+            TASK_GENERATION_DIRNAME,
+            model_dir_name(model),
+        }:
+            state_id = ancestors[1].name
+        elif (
+            len(ancestors) >= 2
+            and ancestors[1].parent == workspace_root
+            and ancestors[1].name != CLASSIFICATION_DIRNAME
+            and ancestors[1].name != TASK_GENERATION_DIRNAME
+        ):
+            state_id = ancestors[1].name
+
+    if state_id is None:
+        raise ValueError(f"cannot infer macro state id for generation run: {run_dir}")
+
+    target = generation_run_dir(
+        workspace_root,
+        state_id,
+        model=model,
+        timestamp=run_dir.name,
+    )
     if target == run_dir:
+        rewrite_generation_run_paths(run_dir)
         return run_dir
     if target.exists():
         raise FileExistsError(f"cannot migrate {run_dir} because {target} already exists")
 
     target.parent.mkdir(parents=True, exist_ok=True)
     run_dir.rename(target)
-
-    for filename in (SETTINGS_FILENAME, METADATA_FILENAME):
-        path = target / filename
-        if not path.exists():
-            continue
-        payload = load_json(path)
-        payload["generation_run"] = str(target)
-        if filename == METADATA_FILENAME and "model" not in payload:
-            payload["model"] = model
-        save_json(path, payload)
-
+    rewrite_generation_run_paths(target)
     return target
+
+
+def migrate_legacy_generation_run(run_dir: Path, *, default_model: str = "unknown") -> Path | None:
+    """Backward-compatible alias for older migration callers."""
+    workspace_root = run_dir
+    while workspace_root.parent != workspace_root:
+        if (workspace_root / CLASSIFICATION_DIRNAME).exists() or (workspace_root / TASK_GENERATION_DIRNAME).exists():
+            break
+        if any(
+            is_legacy_flat_classification_state_dir(child, workspace_root=workspace_root)
+            for child in workspace_root.iterdir()
+            if child.is_dir()
+        ):
+            break
+        workspace_root = workspace_root.parent
+    else:
+        return None
+    return migrate_generation_run_layout(
+        run_dir,
+        workspace_root=workspace_root,
+        default_model=default_model,
+    )

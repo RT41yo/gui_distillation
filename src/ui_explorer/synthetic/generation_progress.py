@@ -39,18 +39,20 @@ class MacroStateProgressSnapshot:
 
 def snapshot_macro_state(
     *,
-    classification_root: Path,
+    workspace_root: Path,
     state_id: str,
     model: str,
+    classification_model: str,
     status: str = "pending",
     note: str = "",
     attempt_label: str = "",
 ) -> MacroStateProgressSnapshot:
     try:
         coverage = generation_coverage(
-            classification_root=classification_root,
+            workspace_root=workspace_root,
             state_id=state_id,
             model=model,
+            classification_model=classification_model,
         )
     except FileNotFoundError:
         return MacroStateProgressSnapshot(
@@ -69,7 +71,7 @@ def snapshot_macro_state(
             row_status = "pending"
 
     in_flight = in_flight_generation_progress(
-        classification_root=classification_root,
+        workspace_root=workspace_root,
         state_id=state_id,
         model=model,
     )

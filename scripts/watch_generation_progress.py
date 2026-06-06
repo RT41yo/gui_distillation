@@ -12,6 +12,7 @@ from ui_explorer.synthetic.generation_progress import (
     format_progress_lines,
     snapshot_macro_state,
 )
+from ui_explorer.synthetic.generation_output import resolve_classification_model
 from ui_explorer.synthetic.paths import DEFAULT_OUTPUT_ROOT, resolve_repo_path
 
 REFRESH_INTERVAL_SECONDS = 0.5
@@ -20,9 +21,16 @@ REFRESH_INTERVAL_SECONDS = 0.5
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
+        "--workspace-root",
         "--classification-root",
+        dest="workspace_root",
         type=Path,
         default=resolve_repo_path(DEFAULT_OUTPUT_ROOT),
+    )
+    parser.add_argument(
+        "--classification-model",
+        default=None,
+        help="Model directory under classification/ to read yield classifications from.",
     )
     parser.add_argument("--macro-state-id", action="append", default=[])
     parser.add_argument("--model", required=True)
@@ -41,7 +49,15 @@ def main() -> int:
         print("Provide at least one --macro-state-id", file=sys.stderr)
         return 2
 
-    classification_root = args.classification_root.resolve()
+    workspace_root = args.workspace_root.resolve()
+    try:
+        classification_model = resolve_classification_model(
+            workspace_root,
+            args.classification_model,
+        )
+    except (FileNotFoundError, ValueError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
     started = time.monotonic()
     rendered_lines = 0
     stream = sys.stderr if sys.stderr.isatty() else sys.stdout
@@ -50,9 +66,10 @@ def main() -> int:
         while True:
             rows = [
                 snapshot_macro_state(
-                    classification_root=classification_root,
+                    workspace_root=workspace_root,
                     state_id=state_id,
                     model=args.model,
+                    classification_model=classification_model,
                     status="running",
                 )
                 for state_id in args.macro_state_id

@@ -18,6 +18,7 @@ from ui_explorer.synthetic.io import load_json, save_json
 from ui_explorer.synthetic.llm_args import CompletionParams, add_completion_args, completion_params_from_args
 from ui_explorer.synthetic.logging_config import configure_logging
 from ui_explorer.synthetic.openai_client import build_openai_messages, openai_structured_completion
+from ui_explorer.synthetic.generation_output import classification_path
 from ui_explorer.synthetic.paths import DEFAULT_OUTPUT_ROOT, repo_root, resolve_repo_path
 from ui_explorer.synthetic.schemas import (
     YIELD_CLASSIFICATION_SCHEMA,
@@ -238,9 +239,14 @@ def main() -> int:
     skipped: list[str] = []
     failed: list[dict[str, str]] = []
 
+    classification_model = openai_config.get("model") or "unknown"
+
     for state_id, scope_state in states:
-        out_dir = output_root / state_id
-        out_path = out_dir / "yield_classification.json"
+        out_path = classification_path(
+            output_root,
+            state_id,
+            classification_model=classification_model,
+        )
 
         if out_path.exists() and not args.overwrite:
             skipped.append(state_id)
@@ -260,6 +266,7 @@ def main() -> int:
                 max_attempts=args.max_attempts,
             )
             if not args.dry_run:
+                out_path.parent.mkdir(parents=True, exist_ok=True)
                 save_json(out_path, result["classification"])
             processed.append(state_id)
             log.info(

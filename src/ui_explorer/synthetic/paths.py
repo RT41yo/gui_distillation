@@ -7,6 +7,13 @@ SCOPE_MAP_PATH = Path("data/maps/libreoffice_writer/agent_map_active_root_scope.
 AGENT_MAP_PATH = Path("data/maps/libreoffice_writer/agent_map.json")
 PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
 
+CLASSIFICATION_DIRNAME = "classification"
+TASK_GENERATION_DIRNAME = "task_generation"
+LOGS_DIRNAME = ".logs"
+
+# Model used for the bulk of existing yield classifications on disk.
+DEFAULT_CLASSIFICATION_MODEL = "gpt-4o-mini-2024-07-18"
+
 
 def repo_root() -> Path:
     return Path(__file__).resolve().parents[3]

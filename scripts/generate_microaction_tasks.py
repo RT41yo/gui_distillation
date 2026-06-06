@@ -24,6 +24,7 @@ from ui_explorer.synthetic.generation_output import (
     classification_path,
     commit_generation_checkpoint,
     generation_run_dir,
+    resolve_classification_model,
     is_in_progress_generation_run,
     load_generation_run_state,
     successful_action_ids_from_generation_run,
@@ -57,8 +58,17 @@ DEFAULT_PROMPT_PROFILE = "slim"
 PROMPT_PROFILES = ("default", "slim")
 
 
-def load_classification(classification_root: Path, state_id: str) -> dict[str, Any]:
-    path = classification_path(classification_root, state_id)
+def load_classification(
+    workspace_root: Path,
+    state_id: str,
+    *,
+    classification_model: str,
+) -> dict[str, Any]:
+    path = classification_path(
+        workspace_root,
+        state_id,
+        classification_model=classification_model,
+    )
     if not path.exists():
         raise FileNotFoundError(f"missing classification file: {path}")
     return load_json(path)
@@ -541,7 +551,7 @@ def generate_tasks_for_macro_state(
     action_keys: set[str],
     classification: dict[str, Any],
     openai_config: dict[str, str],
-    classification_root: Path,
+    workspace_root: Path,
     run_dir: Path,
     run_timestamp: str,
     creative: bool,
@@ -660,7 +670,7 @@ def generate_tasks_for_macro_state(
                 usage = batch_result["usage"]
                 merge_usage_totals(total_usage, usage)
                 log_task_generation_batch_cost(
-                    classification_root,
+                    workspace_root,
                     state_id,
                     openai_config["model"],
                     UsageCost(
@@ -698,7 +708,7 @@ def generate_tasks_for_macro_state(
                     if not dry_run:
                         merge_usage_totals(total_usage, usage)
                         log_task_generation_batch_cost(
-                            classification_root,
+                            workspace_root,
                             state_id,
                             openai_config["model"],
                             UsageCost(
@@ -803,7 +813,8 @@ def generate_tasks_for_macro_state(
 def resolve_requested_actions(
     *,
     index: ScopeIndex,
-    classification_root: Path,
+    workspace_root: Path,
+    classification_model: str,
     micro_action_ids: list[str],
     macro_state_ids: list[str],
 ) -> dict[str, set[str]]:
@@ -814,7 +825,11 @@ def resolve_requested_actions(
         by_state[ref.state_id].add(micro_action_id)
 
     for state_id in macro_state_ids:
-        classification = load_classification(classification_root, state_id)
+        classification = load_classification(
+            workspace_root,
+            state_id,
+            classification_model=classification_model,
+        )
         by_state[state_id].update(classified_action_keys(classification))
 
     return dict(by_state)
@@ -847,10 +862,17 @@ def filter_previously_successful_actions(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
+        "--workspace-root",
         "--classification-root",
+        dest="workspace_root",
         type=Path,
         default=DEFAULT_OUTPUT_ROOT,
-        help="Root directory containing {state_id}/yield_classification.json files.",
+        help="Synthetic workspace root containing classification/ and task_generation/ directories.",
+    )
+    parser.add_argument(
+        "--classification-model",
+        default=None,
+        help="Model directory under classification/ to read yield classifications from.",
     )
     parser.add_argument(
         "--micro-action-id",
@@ -924,7 +946,15 @@ def main() -> int:
         return 2
 
     root = repo_root()
-    classification_root = resolve_repo_path(args.classification_root)
+    workspace_root = resolve_repo_path(args.workspace_root)
+    try:
+        classification_model = resolve_classification_model(
+            workspace_root,
+            args.classification_model,
+        )
+    except (FileNotFoundError, ValueError) as exc:
+        print(json.dumps({"ok": False, "error": str(exc)}, indent=2), file=sys.stderr)
+        return 1
     env_path = args.env_file or (root / ".env")
 
     index = ScopeIndex.load(repo_root=root)
@@ -934,8 +964,9 @@ def main() -> int:
     if completion_params.max_tokens is None:
         completion_params = completion_params.merge(CompletionParams(max_tokens=DEFAULT_MAX_TOKENS))
     log.info(
-        "stage=startup status=done classification_root=%s dry_run=%s creative=%s batch_size=%s prompt_profile=%s",
-        classification_root,
+        "stage=startup status=done workspace_root=%s classification_model=%s dry_run=%s creative=%s batch_size=%s prompt_profile=%s",
+        workspace_root,
+        classification_model,
         args.dry_run,
         args.creative,
         "all" if args.batch_size is None else args.batch_size,
@@ -963,7 +994,8 @@ def main() -> int:
     try:
         requested_by_state = resolve_requested_actions(
             index=index,
-            classification_root=classification_root,
+            workspace_root=workspace_root,
+            classification_model=classification_model,
             micro_action_ids=args.micro_action_id,
             macro_state_ids=args.macro_state_id,
         )
@@ -1017,7 +1049,11 @@ def main() -> int:
         log.info("stage=macro_state status=start macro_state_id=%s microactions=%d", state_id, len(action_keys))
         try:
             scope_state = index.get_scope_state(state_id)
-            classification = load_classification(classification_root, state_id)
+            classification = load_classification(
+                workspace_root,
+                state_id,
+                classification_model=classification_model,
+            )
 
             for action_key in sorted(action_keys):
                 if find_yield_bucket(classification, action_key) is None:
@@ -1056,7 +1092,7 @@ def main() -> int:
                 )
             else:
                 run_dir = generation_run_dir(
-                    classification_root,
+                    workspace_root,
                     state_id,
                     model=openai_config["model"],
                     timestamp=run_timestamp,
@@ -1075,7 +1111,7 @@ def main() -> int:
                 action_keys=pending,
                 classification=classification,
                 openai_config=openai_config,
-                classification_root=classification_root,
+                workspace_root=workspace_root,
                 run_dir=run_dir,
                 run_timestamp=run_timestamp,
                 creative=args.creative,
@@ -1121,7 +1157,8 @@ def main() -> int:
     print(json.dumps({
         "ok": len(failed) == 0,
         "action": "dry_run" if args.dry_run else "generate_tasks",
-        "classification_root": str(classification_root),
+        "workspace_root": str(workspace_root),
+        "classification_model": classification_model,
         "processed": processed,
         "failed": [{"micro_action_id": item["micro_action_id"], "error": item["error"]} for item in failed],
         "skipped_successful": skipped_successful,

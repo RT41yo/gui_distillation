@@ -21,6 +21,7 @@ from ui_explorer.synthetic.generation_output import (
     generation_coverage,
     list_generation_runs,
     model_dir_name,
+    resolve_classification_model,
     utc_run_timestamp,
 )
 from ui_explorer.synthetic.generation_progress import (
@@ -28,14 +29,13 @@ from ui_explorer.synthetic.generation_progress import (
     snapshot_macro_state,
 )
 from ui_explorer.synthetic.logging_config import configure_file_logging
-from ui_explorer.synthetic.paths import DEFAULT_OUTPUT_ROOT, repo_root, resolve_repo_path
+from ui_explorer.synthetic.paths import DEFAULT_OUTPUT_ROOT, LOGS_DIRNAME, repo_root, resolve_repo_path
 from ui_explorer.synthetic.scope_index import ScopeIndex
 
 log = logging.getLogger(__name__)
 
 DEFAULT_BATCH_SIZES = (6, 2, 1)
 GENERATE_SCRIPT = Path(__file__).resolve().parent / "generate_microaction_tasks.py"
-LOGS_DIRNAME = ".logs"
 PROGRESS_FILENAME = "progress.txt"
 REFRESH_INTERVAL_SECONDS = 0.5
 
@@ -50,8 +50,9 @@ def resolve_display_stream() -> TextIO | None:
 
 @dataclass
 class ProgressBoard:
-    classification_root: Path
+    workspace_root: Path
     model: str
+    classification_model: str
     state_ids: list[str]
     started: float = field(default_factory=time.monotonic)
     active_state_id: str | None = None
@@ -89,9 +90,10 @@ class ProgressBoard:
             attempt_label = self.attempt_label if state_id == self.active_state_id else ""
             rows.append(
                 snapshot_macro_state(
-                    classification_root=self.classification_root,
+                    workspace_root=self.workspace_root,
                     state_id=state_id,
                     model=self.model,
+                    classification_model=self.classification_model,
                     status=status,
                     note=note,
                     attempt_label=attempt_label,
@@ -148,13 +150,14 @@ def batch_size_for_attempt(batch_sizes: tuple[int, ...], attempt: int) -> int:
     return batch_sizes[index]
 
 
-def run_log_path(classification_root: Path, run_timestamp: str) -> Path:
-    return classification_root / LOGS_DIRNAME / run_timestamp / "run.log"
+def run_log_path(workspace_root: Path, run_timestamp: str) -> Path:
+    return workspace_root / LOGS_DIRNAME / run_timestamp / "run.log"
 
 
 def build_generation_command(
     *,
-    classification_root: Path,
+    workspace_root: Path,
+    classification_model: str,
     state_id: str,
     previous_runs: list[Path],
     resume_run: Path | None,
@@ -167,8 +170,10 @@ def build_generation_command(
     cmd = [
         sys.executable,
         str(GENERATE_SCRIPT),
-        "--classification-root",
-        str(classification_root),
+        "--workspace-root",
+        str(workspace_root),
+        "--classification-model",
+        classification_model,
         "--macro-state-id",
         state_id,
         "--batch-size",
@@ -198,7 +203,8 @@ def subprocess_env() -> dict[str, str]:
 
 def run_generation_attempt(
     *,
-    classification_root: Path,
+    workspace_root: Path,
+    classification_model: str,
     state_id: str,
     previous_runs: list[Path],
     resume_run: Path | None,
@@ -211,7 +217,8 @@ def run_generation_attempt(
     attempt_label: str,
 ) -> subprocess.CompletedProcess[str]:
     cmd = build_generation_command(
-        classification_root=classification_root,
+        workspace_root=workspace_root,
+        classification_model=classification_model,
         state_id=state_id,
         previous_runs=previous_runs,
         resume_run=resume_run,
@@ -260,7 +267,8 @@ def run_generation_attempt(
 
 def retry_macro_state(
     *,
-    classification_root: Path,
+    workspace_root: Path,
+    classification_model: str,
     state_id: str,
     model: str,
     max_attempts: int,
@@ -275,9 +283,10 @@ def retry_macro_state(
 
     for attempt in range(1, max_attempts + 1):
         coverage = generation_coverage(
-            classification_root=classification_root,
+            workspace_root=workspace_root,
             state_id=state_id,
             model=model,
+            classification_model=classification_model,
         )
         if coverage["complete"]:
             board.mark_result(state_id, "complete")
@@ -291,12 +300,12 @@ def retry_macro_state(
             }
 
         previous_runs = list_generation_runs(
-            classification_root,
+            workspace_root,
             state_id,
             model=model,
         )
         resume_run = find_resumable_generation_run(
-            classification_root,
+            workspace_root,
             state_id,
             model=model,
         )
@@ -317,7 +326,8 @@ def retry_macro_state(
         )
 
         result = run_generation_attempt(
-            classification_root=classification_root,
+            workspace_root=workspace_root,
+            classification_model=classification_model,
             state_id=state_id,
             previous_runs=previous_for_attempt,
             resume_run=resume_run,
@@ -346,9 +356,10 @@ def retry_macro_state(
                 pass
 
         coverage = generation_coverage(
-            classification_root=classification_root,
+            workspace_root=workspace_root,
             state_id=state_id,
             model=model,
+            classification_model=classification_model,
         )
         attempt_record["coverage"] = coverage
         board.render()
@@ -365,9 +376,10 @@ def retry_macro_state(
             }
 
     final_coverage = generation_coverage(
-        classification_root=classification_root,
+        workspace_root=workspace_root,
         state_id=state_id,
         model=model,
+        classification_model=classification_model,
     )
     board.mark_result(state_id, "incomplete")
     board.render()
@@ -383,7 +395,8 @@ def retry_macro_state(
 def resolve_target_states(
     *,
     index: ScopeIndex,
-    classification_root: Path,
+    workspace_root: Path,
+    classification_model: str,
     macro_state_ids: list[str],
 ) -> list[str]:
     if macro_state_ids:
@@ -391,7 +404,11 @@ def resolve_target_states(
 
     targets: list[str] = []
     for state_id, _scope_state in index.states_with_microactions():
-        if classification_path(classification_root, state_id).exists():
+        if classification_path(
+            workspace_root,
+            state_id,
+            classification_model=classification_model,
+        ).exists():
             targets.append(state_id)
     return sorted(targets)
 
@@ -399,10 +416,17 @@ def resolve_target_states(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
+        "--workspace-root",
         "--classification-root",
+        dest="workspace_root",
         type=Path,
         default=DEFAULT_OUTPUT_ROOT,
-        help="Root directory containing macro-state yield classifications and generations.",
+        help="Synthetic workspace root containing classification/ and task_generation/ directories.",
+    )
+    parser.add_argument(
+        "--classification-model",
+        default=None,
+        help="Model directory under classification/ to read yield classifications from.",
     )
     parser.add_argument(
         "--macro-state-id",
@@ -449,11 +473,19 @@ def main() -> int:
     run_timestamp = utc_run_timestamp()
 
     root = repo_root()
-    classification_root = resolve_repo_path(args.classification_root)
+    workspace_root = resolve_repo_path(args.workspace_root)
+    try:
+        classification_model = resolve_classification_model(
+            workspace_root,
+            args.classification_model,
+        )
+    except (FileNotFoundError, ValueError) as exc:
+        print(json.dumps({"ok": False, "error": str(exc)}, indent=2), file=sys.stderr)
+        return 1
     env_file = args.env_file or (root / ".env")
     extra_args = list(args.extra_generate_args)
 
-    log_path = run_log_path(classification_root, run_timestamp)
+    log_path = run_log_path(workspace_root, run_timestamp)
     configure_file_logging(log_path=log_path, verbose=args.verbose)
 
     try:
@@ -467,7 +499,8 @@ def main() -> int:
     try:
         target_states = resolve_target_states(
             index=index,
-            classification_root=classification_root,
+            workspace_root=workspace_root,
+            classification_model=classification_model,
             macro_state_ids=args.macro_state_id,
         )
     except FileNotFoundError as exc:
@@ -495,8 +528,9 @@ def main() -> int:
 
     progress_path = log_path.parent / PROGRESS_FILENAME
     board = ProgressBoard(
-        classification_root=classification_root,
+        workspace_root=workspace_root,
         model=model,
+        classification_model=classification_model,
         state_ids=target_states,
         progress_path=progress_path,
     )
@@ -518,7 +552,8 @@ def main() -> int:
         log.info("stage=macro_state status=start macro_state_id=%s", state_id)
         try:
             result = retry_macro_state(
-                classification_root=classification_root,
+                workspace_root=workspace_root,
+                classification_model=classification_model,
                 state_id=state_id,
                 model=model,
                 max_attempts=args.max_attempts,
@@ -554,7 +589,8 @@ def main() -> int:
 
     summary = {
         "ok": not incomplete,
-        "classification_root": str(classification_root),
+        "workspace_root": str(workspace_root),
+        "classification_model": classification_model,
         "model": model,
         "log_file": str(log_path),
         "macro_states": len(target_states),
