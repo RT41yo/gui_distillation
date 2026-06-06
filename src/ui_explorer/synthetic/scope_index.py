@@ -101,6 +101,21 @@ class ScopeIndex:
         path.reverse()
         return path
 
+    def build_slim_macro_context(self, state_id: str) -> dict[str, str]:
+        macro_path = self.build_macro_path(state_id)
+        agent_state = self.agent_states.get(state_id, {})
+        label = (agent_state.get("label") or state_id).strip()
+        path_text = " → ".join(macro_path) if macro_path else label
+        return {"macro_path_text": path_text}
+
+    def build_slim_active_root_line(self, scope_state: dict[str, Any]) -> str:
+        active = scope_state.get("recomputed_active_root") or scope_state.get("graph_active_root") or {}
+        kind = active.get("kind")
+        if kind in {None, "", "main"}:
+            return ""
+        name = active.get("name") or active.get("role") or kind
+        return f"- active_ui_layer: {kind} ({name})"
+
     def build_macro_context(self, state_id: str) -> dict[str, Any]:
         agent_state = {**self.agent_states.get(state_id, {}), "state_id": state_id}
         macro_path = self.build_macro_path(state_id)
@@ -175,8 +190,22 @@ def render_prompt(template: str, replacements: dict[str, str]) -> str:
     return rendered
 
 
+PROMPT_PROFILE_TEMPLATES = {
+    "default": "generate_tasks.md",
+    "slim": "generate_tasks_slim.md",
+}
+
+
 def load_prompt_template(name: str) -> str:
     from ui_explorer.synthetic.paths import PROMPTS_DIR
 
     path = PROMPTS_DIR / name
     return path.read_text(encoding="utf-8")
+
+
+def load_prompt_template_for_profile(profile: str) -> str:
+    template_name = PROMPT_PROFILE_TEMPLATES.get(profile)
+    if template_name is None:
+        valid = ", ".join(sorted(PROMPT_PROFILE_TEMPLATES))
+        raise ValueError(f"unknown prompt profile {profile!r}; expected one of: {valid}")
+    return load_prompt_template(template_name)

@@ -3,7 +3,6 @@ from __future__ import annotations
 import base64
 import json
 import logging
-import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
 from concurrent.futures import TimeoutError as FuturesTimeoutError
@@ -11,6 +10,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 from urllib import error, request
+
+from tqdm import tqdm
 
 from ui_explorer.synthetic.llm_args import CompletionParams
 from ui_explorer.synthetic.pricing import UsageCost, compute_usage_cost
@@ -63,41 +64,33 @@ def _post_chat_completion(req: request.Request, request_timeout: float) -> dict[
         return json.loads(resp.read().decode("utf-8"))
 
 
-def _wait_for_response_with_countdown(
+def _wait_for_response_with_progress(
     future: Any,
     *,
     started: float,
     request_timeout: float,
 ) -> dict[str, Any]:
-    next_log_at = started
-    while True:
-        now = time.monotonic()
-        elapsed = now - started
-        remaining = max(0.0, request_timeout - elapsed)
-        sys.stderr.write(
-            f"\rWaiting for API response... {remaining:4.0f}s remaining "
-            f"({elapsed:4.0f}s elapsed / {request_timeout:.0f}s timeout)   "
-        )
-        sys.stderr.flush()
+    poll_interval = 1.0
+    with tqdm(
+        total=request_timeout,
+        unit="s",
+        desc="Waiting for API response",
+        bar_format="{desc}: {n:.0f}/{total:.0f}s [{elapsed}<{remaining}]",
+        dynamic_ncols=True,
+        leave=False,
+    ) as progress:
+        while True:
+            elapsed = time.monotonic() - started
+            progress.n = min(elapsed, request_timeout)
+            progress.refresh()
 
-        if now >= next_log_at:
-            log.info(
-                "Waiting for API response... %.0fs remaining (%.0fs elapsed / %.0fs timeout)",
-                remaining,
-                elapsed,
-                request_timeout,
-            )
-            next_log_at = now + 5.0
+            if future.done():
+                return future.result()
 
-        if future.done():
-            sys.stderr.write("\n")
-            sys.stderr.flush()
-            return future.result()
-
-        try:
-            return future.result(timeout=1.0)
-        except FuturesTimeoutError:
-            continue
+            try:
+                return future.result(timeout=poll_interval)
+            except FuturesTimeoutError:
+                continue
 
 
 def openai_structured_completion(
@@ -153,7 +146,7 @@ def openai_structured_completion(
     try:
         with ThreadPoolExecutor(max_workers=1) as executor:
             future = executor.submit(_post_chat_completion, req, request_timeout)
-            body = _wait_for_response_with_countdown(
+            body = _wait_for_response_with_progress(
                 future,
                 started=started,
                 request_timeout=request_timeout,

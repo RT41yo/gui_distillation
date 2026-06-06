@@ -37,6 +37,16 @@ Generate tasks for **every** microaction listed below. Each entry includes its y
 {target_microactions_json}
 ```
 
+## Required output inventory
+
+The `microactions` output array must contain exactly `{target_microaction_count}` result object(s), one for each ID below and no others:
+
+```json
+{target_microaction_ids_json}
+```
+
+Returning fewer `microactions` objects is invalid. If you cannot generate the target number of tasks for a microaction, output fewer tasks for that microaction; never omit the microaction object itself.
+
 ## Task types
 
 Assign **one** `task_type` per microaction — the best primary fit for what the control does from this macro state. Then generate tasks that match that type.
@@ -165,7 +175,7 @@ Expected outcome: button or menu item is found and its label/state is confirmed;
 
 ## Rules
 
-1. Return one result object per listed `micro_action_id`; do not skip or invent ids.
+1. Return exactly one result object per listed `micro_action_id`; do not skip or invent ids. The set of returned IDs must exactly match the Required output inventory.
 2. Each result must include `task_type` (one of the 15 values above) and a `task` array.
 3. Choose the single best-fitting `task_type` for each microaction from this screenshot and context. Generate tasks only for that type.
 4. Respect per-microaction task count guidance based on yield tier (`high`: 10–15, `medium`: 5–10, `low`: 2–4). Treat these as targets, not hard requirements.
@@ -174,7 +184,7 @@ Expected outcome: button or menu item is found and its label/state is confirmed;
    - Allowed: one task bolds the word "quarterly", another bolds the word "revenue".
    - Not allowed: two tasks both apply Bold to different paraphrases of the same setup.
    - Not allowed: two tasks that only differ in wording but change the same target in the same way.
-6. If you cannot produce the target number of tasks while keeping each task's changed content unique and high quality, output **fewer** tasks rather than padding with near-duplicates.
+6. If you cannot produce the target number of tasks while keeping each task's changed content unique and high quality, output **fewer tasks for that same microaction** rather than padding with near-duplicates. This does not permit omitting a microaction.
 7. Tasks must refer to the specific microaction and be realistic from this macro state screenshot.
 8. Do not propose unsafe actions (Save, Print, Exit, file-system dialogs, external links). For risky buttons, use `unsafe_or_external_observation` or `availability_check` and verify presence/state instead of activating.
 9. Prioritize **task diversity**, not paraphrases. Within the assigned `task_type`, vary meaningful dimensions such as:
@@ -192,4 +202,4 @@ Expected outcome: button or menu item is found and its label/state is confirmed;
 13. Keep instructions independent from precondition setup. The instruction should describe what the agent should do after the environment is prepared. The instruction may tell the agent where to click or what to select; that navigation is part of the task, not the environment precondition.
 14. Assume documents are populated with realistic text unless the microaction specifically requires an empty or minimal document (e.g. some `availability_check` tasks).
 
-Return JSON matching the required schema: `microactions` array of `{ micro_action_id, task_type, task }` objects, where `task` is an array of `{ instruction, expected_outcome, preconditions }` objects.
+Return JSON matching the required schema: `microactions` array of exactly `{target_microaction_count}` `{ micro_action_id, task_type, task }` objects, where `task` is an array of `{ instruction, expected_outcome, preconditions }` objects.

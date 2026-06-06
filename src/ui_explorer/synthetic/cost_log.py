@@ -57,15 +57,17 @@ def log_task_generation_batch_cost(
     macro_state_id: str,
     model: str,
     usage_cost: UsageCost,
+    *,
+    generation_run: str | None = None,
 ) -> Path:
     path = output_root / COST_TASK_GENERATION_LOG
-    append_cost_log(
-        path,
-        build_cost_record(
-            entity_id=macro_state_id,
-            entity_field="macro_action_id",
-            model=model,
-            usage_cost=usage_cost,
-        ),
+    record = build_cost_record(
+        entity_id=macro_state_id,
+        entity_field="macro_action_id",
+        model=model,
+        usage_cost=usage_cost,
     )
+    if generation_run is not None:
+        record["generation_run"] = generation_run
+    append_cost_log(path, record)
     return path
