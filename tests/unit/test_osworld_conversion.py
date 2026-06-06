@@ -96,8 +96,44 @@ def test_convert_generation_run_writes_osworld_tasks(tmp_path: Path) -> None:
     assert payload["evaluator"]["func"] == OSWORLD_DUMMY_EVALUATOR_FUNC
     assert payload["synthetic"]["micro_action_id"] == "070b4298960c7e57"
     assert payload["trajectory"] == "trajectories/"
-    assert len(payload["config"]) == 2
     assert payload["config"][0]["type"] == "upload_file"
     assert payload["config"][1]["type"] == "open"
     assert Path(payload["config"][0]["parameters"]["files"][0]["local_path"]).exists()
     assert payload["synthetic"]["fixture"] == "blank.docx"
+    assert payload["synthetic"]["macrostate_setup"]["status"] == "unsupported"
+
+
+def test_convert_generation_run_adds_a11y_preflight_for_known_macro_state(tmp_path: Path) -> None:
+    workspace_root = Path("data/synthetic/libreoffice_writer/active_root_231")
+    if not workspace_root.exists():
+        pytest.skip("writer workspace maps unavailable")
+
+    run_dir = workspace_root / TASK_GENERATION_DIRNAME / "gpt-test" / "36427b830db2" / "20260606T999999Z"
+    commit_generation_checkpoint(
+        run_dir=run_dir,
+        settings={"timestamp": "20260606T999999Z", "macro_state_id": "36427b830db2"},
+        metadata={
+            "status": "generated",
+            "macro_state_id": "36427b830db2",
+            "successful_micro_action_ids": ["070b4298960c7e57"],
+        },
+        new_outputs={
+            "070b4298960c7e57": {
+                "micro_action_id": "070b4298960c7e57",
+                "task_type": "cursor_format_toggle",
+                "task": [{
+                    "instruction": "Turn italic on.",
+                    "expected_outcome": "Text is italic.",
+                    "preconditions": {"description": "blank doc", "extras": []},
+                }],
+            }
+        },
+    )
+
+    result = convert_generation_run(run_dir, workspace_root=workspace_root, overwrite=True)
+    payload = json.loads(Path(result["converted"][0]["path"]).read_text(encoding="utf-8"))
+    config_types = [step["type"] for step in payload["config"]]
+    assert config_types[:2] == ["upload_file", "open"]
+    assert "activate_window" in config_types
+    assert "a11y_preflight" in config_types
+    assert payload["synthetic"]["macrostate_setup"]["status"] == "ready"

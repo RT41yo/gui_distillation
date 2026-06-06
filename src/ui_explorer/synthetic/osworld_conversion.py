@@ -14,12 +14,14 @@ from ui_explorer.synthetic.generation_output import (
     raw_generation_dir,
 )
 from ui_explorer.synthetic.io import load_json, save_json
+from ui_explorer.synthetic.scope_index import ScopeIndex
 from ui_explorer.synthetic.writer_fixtures import (
     build_writer_upload_open_config,
     select_writer_fixture,
     vm_document_path,
     vm_window_name,
 )
+from ui_explorer.synthetic.writer_macrostate_setup import build_writer_macrostate_preflight
 
 OSWORLD_DUMMY_EVALUATOR_FUNC = "always_zero"
 LIBREOFFICE_WRITER_SNAPSHOT = "libreoffice_writer"
@@ -53,6 +55,30 @@ def list_raw_microaction_files(run_dir: Path) -> list[Path]:
     )
 
 
+def _load_scope_index(workspace_root: Path) -> ScopeIndex | None:
+    from ui_explorer.synthetic.paths import repo_root
+
+    candidates = [repo_root(), workspace_root]
+    while workspace_root.parent != workspace_root:
+        candidates.append(workspace_root)
+        workspace_root = workspace_root.parent
+
+    seen: set[Path] = set()
+    for candidate in candidates:
+        resolved = candidate.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        scope_path = resolved / "data/maps/libreoffice_writer/agent_map_active_root_scope.json"
+        agent_path = resolved / "data/maps/libreoffice_writer/agent_map.json"
+        if scope_path.exists() and agent_path.exists():
+            try:
+                return ScopeIndex.load(repo_root=resolved)
+            except Exception:
+                continue
+    return None
+
+
 def build_osworld_task(
     *,
     run_dir: Path,
@@ -61,6 +87,7 @@ def build_osworld_task(
     task_entry: dict[str, Any],
     task_index: int,
     snapshot: str | None = None,
+    scope_index: ScopeIndex | None = None,
 ) -> dict[str, Any]:
     micro_action_id = str(microaction_payload["micro_action_id"])
     task_type = str(microaction_payload.get("task_type", "unknown"))
@@ -97,11 +124,39 @@ def build_osworld_task(
         fixture_name = select_writer_fixture(task_type=task_type, preconditions=preconditions)
         config = build_writer_upload_open_config(fixture_name=fixture_name, task_id=task_id)
         vm_path = vm_document_path(task_id=task_id)
+        window_name = vm_window_name(vm_path)
         synthetic_metadata.update({
             "fixture": fixture_name,
             "vm_document_path": vm_path,
-            "window_name": vm_window_name(vm_path),
+            "window_name": window_name,
         })
+
+        macrostate_setup: dict[str, Any] = {"status": "skipped", "reason": "no macro_state_id"}
+        if isinstance(macro_state_id, str) and macro_state_id.strip():
+            resolved_scope = scope_index or _load_scope_index(workspace_root)
+            if resolved_scope is None:
+                macrostate_setup = {
+                    "status": "unsupported",
+                    "reason": "scope maps unavailable",
+                    "macro_state_id": macro_state_id,
+                }
+            else:
+                preflight_block, macrostate_setup = build_writer_macrostate_preflight(
+                    resolved_scope,
+                    macro_state_id=macro_state_id.strip(),
+                    vm_document_path=vm_path,
+                )
+                if preflight_block is not None:
+                    config.append({
+                        "type": "activate_window",
+                        "parameters": {
+                            "window_name": window_name,
+                            "strict": False,
+                        },
+                    })
+                    config.append(preflight_block)
+        synthetic_metadata["macrostate_setup"] = macrostate_setup
+
         return {
             "id": task_id,
             "snapshot": resolved_snapshot,
@@ -153,6 +208,8 @@ def convert_generation_run(
             if child.is_file() and child.suffix == ".json":
                 child.unlink()
 
+    scope_index = _load_scope_index(workspace_root)
+
     converted: list[dict[str, str]] = []
     skipped = 0
     for microaction_file in list_raw_microaction_files(run_dir):
@@ -172,6 +229,7 @@ def convert_generation_run(
                 task_entry=task_entry,
                 task_index=task_index,
                 snapshot=snapshot,
+                scope_index=scope_index,
             )
             output_path = output_dir / f"{osworld_task['id']}.json"
             save_json(output_path, osworld_task)
