@@ -77,14 +77,14 @@ def snapshot_macro_state(
     )
     in_flight_count = 0
     in_flight_batches_done = 0
-    batches_total = parse_attempt_batch_total(attempt_label) if status == "running" else None
+    batches_total = parse_attempt_batch_total(attempt_label) if attempt_label else None
     if in_flight is not None:
         in_flight_batches_done = int(in_flight["batches_done"])
+        metadata_batches_total = in_flight.get("batches_total")
+        if isinstance(metadata_batches_total, int) and metadata_batches_total > 0:
+            batches_total = metadata_batches_total
         if in_flight.get("source") == "metadata":
             in_flight_count = 0
-            metadata_batches_total = in_flight.get("batches_total")
-            if isinstance(metadata_batches_total, int) and metadata_batches_total > 0:
-                batches_total = metadata_batches_total
         else:
             in_flight_count = int(in_flight["microaction_count"])
 
@@ -99,6 +99,77 @@ def snapshot_macro_state(
         in_flight_batches_done=in_flight_batches_done,
         in_flight_batches_total=batches_total,
     )
+
+
+def resolve_row_status(
+    row: MacroStateProgressSnapshot,
+    *,
+    in_flight: dict[str, object] | None,
+) -> str:
+    if row.expected and row.successful >= row.expected:
+        return "complete"
+    if in_flight is not None:
+        return "running"
+    if row.successful > 0:
+        return "partial"
+    return row.status if row.status not in {"", "pending"} else "pending"
+
+
+def format_progress_bar(current: int, total: int, *, width: int = 20) -> str:
+    if total <= 0:
+        return "░" * width
+    clamped = max(0, min(current, total))
+    filled = int(round((clamped / total) * width))
+    filled = min(filled, width)
+    return ("█" * filled) + ("░" * (width - filled))
+
+
+def macro_state_progress_counts(
+    row: MacroStateProgressSnapshot,
+) -> tuple[int, int, int, int | None]:
+    """Return (micro_done, micro_total, batches_done, batches_total)."""
+    micro_done = row.successful + row.in_flight_count
+    micro_total = row.expected
+    batches_done = row.in_flight_batches_done
+    batches_total = row.in_flight_batches_total
+    return micro_done, micro_total, batches_done, batches_total
+
+
+def format_macro_state_bar_line(
+    row: MacroStateProgressSnapshot,
+    *,
+    width: int = 20,
+    status: str | None = None,
+) -> str:
+    resolved_status = status or row.status
+    micro_done, micro_total, batches_done, batches_total = macro_state_progress_counts(row)
+    micro_bar = format_progress_bar(micro_done, micro_total, width=width)
+    if batches_total is not None and batches_total > 0:
+        batch_bar = format_progress_bar(batches_done, batches_total, width=max(8, width // 2))
+        batch_label = f"{batches_done}/{batches_total}"
+    elif batches_done > 0:
+        batch_bar = format_progress_bar(batches_done, batches_done, width=max(8, width // 2))
+        batch_label = f"{batches_done}/?"
+    else:
+        batch_bar = format_progress_bar(0, 1, width=max(8, width // 2))
+        batch_label = "0/?"
+
+    micro_label = f"{min(micro_done, micro_total) if micro_total else micro_done}/{micro_total}"
+    return (
+        f"{row.state_id}  {micro_bar}  {micro_label:>7}  "
+        f"batch {batch_bar} {batch_label:>5}  {resolved_status}"
+    )
+
+
+def status_sort_key(status: str) -> int:
+    return {
+        "running": 0,
+        "partial": 1,
+        "pending": 2,
+        "error": 3,
+        "unclassified": 4,
+        "complete": 5,
+    }.get(status, 6)
 
 
 def format_in_flight_detail(row: MacroStateProgressSnapshot) -> str:

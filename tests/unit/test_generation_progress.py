@@ -13,7 +13,10 @@ from ui_explorer.synthetic.generation_output import (
 )
 from ui_explorer.synthetic.generation_progress import (
     format_in_flight_detail,
+    format_macro_state_bar_line,
+    format_progress_bar,
     parse_attempt_batch_total,
+    resolve_row_status,
     snapshot_macro_state,
 )
 from ui_explorer.synthetic.paths import CLASSIFICATION_DIRNAME, TASK_GENERATION_DIRNAME
@@ -101,6 +104,41 @@ def test_snapshot_macro_state_includes_in_flight_detail(tmp_path: Path) -> None:
     assert row.in_flight_batches_done == 1
     assert row.in_flight_batches_total == 1
     assert format_in_flight_detail(row) == "+2 uncommitted batch 1/1"
+
+
+def test_format_progress_bar_clamps_to_total() -> None:
+    assert format_progress_bar(5, 10, width=10) == "█████░░░░░"
+    assert format_progress_bar(12, 10, width=10) == "██████████"
+    assert format_progress_bar(0, 0, width=8) == "░░░░░░░░"
+
+
+def test_format_macro_state_bar_line_includes_batch_progress() -> None:
+    from ui_explorer.synthetic.generation_progress import MacroStateProgressSnapshot
+
+    snapshot = MacroStateProgressSnapshot(
+        state_id="abc123",
+        expected=10,
+        successful=4,
+        runs=1,
+        status="running",
+        in_flight_count=2,
+        in_flight_batches_done=2,
+        in_flight_batches_total=3,
+    )
+    line = format_macro_state_bar_line(snapshot, width=10, status="running")
+    assert "abc123" in line
+    assert "6/10" in line
+    assert "2/3" in line
+    assert "running" in line
+
+
+def test_resolve_row_status_marks_in_flight_as_running() -> None:
+    from ui_explorer.synthetic.generation_progress import MacroStateProgressSnapshot
+
+    row = MacroStateProgressSnapshot(state_id="s1", expected=3, successful=1)
+    assert resolve_row_status(row, in_flight={"batches_done": 1}) == "running"
+    row_complete = MacroStateProgressSnapshot(state_id="s1", expected=3, successful=3)
+    assert resolve_row_status(row_complete, in_flight={"batches_done": 1}) == "complete"
 
 
 def test_in_flight_progress_uses_metadata_for_committed_runs(tmp_path: Path) -> None:
