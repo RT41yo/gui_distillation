@@ -144,6 +144,32 @@ MACROSTATE_TASKS_BATCH_SCHEMA: dict[str, Any] = {
 }
 
 
+def normalize_yield_classification(
+    result: dict[str, Any],
+    expected_action_keys: set[str],
+    *,
+    fill_missing_bucket: str = "low",
+) -> dict[str, list[str]]:
+    normalized: dict[str, list[str]] = {bucket: [] for bucket in YIELD_BUCKETS}
+    seen: set[str] = set()
+    for bucket in YIELD_BUCKETS:
+        ids = result.get(bucket, [])
+        if not isinstance(ids, list):
+            continue
+        for action_id in ids:
+            if not isinstance(action_id, str):
+                continue
+            if action_id not in expected_action_keys or action_id in seen:
+                continue
+            normalized[bucket].append(action_id)
+            seen.add(action_id)
+
+    missing = expected_action_keys - seen
+    if missing and fill_missing_bucket in YIELD_BUCKETS:
+        normalized[fill_missing_bucket].extend(sorted(missing))
+    return normalized
+
+
 def validate_yield_classification(
     result: dict[str, Any],
     expected_action_keys: set[str],

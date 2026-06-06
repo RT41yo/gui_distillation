@@ -16,10 +16,10 @@ from typing import Any
 from ui_explorer.synthetic.cost_log import log_task_generation_batch_cost
 from ui_explorer.synthetic.env import load_env_file, resolve_openai_config
 from ui_explorer.synthetic.generation_output import (
-    METADATA_FILENAME,
     build_settings_payload,
     classification_path,
     generation_run_dir,
+    successful_action_ids_from_generation_run,
     utc_run_timestamp,
     write_generation_run,
 )
@@ -568,6 +568,7 @@ def generate_tasks_for_macro_state(
     metadata["usage"] = total_usage
     metadata["api_calls"] = total_usage["api_calls"]
     metadata["macro_state_id"] = state_id
+    metadata["model"] = openai_config["model"]
     metadata["generation_run"] = str(run_dir)
     metadata["batch_size"] = "all" if batch_size is None else batch_size
     metadata["prompt_profile"] = prompt_profile
@@ -646,26 +647,6 @@ def resolve_requested_actions(
         by_state[state_id].update(classified_action_keys(classification))
 
     return dict(by_state)
-
-
-def successful_action_ids_from_generation_run(run_dir: Path) -> set[str]:
-    metadata_path = run_dir / METADATA_FILENAME
-    if not metadata_path.exists():
-        raise FileNotFoundError(f"missing generation metadata: {metadata_path}")
-
-    metadata = load_json(metadata_path)
-    success_ids = metadata.get("successful_micro_action_ids")
-    if isinstance(success_ids, list):
-        return {item for item in success_ids if isinstance(item, str)}
-
-    success_entries = metadata.get("successful_microactions", [])
-    if not isinstance(success_entries, list):
-        return set()
-    return {
-        entry["micro_action_id"]
-        for entry in success_entries
-        if isinstance(entry, dict) and isinstance(entry.get("micro_action_id"), str)
-    }
 
 
 def filter_previously_successful_actions(
@@ -865,7 +846,12 @@ def main() -> int:
                 continue
 
             run_timestamp = utc_run_timestamp()
-            run_dir = generation_run_dir(classification_root, state_id, run_timestamp)
+            run_dir = generation_run_dir(
+                classification_root,
+                state_id,
+                model=openai_config["model"],
+                timestamp=run_timestamp,
+            )
             log.info(
                 "Macro state %s: output_dir=%s microactions=%d",
                 state_id,

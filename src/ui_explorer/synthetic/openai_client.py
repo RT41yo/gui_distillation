@@ -114,7 +114,7 @@ def openai_structured_completion(
     }
     request_timeout = timeout
     if completion_params is not None:
-        completion_params.apply_to_payload(payload)
+        completion_params.apply_to_payload(payload, model=model)
         if completion_params.timeout is not None:
             request_timeout = completion_params.timeout
 

@@ -5,6 +5,14 @@ from dataclasses import dataclass
 from typing import Any
 
 
+def completion_limit_field(model: str) -> str:
+    """Return the provider-specific completion token limit field for a model."""
+    name = model.strip().lower()
+    if name.startswith("gpt-5") or name.startswith("o1") or name.startswith("o3"):
+        return "max_completion_tokens"
+    return "max_tokens"
+
+
 @dataclass(frozen=True)
 class CompletionParams:
     temperature: float | None = None
@@ -44,13 +52,14 @@ class CompletionParams:
             timeout=overrides.timeout if overrides.timeout is not None else self.timeout,
         )
 
-    def apply_to_payload(self, payload: dict[str, Any]) -> None:
+    def apply_to_payload(self, payload: dict[str, Any], *, model: str | None = None) -> None:
         if self.temperature is not None:
             payload["temperature"] = self.temperature
         if self.top_p is not None:
             payload["top_p"] = self.top_p
         if self.max_tokens is not None:
-            payload["max_tokens"] = self.max_tokens
+            limit_field = completion_limit_field(model or "")
+            payload[limit_field] = self.max_tokens
         if self.presence_penalty is not None:
             payload["presence_penalty"] = self.presence_penalty
         if self.frequency_penalty is not None:

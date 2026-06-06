@@ -22,12 +22,16 @@ from ui_explorer.synthetic.paths import DEFAULT_OUTPUT_ROOT, repo_root, resolve_
 from ui_explorer.synthetic.schemas import (
     YIELD_CLASSIFICATION_SCHEMA,
     YIELD_GUIDANCE,
+    normalize_yield_classification,
     validate_yield_classification,
 )
 from ui_explorer.synthetic.scope_index import ScopeIndex, load_prompt_template, render_prompt
 from ui_explorer.synthetic.timing import StageTimer
 
 log = logging.getLogger(__name__)
+
+
+DEFAULT_CLASSIFY_ATTEMPTS = 5
 
 
 def classify_state(
@@ -39,6 +43,7 @@ def classify_state(
     output_root: Path,
     completion_params: CompletionParams,
     dry_run: bool,
+    max_attempts: int = DEFAULT_CLASSIFY_ATTEMPTS,
 ) -> dict[str, Any]:
     timer = StageTimer(log)
     expected_keys = index.expected_action_keys(scope_state)
@@ -81,18 +86,51 @@ def classify_state(
     with timer.stage("build_messages", macro_state_id=state_id):
         messages = build_openai_messages(prompt_text, screenshot_path)
 
-    with timer.stage("api_call", macro_state_id=state_id, microactions=len(expected_keys)):
-        completion = openai_structured_completion(
-            api_key=openai_config["api_key"],
-            base_url=openai_config["base_url"],
-            model=openai_config["model"],
-            messages=messages,
-            json_schema=YIELD_CLASSIFICATION_SCHEMA,
-            completion_params=completion_params,
-        )
+    completion = None
+    classification = None
+    last_error: ValueError | None = None
+    for attempt in range(1, max_attempts + 1):
+        with timer.stage("api_call", macro_state_id=state_id, microactions=len(expected_keys)):
+            completion = openai_structured_completion(
+                api_key=openai_config["api_key"],
+                base_url=openai_config["base_url"],
+                model=openai_config["model"],
+                messages=messages,
+                json_schema=YIELD_CLASSIFICATION_SCHEMA,
+                completion_params=completion_params,
+            )
 
-    with timer.stage("validate", macro_state_id=state_id):
-        validate_yield_classification(completion.content, expected_keys)
+        normalized = normalize_yield_classification(completion.content, expected_keys)
+        missing_before_fill = expected_keys - {
+            action_id
+            for bucket_ids in normalized.values()
+            for action_id in bucket_ids
+        }
+        if missing_before_fill:
+            log.warning(
+                "Macro state %s classify attempt %d/%d filled missing ids in low bucket: %s",
+                state_id,
+                attempt,
+                max_attempts,
+                sorted(missing_before_fill),
+            )
+        try:
+            with timer.stage("validate", macro_state_id=state_id):
+                validate_yield_classification(normalized, expected_keys)
+            classification = normalized
+            break
+        except ValueError as exc:
+            last_error = exc
+            log.warning(
+                "Macro state %s classify attempt %d/%d failed validation: %s",
+                state_id,
+                attempt,
+                max_attempts,
+                exc,
+            )
+
+    if classification is None or completion is None:
+        raise last_error or RuntimeError(f"classification failed for macro state {state_id}")
 
     with timer.stage("log_cost", macro_state_id=state_id):
         log_classification_cost(output_root, state_id, completion.model, completion.usage_cost)
@@ -110,7 +148,7 @@ def classify_state(
     return {
         "state_id": state_id,
         "status": "classified",
-        "classification": completion.content,
+        "classification": classification,
         "usage": {
             "num_tokens": completion.usage_cost.num_tokens,
             "cost": completion.usage_cost.cost_usd,
@@ -136,6 +174,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--overwrite", action="store_true")
+    parser.add_argument(
+        "--max-attempts",
+        type=int,
+        default=DEFAULT_CLASSIFY_ATTEMPTS,
+        help=f"API attempts per macro state when validation fails (default: {DEFAULT_CLASSIFY_ATTEMPTS}).",
+    )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--verbose", "-v", action="store_true", help="Enable debug logging.")
     parser.add_argument("--model", default=None)
@@ -213,6 +257,7 @@ def main() -> int:
                 output_root=output_root,
                 completion_params=completion_params,
                 dry_run=args.dry_run,
+                max_attempts=args.max_attempts,
             )
             if not args.dry_run:
                 save_json(out_path, result["classification"])
