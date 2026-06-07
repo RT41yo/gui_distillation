@@ -174,7 +174,7 @@ def build_writer_macrostate_preflight(
         "type": "a11y_preflight",
         "parameters": {
             "steps": steps,
-            "timeout_seconds": 30,
+            "timeout_seconds": 60,
             "screenshot_on_failure": True,
         },
     }
