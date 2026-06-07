@@ -3,8 +3,12 @@ from __future__ import annotations
 from pathlib import Path
 
 from ui_explorer.synthetic.writer_fixtures import (
+    BLANK_FIXTURE,
+    TABLE_WITH_VALUES_FIXTURE,
     build_writer_upload_open_config,
+    fixture_file_suffix,
     resolve_writer_fixture_path,
+    resolve_writer_fixture_source_path,
     select_writer_fixture,
     vm_document_path,
     writer_fixtures_dir,
@@ -14,7 +18,7 @@ from ui_explorer.synthetic.writer_fixtures import (
 def test_writer_fixtures_exist_in_repo() -> None:
     fixtures_dir = writer_fixtures_dir()
     assert fixtures_dir.is_dir()
-    assert resolve_writer_fixture_path("blank.docx").exists()
+    assert resolve_writer_fixture_path(BLANK_FIXTURE).exists()
 
 
 def test_select_writer_fixture_maps_blank_document() -> None:
@@ -28,7 +32,7 @@ def test_select_writer_fixture_maps_blank_document() -> None:
             ],
         },
     )
-    assert fixture == "blank.docx"
+    assert fixture == BLANK_FIXTURE
 
 
 def test_select_writer_fixture_maps_table_tasks() -> None:
@@ -39,12 +43,12 @@ def test_select_writer_fixture_maps_table_tasks() -> None:
             "extras": [{"key": "document_state", "value": "table present"}],
         },
     )
-    assert fixture == "table_with_values.docx"
+    assert fixture == TABLE_WITH_VALUES_FIXTURE
 
 
 def test_build_writer_upload_open_config_shape() -> None:
     task_id = "01e96009-9b36-5304-a0c1-eecd17be251e"
-    config = build_writer_upload_open_config(fixture_name="blank.docx", task_id=task_id)
+    config = build_writer_upload_open_config(fixture_name=BLANK_FIXTURE, task_id=task_id)
     assert len(config) == 2
     assert config[0]["type"] == "upload_file"
     assert config[1]["type"] == "open"
@@ -53,3 +57,14 @@ def test_build_writer_upload_open_config_shape() -> None:
     assert Path(local_path).exists()
     assert vm_path == vm_document_path(task_id=task_id)
     assert config[1]["parameters"]["path"] == vm_path
+
+
+def test_fixture_source_path_exists_for_source_backed_fixture() -> None:
+    source_path = resolve_writer_fixture_source_path(TABLE_WITH_VALUES_FIXTURE)
+    assert source_path is not None
+    assert source_path.exists()
+
+
+def test_fixture_file_suffix_reflects_fixture_extension() -> None:
+    assert fixture_file_suffix(BLANK_FIXTURE) == ".docx"
+    assert fixture_file_suffix("highlighted_text__sample_recruitment_phone_script.odt") == ".odt"

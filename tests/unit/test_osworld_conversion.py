@@ -15,6 +15,7 @@ from ui_explorer.synthetic.osworld_conversion import (
     infer_snapshot_from_workspace,
 )
 from ui_explorer.synthetic.paths import TASK_GENERATION_DIRNAME
+from ui_explorer.synthetic.writer_fixtures import BLANK_FIXTURE
 
 
 def test_infer_snapshot_from_workspace() -> None:
@@ -99,7 +100,7 @@ def test_convert_generation_run_writes_osworld_tasks(tmp_path: Path) -> None:
     assert payload["config"][0]["type"] == "upload_file"
     assert payload["config"][1]["type"] == "open"
     assert Path(payload["config"][0]["parameters"]["files"][0]["local_path"]).exists()
-    assert payload["synthetic"]["fixture"] == "blank.docx"
+    assert payload["synthetic"]["fixture"] == BLANK_FIXTURE
     assert payload["synthetic"]["macrostate_setup"]["status"] == "unsupported"
 
 

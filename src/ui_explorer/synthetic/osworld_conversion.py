@@ -17,6 +17,7 @@ from ui_explorer.synthetic.io import load_json, save_json
 from ui_explorer.synthetic.scope_index import ScopeIndex
 from ui_explorer.synthetic.writer_fixtures import (
     build_writer_upload_open_config,
+    fixture_file_suffix,
     select_writer_fixture,
     vm_document_path,
     vm_window_name,
@@ -123,7 +124,7 @@ def build_osworld_task(
     if resolved_snapshot == LIBREOFFICE_WRITER_SNAPSHOT:
         fixture_name = select_writer_fixture(task_type=task_type, preconditions=preconditions)
         config = build_writer_upload_open_config(fixture_name=fixture_name, task_id=task_id)
-        vm_path = vm_document_path(task_id=task_id)
+        vm_path = vm_document_path(task_id=task_id, suffix=fixture_file_suffix(fixture_name))
         window_name = vm_window_name(vm_path)
         synthetic_metadata.update({
             "fixture": fixture_name,

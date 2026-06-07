@@ -1,91 +1,92 @@
 #!/usr/bin/env python3
-"""Generate deterministic LibreOffice Writer .docx fixtures for synthetic task seeding."""
+"""Generate realistic Writer fixtures backed by downloaded OSWorld source documents."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import sys
+import zipfile
 from pathlib import Path
 
-from docx import Document
-from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
-from docx.shared import Pt
-
 from ui_explorer.synthetic.paths import repo_root, resolve_repo_path
-from ui_explorer.synthetic.writer_fixtures import FIXTURE_FILENAMES, writer_fixtures_dir
+from ui_explorer.synthetic.writer_fixtures import (
+    BLANK_FIXTURE,
+    FIXTURE_FILENAMES,
+    FIXTURE_SOURCE_RELATIVE_PATHS,
+    resolve_writer_fixture_source_path,
+    writer_fixtures_dir,
+)
 
 
-def _save(doc: Document, output_dir: Path, filename: str) -> str:
-    path = output_dir / filename
-    doc.save(path)
-    return str(path)
+BLANK_DOCX_TEMPLATE_FILES = {
+    "[Content_Types].xml": """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+  <Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>
+  <Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>
+</Types>
+""",
+    "_rels/.rels": """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>
+  <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>
+</Relationships>
+""",
+    "docProps/core.xml": """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <dc:title>Blank Writer Fixture</dc:title>
+  <dc:creator>Cursor</dc:creator>
+</cp:coreProperties>
+""",
+    "docProps/app.xml": """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
+  <Application>Cursor</Application>
+</Properties>
+""",
+    "word/document.xml": """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 wp14">
+  <w:body>
+    <w:p/>
+    <w:sectPr>
+      <w:pgSz w:w="12240" w:h="15840"/>
+      <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
+      <w:cols w:space="720"/>
+      <w:docGrid w:linePitch="360"/>
+    </w:sectPr>
+  </w:body>
+</w:document>
+""",
+}
+
+
+def _write_blank_docx(path: Path) -> None:
+    with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+        for name, content in BLANK_DOCX_TEMPLATE_FILES.items():
+            zf.writestr(name, content)
 
 
 def generate_fixtures(output_dir: Path) -> list[str]:
     output_dir.mkdir(parents=True, exist_ok=True)
     created: list[str] = []
 
-    blank = Document()
-    created.append(_save(blank, output_dir, "blank.docx"))
+    blank_path = output_dir / BLANK_FIXTURE
+    _write_blank_docx(blank_path)
+    created.append(str(blank_path))
 
-    one_word = Document()
-    one_word.add_paragraph("Sample")
-    created.append(_save(one_word, output_dir, "one_word.docx"))
-
-    single_sentence = Document()
-    single_sentence.add_paragraph("This is a single sentence used for synthetic Writer tasks.")
-    created.append(_save(single_sentence, output_dir, "single_sentence.docx"))
-
-    short_paragraph = Document()
-    short_paragraph.add_paragraph(
-        "This paragraph contains enough text for selection, formatting, and layout tasks."
-    )
-    created.append(_save(short_paragraph, output_dir, "short_paragraph.docx"))
-
-    two_paragraphs = Document()
-    two_paragraphs.add_paragraph("First paragraph for multi-paragraph Writer tasks.")
-    two_paragraphs.add_paragraph("Second paragraph with different content.")
-    created.append(_save(two_paragraphs, output_dir, "two_paragraphs.docx"))
-
-    bulleted_list = Document()
-    bulleted_list.add_paragraph("Alpha item", style="List Bullet")
-    bulleted_list.add_paragraph("Beta item", style="List Bullet")
-    bulleted_list.add_paragraph("Gamma item", style="List Bullet")
-    created.append(_save(bulleted_list, output_dir, "bulleted_list.docx"))
-
-    numbered_list = Document()
-    numbered_list.add_paragraph("First numbered item", style="List Number")
-    numbered_list.add_paragraph("Second numbered item", style="List Number")
-    numbered_list.add_paragraph("Third numbered item", style="List Number")
-    created.append(_save(numbered_list, output_dir, "numbered_list.docx"))
-
-    simple_table = Document()
-    table = simple_table.add_table(rows=2, cols=2)
-    table.cell(0, 0).text = "Header A"
-    table.cell(0, 1).text = "Header B"
-    table.cell(1, 0).text = "Cell A1"
-    table.cell(1, 1).text = "Cell B1"
-    created.append(_save(simple_table, output_dir, "simple_table.docx"))
-
-    table_with_values = Document()
-    values_table = table_with_values.add_table(rows=3, cols=2)
-    values_table.cell(0, 0).text = "Item"
-    values_table.cell(0, 1).text = "Qty"
-    values_table.cell(1, 0).text = "Apples"
-    values_table.cell(1, 1).text = "3"
-    values_table.cell(2, 0).text = "Oranges"
-    values_table.cell(2, 1).text = "5"
-    created.append(_save(table_with_values, output_dir, "table_with_values.docx"))
-
-    styled_heading_and_body = Document()
-    heading = styled_heading_and_body.add_paragraph("Project Summary")
-    heading.style = "Heading 1"
-    heading.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-    body = styled_heading_and_body.add_paragraph("Body text for style and layout experiments.")
-    for run in body.runs:
-        run.font.size = Pt(12)
-    created.append(_save(styled_heading_and_body, output_dir, "styled_heading_and_body.docx"))
+    for fixture_name in FIXTURE_FILENAMES:
+        if fixture_name == BLANK_FIXTURE:
+            continue
+        source_path = resolve_writer_fixture_source_path(fixture_name)
+        if source_path is None or not source_path.exists():
+            raise FileNotFoundError(f"missing OSWorld source for {fixture_name}: {source_path}")
+        target_path = output_dir / fixture_name
+        shutil.copy2(source_path, target_path)
+        created.append(str(target_path))
 
     missing = sorted(set(FIXTURE_FILENAMES) - {Path(path).name for path in created})
     if missing:
@@ -99,7 +100,7 @@ def parse_args() -> argparse.Namespace:
         "--output-dir",
         type=Path,
         default=repo_root() / "data/source/fixtures/libreoffice_writer",
-        help="Directory where Writer fixture .docx files should be written.",
+        help="Directory where Writer fixture files should be written.",
     )
     return parser.parse_args()
 
@@ -107,20 +108,20 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     output_dir = resolve_repo_path(args.output_dir)
-    try:
-        created = generate_fixtures(output_dir)
-    except ModuleNotFoundError:
-        print(json.dumps({
-            "ok": False,
-            "error": "python-docx is required; install with `pip install python-docx`",
-        }, indent=2), file=sys.stderr)
-        return 2
+    created = generate_fixtures(output_dir)
 
     print(json.dumps({
         "ok": True,
         "output_dir": str(output_dir),
         "fixtures": created,
         "count": len(created),
+        "sources": {
+            name: (str(path) if path is not None else None)
+            for name, path in (
+                (fixture_name, resolve_writer_fixture_source_path(fixture_name))
+                for fixture_name in FIXTURE_FILENAMES
+            )
+        },
     }, indent=2))
     return 0
 
