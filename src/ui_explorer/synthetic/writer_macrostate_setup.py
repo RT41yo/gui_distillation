@@ -74,12 +74,19 @@ def build_active_root_selector(scope_state: dict[str, Any]) -> dict[str, Any]:
     return selector
 
 
-def build_navigation_steps(navigation_edges: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def build_navigation_steps(
+    navigation_edges: list[dict[str, Any]],
+    *,
+    target_active_root_kind: str = "",
+) -> list[dict[str, Any]]:
     steps: list[dict[str, Any]] = []
+    target_kind = target_active_root_kind.strip().lower()
     for index, edge in enumerate(navigation_edges):
         role = edge.get("role")
         name = edge.get("name")
-        op = "click" if index == 0 else "move"
+        is_first_edge = index == 0
+        is_final_edge = index == len(navigation_edges) - 1
+        op = "click" if is_first_edge or (is_final_edge and target_kind == "dialog") else "move"
         selector: dict[str, Any] = {
             "require_bbox": True,
             "states": {"showing": True, "visible": True},
@@ -151,7 +158,12 @@ def build_writer_macrostate_preflight(
             "selector": dict(WRITER_ROOT_FRAME_SELECTOR),
         },
     ]
-    steps.extend(build_navigation_steps(navigation_edges))
+    steps.extend(
+        build_navigation_steps(
+            navigation_edges,
+            target_active_root_kind=str(active_root.get("kind") or ""),
+        )
+    )
     steps.append({
         "op": "assert",
         "selector": build_active_root_selector(scope_state),

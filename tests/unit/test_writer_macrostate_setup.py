@@ -75,10 +75,12 @@ def test_build_writer_macrostate_preflight_for_depth_three(scope_index: ScopeInd
 
 
 def test_build_navigation_steps_emits_click_and_sleep() -> None:
-    steps = build_navigation_steps([
-        {"bbox": [10, 20, 30, 40], "edge_id": "e1", "role": "menu", "name": "View"},
-        {"bbox": [50, 60, 30, 40], "edge_id": "e2", "role": "menu", "name": "Zoom"},
-    ])
+    steps = build_navigation_steps(
+        [
+            {"bbox": [10, 20, 30, 40], "edge_id": "e1", "role": "menu", "name": "View"},
+            {"bbox": [50, 60, 30, 40], "edge_id": "e2", "role": "menu", "name": "Zoom"},
+        ]
+    )
     assert steps == [
         {
             "op": "click",
@@ -103,3 +105,14 @@ def test_build_navigation_steps_emits_click_and_sleep() -> None:
         },
         {"op": "sleep", "seconds": 0.8},
     ]
+
+
+def test_build_navigation_steps_clicks_final_dialog_edge() -> None:
+    steps = build_navigation_steps(
+        [
+            {"bbox": [10, 20, 30, 40], "edge_id": "e1", "role": "menu", "name": "Help"},
+            {"bbox": [50, 60, 30, 40], "edge_id": "e2", "role": "menu item", "name": "About LibreOffice"},
+        ],
+        target_active_root_kind="dialog",
+    )
+    assert [step["op"] for step in steps] == ["click", "sleep", "click", "sleep"]
