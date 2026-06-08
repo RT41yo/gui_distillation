@@ -11,6 +11,10 @@ CLASSIFICATION_DIRNAME = "classification"
 TASK_GENERATION_DIRNAME = "task_generation"
 LOGS_DIRNAME = ".logs"
 
+
+def generation_dirname() -> str:
+    return TASK_GENERATION_DIRNAME
+
 # Model used for the bulk of existing yield classifications on disk.
 DEFAULT_CLASSIFICATION_MODEL = "gpt-4o-mini-2024-07-18"
 

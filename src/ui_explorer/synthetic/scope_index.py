@@ -191,8 +191,14 @@ def render_prompt(template: str, replacements: dict[str, str]) -> str:
 
 
 PROMPT_PROFILE_TEMPLATES = {
-    "default": "generate_tasks.md",
-    "slim": "generate_tasks_slim.md",
+    "task": {
+        "default": "generate_tasks.md",
+        "slim": "generate_tasks_slim.md",
+    },
+    "goal": {
+        "default": "generate_goals.md",
+        "slim": "generate_goals_slim.md",
+    },
 }
 
 
@@ -203,9 +209,17 @@ def load_prompt_template(name: str) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def load_prompt_template_for_profile(profile: str) -> str:
-    template_name = PROMPT_PROFILE_TEMPLATES.get(profile)
-    if template_name is None:
+def load_prompt_template_for_profile(
+    profile: str,
+    *,
+    prompt_kind: str = "task",
+) -> str:
+    kind_templates = PROMPT_PROFILE_TEMPLATES.get(prompt_kind)
+    if kind_templates is None:
         valid = ", ".join(sorted(PROMPT_PROFILE_TEMPLATES))
+        raise ValueError(f"unknown prompt kind {prompt_kind!r}; expected one of: {valid}")
+    template_name = kind_templates.get(profile)
+    if template_name is None:
+        valid = ", ".join(sorted(kind_templates))
         raise ValueError(f"unknown prompt profile {profile!r}; expected one of: {valid}")
     return load_prompt_template(template_name)

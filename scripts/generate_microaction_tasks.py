@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate task instructions for classified microactions (batched per macro state)."""
+"""Generate microaction outputs: one-step tasks or full-trajectory goals."""
 
 from __future__ import annotations
 
@@ -13,7 +13,10 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from ui_explorer.synthetic.cost_log import log_task_generation_batch_cost
+from ui_explorer.synthetic.cost_log import (
+    log_task_generation_batch_cost,
+    reconcile_cost_log_prompts,
+)
 from ui_explorer.synthetic.env import load_env_file, resolve_openai_config
 from ui_explorer.synthetic.generation_output import (
     GENERATION_STATUS_FAILED,
@@ -27,7 +30,10 @@ from ui_explorer.synthetic.generation_output import (
     raw_batch_path,
     resolve_classification_model,
     is_in_progress_generation_run,
+    is_in_progress_goal_generation_run,
+    load_generation_run_outputs,
     load_generation_run_state,
+    load_goal_generation_run_state,
     successful_action_ids_from_generation_run,
     utc_run_timestamp,
 )
@@ -38,11 +44,21 @@ from ui_explorer.synthetic.openai_client import build_openai_messages, openai_st
 from ui_explorer.synthetic.paths import DEFAULT_OUTPUT_ROOT, repo_root, resolve_repo_path
 from ui_explorer.synthetic.pricing import UsageCost
 from ui_explorer.synthetic.timing import StageTimer
+from ui_explorer.synthetic.goal_source import (
+    build_goal_target_payload,
+    build_preflight_trajectory_context,
+    enrich_goal_outputs,
+    filter_microactions_with_complete_goals,
+    find_latest_task_generation_run,
+)
 from ui_explorer.synthetic.schemas import (
+    MACROSTATE_GOALS_BATCH_SCHEMA,
     MACROSTATE_TASKS_BATCH_SCHEMA,
     TASK_COUNT_GUIDANCE,
     YIELD_BUCKETS,
     find_yield_bucket,
+    generation_payload_key,
+    validate_macrostate_goals_batch,
     validate_macrostate_tasks_batch,
 )
 from ui_explorer.synthetic.scope_index import (
@@ -54,9 +70,13 @@ from ui_explorer.synthetic.scope_index import (
 log = logging.getLogger(__name__)
 
 DEFAULT_BATCH_SIZE = 6
+DEFAULT_GOAL_BATCH_SIZE = 2
+DEFAULT_GOAL_VARIANT_COUNT = 4
 DEFAULT_MAX_TOKENS = 16000
 DEFAULT_PROMPT_PROFILE = "slim"
+DEFAULT_PROMPT_KIND = "task"
 PROMPT_PROFILES = ("default", "slim")
+PROMPT_KINDS = ("task", "goal")
 
 
 def load_classification(
@@ -91,6 +111,8 @@ def build_target_microactions_payload(
     action_keys: set[str],
     prompt_profile: str = DEFAULT_PROMPT_PROFILE,
 ) -> list[dict[str, Any]]:
+    count_guidance = TASK_COUNT_GUIDANCE
+    count_field = "task_count_guidance"
     by_key = {
         action["action_key"]: action
         for action in scope_state.get("active_root_micro_actions", [])
@@ -110,7 +132,7 @@ def build_target_microactions_payload(
             entry: dict[str, Any] = {
                 "micro_action_id": action_key,
                 "yield": yield_tier,
-                "task_count_guidance": TASK_COUNT_GUIDANCE[yield_tier],
+                count_field: count_guidance[yield_tier],
                 "name": micro_action.get("name"),
                 "role": micro_action.get("role"),
             }
@@ -122,7 +144,7 @@ def build_target_microactions_payload(
         targets.append({
             "micro_action_id": action_key,
             "yield": yield_tier,
-            "task_count_guidance": TASK_COUNT_GUIDANCE[yield_tier],
+            count_field: count_guidance[yield_tier],
             "role": micro_action.get("role"),
             "name": micro_action.get("name"),
             "description": micro_action.get("description"),
@@ -144,23 +166,30 @@ def build_prompt_replacements(
     target_microactions: list[dict[str, Any]],
     action_keys: set[str],
     prompt_profile: str,
+    source_task_generation_run: str | None = None,
+    goal_variant_count: int | None = None,
 ) -> dict[str, str]:
     if prompt_profile == "slim":
         slim_macro = index.build_slim_macro_context(state_id)
         active_root_line = index.build_slim_active_root_line(scope_state)
         if active_root_line:
             active_root_line = f"{active_root_line}\n"
-        return {
+        replacements = {
             "macro_state_id": state_id,
             "macro_path_text": slim_macro["macro_path_text"],
             "active_root_line": active_root_line,
             "target_microactions_json": json.dumps(target_microactions, indent=2, ensure_ascii=False),
             "target_microaction_count": str(len(action_keys)),
         }
+        if source_task_generation_run is not None:
+            replacements["source_task_generation_run"] = source_task_generation_run
+        if goal_variant_count is not None:
+            replacements["goal_variant_count"] = str(goal_variant_count)
+        return replacements
 
     macro_context = index.build_macro_context(state_id)
     active_root_context = index.build_active_root_context(scope_state)
-    return {
+    replacements = {
         "macro_state_id": state_id,
         "macro_context_json": json.dumps(macro_context, indent=2, ensure_ascii=False),
         "active_root_context_json": json.dumps(active_root_context, indent=2, ensure_ascii=False),
@@ -168,6 +197,11 @@ def build_prompt_replacements(
         "target_microaction_ids_json": json.dumps(sorted(action_keys), indent=2),
         "target_microaction_count": str(len(action_keys)),
     }
+    if source_task_generation_run is not None:
+        replacements["source_task_generation_run"] = source_task_generation_run
+    if goal_variant_count is not None:
+        replacements["goal_variant_count"] = str(goal_variant_count)
+    return replacements
 
 
 def chunk_action_keys(action_keys: set[str], batch_size: int | None) -> list[set[str]]:
@@ -192,11 +226,34 @@ def parse_batch_size(value: str) -> int | None:
     return batch_size
 
 
-def build_successful_microaction_record(action_id: str, output: dict[str, Any]) -> dict[str, Any]:
+def count_goal_output_items(output: dict[str, Any]) -> int:
+    total = 0
+    for entry in output.get("goal", []):
+        if not isinstance(entry, dict):
+            continue
+        variants = entry.get("variants")
+        if isinstance(variants, list):
+            total += len(variants)
+    return total
+
+
+def build_successful_microaction_record(
+    action_id: str,
+    output: dict[str, Any],
+    *,
+    prompt_kind: str,
+) -> dict[str, Any]:
+    payload_key = generation_payload_key(prompt_kind)
+    if prompt_kind == "goal":
+        count_field = "goal_variant_count"
+        item_count = count_goal_output_items(output)
+    else:
+        count_field = "task_count"
+        item_count = len(output[payload_key])
     return {
         "micro_action_id": action_id,
         "task_type": output["task_type"],
-        "task_count": len(output["task"]),
+        count_field: item_count,
     }
 
 
@@ -232,6 +289,7 @@ def generation_metadata(
     failed_microactions: list[dict[str, str]],
     batches: list[dict[str, Any]],
     status: str,
+    prompt_kind: str,
 ) -> dict[str, Any]:
     failed_ids = {
         item["micro_action_id"]
@@ -240,7 +298,7 @@ def generation_metadata(
     }
     return {
         "successful_microactions": [
-            build_successful_microaction_record(action_id, output)
+            build_successful_microaction_record(action_id, output, prompt_kind=prompt_kind)
             for action_id, output in sorted(outputs.items())
         ],
         "failed_microactions": failed_microactions,
@@ -252,7 +310,7 @@ def generation_metadata(
     }
 
 
-def generate_tasks_batch(
+def generate_microaction_batch(
     *,
     index: ScopeIndex,
     state_id: str,
@@ -265,25 +323,53 @@ def generate_tasks_batch(
     dry_run: bool,
     batch_index: int,
     prompt_profile: str,
+    prompt_kind: str,
+    source_outputs: dict[str, dict[str, Any]] | None = None,
+    source_task_generation_run: str | None = None,
+    preflight_context: dict[str, Any] | None = None,
+    goal_variant_count: int = DEFAULT_GOAL_VARIANT_COUNT,
 ) -> dict[str, Any]:
+    payload_key = generation_payload_key(prompt_kind)
+    json_schema = (
+        MACROSTATE_GOALS_BATCH_SCHEMA if prompt_kind == "goal" else MACROSTATE_TASKS_BATCH_SCHEMA
+    )
     timer = StageTimer(log)
 
     with timer.stage("resolve_paths", macro_state_id=state_id):
         screenshot_path = index.resolve_screenshot_path(scope_state)
 
+    expected_goal_counts: dict[str, int] = {}
     with timer.stage("build_context", macro_state_id=state_id):
-        target_microactions = build_target_microactions_payload(
-            index=index,
-            state_id=state_id,
-            scope_state=scope_state,
-            classification=classification,
-            action_keys=action_keys,
-            prompt_profile=prompt_profile,
-        )
+        if prompt_kind == "goal":
+            if source_outputs is None or source_task_generation_run is None or preflight_context is None:
+                raise ValueError("goal mode requires source task context")
+            target_microactions = build_goal_target_payload(
+                index=index,
+                state_id=state_id,
+                scope_state=scope_state,
+                action_keys=action_keys,
+                source_outputs=source_outputs,
+                preflight_context=preflight_context,
+                prompt_profile=prompt_profile,
+                goal_variant_count=goal_variant_count,
+            )
+            expected_goal_counts = {
+                str(target["micro_action_id"]): int(target["goal_count_required"])
+                for target in target_microactions
+            }
+        else:
+            target_microactions = build_target_microactions_payload(
+                index=index,
+                state_id=state_id,
+                scope_state=scope_state,
+                classification=classification,
+                action_keys=action_keys,
+                prompt_profile=prompt_profile,
+            )
 
     with timer.stage("render_prompt", macro_state_id=state_id, microactions=len(action_keys)):
         prompt_text = render_prompt(
-            load_prompt_template_for_profile(prompt_profile),
+            load_prompt_template_for_profile(prompt_profile, prompt_kind=prompt_kind),
             build_prompt_replacements(
                 index=index,
                 state_id=state_id,
@@ -291,31 +377,56 @@ def generate_tasks_batch(
                 target_microactions=target_microactions,
                 action_keys=action_keys,
                 prompt_profile=prompt_profile,
+                source_task_generation_run=source_task_generation_run,
+                goal_variant_count=goal_variant_count if prompt_kind == "goal" else None,
             ),
         )
 
-    yield_counts: dict[str, int] = defaultdict(int)
-    for target in target_microactions:
-        yield_counts[str(target["yield"])] += 1
-    yield_summary = ", ".join(f"{count} {tier}" for tier, count in sorted(yield_counts.items()))
-    log.info(
-        "Macro state %s batch=%d: prepared microactions=%d (%s) prompt_profile=%s prompt_chars=%d screenshot=%s",
-        state_id,
-        batch_index,
-        len(action_keys),
-        yield_summary,
-        prompt_profile,
-        len(prompt_text),
-        screenshot_path,
-    )
-    for target in target_microactions:
+    if prompt_kind == "goal":
+        total_source_tasks = sum(int(target["goal_count_required"]) for target in target_microactions)
         log.info(
-            "  target %s yield=%s guidance=%s name=%r",
-            target["micro_action_id"],
-            target["yield"],
-            target["task_count_guidance"],
-            target.get("name"),
+            "Macro state %s batch=%d: prepared microactions=%d source_tasks=%d prompt_kind=%s prompt_profile=%s prompt_chars=%d screenshot=%s source_task_run=%s",
+            state_id,
+            batch_index,
+            len(action_keys),
+            total_source_tasks,
+            prompt_kind,
+            prompt_profile,
+            len(prompt_text),
+            screenshot_path,
+            source_task_generation_run,
         )
+        for target in target_microactions:
+            log.info(
+                "  target %s goals_required=%s name=%r",
+                target["micro_action_id"],
+                target.get("goal_count_required"),
+                target.get("name"),
+            )
+    else:
+        yield_counts: dict[str, int] = defaultdict(int)
+        for target in target_microactions:
+            yield_counts[str(target["yield"])] += 1
+        yield_summary = ", ".join(f"{count} {tier}" for tier, count in sorted(yield_counts.items()))
+        log.info(
+            "Macro state %s batch=%d: prepared microactions=%d (%s) prompt_kind=%s prompt_profile=%s prompt_chars=%d screenshot=%s",
+            state_id,
+            batch_index,
+            len(action_keys),
+            yield_summary,
+            prompt_kind,
+            prompt_profile,
+            len(prompt_text),
+            screenshot_path,
+        )
+        for target in target_microactions:
+            log.info(
+                "  target %s yield=%s guidance=%s name=%r",
+                target["micro_action_id"],
+                target["yield"],
+                target.get("task_count_guidance"),
+                target.get("name"),
+            )
 
     if dry_run:
         log.info("Macro state %s batch=%d: dry run, skipping API call", state_id, batch_index)
@@ -326,6 +437,7 @@ def generate_tasks_batch(
             "generation_run": str(run_dir),
             "microaction_count": len(action_keys),
             "screenshot_path": screenshot_path,
+            "prompt_kind": prompt_kind,
             "prompt_profile": prompt_profile,
             "prompt_chars": len(prompt_text),
             "micro_action_ids": sorted(action_keys),
@@ -345,11 +457,11 @@ def generate_tasks_batch(
             base_url=openai_config["base_url"],
             model=openai_config["model"],
             messages=messages,
-            json_schema=MACROSTATE_TASKS_BATCH_SCHEMA,
+            json_schema=json_schema,
             completion_params=completion_params,
         )
 
-    raw_response_path = raw_batch_path(run_dir, batch_index)
+    raw_response_path = raw_batch_path(run_dir, batch_index, kind=prompt_kind)
     raw_response_path.parent.mkdir(parents=True, exist_ok=True)
     raw_response_path.write_text(
         json.dumps(completion.content, indent=2, ensure_ascii=False) + "\n",
@@ -367,7 +479,15 @@ def generate_tasks_batch(
 
     try:
         with timer.stage("validate", macro_state_id=state_id):
-            outputs = validate_macrostate_tasks_batch(completion.content, action_keys)
+            if prompt_kind == "goal":
+                outputs = validate_macrostate_goals_batch(
+                    completion.content,
+                    action_keys,
+                    expected_goal_counts=expected_goal_counts,
+                    max_variant_count=goal_variant_count,
+                )
+            else:
+                outputs = validate_macrostate_tasks_batch(completion.content, action_keys)
     except ValueError as exc:
         timings = timer.summary()
         timings["total"] = sum(timings.values())
@@ -378,28 +498,48 @@ def generate_tasks_batch(
             timings=timings,
         ) from exc
 
-    formatted_outputs = {
-        action_id: {
-            "micro_action_id": action_id,
-            "task_type": payload["task_type"],
-            "task": payload["task"],
+    if prompt_kind == "goal":
+        formatted_outputs = enrich_goal_outputs(
+            outputs,
+            source_outputs=source_outputs or {},
+            source_task_generation_run=source_task_generation_run or "",
+            run_timestamp=run_dir.name,
+        )
+    else:
+        formatted_outputs = {
+            action_id: {
+                "micro_action_id": action_id,
+                "task_type": payload["task_type"],
+                payload_key: payload[payload_key],
+            }
+            for action_id, payload in outputs.items()
         }
-        for action_id, payload in outputs.items()
-    }
-    total_tasks = sum(len(output["task"]) for output in formatted_outputs.values())
+    if prompt_kind == "goal":
+        total_items = sum(count_goal_output_items(output) for output in formatted_outputs.values())
+        item_label = "goal_variants"
+    else:
+        total_items = sum(len(output[payload_key]) for output in formatted_outputs.values())
+        item_label = "tasks"
     log.info(
-        "Macro state %s batch=%d: validated microactions=%d tasks=%d api_calls=1",
+        "Macro state %s batch=%d: validated microactions=%d %s=%d api_calls=1",
         state_id,
         batch_index,
         len(formatted_outputs),
-        total_tasks,
+        item_label,
+        total_items,
     )
     for action_id, output in sorted(formatted_outputs.items()):
+        item_count = (
+            count_goal_output_items(output)
+            if prompt_kind == "goal"
+            else len(output[payload_key])
+        )
         log.info(
-            "  microaction %s task_type=%s tasks=%d",
+            "  microaction %s task_type=%s %s=%d",
             action_id,
             output["task_type"],
-            len(output["task"]),
+            item_label,
+            item_count,
         )
 
     timings = timer.summary()
@@ -462,7 +602,10 @@ def build_run_settings_and_metadata(
     run_dir: Path,
     batch_size: int | None,
     prompt_profile: str,
+    prompt_kind: str,
     status: str,
+    source_task_generation_run: str | None = None,
+    goal_variant_count: int | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     metadata = generation_metadata(
         requested_action_keys=requested_action_keys,
@@ -470,6 +613,7 @@ def build_run_settings_and_metadata(
         failed_microactions=failed_microactions,
         batches=batch_results,
         status=status,
+        prompt_kind=prompt_kind,
     )
     metadata["timings_seconds"] = timings
     metadata["usage"] = total_usage
@@ -478,7 +622,12 @@ def build_run_settings_and_metadata(
     metadata["model"] = openai_config["model"]
     metadata["generation_run"] = str(run_dir)
     metadata["batch_size"] = "all" if batch_size is None else batch_size
+    metadata["prompt_kind"] = prompt_kind
     metadata["prompt_profile"] = prompt_profile
+    if source_task_generation_run is not None:
+        metadata["source_task_generation_run"] = source_task_generation_run
+    if goal_variant_count is not None:
+        metadata["goal_variant_count"] = goal_variant_count
 
     settings = build_settings_payload(
         timestamp=run_timestamp,
@@ -493,7 +642,12 @@ def build_run_settings_and_metadata(
     settings["api_calls"] = total_usage["api_calls"]
     settings["timings_seconds"] = timings
     settings["batch_size"] = "all" if batch_size is None else batch_size
+    settings["prompt_kind"] = prompt_kind
     settings["prompt_profile"] = prompt_profile
+    if source_task_generation_run is not None:
+        settings["source_task_generation_run"] = source_task_generation_run
+    if goal_variant_count is not None:
+        settings["goal_variant_count"] = goal_variant_count
     return settings, metadata
 
 
@@ -513,9 +667,12 @@ def commit_run_checkpoint(
     run_dir: Path,
     batch_size: int | None,
     prompt_profile: str,
+    prompt_kind: str,
     status: str,
     dry_run: bool,
     new_outputs: dict[str, dict[str, Any]] | None = None,
+    source_task_generation_run: str | None = None,
+    goal_variant_count: int | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     settings, metadata = build_run_settings_and_metadata(
         state_id=state_id,
@@ -532,7 +689,10 @@ def commit_run_checkpoint(
         run_dir=run_dir,
         batch_size=batch_size,
         prompt_profile=prompt_profile,
+        prompt_kind=prompt_kind,
         status=status,
+        source_task_generation_run=source_task_generation_run,
+        goal_variant_count=goal_variant_count,
     )
     if not dry_run:
         commit_generation_checkpoint(
@@ -540,11 +700,12 @@ def commit_run_checkpoint(
             settings=settings,
             metadata=metadata,
             new_outputs=new_outputs,
+            kind=prompt_kind,
         )
     return settings, metadata
 
 
-def generate_tasks_for_macro_state(
+def generate_for_macro_state(
     *,
     index: ScopeIndex,
     state_id: str,
@@ -560,11 +721,21 @@ def generate_tasks_for_macro_state(
     dry_run: bool,
     batch_size: int | None,
     prompt_profile: str,
+    prompt_kind: str,
     resume: bool = False,
+    source_task_run_dir: Path | None = None,
+    source_outputs: dict[str, dict[str, Any]] | None = None,
+    preflight_context: dict[str, Any] | None = None,
+    goal_variant_count: int = DEFAULT_GOAL_VARIANT_COUNT,
 ) -> dict[str, Any]:
     run_started = time.monotonic()
+    source_task_generation_run = str(source_task_run_dir) if source_task_run_dir is not None else None
     if resume:
-        run_state = load_generation_run_state(run_dir)
+        run_state = (
+            load_goal_generation_run_state(run_dir)
+            if prompt_kind == "goal"
+            else load_generation_run_state(run_dir)
+        )
         all_outputs = dict(run_state["outputs"])
         failed_microactions = list(run_state["metadata"].get("failed_microactions", []))
         batch_results = list(run_state["batch_results"])
@@ -577,6 +748,10 @@ def generate_tasks_for_macro_state(
         }
         if not requested_action_keys:
             requested_action_keys = set(action_keys) | set(all_outputs)
+        if source_task_generation_run is None:
+            resumed_source = run_state["metadata"].get("source_task_generation_run")
+            if isinstance(resumed_source, str) and resumed_source.strip():
+                source_task_generation_run = resumed_source.strip()
         log.info(
             "Macro state %s: resuming generation run %s successes=%d batches=%d remaining=%d",
             state_id,
@@ -597,12 +772,13 @@ def generate_tasks_for_macro_state(
     batch_index_offset = len(batch_results)
 
     log.info(
-        "Macro state %s: output_dir=%s microactions=%d batches=%d batch_size=%s prompt_profile=%s resume=%s",
+        "Macro state %s: output_dir=%s microactions=%d batches=%d batch_size=%s prompt_kind=%s prompt_profile=%s resume=%s",
         state_id,
         run_dir,
         len(action_keys),
         len(batches),
         "all" if batch_size is None else batch_size,
+        prompt_kind,
         prompt_profile,
         resume,
     )
@@ -624,8 +800,11 @@ def generate_tasks_for_macro_state(
             run_dir=run_dir,
             batch_size=batch_size,
             prompt_profile=prompt_profile,
+            prompt_kind=prompt_kind,
             status=GENERATION_STATUS_IN_PROGRESS,
             dry_run=dry_run,
+            source_task_generation_run=source_task_generation_run,
+            goal_variant_count=goal_variant_count if prompt_kind == "goal" else None,
         )
 
     for batch_index, batch_action_keys in enumerate(batches, start=1):
@@ -638,7 +817,7 @@ def generate_tasks_for_macro_state(
         batch_started = time.monotonic()
         batch_new_outputs: dict[str, dict[str, Any]] = {}
         try:
-            batch_result = generate_tasks_batch(
+            batch_result = generate_microaction_batch(
                 index=index,
                 state_id=state_id,
                 scope_state=scope_state,
@@ -650,6 +829,11 @@ def generate_tasks_for_macro_state(
                 dry_run=dry_run,
                 batch_index=batch_number,
                 prompt_profile=prompt_profile,
+                prompt_kind=prompt_kind,
+                source_outputs=source_outputs,
+                source_task_generation_run=source_task_generation_run,
+                preflight_context=preflight_context,
+                goal_variant_count=goal_variant_count,
             )
             batch_new_outputs = dict(batch_result.get("outputs", {}))
             batch_record.update({
@@ -670,17 +854,19 @@ def generate_tasks_for_macro_state(
             if not dry_run:
                 usage = batch_result["usage"]
                 merge_usage_totals(total_usage, usage)
+                usage_cost = UsageCost(
+                    num_tokens=usage["num_tokens"],
+                    cost_usd=usage["cost"],
+                    cost_source=usage["cost_source"],
+                    prompt_tokens=usage["prompt_tokens"],
+                    completion_tokens=usage["completion_tokens"],
+                )
                 log_task_generation_batch_cost(
                     workspace_root,
                     state_id,
                     openai_config["model"],
-                    UsageCost(
-                        num_tokens=usage["num_tokens"],
-                        cost_usd=usage["cost"],
-                        cost_source=usage["cost_source"],
-                        prompt_tokens=usage["prompt_tokens"],
-                        completion_tokens=usage["completion_tokens"],
-                    ),
+                    usage_cost,
+                    prompt=prompt_kind,
                     generation_run=str(run_dir),
                 )
         except Exception as exc:
@@ -695,7 +881,7 @@ def generate_tasks_for_macro_state(
             raw_response_path = (
                 str(exc.raw_response_path)
                 if isinstance(exc, BatchGenerationError) and exc.raw_response_path is not None
-                else str(raw_batch_path(run_dir, batch_number))
+                else str(raw_batch_path(run_dir, batch_number, kind=prompt_kind))
             )
             batch_record.update({
                 "status": "failed",
@@ -708,17 +894,19 @@ def generate_tasks_for_macro_state(
                     usage = exc.usage
                     if not dry_run:
                         merge_usage_totals(total_usage, usage)
+                        usage_cost = UsageCost(
+                            num_tokens=usage["num_tokens"],
+                            cost_usd=usage["cost"],
+                            cost_source=usage["cost_source"],
+                            prompt_tokens=usage["prompt_tokens"],
+                            completion_tokens=usage["completion_tokens"],
+                        )
                         log_task_generation_batch_cost(
                             workspace_root,
                             state_id,
                             openai_config["model"],
-                            UsageCost(
-                                num_tokens=usage["num_tokens"],
-                                cost_usd=usage["cost"],
-                                cost_source=usage["cost_source"],
-                                prompt_tokens=usage["prompt_tokens"],
-                                completion_tokens=usage["completion_tokens"],
-                            ),
+                            usage_cost,
+                            prompt=prompt_kind,
                             generation_run=str(run_dir),
                         )
                 if exc.timings is not None:
@@ -744,9 +932,12 @@ def generate_tasks_for_macro_state(
                     run_dir=run_dir,
                     batch_size=batch_size,
                     prompt_profile=prompt_profile,
+                    prompt_kind=prompt_kind,
                     status=GENERATION_STATUS_IN_PROGRESS,
                     dry_run=dry_run,
                     new_outputs=batch_new_outputs or None,
+                    source_task_generation_run=source_task_generation_run,
+                    goal_variant_count=goal_variant_count if prompt_kind == "goal" else None,
                 )
 
     if dry_run:
@@ -775,8 +966,11 @@ def generate_tasks_for_macro_state(
         run_dir=run_dir,
         batch_size=batch_size,
         prompt_profile=prompt_profile,
+        prompt_kind=prompt_kind,
         status=status,
         dry_run=dry_run,
+        source_task_generation_run=source_task_generation_run,
+        goal_variant_count=goal_variant_count if prompt_kind == "goal" else None,
     )
 
     if dry_run:
@@ -868,7 +1062,13 @@ def parse_args() -> argparse.Namespace:
         dest="workspace_root",
         type=Path,
         default=DEFAULT_OUTPUT_ROOT,
-        help="Synthetic workspace root containing classification/ and task_generation/ directories.",
+        help="Synthetic workspace root containing classification/ and generation output directories.",
+    )
+    parser.add_argument(
+        "--prompt",
+        choices=PROMPT_KINDS,
+        default=DEFAULT_PROMPT_KIND,
+        help="Generation mode: 'task' for one-step instructions, 'goal' for user-goal rephrases.",
     )
     parser.add_argument(
         "--classification-model",
@@ -879,13 +1079,13 @@ def parse_args() -> argparse.Namespace:
         "--micro-action-id",
         action="append",
         default=[],
-        help="Microaction id (action_key) to generate tasks for (repeatable).",
+        help="Microaction id (action_key) to generate for (repeatable).",
     )
     parser.add_argument(
         "--macro-state-id",
         action="append",
         default=[],
-        help="Generate tasks for all classified microactions in this macro state (repeatable).",
+        help="Generate for all classified microactions in this macro state (repeatable).",
     )
     parser.add_argument(
         "--previous-generation-run",
@@ -908,11 +1108,30 @@ def parse_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--task-generation-run",
+        type=Path,
+        default=None,
+        help=(
+            "Goal mode only: task generation run to derive source tasks from. "
+            "Defaults to the latest finalized task_generation run per macro state."
+        ),
+    )
+    parser.add_argument(
+        "--goal-variant-count",
+        type=int,
+        default=DEFAULT_GOAL_VARIANT_COUNT,
+        help=(
+            "Goal mode only: maximum natural-language rephrases per source task "
+            f"(default: {DEFAULT_GOAL_VARIANT_COUNT})."
+        ),
+    )
+    parser.add_argument(
         "--batch-size",
         type=parse_batch_size,
-        default=DEFAULT_BATCH_SIZE,
+        default=None,
         help=(
-            f"Number of microactions per strict generation batch (default: {DEFAULT_BATCH_SIZE}). "
+            f"Number of microactions per strict generation batch "
+            f"(default: {DEFAULT_BATCH_SIZE} for task, {DEFAULT_GOAL_BATCH_SIZE} for goal). "
             "Use 'all' to request all pending microactions in one batch."
         ),
     )
@@ -945,6 +1164,12 @@ def main() -> int:
             "error": "provide --micro-action-id and/or --macro-state-id",
         }, indent=2), file=sys.stderr)
         return 2
+    if args.prompt == "goal" and args.goal_variant_count < 1:
+        print(json.dumps({
+            "ok": False,
+            "error": "--goal-variant-count must be at least 1",
+        }, indent=2), file=sys.stderr)
+        return 2
 
     root = repo_root()
     workspace_root = resolve_repo_path(args.workspace_root)
@@ -957,20 +1182,29 @@ def main() -> int:
         print(json.dumps({"ok": False, "error": str(exc)}, indent=2), file=sys.stderr)
         return 1
     env_path = args.env_file or (root / ".env")
+    batch_size = (
+        args.batch_size
+        if args.batch_size is not None
+        else (DEFAULT_GOAL_BATCH_SIZE if args.prompt == "goal" else DEFAULT_BATCH_SIZE)
+    )
 
     index = ScopeIndex.load(repo_root=root)
 
     load_env_file(env_path)
+    cost_reconcile = reconcile_cost_log_prompts(workspace_root)
+    if cost_reconcile["merged_from_legacy_goal"] or cost_reconcile["fixed_prompt"]:
+        log.info("Reconciled cost_task_generation.jsonl: %s", cost_reconcile)
     completion_params = completion_params_from_args(args)
     if completion_params.max_tokens is None:
         completion_params = completion_params.merge(CompletionParams(max_tokens=DEFAULT_MAX_TOKENS))
     log.info(
-        "stage=startup status=done workspace_root=%s classification_model=%s dry_run=%s creative=%s batch_size=%s prompt_profile=%s",
+        "stage=startup status=done workspace_root=%s classification_model=%s dry_run=%s creative=%s batch_size=%s prompt_kind=%s prompt_profile=%s",
         workspace_root,
         classification_model,
         args.dry_run,
         args.creative,
-        "all" if args.batch_size is None else args.batch_size,
+        "all" if batch_size is None else batch_size,
+        args.prompt,
         args.prompt_profile,
     )
     if completion_params.as_dict():
@@ -1030,7 +1264,7 @@ def main() -> int:
         "Resolved macro_states=%d microactions=%d batch_size=%s",
         len(requested_by_state),
         total_microactions,
-        "all" if args.batch_size is None else args.batch_size,
+        "all" if batch_size is None else batch_size,
     )
     if skipped_successful:
         skipped_count = sum(len(ids) for ids in skipped_successful.values())
@@ -1070,12 +1304,91 @@ def main() -> int:
                     continue
                 pending.add(action_key)
 
+            source_task_run_dir: Path | None = None
+            source_outputs: dict[str, dict[str, Any]] | None = None
+            preflight_context: dict[str, Any] | None = None
+            if args.prompt == "goal":
+                if args.task_generation_run is not None:
+                    source_task_run_dir = resolve_repo_path(args.task_generation_run)
+                    if not source_task_run_dir.exists():
+                        raise FileNotFoundError(
+                            f"task generation run not found: {source_task_run_dir}"
+                        )
+                else:
+                    source_task_run_dir = find_latest_task_generation_run(
+                        workspace_root,
+                        state_id,
+                    )
+                if source_task_run_dir is None:
+                    raise FileNotFoundError(
+                        f"no finalized task generation run found for macro state {state_id}"
+                    )
+                source_outputs = load_generation_run_outputs(source_task_run_dir)
+                available_ids = {
+                    action_id
+                    for action_id, payload in source_outputs.items()
+                    if isinstance(payload.get("task"), list) and payload["task"]
+                }
+                missing_requested = sorted(pending - available_ids)
+                if missing_requested:
+                    for action_key in missing_requested:
+                        failed.append({
+                            "micro_action_id": action_key,
+                            "error": (
+                                f"no source tasks in task generation run {source_task_run_dir}"
+                            ),
+                        })
+                    pending -= set(missing_requested)
+                preflight_context = build_preflight_trajectory_context(index, state_id=state_id)
+                pending, skipped_complete_goals = filter_microactions_with_complete_goals(
+                    source_task_run_dir,
+                    pending,
+                    source_outputs,
+                    goal_variant_count=args.goal_variant_count,
+                )
+                if skipped_complete_goals:
+                    log.info(
+                        "Macro state %s: skipped %d microaction(s) with complete goals",
+                        state_id,
+                        len(skipped_complete_goals),
+                    )
+                log.info(
+                    "Macro state %s: source_task_run=%s source_microactions=%d pending=%d",
+                    state_id,
+                    source_task_run_dir,
+                    len(source_outputs),
+                    len(pending),
+                )
+
             if not pending:
                 continue
 
             resume = False
             run_timestamp = utc_run_timestamp()
-            if (
+            if args.prompt == "goal":
+                run_dir = source_task_run_dir
+                assert run_dir is not None
+                run_timestamp = run_dir.name
+                if resume_run is not None:
+                    if resume_run.resolve() != run_dir.resolve():
+                        raise RuntimeError(
+                            f"goal resume run must match source task run: {resume_run} != {run_dir}"
+                        )
+                    if not is_in_progress_goal_generation_run(run_dir):
+                        raise RuntimeError(
+                            f"cannot resume finalized goal generation on task run: {run_dir}"
+                        )
+                    resume = True
+                elif is_in_progress_goal_generation_run(run_dir):
+                    resume = True
+                log.info(
+                    "Macro state %s: goal output_dir=%s/goals microactions=%d resume=%s",
+                    state_id,
+                    run_dir,
+                    len(pending),
+                    resume,
+                )
+            elif (
                 resume_run is not None
                 and resume_run.parent.parent.parent.name == state_id
             ):
@@ -1105,7 +1418,7 @@ def main() -> int:
                     len(pending),
                 )
 
-            result = generate_tasks_for_macro_state(
+            result = generate_for_macro_state(
                 index=index,
                 state_id=state_id,
                 scope_state=scope_state,
@@ -1118,9 +1431,14 @@ def main() -> int:
                 creative=args.creative,
                 completion_params=completion_params,
                 dry_run=args.dry_run,
-                batch_size=args.batch_size,
+                batch_size=batch_size,
                 prompt_profile=args.prompt_profile,
+                prompt_kind=args.prompt,
                 resume=resume,
+                source_task_run_dir=source_task_run_dir,
+                source_outputs=source_outputs,
+                preflight_context=preflight_context,
+                goal_variant_count=args.goal_variant_count,
             )
             batch_results.append(result)
 
@@ -1157,7 +1475,7 @@ def main() -> int:
 
     print(json.dumps({
         "ok": len(failed) == 0,
-        "action": "dry_run" if args.dry_run else "generate_tasks",
+        "action": "dry_run" if args.dry_run else f"generate_{args.prompt}",
         "workspace_root": str(workspace_root),
         "classification_model": classification_model,
         "processed": processed,
@@ -1166,6 +1484,7 @@ def main() -> int:
         "batches": batch_results,
         "model": openai_config.get("model"),
         "creative": args.creative,
+        "prompt_kind": args.prompt,
         "prompt_profile": args.prompt_profile,
         "completion_params": completion_params.as_dict(),
         "elapsed_seconds": time.monotonic() - run_started,

@@ -6,12 +6,22 @@ from pathlib import Path
 from typing import Any
 
 from ui_explorer.synthetic.io import load_json, save_json
-from ui_explorer.synthetic.paths import CLASSIFICATION_DIRNAME, TASK_GENERATION_DIRNAME
+from ui_explorer.synthetic.paths import (
+    CLASSIFICATION_DIRNAME,
+    TASK_GENERATION_DIRNAME,
+    generation_dirname,
+)
+from ui_explorer.synthetic.schemas import generation_payload_key
 from ui_explorer.synthetic.schemas import YIELD_BUCKETS
 
 LEGACY_GENERATIONS_DIRNAME = "generations"
 RAW_SUBDIR = "raw"
+GOALS_SUBDIR = "goals"
 OSWORLD_SUBDIR = "osworld"
+GOAL_TASK_ID_PATTERN = re.compile(
+    r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+)
+GOAL_VARIANT_FILENAME_PATTERN = re.compile(r"^goal_variant_(\d+)\.json$")
 SETTINGS_FILENAME = "settings.json"
 METADATA_FILENAME = "metadata.json"
 CLASSIFICATION_FILENAME = "yield_classification.json"
@@ -53,8 +63,25 @@ def classification_path(
     return classification_model_dir(workspace_root, classification_model=classification_model) / state_id / CLASSIFICATION_FILENAME
 
 
+def generation_model_dir(
+    workspace_root: Path,
+    *,
+    model: str,
+) -> Path:
+    return workspace_root / generation_dirname() / model_dir_name(model)
+
+
 def tasks_model_dir(workspace_root: Path, *, model: str) -> Path:
-    return workspace_root / TASK_GENERATION_DIRNAME / model_dir_name(model)
+    return generation_model_dir(workspace_root, model=model)
+
+
+def macro_state_generation_dir(
+    workspace_root: Path,
+    state_id: str,
+    *,
+    model: str,
+) -> Path:
+    return generation_model_dir(workspace_root, model=model) / state_id
 
 
 def macro_state_tasks_dir(
@@ -63,7 +90,7 @@ def macro_state_tasks_dir(
     *,
     model: str,
 ) -> Path:
-    return tasks_model_dir(workspace_root, model=model) / state_id
+    return macro_state_generation_dir(workspace_root, state_id, model=model)
 
 
 def generation_run_dir(
@@ -74,11 +101,15 @@ def generation_run_dir(
     timestamp: str | None = None,
 ) -> Path:
     run_id = timestamp or utc_run_timestamp()
-    return macro_state_tasks_dir(workspace_root, state_id, model=model) / run_id
+    return macro_state_generation_dir(workspace_root, state_id, model=model) / run_id
 
 
 def raw_generation_dir(run_dir: Path) -> Path:
     return run_dir / RAW_SUBDIR
+
+
+def goals_generation_dir(run_dir: Path) -> Path:
+    return run_dir / GOALS_SUBDIR
 
 
 def osworld_generation_dir(run_dir: Path) -> Path:
@@ -103,8 +134,26 @@ def metadata_path(run_dir: Path) -> Path:
     return _generation_payload_dir(run_dir) / METADATA_FILENAME
 
 
-def raw_batch_path(run_dir: Path, batch_index: int) -> Path:
+def goals_metadata_path(run_dir: Path) -> Path:
+    return goals_generation_dir(run_dir) / METADATA_FILENAME
+
+
+def goals_settings_path(run_dir: Path) -> Path:
+    return goals_generation_dir(run_dir) / SETTINGS_FILENAME
+
+
+def raw_batch_path(run_dir: Path, batch_index: int, *, kind: str = "task") -> Path:
+    if kind == "goal":
+        return goals_generation_dir(run_dir) / f"raw_response_batch_{batch_index:03d}.json"
     return raw_generation_dir(run_dir) / f"raw_response_batch_{batch_index:03d}.json"
+
+
+def goal_task_dir(run_dir: Path, task_id: str) -> Path:
+    return goals_generation_dir(run_dir) / task_id
+
+
+def goal_variant_output_path(run_dir: Path, task_id: str, variant_id: int) -> Path:
+    return goal_task_dir(run_dir, task_id) / f"goal_variant_{variant_id}.json"
 
 
 def microaction_output_path(run_dir: Path, action_id: str) -> Path:
@@ -226,6 +275,19 @@ def is_in_progress_generation_run(run_dir: Path) -> bool:
     return generation_run_status(run_dir) == GENERATION_STATUS_IN_PROGRESS
 
 
+def goal_generation_run_status(run_dir: Path) -> str | None:
+    metadata_file = goals_metadata_path(run_dir)
+    if not metadata_file.exists():
+        return None
+    metadata = load_json(metadata_file)
+    status = metadata.get("status")
+    return status if isinstance(status, str) else None
+
+
+def is_in_progress_goal_generation_run(run_dir: Path) -> bool:
+    return goal_generation_run_status(run_dir) == GENERATION_STATUS_IN_PROGRESS
+
+
 def is_finalized_generation_run(run_dir: Path) -> bool:
     status = generation_run_status(run_dir)
     return status in FINAL_GENERATION_STATUSES
@@ -257,6 +319,7 @@ def load_generation_run_outputs(run_dir: Path) -> dict[str, dict[str, Any]]:
     if not isinstance(success_ids, list):
         return {}
 
+    payload_key = generation_payload_key(str(metadata.get("prompt_kind", "task")))
     outputs: dict[str, dict[str, Any]] = {}
     for action_id in success_ids:
         if not isinstance(action_id, str):
@@ -265,11 +328,15 @@ def load_generation_run_outputs(run_dir: Path) -> dict[str, dict[str, Any]]:
         if not output_file.exists():
             continue
         payload = load_json(output_file)
-        outputs[action_id] = {
+        record: dict[str, Any] = {
             "micro_action_id": action_id,
             "task_type": payload["task_type"],
-            "task": payload["task"],
+            payload_key: payload[payload_key],
         }
+        source_task_run = payload.get("source_task_generation_run")
+        if isinstance(source_task_run, str) and source_task_run.strip():
+            record["source_task_generation_run"] = source_task_run
+        outputs[action_id] = record
     return outputs
 
 
@@ -287,6 +354,103 @@ def load_generation_run_state(run_dir: Path) -> dict[str, Any]:
         "outputs": load_generation_run_outputs(run_dir),
         "batch_results": list(metadata.get("batches", [])),
     }
+
+
+def load_goal_generation_run_state(run_dir: Path) -> dict[str, Any]:
+    metadata_file = goals_metadata_path(run_dir)
+    if not metadata_file.exists():
+        raise FileNotFoundError(f"missing goal generation metadata: {metadata_file}")
+
+    metadata = load_json(metadata_file)
+    settings_file = goals_settings_path(run_dir)
+    settings = load_json(settings_file) if settings_file.exists() else {}
+    return {
+        "metadata": metadata,
+        "settings": settings,
+        "outputs": load_goal_generation_run_outputs(run_dir),
+        "batch_results": list(metadata.get("batches", [])),
+    }
+
+
+def existing_goal_variant_counts(run_dir: Path) -> dict[str, int]:
+    goals_dir = goals_generation_dir(run_dir)
+    if not goals_dir.exists():
+        return {}
+    counts: dict[str, int] = {}
+    for child in goals_dir.iterdir():
+        if not child.is_dir() or not GOAL_TASK_ID_PATTERN.match(child.name):
+            continue
+        variant_count = sum(
+            1
+            for variant_file in child.iterdir()
+            if variant_file.is_file()
+            and GOAL_VARIANT_FILENAME_PATTERN.match(variant_file.name)
+        )
+        if variant_count:
+            counts[child.name] = variant_count
+    return counts
+
+
+def load_goal_generation_run_outputs(run_dir: Path) -> dict[str, dict[str, Any]]:
+    metadata_file = goals_metadata_path(run_dir)
+    if not metadata_file.exists():
+        return {}
+
+    outputs: dict[str, dict[str, Any]] = {}
+    goals_dir = goals_generation_dir(run_dir)
+    if not goals_dir.exists():
+        return {}
+
+    for task_dir in sorted(
+        child
+        for child in goals_dir.iterdir()
+        if child.is_dir() and GOAL_TASK_ID_PATTERN.match(child.name)
+    ):
+        variants_by_index: dict[int, dict[str, Any]] = {}
+        task_index: int | None = None
+        micro_action_id: str | None = None
+        task_type: str | None = None
+        for variant_file in sorted(task_dir.iterdir(), key=lambda path: path.name):
+            match = GOAL_VARIANT_FILENAME_PATTERN.match(variant_file.name)
+            if not match:
+                continue
+            payload = load_json(variant_file)
+            variant_index = int(match.group(1))
+            variants_by_index[variant_index] = payload
+            if task_index is None:
+                raw_task_index = payload.get("task_index")
+                if isinstance(raw_task_index, int):
+                    task_index = raw_task_index
+            if micro_action_id is None:
+                raw_action_id = payload.get("micro_action_id")
+                if isinstance(raw_action_id, str):
+                    micro_action_id = raw_action_id
+            if task_type is None:
+                raw_task_type = payload.get("task_type")
+                if isinstance(raw_task_type, str):
+                    task_type = raw_task_type
+        if micro_action_id is None or task_index is None:
+            continue
+        bucket = outputs.setdefault(micro_action_id, {
+            "micro_action_id": micro_action_id,
+            "task_type": task_type,
+            "goal": [],
+        })
+        goals = bucket.setdefault("goal", [])
+        if isinstance(goals, list):
+            goals.append({
+                "task_index": task_index,
+                "id": task_dir.name,
+                "variants": [
+                    variants_by_index[index]
+                    for index in sorted(variants_by_index)
+                ],
+            })
+    for bucket in outputs.values():
+        goals = bucket.get("goal")
+        if isinstance(goals, list):
+            goals.sort(key=lambda item: int(item.get("task_index", 0)))
+    return outputs
 
 
 def count_raw_response_batches(run_dir: Path) -> int:
@@ -310,7 +474,7 @@ def list_model_run_dirs(
     *,
     model: str,
 ) -> list[Path]:
-    state_model_dir = macro_state_tasks_dir(workspace_root, state_id, model=model)
+    state_model_dir = macro_state_generation_dir(workspace_root, state_id, model=model)
     if not state_model_dir.exists():
         return []
     return sorted(
@@ -445,15 +609,15 @@ def list_generation_runs(
     model: str | None = None,
 ) -> list[Path]:
     runs: list[Path] = []
-    tasks_root = workspace_root / TASK_GENERATION_DIRNAME
+    generation_root = workspace_root / generation_dirname()
     if model is not None:
         runs.extend(
             _collect_timestamp_run_dirs(
-                macro_state_tasks_dir(workspace_root, state_id, model=model),
+                macro_state_generation_dir(workspace_root, state_id, model=model),
             )
         )
-    elif tasks_root.exists():
-        for model_dir in tasks_root.iterdir():
+    elif generation_root.exists():
+        for model_dir in generation_root.iterdir():
             if not model_dir.is_dir():
                 continue
             runs.extend(_collect_timestamp_run_dirs(model_dir / state_id))
@@ -560,9 +724,20 @@ def write_microaction_outputs(
     outputs: dict[str, dict[str, Any]],
     *,
     only_action_ids: set[str] | None = None,
+    kind: str = "task",
 ) -> None:
+    if kind == "goal":
+        write_goal_outputs(
+            run_dir,
+            outputs,
+            only_action_ids=only_action_ids,
+            run_timestamp=run_dir.name,
+        )
+        return
+
     payload_dir = raw_generation_dir(run_dir)
     payload_dir.mkdir(parents=True, exist_ok=True)
+    payload_key = generation_payload_key(kind)
     for action_id, output in sorted(outputs.items()):
         if only_action_ids is not None and action_id not in only_action_ids:
             continue
@@ -571,9 +746,67 @@ def write_microaction_outputs(
             {
                 "micro_action_id": action_id,
                 "task_type": output["task_type"],
-                "task": output["task"],
+                payload_key: output[payload_key],
             },
         )
+
+
+def write_goal_outputs(
+    run_dir: Path,
+    outputs: dict[str, dict[str, Any]],
+    *,
+    only_action_ids: set[str] | None = None,
+    run_timestamp: str | None = None,
+) -> list[str]:
+    from ui_explorer.synthetic.osworld_conversion import deterministic_task_id
+
+    goals_dir = goals_generation_dir(run_dir)
+    goals_dir.mkdir(parents=True, exist_ok=True)
+    resolved_timestamp = run_timestamp or run_dir.name
+    written: list[str] = []
+    for action_id, output in sorted(outputs.items()):
+        if only_action_ids is not None and action_id not in only_action_ids:
+            continue
+        goals = output.get("goal")
+        if not isinstance(goals, list):
+            continue
+        for goal_entry in goals:
+            if not isinstance(goal_entry, dict):
+                continue
+            task_index = goal_entry.get("task_index")
+            if not isinstance(task_index, int) or task_index < 0:
+                continue
+            task_id = goal_entry.get("id") or goal_entry.get("task_id")
+            if not isinstance(task_id, str) or not task_id.strip():
+                task_id = deterministic_task_id(
+                    run_timestamp=resolved_timestamp,
+                    micro_action_id=action_id,
+                    task_index=task_index,
+                )
+            variants = goal_entry.get("variants")
+            if not isinstance(variants, list) or not variants:
+                continue
+            task_dir = goal_task_dir(run_dir, task_id)
+            task_dir.mkdir(parents=True, exist_ok=True)
+            source_task = goal_entry.get("source_task")
+            for variant_index, variant in enumerate(variants):
+                if not isinstance(variant, dict):
+                    continue
+                payload: dict[str, Any] = {
+                    "id": task_id,
+                    "variant_index": variant_index,
+                    "task_index": task_index,
+                    "micro_action_id": action_id,
+                    "task_type": output["task_type"],
+                    "goal": variant["goal"],
+                    "expected_outcome": variant["expected_outcome"],
+                    "generation_run": str(run_dir),
+                }
+                if isinstance(source_task, dict):
+                    payload["source_task"] = source_task
+                save_json(goal_variant_output_path(run_dir, task_id, variant_index), payload)
+            written.append(task_id)
+    return written
 
 
 def commit_generation_checkpoint(
@@ -582,13 +815,23 @@ def commit_generation_checkpoint(
     settings: dict[str, Any],
     metadata: dict[str, Any],
     new_outputs: dict[str, dict[str, Any]] | None = None,
+    kind: str = "task",
 ) -> None:
+    if kind == "goal":
+        goals_dir = goals_generation_dir(run_dir)
+        goals_dir.mkdir(parents=True, exist_ok=True)
+        save_json(goals_dir / SETTINGS_FILENAME, settings)
+        save_json(goals_dir / METADATA_FILENAME, metadata)
+        if new_outputs:
+            write_goal_outputs(run_dir, new_outputs, only_action_ids=set(new_outputs))
+        return
+
     payload_dir = raw_generation_dir(run_dir)
     payload_dir.mkdir(parents=True, exist_ok=True)
     save_json(payload_dir / SETTINGS_FILENAME, settings)
     save_json(payload_dir / METADATA_FILENAME, metadata)
     if new_outputs:
-        write_microaction_outputs(run_dir, new_outputs)
+        write_microaction_outputs(run_dir, new_outputs, kind=kind)
 
 
 def write_generation_run(
