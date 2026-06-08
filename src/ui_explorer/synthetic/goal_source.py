@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import shutil
 from pathlib import Path
 from typing import Any
 
 from ui_explorer.synthetic.generation_output import (
     existing_goal_variant_counts,
+    goal_task_dir,
     is_finalized_generation_run,
     list_generation_runs,
     load_generation_run_outputs,
@@ -161,6 +163,36 @@ def required_goal_task_ids(
             for task_index in range(len(tasks))
         }
     return required
+
+
+def clear_incomplete_goal_outputs(
+    run_dir: Path,
+    action_keys: set[str],
+    source_outputs: dict[str, dict[str, Any]],
+    *,
+    goal_variant_count: int,
+) -> list[str]:
+    existing = existing_goal_variant_counts(run_dir)
+    required_by_action = required_goal_task_ids(
+        run_timestamp=run_dir.name,
+        source_outputs=source_outputs,
+        action_keys=action_keys,
+    )
+    cleared: list[str] = []
+    for action_id in sorted(action_keys):
+        required = required_by_action.get(action_id, set())
+        if not required:
+            continue
+        if all(existing.get(task_id, 0) >= goal_variant_count for task_id in required):
+            continue
+        for task_id in required:
+            if task_id not in existing:
+                continue
+            task_dir = goal_task_dir(run_dir, task_id)
+            if task_dir.exists():
+                shutil.rmtree(task_dir)
+                cleared.append(task_id)
+    return cleared
 
 
 def filter_microactions_with_complete_goals(

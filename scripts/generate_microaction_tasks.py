@@ -47,6 +47,7 @@ from ui_explorer.synthetic.timing import StageTimer
 from ui_explorer.synthetic.goal_source import (
     build_goal_target_payload,
     build_preflight_trajectory_context,
+    clear_incomplete_goal_outputs,
     enrich_goal_outputs,
     filter_microactions_with_complete_goals,
     find_latest_task_generation_run,
@@ -70,7 +71,7 @@ from ui_explorer.synthetic.scope_index import (
 log = logging.getLogger(__name__)
 
 DEFAULT_BATCH_SIZE = 6
-DEFAULT_GOAL_BATCH_SIZE = 2
+DEFAULT_GOAL_BATCH_SIZE = 4
 DEFAULT_GOAL_VARIANT_COUNT = 4
 DEFAULT_MAX_TOKENS = 16000
 DEFAULT_PROMPT_PROFILE = "slim"
@@ -1318,6 +1319,7 @@ def main() -> int:
                     source_task_run_dir = find_latest_task_generation_run(
                         workspace_root,
                         state_id,
+                        model=openai_config["model"],
                     )
                 if source_task_run_dir is None:
                     raise FileNotFoundError(
@@ -1352,6 +1354,19 @@ def main() -> int:
                         state_id,
                         len(skipped_complete_goals),
                     )
+                if pending:
+                    cleared_task_dirs = clear_incomplete_goal_outputs(
+                        source_task_run_dir,
+                        pending,
+                        source_outputs,
+                        goal_variant_count=args.goal_variant_count,
+                    )
+                    if cleared_task_dirs:
+                        log.info(
+                            "Macro state %s: cleared %d partial goal task dir(s) before resume",
+                            state_id,
+                            len(cleared_task_dirs),
+                        )
                 log.info(
                     "Macro state %s: source_task_run=%s source_microactions=%d pending=%d",
                     state_id,

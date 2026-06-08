@@ -4,7 +4,11 @@ from pathlib import Path
 
 from ui_explorer.synthetic.cost_log import reconcile_cost_log_prompts
 from ui_explorer.synthetic.generation_output import goal_variant_output_path, write_goal_outputs
-from ui_explorer.synthetic.goal_source import enrich_goal_outputs, filter_microactions_with_complete_goals
+from ui_explorer.synthetic.goal_source import (
+    clear_incomplete_goal_outputs,
+    enrich_goal_outputs,
+    filter_microactions_with_complete_goals,
+)
 from ui_explorer.synthetic.osworld_conversion import deterministic_task_id
 from ui_explorer.synthetic.schemas import validate_macrostate_goals_batch
 
@@ -137,6 +141,47 @@ def test_write_goal_outputs_uses_variant_paths(tmp_path: Path) -> None:
     assert variant_0.exists()
     assert variant_1.exists()
     assert variant_0.read_text(encoding="utf-8").count("Disable spell checking") >= 1
+
+
+def test_clear_incomplete_goal_outputs_removes_partial_task_dirs(tmp_path: Path) -> None:
+    run_dir = tmp_path / "20260606T120000Z"
+    task_id = deterministic_task_id(
+        run_timestamp="20260606T120000Z",
+        micro_action_id="abc123",
+        task_index=0,
+    )
+    write_goal_outputs(
+        run_dir,
+        {
+            "abc123": {
+                "task_type": "list_manipulation",
+                "goal": [
+                    {
+                        "id": task_id,
+                        "task_index": 0,
+                        "variants": [
+                            {"goal": "A", "expected_outcome": "Done"},
+                            {"goal": "B", "expected_outcome": "Done"},
+                        ],
+                    }
+                ],
+            }
+        },
+    )
+    source_outputs = {
+        "abc123": {
+            "task_type": "list_manipulation",
+            "task": [{"instruction": "x", "expected_outcome": "y", "preconditions": {"description": "z", "extras": []}}],
+        }
+    }
+    cleared = clear_incomplete_goal_outputs(
+        run_dir,
+        {"abc123"},
+        source_outputs,
+        goal_variant_count=4,
+    )
+    assert cleared == [task_id]
+    assert not (run_dir / "goals" / task_id).exists()
 
 
 def test_filter_microactions_with_complete_goals(tmp_path: Path) -> None:
